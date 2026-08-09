@@ -1,0 +1,30 @@
+{
+  "section": "9. ADMIN TEACHER MANAGEMENT",
+  "adminLogin": true,
+  "teachersTabReached": true,
+  "initialTeachersCount": 2,
+  "addButtonVisible": true,
+  "formVisible": true,
+  "teacherCreated": true,
+  "teacherInList": true,
+  "teacherActive": true,
+  "teacherLevelName": "School",
+  "teacherEmailMatches": true,
+  "duplicateEmailRejected": true,
+  "duplicateStatusCode": 409,
+  "weakPasswordRejected": null,
+  "teacherAbleToLogin": true,
+  "teacherLoginResponseStatus": 200,
+  "teacherDeactivate": true,
+  "teacherInactive": true,
+  "finalTeachersCount": 0,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 409 (Conflict)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "networkErrors": [
+    "409 http://localhost:5220/api/admin/teachers",
+    "401 http://localhost:5220/api/Auth/login"
+  ],
+  "fatalError": null
+}

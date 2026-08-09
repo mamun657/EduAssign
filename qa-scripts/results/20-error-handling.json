@@ -1,0 +1,93 @@
+{
+  "section": "20. ERROR HANDLING EDGE CASES",
+  "tests": {
+    "loginWrongPassword": {
+      "responseStatus": 401,
+      "uiShowsError": true,
+      "pageUrl": "http://localhost:3000/login",
+      "stayedOnLogin": true
+    },
+    "loginNonexistentEmail": {
+      "responseStatus": 401,
+      "uiShowsError": true,
+      "stayedOnLogin": true
+    },
+    "registerDuplicateEmail": {
+      "status": 409,
+      "rejected": true,
+      "message": "An account with this email already exists."
+    },
+    "registerInvalidEmail": {
+      "status": 400,
+      "rejected": true,
+      "message": "Email format is invalid."
+    },
+    "registerWeakPassword": {
+      "status": 400,
+      "rejected": true,
+      "message": "Password must be at least 8 characters."
+    },
+    "registerMismatchedPassword": {
+      "status": 400,
+      "rejected": true,
+      "message": "Passwords do not match."
+    },
+    "registerMissingRole": {
+      "status": 400,
+      "rejected": true,
+      "message": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"Role\":[\"The Role field is required.\"]},\"traceId\":\"00-e9dcb099a7f7"
+    },
+    "registerInvalidAcademicLevel": {
+      "status": 400,
+      "rejected": true,
+      "message": "Selected academic level does not exist."
+    },
+    "loginEmptyFields": {
+      "stayedOnLogin": true,
+      "emailFieldRejected": true,
+      "passwordFieldRejected": true,
+      "bodyHasError": false
+    },
+    "loginErrorClearsOnValid": {
+      "errorShownAfterWrong": true,
+      "reachedAdmin": true,
+      "finalUrl": "http://localhost:3000/admin"
+    },
+    "studentCreateSubject": {
+      "status": 403,
+      "rejected": true,
+      "message": ""
+    },
+    "teacherCreateTeacher": {
+      "status": 403,
+      "rejected": true
+    }
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 409 (Conflict)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  ],
+  "networkErrors": [
+    "401 http://localhost:5220/api/Auth/login",
+    "401 http://localhost:5220/api/Auth/login",
+    "409 http://localhost:5220/api/Auth/register",
+    "400 http://localhost:5220/api/Auth/register",
+    "400 http://localhost:5220/api/Auth/register",
+    "400 http://localhost:5220/api/Auth/register",
+    "400 http://localhost:5220/api/Auth/register",
+    "400 http://localhost:5220/api/Auth/register",
+    "401 http://localhost:5220/api/Auth/login",
+    "403 http://localhost:5220/api/Subjects",
+    "403 http://localhost:5220/api/admin/teachers"
+  ],
+  "fatalError": null
+}

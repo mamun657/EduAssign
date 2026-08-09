@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="EduAssignPro.Api/EduAssignPro.Api.csproj" />
+  <Project Path="EduAssignPro.Application/EduAssignPro.Application.csproj" />
+  <Project Path="EduAssignPro.Domain/EduAssignPro.Domain.csproj" />
+  <Project Path="EduAssignPro.Infrastructure/EduAssignPro.Infrastructure.csproj" />
+  <Project Path="EduAssignPro.Tests/EduAssignPro.Tests.csproj" />
+</Solution>

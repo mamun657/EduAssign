@@ -1,0 +1,21 @@
+{
+  "student": {
+    "firstName": "Sara",
+    "lastName": "Khan",
+    "email": "sara.khan+1786299239080@test.local",
+    "phone": "01711000001",
+    "password": "StrongPass!2026",
+    "academicLevelLabel": "School"
+  },
+  "teacher": {
+    "firstName": "Imran",
+    "lastName": "Hossain",
+    "email": "imran.hossain+1786299239080@test.local",
+    "phone": "01711000002",
+    "password": "TeachPass!2026"
+  },
+  "assignmentId": "6a78c3821d7f8cc453a2e46e",
+  "teacherId": "6a78c36e1d7f8cc453a2e286",
+  "studentId": "6a78c3691d7f8cc453a2e1f7",
+  "subjectId": "6a7899edfda21a2af890a6f1"
+}

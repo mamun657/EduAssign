@@ -1,0 +1,33 @@
+{
+  "section": "12. INVALID TSS ASSIGNMENT REJECTION",
+  "adminLogin": true,
+  "A_unenrolledRejected": true,
+  "A_statusCode": 400,
+  "A_message": "Student is not enrolled in this subject.",
+  "B_inactiveSubjectRejected": true,
+  "B_statusCode": 400,
+  "B_message": "Subject is not active.",
+  "C_nonTeacherRejected": true,
+  "C_statusCode": 400,
+  "C_message": "Selected user is not a Teacher.",
+  "D_nonStudentRejected": true,
+  "D_statusCode": 400,
+  "D_message": "Selected user is not a Student.",
+  "E_nonExistentTeacherRejected": true,
+  "E_statusCode": 404,
+  "F_nonExistentSubjectRejected": true,
+  "F_statusCode": 404,
+  "G_emptyBodyRejected": true,
+  "G_statusCode": 400,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [],
+  "fatalError": null
+}

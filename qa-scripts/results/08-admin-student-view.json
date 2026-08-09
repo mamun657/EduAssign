@@ -1,0 +1,32 @@
+{
+  "section": "8. ADMIN STUDENT DETAIL VIEW",
+  "adminLogin": true,
+  "studentsTabReached": true,
+  "studentListRows": 13,
+  "studentClicked": {
+    "id": "6a78b4c41d7f8cc453a2a64d",
+    "name": "Arif Ahmed",
+    "email": "arif+1786295489811855@test.local"
+  },
+  "detailPanelVisible": true,
+  "apiSelectedCount": 5,
+  "apiAvailableCount": 1,
+  "uiSelectedCount": 5,
+  "uiAvailableCount": 1,
+  "selectedContainsCompulsory": true,
+  "selectedContainsBiology": true,
+  "selectedContainsHigherMath": false,
+  "availableContainsHigherMath": true,
+  "availableContainsBiology": false,
+  "uiMatchesApi": true,
+  "apiDirectCheck": {
+    "status": 200,
+    "selectedCount": 5,
+    "availableCount": 1
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  ],
+  "networkErrors": [],
+  "fatalError": null
+}

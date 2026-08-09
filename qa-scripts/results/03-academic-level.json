@@ -1,0 +1,97 @@
+{
+  "section": "3. ACADEMIC LEVEL + CURRICULUM",
+  "schoolStudent": {
+    "firstName": "Samia",
+    "lastName": "Sultana",
+    "email": "samia+1786295388004449@test.local",
+    "phone": "01711000000",
+    "password": "StrongPass!2026",
+    "registerStatus": 200
+  },
+  "collegeStudent": {
+    "firstName": "Reza",
+    "lastName": "Karim",
+    "email": "reza+1786295395101865@test.local",
+    "phone": "01711000000",
+    "password": "StrongPass!2026",
+    "registerStatus": 200
+  },
+  "schoolCurriculum": {
+    "status": 200,
+    "academicLevelName": "School",
+    "compulsoryCount": 4,
+    "compulsoryCodes": [
+      "SCH_PHY",
+      "SCH_CHEM",
+      "SCH_BANG",
+      "SCH_ENG"
+    ],
+    "electiveGroupCount": 1,
+    "electiveGroupNames": [
+      "ScienceOptional"
+    ],
+    "electiveGroupSubjectCounts": [
+      {
+        "name": "ScienceOptional",
+        "count": 2,
+        "codes": [
+          "SCH_BIO",
+          "SCH_HMATH"
+        ]
+      }
+    ]
+  },
+  "collegeCurriculum": {
+    "status": 200,
+    "academicLevelName": "College",
+    "compulsoryCount": 8,
+    "compulsoryCodes": [
+      "COL_PHY_1",
+      "COL_PHY_2",
+      "COL_CHEM_1",
+      "COL_CHEM_2",
+      "COL_BANG_1",
+      "COL_BANG_2",
+      "COL_ENG_1",
+      "COL_ENG_2"
+    ],
+    "electiveGroupCount": 1,
+    "electiveGroupNames": [
+      "ScienceOptional"
+    ],
+    "electiveGroupSubjectCounts": [
+      {
+        "name": "ScienceOptional",
+        "count": 4,
+        "codes": [
+          "COL_BIO_1",
+          "COL_BIO_2",
+          "COL_HMATH_1",
+          "COL_HMATH_2"
+        ]
+      }
+    ]
+  },
+  "schoolUIVisible": true,
+  "collegeUIVisible": true,
+  "schoolCompulsoryCount": 4,
+  "collegeCompulsoryCount": 8,
+  "schoolElectiveGroups": [
+    "ScienceOptional"
+  ],
+  "collegeElectiveGroups": [
+    "ScienceOptional"
+  ],
+  "schoolHasCompulsoryHeader": true,
+  "schoolHasSchoolName": true,
+  "collegeHasCollegeName": true,
+  "schoolHasNoCollegeSubjects": true,
+  "collegeHasNoSchoolSubjects": true,
+  "schoolUIvsAPIMatch": true,
+  "collegeUIvsAPIMatch": true,
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null,
+  "schoolNoCrossContamination": true,
+  "collegeNoCrossContamination": true
+}

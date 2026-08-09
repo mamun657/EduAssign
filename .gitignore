@@ -1,0 +1,34 @@
+## --- Secrets & local config ---
+# Never commit real credentials. `.env` files are local-only.
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+
+## --- Node / Next.js ---
+node_modules/
+.next/
+out/
+build/
+dist/
+coverage/
+
+## --- .NET build outputs ---
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+
+## --- Logs ---
+*.log
+logs/
+
+## --- Tests ---
+TestResults/
+coverage*.xml
+
+## --- Misc ---
+.DS_Store
+Thumbs.db

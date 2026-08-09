@@ -1,0 +1,54 @@
+{
+  "section": "11. ADMIN TSS ASSIGNMENT (CRITICAL)",
+  "adminLogin": true,
+  "tssTabReached": true,
+  "initialTssCount": 0,
+  "studentOptionsLoaded": 14,
+  "teacherOptionsLoaded": 4,
+  "subjectOptionsBeforeStudent": 1,
+  "subjectDropdownDisabledBeforeStudent": true,
+  "studentSelected": {
+    "id": "6a78b4c41d7f8cc453a2a64d",
+    "name": "Arif Ahmed",
+    "codes": [
+      "SCH_BANG",
+      "SCH_CHEM",
+      "SCH_ENG",
+      "SCH_PHY",
+      "SCH_BIO"
+    ]
+  },
+  "subjectOptionsAfterStudent": 5,
+  "subjectDropdownEnabledAfterStudent": true,
+  "subjectOnlyShowsSelected": true,
+  "subjectContainsBio": true,
+  "subjectContainsHMath": false,
+  "subjectContainsPHY": true,
+  "assignmentCreated": true,
+  "assignmentStatusCode": 200,
+  "finalTssCount": 1,
+  "invalidAssignmentRejected": true,
+  "invalidAssignmentStatusCode": 400,
+  "invalidAssignmentErrorMessage": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Student is not enrolled in this subject.\"}",
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [],
+  "fatalError": null,
+  "teacherUsedFromFixture": true,
+  "subjectDropdownIsCorrect": {
+    "selectedCodesInDropdown": [
+      "SCH_BANG",
+      "SCH_BIO",
+      "SCH_CHEM",
+      "SCH_ENG",
+      "SCH_PHY"
+    ],
+    "availableNotSelectedCodes": [
+      "SCH_HMATH"
+    ],
+    "selectedCount": 5,
+    "expectedSelectedCount": 5,
+    "countsMatch": true
+  }
+}

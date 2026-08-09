@@ -1,0 +1,59 @@
+{
+  "section": "22. REFRESH & DIRECT URL NAVIGATION",
+  "tests": {
+    "refreshStudentDashboard": {
+      "beforeUrl": "http://localhost:3000/student",
+      "afterUrl": "http://localhost:3000/student",
+      "stillStudent": true,
+      "tokenPersisted": true,
+      "dashboardVisible": true
+    },
+    "refreshTeacherDashboard": {
+      "beforeUrl": "http://localhost:3000/teacher",
+      "afterUrl": "http://localhost:3000/teacher",
+      "stillTeacher": true,
+      "dashboardVisible": true
+    },
+    "refreshAdminDashboard": {
+      "beforeUrl": "http://localhost:3000/admin",
+      "afterUrl": "http://localhost:3000/admin",
+      "stillAdmin": true,
+      "dashboardVisible": true
+    },
+    "unauthDirectToStudent": {
+      "finalUrl": "http://localhost:3000/login",
+      "redirectedToLogin": true
+    },
+    "unauthDirectToAdmin": {
+      "finalUrl": "http://localhost:3000/login",
+      "redirectedToLogin": true
+    },
+    "unauthDirectToTeacher": {
+      "finalUrl": "http://localhost:3000/login",
+      "redirectedToLogin": true
+    },
+    "authedDirectToRegister": {
+      "finalUrl": "http://localhost:3000/admin",
+      "redirectedAway": true
+    },
+    "backForward": {
+      "backUrl": "http://localhost:3000/",
+      "forwardUrl": "http://localhost:3000/login",
+      "worked": true
+    },
+    "multiTab": {
+      "tab2ReachedAdmin": true,
+      "tab1StillAdminAfterReload": true,
+      "tab2StillAdmin": true
+    },
+    "logoutInvalidates": {
+      "tab2ReachedAdminInitially": true,
+      "tab1AfterLogout": "http://localhost:3000/login",
+      "tab2AfterLogout": "http://localhost:3000/login",
+      "tab2RedirectedToLogin": true
+    }
+  },
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null
+}

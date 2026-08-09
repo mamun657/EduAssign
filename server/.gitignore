@@ -1,0 +1,21 @@
+## .NET build outputs
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+
+## Local config / secrets
+.env
+appsettings.Local.json
+*.pfx
+*.key
+
+## Logs
+*.log
+logs/
+
+## Test results
+TestResults/
+coverage*.xml

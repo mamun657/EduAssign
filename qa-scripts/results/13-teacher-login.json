@@ -1,0 +1,22 @@
+{
+  "section": "13. TEACHER LOGIN + DASHBOARD",
+  "teacherAccountExists": true,
+  "teacherEmail": "tariq.aziz+1786297226770@test.local",
+  "teacherLoginPageLoaded": true,
+  "teacherLoginResponseStatus": 200,
+  "teacherLoggedIn": true,
+  "redirectedToTeacher": true,
+  "finalUrl": "http://localhost:3000/teacher",
+  "tokenStored": true,
+  "userStored": true,
+  "userRole": "Teacher",
+  "headerHasTeacher": true,
+  "mineApiCount": 1,
+  "adminApiTotalCount": 1,
+  "dashboardShowsAssignmentsLink": true,
+  "logoutClearsStorage": true,
+  "logoutRedirectsToLogin": true,
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null
+}

@@ -1,0 +1,52 @@
+{
+  "section": "7. ADMIN LOGIN + DASHBOARD",
+  "loginPageLoaded": true,
+  "loginResponseStatus": 200,
+  "loggedIn": true,
+  "redirectedToAdmin": true,
+  "finalUrlAfterLogin": "http://localhost:3000/admin",
+  "tokenStored": true,
+  "userStored": true,
+  "userRole": "Admin",
+  "headerHasAdmin": true,
+  "tabsVisible": [
+    {
+      "name": "Overview",
+      "visible": true,
+      "buttonCount": 2
+    },
+    {
+      "name": "Students",
+      "visible": true,
+      "buttonCount": 2
+    },
+    {
+      "name": "Teachers",
+      "visible": true,
+      "buttonCount": 2
+    },
+    {
+      "name": "Subjects",
+      "visible": true,
+      "buttonCount": 2
+    },
+    {
+      "name": "Assign Teacher",
+      "visible": true,
+      "buttonCount": 2
+    }
+  ],
+  "allTabsVisible": true,
+  "overviewStudentsCount": 13,
+  "overviewTeachersCount": 0,
+  "overviewSubjectsCount": 18,
+  "overviewLevelsCount": 2,
+  "studentsTabLoaded": true,
+  "studentsCount": 13,
+  "adminApiStudents": 13,
+  "logoutClearsStorage": true,
+  "logoutRedirectsToLogin": true,
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null
+}

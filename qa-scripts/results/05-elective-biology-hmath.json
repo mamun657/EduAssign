@@ -1,0 +1,44 @@
+{
+  "section": "5. BIOLOGY / HIGHER MATH ELECTIVE",
+  "studentABiology": {
+    "firstName": "Arif",
+    "lastName": "Ahmed",
+    "email": "arif+1786301986208572@test.local",
+    "phone": "01711000000",
+    "password": "StrongPass!2026",
+    "registerStatus": 200
+  },
+  "studentBHmath": {
+    "firstName": "Bithi",
+    "lastName": "Khan",
+    "email": "bithi+1786302001917429@test.local",
+    "phone": "01711000000",
+    "password": "StrongPass!2026",
+    "registerStatus": 200
+  },
+  "abiologyEnrollResult": null,
+  "abiologyEnrolled": true,
+  "ahmathButtonDisabled": true,
+  "ahmathButtonText": "Limit reached",
+  "ahmathApiEnrollRejected": true,
+  "ahmathApiEnrollStatus": 400,
+  "abiologyEnrolledAfterRefresh": true,
+  "ahmathNotEnrolledAfterRefresh": true,
+  "bHmathEnrollResult": null,
+  "bHmathEnrolled": true,
+  "bBiologyButtonDisabled": true,
+  "bBiologyButtonText": "Limit reached",
+  "bBiologyApiEnrollRejected": true,
+  "bBiologyApiEnrollStatus": 400,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll"
+  ],
+  "fatalError": null,
+  "ahmathNotEnrolled": true,
+  "bBiologyNotEnrolled": true
+}

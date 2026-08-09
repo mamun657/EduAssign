@@ -1,0 +1,34 @@
+{
+  "section": "18. TEACHER REVIEW",
+  "teacherLogin": true,
+  "teacherDashboardReached": true,
+  "submissionVisibleInDashboard": true,
+  "reviewRespStatus": 200,
+  "reviewAccepted": true,
+  "statusAfterReview": "Reviewed",
+  "marksSaved": 87,
+  "feedbackSaved": true,
+  "persistedAfterRefresh": true,
+  "crossTeacherReviewRejected": false,
+  "crossTeacherReviewStatusCode": null,
+  "crossTeacherReviewMessage": null,
+  "reviewBeforeSubmitRejected": true,
+  "reviewBeforeSubmitStatusCode": 400,
+  "studentSeesReviewedStatus": true,
+  "studentSeesMarks": 87,
+  "studentSeesFeedback": true,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [
+    "400 http://localhost:5220/api/assignments/6a78bff71d7f8cc453a2cdc4/review"
+  ],
+  "fatalError": null,
+  "teacherSeesStatus": "Aug 16, 2026, 11:56 PM",
+  "teacherSeesStudent": "Photosynthesis Lab Report",
+  "teacherSeesSubject": "Arif Ahmed",
+  "persistedStatus": "Reviewed",
+  "persistedMarks": 87,
+  "crossTeacherEmail": null,
+  "reviewBeforeSubmitMessage": "Student has not submitted yet."
+}

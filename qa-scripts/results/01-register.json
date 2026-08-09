@@ -1,0 +1,33 @@
+{
+  "section": "1. AUTHENTICATION — REGISTER",
+  "pageLoaded": true,
+  "noHydrationError": true,
+  "noFailedToFetch": true,
+  "academicLevelsLoaded": true,
+  "academicLevels": [
+    "Select your level…",
+    "College",
+    "School"
+  ],
+  "studentRegistered": true,
+  "studentRegisterStatus": 200,
+  "studentRegisterUrl": "http://localhost:5220/api/Auth/register",
+  "duplicateEmailRejected": true,
+  "invalidEmailRejected": true,
+  "weakPasswordRejected": true,
+  "adminRegistrationBlocked": true,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 409 (Conflict)"
+  ],
+  "networkErrors": [
+    "409 http://localhost:5220/api/Auth/register"
+  ],
+  "finalUrl": "http://localhost:3000/register",
+  "studentLandingUrl": "http://localhost:3000/student",
+  "duplicateEmailStatus": 409,
+  "roleOptions": [
+    "Select a role…",
+    "Student",
+    "Teacher"
+  ]
+}

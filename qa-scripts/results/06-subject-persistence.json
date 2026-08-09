@@ -1,0 +1,119 @@
+{
+  "section": "6. SUBJECT PERSISTENCE",
+  "student": {
+    "firstName": "Sumaiya",
+    "lastName": "Akter",
+    "email": "sumaiya+1786295576774@test.local",
+    "password": "StrongPass!2026"
+  },
+  "initialEnrolled": [
+    {
+      "code": "SCH_PHY",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_CHEM",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BANG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_ENG",
+      "compulsory": true
+    }
+  ],
+  "afterRefreshEnrolled": [
+    {
+      "code": "SCH_PHY",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_CHEM",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BANG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_ENG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BIO",
+      "compulsory": false
+    }
+  ],
+  "afterLogoutLoginEnrolled": [
+    {
+      "code": "SCH_PHY",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_CHEM",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BANG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_ENG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BIO",
+      "compulsory": false
+    }
+  ],
+  "afterDirectNavEnrolled": [
+    {
+      "code": "SCH_PHY",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_CHEM",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BANG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_ENG",
+      "compulsory": true
+    },
+    {
+      "code": "SCH_BIO",
+      "compulsory": false
+    }
+  ],
+  "initialCompulsoryCount": 4,
+  "afterRefreshCompulsoryCount": 4,
+  "afterLogoutLoginCompulsoryCount": 4,
+  "afterDirectNavCompulsoryCount": 4,
+  "initialElective": [
+    "SCH_BIO"
+  ],
+  "afterRefreshElective": [
+    "SCH_BIO"
+  ],
+  "afterLogoutLoginElective": [
+    "SCH_BIO"
+  ],
+  "afterDirectNavElective": [
+    "SCH_BIO"
+  ],
+  "unselectedNotEnrolledAnywhere": true,
+  "localStorageKeysAfterLogin": [
+    "eduassign.user",
+    "eduassign.token"
+  ],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null,
+  "compulsoryConsistent": true,
+  "biologyConsistent": true
+}

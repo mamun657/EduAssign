@@ -1,0 +1,134 @@
+{
+  "section": "19. ROLE SECURITY MATRIX",
+  "backend": {
+    "studentVsAdminStudents": {
+      "status": 403,
+      "rejected": true
+    },
+    "studentVsAdminTeachers": {
+      "status": 403,
+      "rejected": true
+    },
+    "studentVsCreateAssignment": {
+      "status": 403,
+      "rejected": true
+    },
+    "studentVsReview": {
+      "status": 403,
+      "rejected": true
+    },
+    "teacherVsAdminStudents": {
+      "status": 403,
+      "rejected": true
+    },
+    "teacherVsEnrolledSubjects": {
+      "status": 403,
+      "rejected": true
+    },
+    "teacherVsSubmit": {
+      "status": 403,
+      "rejected": true
+    },
+    "adminVsSubmit": {
+      "status": 403,
+      "rejected": true
+    },
+    "adminVsReview": {
+      "status": 403,
+      "rejected": true
+    },
+    "unauthenticatedVsMe": {
+      "status": 401,
+      "rejected": true
+    }
+  },
+  "frontend": {
+    "studentVisitsAdmin": {
+      "finalUrl": "http://localhost:3000/student",
+      "pathname": "/student",
+      "ok": true
+    },
+    "studentVisitsTeacher": {
+      "finalUrl": "http://localhost:3000/student",
+      "pathname": "/student",
+      "ok": true
+    },
+    "teacherVisitsAdmin": {
+      "finalUrl": "http://localhost:3000/teacher",
+      "pathname": "/teacher",
+      "ok": true
+    },
+    "teacherVisitsStudent": {
+      "finalUrl": "http://localhost:3000/teacher",
+      "pathname": "/teacher",
+      "ok": true
+    },
+    "adminVisitsStudent": {
+      "finalUrl": "http://localhost:3000/admin",
+      "pathname": "/admin",
+      "ok": true
+    },
+    "adminVisitsTeacher": {
+      "finalUrl": "http://localhost:3000/admin",
+      "pathname": "/admin",
+      "ok": true
+    },
+    "unauthVisitsStudent": {
+      "finalUrl": "http://localhost:3000/login",
+      "pathname": "/login",
+      "ok": true
+    },
+    "unauthVisitsAdmin": {
+      "finalUrl": "http://localhost:3000/login",
+      "pathname": "/login",
+      "ok": true
+    },
+    "unauthVisitsTeacher": {
+      "finalUrl": "http://localhost:3000/login",
+      "pathname": "/login",
+      "ok": true
+    }
+  },
+  "ownDashboards": {
+    "studentReachedStudent": {
+      "finalUrl": "http://localhost:3000/student",
+      "pathname": "/student",
+      "ok": true
+    },
+    "teacherReachedTeacher": {
+      "finalUrl": "http://localhost:3000/teacher",
+      "pathname": "/teacher",
+      "ok": true
+    },
+    "adminReachedAdmin": {
+      "finalUrl": "http://localhost:3000/admin",
+      "pathname": "/admin",
+      "ok": true
+    }
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "networkErrors": [
+    "403 http://localhost:5220/api/admin/students",
+    "403 http://localhost:5220/api/admin/teachers",
+    "403 http://localhost:5220/api/assignments",
+    "403 http://localhost:5220/api/assignments/6a78bf4a1d7f8cc453a2cb4f/review",
+    "403 http://localhost:5220/api/admin/students",
+    "403 http://localhost:5220/api/Students/enrolled-subjects",
+    "403 http://localhost:5220/api/assignments/6a78bf4a1d7f8cc453a2cb4f/submit",
+    "403 http://localhost:5220/api/assignments/6a78bf4a1d7f8cc453a2cb4f/submit",
+    "403 http://localhost:5220/api/assignments/6a78bf4a1d7f8cc453a2cb4f/review",
+    "401 http://localhost:5220/api/Auth/me"
+  ],
+  "fatalError": null
+}

@@ -1,0 +1,70 @@
+{
+  "section": "24. COLLEGE ELECTIVE OPTIONS",
+  "aBioGroupShape": {
+    "hasOptions": true,
+    "optionCount": 2,
+    "optionKeys": [
+      "Biology",
+      "HigherMathematics"
+    ],
+    "subjectsPerOption": [
+      [
+        "COL_BIO_1",
+        "COL_BIO_2"
+      ],
+      [
+        "COL_HMATH_1",
+        "COL_HMATH_2"
+      ]
+    ]
+  },
+  "aBioPickedBio1": true,
+  "aBioBothPapersEnrolled": true,
+  "aBioHmathOptionLocked": true,
+  "aBioHmathPapersText": "Limit reached",
+  "aBioApiHmath1Rejected": true,
+  "aBioApiHmath1Status": 400,
+  "aBioApiHmath2Rejected": true,
+  "aBioApiHmath2Status": 400,
+  "bHmathGroupShape": {
+    "hasOptions": true,
+    "optionCount": 2,
+    "optionKeys": [
+      "Biology",
+      "HigherMathematics"
+    ],
+    "subjectsPerOption": [
+      [
+        "COL_BIO_1",
+        "COL_BIO_2"
+      ],
+      [
+        "COL_HMATH_1",
+        "COL_HMATH_2"
+      ]
+    ]
+  },
+  "bHmathPickedHmath1": true,
+  "bHmathBothPapersEnrolled": true,
+  "bHmathBioOptionLocked": true,
+  "bHmathBioPapersText": "Limit reached",
+  "bHmathApiBio1Rejected": true,
+  "bHmathApiBio1Status": 400,
+  "bHmathApiBio2Rejected": true,
+  "bHmathApiBio2Status": 400,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll"
+  ],
+  "fatalError": null,
+  "aBioHmathNotEnrolled": true,
+  "bHmathBioNotEnrolled": true
+}

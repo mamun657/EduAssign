@@ -1,0 +1,26 @@
+{
+  "section": "10. ADMIN SUBJECT MANAGEMENT",
+  "adminLogin": true,
+  "subjectsTabReached": true,
+  "initialSubjectsCount": 20,
+  "addButtonVisible": true,
+  "formVisible": true,
+  "subjectCreated": true,
+  "subjectInList": true,
+  "subjectCodeMatches": true,
+  "duplicateCodeRejected": false,
+  "duplicateStatusCode": 200,
+  "deactivated": true,
+  "deactivatedStatusCode": 200,
+  "finalSubjectsCount": 21,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [
+    "400 http://localhost:5220/api/Subjects"
+  ],
+  "fatalError": null,
+  "noteOnDuplicate": "UpsertByCodeAsync: duplicate code returns 200 (overwrites existing). This is intentional seed/re-seed behavior.",
+  "emptyCodeRejected": true,
+  "emptyCodeStatusCode": 400
+}

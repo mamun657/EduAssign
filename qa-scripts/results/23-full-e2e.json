@@ -1,0 +1,78 @@
+{
+  "section": "23. COMPLETE FINAL E2E SCENARIO",
+  "steps": {
+    "step1_registerStudent": {
+      "status": 200,
+      "finalUrl": "http://localhost:3000/student",
+      "reachedDashboard": true
+    },
+    "step2_registerTeacher": {
+      "status": 200,
+      "finalUrl": "http://localhost:3000/teacher",
+      "reachedDashboard": true
+    },
+    "step3_adminLogin": {
+      "finalUrl": "http://localhost:3000/admin",
+      "reachedAdmin": true,
+      "adminTokenAcquired": true
+    },
+    "step4a_resolvedIds": {
+      "teacherId": "6a78c36e1d7f8cc453a2e286",
+      "studentId": "6a78c3691d7f8cc453a2e1f7",
+      "subjectId": "6a7899edfda21a2af890a6f1",
+      "levelId": "6a7899ecfda21a2af890a6ed"
+    },
+    "step4b_createdLink": {
+      "status": 200,
+      "created": true
+    },
+    "step5_studentSeesEnrolled": {
+      "finalUrl": "http://localhost:3000/student",
+      "reachedStudent": true,
+      "hasBiologyOrSubjects": true
+    },
+    "step6_studentOptionalEnrollment": {
+      "availableSubjects": 0,
+      "skipped": "compulsory link already created in step 4"
+    },
+    "step7_teacherLogin": {
+      "finalUrl": "http://localhost:3000/teacher",
+      "reachedTeacher": true,
+      "bodyLoaded": true
+    },
+    "step8_createAssignment": {
+      "status": 200,
+      "assignmentId": "6a78c3821d7f8cc453a2e46e"
+    },
+    "step9_publish": {
+      "status": 200,
+      "published": true
+    },
+    "step10_studentSeesAssignment": {
+      "finalUrl": "http://localhost:3000/student",
+      "reachedStudent": true,
+      "seesAssignment": true
+    },
+    "step11_submit": {
+      "status": 200,
+      "submitted": true
+    },
+    "step12_review": {
+      "status": 200,
+      "reviewed": true
+    },
+    "step13_studentSeesReviewed": {
+      "finalUrl": "http://localhost:3000/student",
+      "reachedStudent": true,
+      "seesReviewed": true
+    },
+    "step14_logout": {
+      "finalUrl": "http://localhost:3000/login",
+      "reachedLogin": true,
+      "clearedToken": true
+    }
+  },
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null
+}

@@ -1,0 +1,24 @@
+{
+  "section": "21. BROWSER CONSOLE + NETWORK DEEP INSPECTION",
+  "admin": {
+    "consoleErrors": [],
+    "networkErrors": [],
+    "unfilteredNetworkErrors": []
+  },
+  "teacher": {
+    "consoleErrors": [],
+    "networkErrors": [],
+    "unfilteredNetworkErrors": []
+  },
+  "student": {
+    "consoleErrors": [],
+    "networkErrors": [],
+    "unfilteredNetworkErrors": []
+  },
+  "counts": {
+    "totalBrowserErrors": 0,
+    "total5xx": 0,
+    "totalUnexpected4xx": 0
+  },
+  "fatalError": null
+}

@@ -1,0 +1,125 @@
+{
+  "section": "4. COMPULSORY SUBJECTS",
+  "schoolStudent": {
+    "email": "samia+1786295388004449@test.local",
+    "firstName": "Samia",
+    "lastName": "Sultana"
+  },
+  "schoolDashboardLoaded": true,
+  "compulsoryInUI": [
+    {
+      "code": "SCH_PHY",
+      "name": "Physics",
+      "cardHasEnrolled": true,
+      "cardHasEnrollBtn": false
+    },
+    {
+      "code": "SCH_CHEM",
+      "name": "Chemistry",
+      "cardHasEnrolled": true,
+      "cardHasEnrollBtn": false
+    },
+    {
+      "code": "SCH_BANG",
+      "name": "Bangla",
+      "cardHasEnrolled": true,
+      "cardHasEnrollBtn": false
+    },
+    {
+      "code": "SCH_ENG",
+      "name": "English",
+      "cardHasEnrolled": true,
+      "cardHasEnrollBtn": false
+    }
+  ],
+  "allCompulsoryEnrolled": true,
+  "enrollButtonAbsentForCompulsory": true,
+  "enrolledApiCount": 4,
+  "enrolledApiCompulsoryCount": 4,
+  "enrolledApiElectiveCount": 0,
+  "compulsoryEnrollmentExists": true,
+  "deleteCompulsoryStatus": 400,
+  "deleteCompulsoryRejected": true,
+  "enrollCompulsoryStatus": 400,
+  "enrollCompulsoryRejected": true,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "networkErrors": [
+    "400 http://localhost:5220/api/Students/enroll/6a7899edfda21a2af890a6ef",
+    "400 http://localhost:5220/api/Students/enroll/6a7899edfda21a2af890a6f0",
+    "400 http://localhost:5220/api/Students/enroll/6a7899edfda21a2af890a6f1",
+    "400 http://localhost:5220/api/Students/enroll/6a7899edfda21a2af890a6f2",
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll",
+    "400 http://localhost:5220/api/Students/enroll"
+  ],
+  "fatalError": null,
+  "enrolledApiCodes": [
+    "SCH_PHY",
+    "SCH_CHEM",
+    "SCH_BANG",
+    "SCH_ENG"
+  ],
+  "apiCompulsoryCount": 4,
+  "deleteAttempts": [
+    {
+      "subjectId": "6a7899edfda21a2af890a6ef",
+      "code": "SCH_PHY",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects cannot be removed.\"}"
+    },
+    {
+      "subjectId": "6a7899edfda21a2af890a6f0",
+      "code": "SCH_CHEM",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects cannot be removed.\"}"
+    },
+    {
+      "subjectId": "6a7899edfda21a2af890a6f1",
+      "code": "SCH_BANG",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects cannot be removed.\"}"
+    },
+    {
+      "subjectId": "6a7899edfda21a2af890a6f2",
+      "code": "SCH_ENG",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects cannot be removed.\"}"
+    }
+  ],
+  "enrollAttempts": [
+    {
+      "subjectId": "6a7899edfda21a2af890a6ef",
+      "code": "SCH_PHY",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects are automatically enrolled. They cannot be added manually.\"}"
+    },
+    {
+      "subjectId": "6a7899edfda21a2af890a6f0",
+      "code": "SCH_CHEM",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects are automatically enrolled. They cannot be added manually.\"}"
+    },
+    {
+      "subjectId": "6a7899edfda21a2af890a6f1",
+      "code": "SCH_BANG",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects are automatically enrolled. They cannot be added manually.\"}"
+    },
+    {
+      "subjectId": "6a7899edfda21a2af890a6f2",
+      "code": "SCH_ENG",
+      "status": 400,
+      "body": "{\"success\":false,\"code\":\"VALIDATION_ERROR\",\"message\":\"Compulsory subjects are automatically enrolled. They cannot be added manually.\"}"
+    }
+  ]
+}
