@@ -1,0 +1,7 @@
+# Pinned to versions verified in the EduAssign environment.
+# These match the pre-installed Python 3.14 toolchain on the dev machine.
+fastapi==0.141.1
+uvicorn==0.52.1
+sentence-transformers==5.4.1
+numpy==2.4.4
+pydantic>=2.0,<3.0

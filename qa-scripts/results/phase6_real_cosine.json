@@ -1,0 +1,82 @@
+[
+  {
+    "a": "A1_similar_to_A2.pdf",
+    "b": "A2_similar_to_A1.pdf",
+    "desc": "RELATED: same topic, paraphrase",
+    "cosine": 0.9169094168668738,
+    "pct": 91.69,
+    "band": "HIGH >=70%",
+    "expected": "RELATED",
+    "correct": true
+  },
+  {
+    "a": "A1_similar_to_A2.pdf",
+    "b": "B_same_meaning.pdf",
+    "desc": "RELATED: same topic, different wording",
+    "cosine": 0.6251290436136465,
+    "pct": 62.51,
+    "band": "MODERATE 30-70%",
+    "expected": "MODERATE",
+    "correct": false
+  },
+  {
+    "a": "A1_similar_to_A2.pdf",
+    "b": "D_multipage.pdf",
+    "desc": "RELATED: same topic, longer text",
+    "cosine": 0.8771421278746747,
+    "pct": 87.71,
+    "band": "HIGH >=70%",
+    "expected": "RELATED",
+    "correct": true
+  },
+  {
+    "a": "A2_similar_to_A1.pdf",
+    "b": "D_multipage.pdf",
+    "desc": "RELATED: same topic, longer text",
+    "cosine": 0.8776899162939229,
+    "pct": 87.77,
+    "band": "HIGH >=70%",
+    "expected": "RELATED",
+    "correct": true
+  },
+  {
+    "a": "A1_similar_to_A2.pdf",
+    "b": "C_different_topic.pdf",
+    "desc": "UNRELATED: photosynthesis vs French Revolution",
+    "cosine": 0.04953145604625553,
+    "pct": 4.95,
+    "band": "LOW <30%",
+    "expected": "UNRELATED?",
+    "correct": true
+  },
+  {
+    "a": "A1_similar_to_A2.pdf",
+    "b": "E_one_line.pdf",
+    "desc": "UNRELATED: photosynthesis vs 'A short note.'",
+    "cosine": -0.03291423024823079,
+    "pct": -3.29,
+    "band": "LOW <30%",
+    "expected": "UNRELATED?",
+    "correct": true
+  },
+  {
+    "a": "B_same_meaning.pdf",
+    "b": "C_different_topic.pdf",
+    "desc": "UNRELATED",
+    "cosine": 0.014530277688170102,
+    "pct": 1.45,
+    "band": "LOW <30%",
+    "expected": "UNRELATED?",
+    "correct": true
+  },
+  {
+    "a": "D_multipage.pdf",
+    "b": "C_different_topic.pdf",
+    "desc": "UNRELATED",
+    "cosine": 0.05465063856969478,
+    "pct": 5.47,
+    "band": "LOW <30%",
+    "expected": "UNRELATED?",
+    "correct": true
+  }
+]

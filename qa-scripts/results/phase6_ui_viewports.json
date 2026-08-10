@@ -1,0 +1,127 @@
+{
+  "startedAt": "2026-08-10T16:50:02.558Z",
+  "perViewport": {
+    "desktop_1440x900": {
+      "viewport": {
+        "name": "desktop_1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "steps": {
+        "loginUrl": "http://localhost:3000/teacher",
+        "detailStatus": 200,
+        "overflow": {
+          "docScrollWidth": 1440,
+          "docClientWidth": 1440,
+          "bodyScrollWidth": 1440,
+          "bodyClientWidth": 1440,
+          "hasHorizontalScroll": false
+        },
+        "similarityPanelVisible": true,
+        "analyzeButtonVisible": true,
+        "scoreBadgeVisible": true,
+        "polledStatus": "Completed",
+        "overflowAfter": {
+          "docScrollWidth": 1440,
+          "docClientWidth": 1440,
+          "bodyScrollWidth": 1440,
+          "bodyClientWidth": 1440,
+          "hasHorizontalScroll": false
+        }
+      }
+    },
+    "laptop_1280x800": {
+      "viewport": {
+        "name": "laptop_1280x800",
+        "width": 1280,
+        "height": 800
+      },
+      "steps": {
+        "loginUrl": "http://localhost:3000/teacher",
+        "detailStatus": 200,
+        "overflow": {
+          "docScrollWidth": 1280,
+          "docClientWidth": 1280,
+          "bodyScrollWidth": 1280,
+          "bodyClientWidth": 1280,
+          "hasHorizontalScroll": false
+        },
+        "similarityPanelVisible": true,
+        "analyzeButtonVisible": true,
+        "scoreBadgeVisible": true,
+        "polledStatus": "Completed",
+        "overflowAfter": {
+          "docScrollWidth": 1280,
+          "docClientWidth": 1280,
+          "bodyScrollWidth": 1280,
+          "bodyClientWidth": 1280,
+          "hasHorizontalScroll": false
+        }
+      }
+    },
+    "mobile_390x844": {
+      "viewport": {
+        "name": "mobile_390x844",
+        "width": 390,
+        "height": 844
+      },
+      "steps": {
+        "loginUrl": "http://localhost:3000/teacher",
+        "detailStatus": 200,
+        "overflow": {
+          "docScrollWidth": 390,
+          "docClientWidth": 390,
+          "bodyScrollWidth": 390,
+          "bodyClientWidth": 390,
+          "hasHorizontalScroll": false
+        },
+        "similarityPanelVisible": true,
+        "analyzeButtonVisible": true,
+        "scoreBadgeVisible": true,
+        "polledStatus": "Completed",
+        "overflowAfter": {
+          "docScrollWidth": 390,
+          "docClientWidth": 390,
+          "bodyScrollWidth": 390,
+          "bodyClientWidth": 390,
+          "hasHorizontalScroll": false
+        }
+      }
+    },
+    "mobile_375x812": {
+      "viewport": {
+        "name": "mobile_375x812",
+        "width": 375,
+        "height": 812
+      },
+      "steps": {
+        "loginUrl": "http://localhost:3000/teacher",
+        "detailStatus": 200,
+        "overflow": {
+          "docScrollWidth": 375,
+          "docClientWidth": 375,
+          "bodyScrollWidth": 375,
+          "bodyClientWidth": 375,
+          "hasHorizontalScroll": false
+        },
+        "similarityPanelVisible": true,
+        "analyzeButtonVisible": true,
+        "scoreBadgeVisible": true,
+        "polledStatus": "Completed",
+        "overflowAfter": {
+          "docScrollWidth": 375,
+          "docClientWidth": 375,
+          "bodyScrollWidth": 375,
+          "bodyClientWidth": 375,
+          "hasHorizontalScroll": false
+        }
+      }
+    }
+  },
+  "global": {
+    "consoleErrors": [],
+    "networkAppErrors": [],
+    "pageErrors": []
+  },
+  "finishedAt": "2026-08-10T16:50:35.746Z"
+}

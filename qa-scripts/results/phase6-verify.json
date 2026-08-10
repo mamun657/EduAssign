@@ -1,0 +1,99 @@
+{
+  "section": "Phase 6 - Live UI Verification",
+  "startedAt": "2026-08-10T15:06:35.302Z",
+  "steps": {
+    "teacherUrlAfterLogin": "http://localhost:3000/teacher",
+    "teacherLoggedIn": true,
+    "teacherPages": [
+      {
+        "path": "/teacher",
+        "status": 200,
+        "url": "http://localhost:3000/teacher",
+        "similarityUI": false
+      },
+      {
+        "path": "/teacher/assignments",
+        "status": 200,
+        "url": "http://localhost:3000/teacher/assignments",
+        "similarityUI": false
+      },
+      {
+        "path": "/teacher/submissions",
+        "status": 200,
+        "url": "http://localhost:3000/teacher/submissions",
+        "similarityUI": false
+      }
+    ],
+    "studentUrlAfterLogin": "http://localhost:3000/student",
+    "studentLoggedIn": true,
+    "studentPages": [
+      {
+        "path": "/student",
+        "status": 200,
+        "url": "http://localhost:3000/student",
+        "similarityUI": false
+      },
+      {
+        "path": "/student/assignments",
+        "status": 200,
+        "url": "http://localhost:3000/student/assignments",
+        "similarityUI": false
+      }
+    ],
+    "adminUrlAfterLogin": "http://localhost:3000/admin",
+    "adminLoggedIn": true,
+    "adminPages": [
+      {
+        "path": "/admin",
+        "status": 200,
+        "url": "http://localhost:3000/admin"
+      },
+      {
+        "path": "/admin/students",
+        "status": 200,
+        "url": "http://localhost:3000/admin/students"
+      },
+      {
+        "path": "/admin/teachers",
+        "status": 200,
+        "url": "http://localhost:3000/admin/teachers"
+      },
+      {
+        "path": "/admin/subjects",
+        "status": 200,
+        "url": "http://localhost:3000/admin/subjects"
+      },
+      {
+        "path": "/admin/curriculum",
+        "status": 200,
+        "url": "http://localhost:3000/admin/curriculum"
+      },
+      {
+        "path": "/admin/teacher-student-subject",
+        "status": 200,
+        "url": "http://localhost:3000/admin/teacher-student-subject"
+      }
+    ]
+  },
+  "consoleErrors": [
+    "[student-api] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[student-api] Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "[student-api] Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  ],
+  "pageErrors": [],
+  "networkErrors": [],
+  "apiChecks": {
+    "compareAnonymous": {
+      "status": 401
+    },
+    "compareAuthedStudent": {
+      "status": 403
+    },
+    "summaryAuthedStudent": {
+      "status": 403
+    }
+  },
+  "similarityUiFound": false,
+  "fatalError": null,
+  "finishedAt": "2026-08-10T15:07:25.177Z"
+}

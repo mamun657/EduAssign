@@ -259,3 +259,86 @@ export interface ApiError {
   errors?: Record<string, string[]>;
   network?: boolean;
 }
+
+// --- Phase 6: Similarity / plagiarism detection ---
+// Mirrors server/EduAssignPro.Application/Dtos/Similarity/SimilarityDtos.cs
+
+/**
+ * Backend lifecycle for one submission's analysis. Values from
+ * server/EduAssignPro.Domain/Enums/SimilarityAnalysisStatus.
+ */
+export type SimilarityAnalysisStatus =
+  | "NotAnalyzed"
+  | "Analyzing"
+  | "Completed"
+  | "Failed";
+
+/**
+ * Backend classification. Values produced by SimilarityAnalysisService.LevelFor():
+ *   score < LowThreshold       → "Low"
+ *   score < ModerateThreshold  → "Moderate"
+ *   else                       → "High"
+ *   no score yet               → "Unknown"
+ */
+export type SimilarityLevel = "Low" | "Moderate" | "High" | "Unknown";
+
+export interface SimilarityMatch {
+  submissionId: string;
+  studentId: string;
+  studentName: string;
+  lexicalScore: number;
+  semanticScore: number;
+  finalScore: number;
+}
+
+/** Per-submission summary surfaced to teacher/student views. */
+export interface SimilaritySummary {
+  submissionId: string;
+  assignmentId: string;
+  studentId: string;
+  studentName: string;
+  status: SimilarityAnalysisStatus | string;
+  overallScore: number | null;
+  highestSimilarityScore: number | null;
+  lexicalScore: number | null;
+  semanticScore: number | null;
+  comparedSubmissionId?: string | null;
+  comparedStudentId?: string | null;
+  comparedStudentName?: string | null;
+  level: SimilarityLevel | string;
+  analyzedAt?: string | null;
+  errorMessage?: string | null;
+  matches: SimilarityMatch[];
+}
+
+/** Per-assignment aggregated summary (teacher/admin only). */
+export interface AssignmentSimilaritySummary {
+  assignmentId: string;
+  totalSubmissions: number;
+  analyzedSubmissions: number;
+  highSimilarityPairs: number;
+  submissions: SimilaritySummary[];
+}
+
+/** Pairwise comparison view (teacher/admin only). */
+export interface SimilarityComparison {
+  submissionId: string;
+  studentId: string;
+  studentName: string;
+  otherSubmissionId: string;
+  otherStudentId: string;
+  otherStudentName: string;
+  lexicalScore: number;
+  semanticScore: number;
+  finalScore: number;
+  level: SimilarityLevel | string;
+  assignmentId: string;
+  analyzedAt: string;
+}
+
+/** Response from POST /api/similarity/submissions/{id}/analyze (202 Accepted). */
+export interface SimilarityAnalyzeAccepted {
+  id: string;
+  submissionId: string;
+  status: string;
+}

@@ -1,0 +1,17 @@
+Using launch settings from EduAssignPro.Api\Properties\launchSettings.json...
+Building...
+[20:41:51 INF] Loaded .env from C:\EduAssign\.env (10 entries)
+[20:41:51 INF] Mongo connection string loaded: YES
+[20:41:51 INF] Mongo database name: EduAssignPro
+[20:41:51 INF] JWT secret loaded: YES
+[20:41:51 INF] Admin seed email loaded: YES
+[20:41:51 INF] Admin seed password loaded: YES
+[20:41:52 INF] Running idempotent seed...
+[20:41:56 INF] Seed complete.
+[20:41:56 INF] Seed completed successfully.
+[20:41:56 INF] SimilarityAnalysisBackgroundQueue started.
+[20:41:56 INF] Now listening on: http://localhost:5220
+[20:41:56 INF] Application started. Press Ctrl+C to shut down.
+[20:41:56 INF] Hosting environment: Development
+[20:41:56 INF] Content root path: C:\EduAssign\server\EduAssignPro.Api
+[20:55:51 INF] HTTP POST /api/similarity/submissions/dummy/analyze responded 401 in 87.1433 ms

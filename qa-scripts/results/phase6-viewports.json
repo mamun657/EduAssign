@@ -1,0 +1,297 @@
+{
+  "section": "Phase 6 - Multi-viewport UI Verification",
+  "startedAt": "2026-08-10T15:46:34.662Z",
+  "viewports": {
+    "desktop_1440x900": {
+      "width": 1440,
+      "height": 900,
+      "roles": {
+        "teacher": {
+          "routes": {
+            "/teacher": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/teacher/assignments": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/assignments",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/teacher/submissions": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/submissions",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/teacher/students": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/students",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/teacher/subjects": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/subjects",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            }
+          },
+          "shots": [
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_teacher__teacher.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_teacher__teacher_assignments.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_teacher__teacher_submissions.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_teacher__teacher_students.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_teacher__teacher_subjects.png"
+          ],
+          "consoleErrors": [],
+          "networkAppErrors": [],
+          "horizontalOverflow": {},
+          "pageErrors": []
+        },
+        "student": {
+          "routes": {
+            "/student": {
+              "status": 200,
+              "url": "http://localhost:3000/student",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/student/assignments": {
+              "status": 200,
+              "url": "http://localhost:3000/student/assignments",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/student/subjects": {
+              "status": 200,
+              "url": "http://localhost:3000/student/subjects",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            }
+          },
+          "shots": [
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_student__student.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_student__student_assignments.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_student__student_subjects.png"
+          ],
+          "consoleErrors": [],
+          "networkAppErrors": [],
+          "horizontalOverflow": {},
+          "pageErrors": []
+        },
+        "admin": {
+          "routes": {
+            "/admin": {
+              "status": 200,
+              "url": "http://localhost:3000/admin",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/admin/students": {
+              "status": 200,
+              "url": "http://localhost:3000/admin/students",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/admin/teachers": {
+              "status": 200,
+              "url": "http://localhost:3000/admin/teachers",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/admin/subjects": {
+              "status": 200,
+              "url": "http://localhost:3000/admin/subjects",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/admin/curriculum": {
+              "status": 200,
+              "url": "http://localhost:3000/admin/curriculum",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            },
+            "/admin/teacher-student-subject": {
+              "status": 200,
+              "url": "http://localhost:3000/admin/teacher-student-subject",
+              "overflow": false,
+              "metrics": {
+                "sw": 1440,
+                "iw": 1440
+              }
+            }
+          },
+          "shots": [
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_admin__admin.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_admin__admin_students.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_admin__admin_teachers.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_admin__admin_subjects.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_admin__admin_curriculum.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\desktop_1440x900_admin__admin_teacher-student-subject.png"
+          ],
+          "consoleErrors": [],
+          "networkAppErrors": [],
+          "horizontalOverflow": {},
+          "pageErrors": []
+        }
+      }
+    },
+    "laptop_1280x800": {
+      "width": 1280,
+      "height": 800,
+      "roles": {
+        "teacher": {
+          "routes": {
+            "/teacher": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            },
+            "/teacher/assignments": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/assignments",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            },
+            "/teacher/submissions": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/submissions",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            },
+            "/teacher/students": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/students",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            },
+            "/teacher/subjects": {
+              "status": 200,
+              "url": "http://localhost:3000/teacher/subjects",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            }
+          },
+          "shots": [
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_teacher__teacher.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_teacher__teacher_assignments.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_teacher__teacher_submissions.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_teacher__teacher_students.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_teacher__teacher_subjects.png"
+          ],
+          "consoleErrors": [],
+          "networkAppErrors": [],
+          "horizontalOverflow": {},
+          "pageErrors": []
+        },
+        "student": {
+          "routes": {
+            "/student": {
+              "status": 200,
+              "url": "http://localhost:3000/student",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            },
+            "/student/assignments": {
+              "status": 200,
+              "url": "http://localhost:3000/student/assignments",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            },
+            "/student/subjects": {
+              "status": 200,
+              "url": "http://localhost:3000/student/subjects",
+              "overflow": false,
+              "metrics": {
+                "sw": 1280,
+                "iw": 1280
+              }
+            }
+          },
+          "shots": [
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_student__student.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_student__student_assignments.png",
+            "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-viewports\\laptop_1280x800_student__student_subjects.png"
+          ],
+          "consoleErrors": [],
+          "networkAppErrors": [],
+          "horizontalOverflow": {},
+          "pageErrors": []
+        },
+        "admin": {
+          "routes": {},
+          "shots": [],
+          "consoleErrors": [],
+          "networkAppErrors": [],
+          "horizontalOverflow": {},
+          "pageErrors": []
+        }
+      }
+    }
+  },
+  "fatalError": "page.waitForResponse: Target page, context or browser has been closed\npage.waitForResponse: Target page, context or browser has been closed\n    at loginViaUI (C:\\EduAssign\\qa-scripts\\phase6-viewports.js:42:22)\n    at async C:\\EduAssign\\qa-scripts\\phase6-viewports.js:150:7"
+}

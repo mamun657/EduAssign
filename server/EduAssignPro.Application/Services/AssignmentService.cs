@@ -41,7 +41,9 @@ public class AssignmentService
         ISubjectRepository subjects,
         IFileRepository files,
         ICurrentUser currentUser,
-        ILogger<AssignmentService> logger)
+        ILogger<AssignmentService> logger,
+        SimilarityAnalysisBackgroundQueue? similarityQueue = null,
+        SimilarityAnalysisService? similarityService = null)
     {
         _assignments = assignments;
         _teacherStudentSubjects = teacherStudentSubjects;
@@ -50,7 +52,12 @@ public class AssignmentService
         _files = files;
         _currentUser = currentUser;
         _logger = logger;
+        _similarityQueue = similarityQueue;
+        _similarityService = similarityService;
     }
+
+    private readonly SimilarityAnalysisBackgroundQueue? _similarityQueue;
+    private readonly SimilarityAnalysisService? _similarityService;
 
     public async Task<AssignmentResponse> CreateAsync(CreateAssignmentRequest request, CancellationToken ct = default)
     {
@@ -199,6 +206,21 @@ public class AssignmentService
             .Set(a => a.UpdatedAt, DateTime.UtcNow);
         await _assignments.UpdateAsync(id, update, ct);
         var updated = await _assignments.GetByIdAsync(id, ct);
+
+        // Phase 6: enqueue similarity analysis (best-effort, never blocks submit).
+        if (_similarityQueue != null && _similarityService != null)
+        {
+            try
+            {
+                await _similarityService.StartAnalysisAsync(updated!.Id, updated.Id, updated.StudentId, ct);
+                _similarityQueue.TryEnqueue(updated.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Could not start similarity analysis for submission {Id}", updated!.Id);
+            }
+        }
+
         return await BuildAsync(updated!, ct);
     }
 

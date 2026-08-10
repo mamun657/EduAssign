@@ -40,4 +40,5 @@ public class MongoContext
     public IMongoCollection<StudentSubjectEnrollment> StudentSubjectEnrollments => GetCollection<StudentSubjectEnrollment>();
     public IMongoCollection<TeacherStudentSubject> TeacherStudentSubjects => GetCollection<TeacherStudentSubject>();
     public IMongoCollection<Assignment> Assignments => GetCollection<Assignment>();
+    public IMongoCollection<SimilarityAnalysis> SimilarityAnalyses => GetCollection<SimilarityAnalysis>();
 }

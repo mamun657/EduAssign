@@ -400,3 +400,45 @@ export const Assignments = {
   downloadSubmissionFile: (id: string) =>
     apiDownload(`/assignments/${id}/submission-file`),
 };
+
+// --- Phase 6: Similarity / AI analysis ---
+// Uses the existing apiRequest so JWT auth + 401 auto-logout already work.
+import type {
+  AssignmentSimilaritySummary,
+  SimilarityAnalyzeAccepted,
+  SimilarityComparison,
+  SimilaritySummary,
+} from "./types";
+
+/**
+ * Backend endpoint contract (server/EduAssignPro.Api/Controllers/SimilarityController.cs):
+ *   POST /api/similarity/submissions/{submissionId}/analyze     → 202 Accepted (queue job)
+ *   GET  /api/similarity/assignments/{assignmentId}/summary     → AssignmentSimilaritySummary
+ *   GET  /api/similarity/submissions/{submissionId}            → SimilaritySummary (teacher/admin: full; student owner: filtered)
+ *   GET  /api/similarity/compare?a={idA}&b={idB}               → SimilarityComparison (teacher/admin only)
+ * All endpoints require [Authorize]; teacher/admin enforced in-controller.
+ */
+export const Similarity = {
+  /** Trigger analysis for one submission. Returns 202 with the queued job id. */
+  analyze: (submissionId: string) =>
+    apiRequest<SimilarityAnalyzeAccepted, unknown>(
+      `/similarity/submissions/${submissionId}/analyze`,
+      { method: "POST" },
+    ),
+
+  /** Per-assignment aggregated summary ranked by highest similarity first. */
+  assignmentSummary: (assignmentId: string) =>
+    apiRequest<AssignmentSimilaritySummary>(
+      `/similarity/assignments/${assignmentId}/summary`,
+    ),
+
+  /** Per-submission detail. Teacher/admin get full matches; student owner gets a filtered view. */
+  submissionSummary: (submissionId: string) =>
+    apiRequest<SimilaritySummary>(`/similarity/submissions/${submissionId}`),
+
+  /** Pairwise comparison between two submissions (teacher/admin only). */
+  compare: (a: string, b: string) =>
+    apiRequest<SimilarityComparison>("/similarity/compare", {
+      params: { a, b },
+    }),
+};

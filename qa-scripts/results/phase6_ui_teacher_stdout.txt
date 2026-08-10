@@ -1,0 +1,8 @@
+Wrote C:\EduAssign\qa-scripts\results\phase6_ui_teacher.json
+{
+  "consoleErrors": 1,
+  "networkAppErrors": 0,
+  "pageErrors": 0,
+  "postSummaryStatus": 200,
+  "polledStatus": "Completed"
+}

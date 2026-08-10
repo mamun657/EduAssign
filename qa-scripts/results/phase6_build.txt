@@ -1,0 +1,51 @@
+﻿
+> web@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.3.0 (Turbopack)
+- Environments: .env.local
+Γ£ô Running next.config.ts took 178ms
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 2.4s
+  Running TypeScript ...
+  Finished TypeScript in 2.0s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/23) ...
+  Generating static pages using 7 workers (5/23) 
+  Generating static pages using 7 workers (11/23) 
+  Generating static pages using 7 workers (17/23) 
+Γ£ô Generating static pages using 7 workers (23/23) in 728ms
+  Finalizing page optimization ...
+
+Route (app)
+Γöî Γùï /
+Γö£ Γùï /_not-found
+Γö£ Γùï /admin
+Γö£ Γùï /admin/assignments
+Γö£ Γùï /admin/curriculum
+Γö£ Γùï /admin/students
+Γö£ Γùï /admin/subjects
+Γö£ Γùï /admin/submissions
+Γö£ Γùï /admin/teacher-student-subject
+Γö£ Γùï /admin/teachers
+Γö£ Γùï /login
+Γö£ Γùï /register
+Γö£ Γùï /student
+Γö£ Γùï /student/assignments
+Γö£ ╞Æ /student/assignments/[id]
+Γö£ Γùï /student/subjects
+Γö£ Γùï /teacher
+Γö£ Γùï /teacher/assignments
+Γö£ ╞Æ /teacher/assignments/[id]
+Γö£ Γùï /teacher/assignments/new
+Γö£ Γùï /teacher/students
+Γö£ Γùï /teacher/subjects
+Γö£ Γùï /teacher/submissions
+Γöö ╞Æ /teacher/submissions/[id]
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
+EXIT=0

@@ -71,5 +71,22 @@ public class MongoIndexInitializer : IUnitOfWork
                 Builders<Assignment>.IndexKeys.Ascending(a => a.SubjectId),
                 new CreateIndexOptions { Name = "IX_Assignments_SubjectId" })
         }, ct);
+
+        // Phase 6: Similarity analysis indexes
+        var sim = _ctx.SimilarityAnalyses.Indexes;
+        await sim.CreateManyAsync(new[]
+        {
+            new CreateIndexModel<SimilarityAnalysis>(
+                Builders<SimilarityAnalysis>.IndexKeys
+                    .Ascending(s => s.SubmissionId)
+                    .Ascending(s => s.Status),
+                new CreateIndexOptions { Name = "IX_SimilarityAnalyses_Submission_Status" }),
+            new CreateIndexModel<SimilarityAnalysis>(
+                Builders<SimilarityAnalysis>.IndexKeys.Ascending(s => s.AssignmentId),
+                new CreateIndexOptions { Name = "IX_SimilarityAnalyses_Assignment" }),
+            new CreateIndexModel<SimilarityAnalysis>(
+                Builders<SimilarityAnalysis>.IndexKeys.Ascending(s => s.StudentId),
+                new CreateIndexOptions { Name = "IX_SimilarityAnalyses_Student" })
+        }, ct);
     }
 }

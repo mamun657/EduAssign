@@ -1,0 +1,10 @@
+=== MOBILE SUMMARY ===
+
+mobile_390x844 390x844
+  teacher: 3 routes; overflow=none; app4xx5xx=0; console=0
+  student: 2 routes; overflow=none; app4xx5xx=0; console=0
+
+mobile_375x812 375x812
+  teacher: 3 routes; overflow=none; app4xx5xx=0; console=0
+  student: 2 routes; overflow=none; app4xx5xx=0; console=0
+Result: C:\EduAssign\qa-scripts\results\phase6-mobile.json

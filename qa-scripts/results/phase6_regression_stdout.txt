@@ -1,0 +1,7 @@
+﻿Wrote C:\EduAssign\qa-scripts\results\phase6_regression.json
+{
+  "consoleErrors": 0,
+  "networkAppErrors": 0,
+  "pageErrors": 0,
+  "non200": []
+}

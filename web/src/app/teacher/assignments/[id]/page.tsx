@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import {
   ArrowLeft,
-  Download,
-  Inbox,
-  Send,
-  Trash2,
   FileText,
+  Sparkles,
+  Activity,
+  AlertTriangle,
+  CheckCircle2,
+  RefreshCw,
+  ListChecks,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
@@ -19,10 +21,17 @@ import { Card, CardBody, CardHeader, CardTitle, CardDescription } from "@/compon
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Alert from "@/components/ui/Alert";
-import { Assignments } from "@/lib/api";
-import type { Assignment, AssignmentStatus } from "@/lib/types";
+import EmptyState from "@/components/ui/EmptyState";
+import { Assignments, Similarity } from "@/lib/api";
+import type {
+  Assignment,
+  AssignmentStatus,
+  SimilarityLevel,
+  SimilaritySummary,
+} from "@/lib/types";
 
-function formatDateTime(iso: string): string {
+function formatDate(iso?: string | null): string {
+  if (!iso) return "—";
   return new Date(iso).toLocaleString(undefined, {
     year: "numeric",
     month: "short",
@@ -45,6 +54,37 @@ function statusTone(status: AssignmentStatus) {
   }
 }
 
+function levelTone(level: SimilarityLevel | string | undefined) {
+  switch (level) {
+    case "Low":
+      return "emerald" as const;
+    case "Moderate":
+      return "amber" as const;
+    case "High":
+      return "rose" as const;
+    default:
+      return "slate" as const;
+  }
+}
+
+function levelLabel(level: SimilarityLevel | string | undefined): string {
+  switch (level) {
+    case "High":
+      return "High Similarity Detected";
+    case "Moderate":
+      return "Moderate Similarity";
+    case "Low":
+      return "Low Similarity";
+    default:
+      return "Pending";
+  }
+}
+
+function percent(score: number | null | undefined): string {
+  if (score === null || score === undefined) return "—";
+  return `${score.toFixed(2)}%`;
+}
+
 export default function TeacherAssignmentDetailPage() {
   return (
     <RouteGuard roles={["Teacher"]}>
@@ -57,100 +97,164 @@ export default function TeacherAssignmentDetailPage() {
 
 function TeacherAssignmentDetail() {
   const params = useParams<{ id: string }>();
-  const id = params?.id ?? "";
-  const router = useRouter();
+  const submissionId = params?.id ?? "";
   const { user } = useAuth();
+
   const [assignment, setAssignment] = useState<Assignment | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [actionError, setActionError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
 
-  async function refresh() {
-    setLoading(true);
-    setError(null);
+  const [summary, setSummary] = useState<SimilaritySummary | null | undefined>(undefined);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
+
+  const [triggering, setTriggering] = useState(false);
+  const [triggerError, setTriggerError] = useState<string | null>(null);
+  // 404 from submissionSummary means "NotAnalyzed yet" — don't surface as error.
+  const notAnalyzed = useRef(false);
+  const pollHandle = useRef<number | null>(null);
+
+  const fetchSummary = useCallback(async (id: string) => {
     try {
-      const a = await Assignments.get(id);
-      setAssignment(a);
+      const s = await Similarity.submissionSummary(id);
+      setSummary(s);
+      notAnalyzed.current = false;
     } catch (err) {
-      setError((err as { message?: string })?.message ?? "Failed to load");
-    } finally {
-      setLoading(false);
+      const status = (err as { status?: number })?.status;
+      if (status === 404) {
+        notAnalyzed.current = true;
+        setSummary(null);
+        setSummaryError(null);
+        return;
+      }
+      setSummaryError(
+        (err as { message?: string })?.message ?? "Failed to load similarity",
+      );
     }
-  }
+  }, []);
 
+  // Initial load: assignment + (optional) existing similarity summary.
   useEffect(() => {
-    if (!user || !id) return;
-    void refresh();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.id, id]);
+    if (!user || !submissionId) return;
+    let ok = true;
+    async function load() {
+      setLoading(true);
+      setError(null);
+      try {
+        const a = await Assignments.get(submissionId);
+        if (!ok) return;
+        setAssignment(a);
+        await fetchSummary(submissionId);
+      } catch (err) {
+        if (!ok) return;
+        setError((err as { message?: string })?.message ?? "Failed to load assignment");
+      } finally {
+        if (ok) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      ok = false;
+    };
+  }, [user?.id, submissionId, fetchSummary]);
 
-  async function handlePublish() {
-    if (!assignment) return;
-    setActionError(null);
-    setBusy(true);
+  // Stop any pending polling on unmount.
+  useEffect(() => {
+    return () => {
+      if (pollHandle.current !== null) {
+        window.clearTimeout(pollHandle.current);
+        pollHandle.current = null;
+      }
+    };
+  }, []);
+
+  function stopPolling() {
+    if (pollHandle.current !== null) {
+      window.clearTimeout(pollHandle.current);
+      pollHandle.current = null;
+    }
+  }
+
+  // Poll every 2s while status is "Analyzing", up to ~60s of effort.
+  // Cap total wall-clock time to avoid runaway polling on stuck jobs.
+  function startPolling(id: string) {
+    stopPolling();
+    const startedAt = Date.now();
+    const maxMs = 60_000;
+    const tick = async () => {
+      if (Date.now() - startedAt > maxMs) {
+        stopPolling();
+        return;
+      }
+      await fetchSummary(id);
+      // Read summary via the closure's `summary` state? React gives us last
+      // snapshot; safest is to read via the next scheduled tick from ref of last status.
+      const last = currentStatusRef.current;
+      if (last === "Completed" || last === "Failed" || notAnalyzed.current) {
+        stopPolling();
+        return;
+      }
+      pollHandle.current = window.setTimeout(tick, 2000);
+    };
+    pollHandle.current = window.setTimeout(tick, 0);
+  }
+
+  // Keep a ref of latest summary.status so the poll loop can stop itself.
+  const currentStatusRef = useRef<string | null>(null);
+  useEffect(() => {
+    currentStatusRef.current = summary?.status ?? null;
+  }, [summary?.status]);
+
+  async function handleAnalyze() {
+    if (!submissionId) return;
+    setTriggering(true);
+    setTriggerError(null);
     try {
-      await Assignments.publish(assignment.id);
-      await refresh();
+      await Similarity.analyze(submissionId);
+      // Optimistically flip to "Analyzing" so the user sees immediate feedback,
+      // then poll for the real Completed/Failed transition.
+      setSummary((prev) =>
+        prev
+          ? { ...prev, status: "Analyzing" }
+          : {
+              submissionId,
+              assignmentId: submissionId,
+              studentId: assignment?.studentId ?? "",
+              studentName: assignment?.studentName ?? "",
+              status: "Analyzing",
+              overallScore: null,
+              highestSimilarityScore: null,
+              lexicalScore: null,
+              semanticScore: null,
+              level: "Unknown",
+              matches: [],
+            },
+      );
+      startPolling(submissionId);
     } catch (err) {
-      setActionError((err as { message?: string })?.message ?? "Failed to publish");
+      setTriggerError(
+        (err as { message?: string })?.message ?? "Failed to start similarity analysis",
+      );
     } finally {
-      setBusy(false);
+      setTriggering(false);
     }
   }
 
-  async function handleDelete() {
-    if (!assignment) return;
-    if (!confirm("Delete this assignment? This also removes its attachment.")) return;
-    setActionError(null);
-    setBusy(true);
-    try {
-      await Assignments.remove(assignment.id);
-      router.push("/teacher/assignments");
-    } catch (err) {
-      setActionError((err as { message?: string })?.message ?? "Failed to delete");
-      setBusy(false);
-    }
-  }
-
-  async function handleDownloadAttachment() {
-    if (!assignment) return;
-    setActionError(null);
-    try {
-      const res = await Assignments.downloadAttachment(assignment.id);
-      const url = URL.createObjectURL(res.blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = res.fileName || assignment.attachmentFileName || `attachment-${assignment.id}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      setActionError((err as { message?: string })?.message ?? "Failed to download");
-    }
+  async function handleRefreshResult() {
+    if (!submissionId) return;
+    setSummaryError(null);
+    await fetchSummary(submissionId);
   }
 
   if (loading) {
     return (
       <div className="space-y-6">
-        <PageHeader
-          title="Assignment"
-          description="Loading…"
-          actions={
-            <Link href="/teacher/assignments">
-              <Button variant="secondary">
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Back
-              </Button>
-            </Link>
-          }
-        />
+        <PageHeader title="Assignment" />
+        <p className="text-sm text-[#6B7280]">Loading…</p>
       </div>
     );
   }
 
-  if (error || !assignment) {
+  if (error) {
     return (
       <div className="space-y-6">
         <PageHeader
@@ -158,186 +262,289 @@ function TeacherAssignmentDetail() {
           actions={
             <Link href="/teacher/assignments">
               <Button variant="secondary">
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Back
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back
               </Button>
             </Link>
           }
         />
-        {error ? <Alert tone="error">{error}</Alert> : (
-          <Alert tone="error">Assignment not found.</Alert>
-        )}
+        <Alert tone="error">{error}</Alert>
       </div>
     );
   }
 
+  if (!assignment) {
+    return (
+      <div className="space-y-6">
+        <PageHeader title="Assignment" />
+        <EmptyState
+          title="Not found"
+          description="The requested assignment does not exist or is not accessible."
+          icon={<FileText className="h-6 w-6" aria-hidden="true" />}
+        />
+      </div>
+    );
+  }
+
+  const submitted = !!assignment.submittedAt;
+  const hasResult =
+    summary !== undefined &&
+    summary !== null &&
+    summary.status === "Completed";
+  const hasFailed =
+    summary !== undefined && summary !== null && summary.status === "Failed";
+  const analyzing =
+    summary !== undefined && summary !== null && summary.status === "Analyzing";
+
   return (
     <div className="space-y-6">
       <PageHeader
-        title={assignment.title}
-        description={`${assignment.subjectName} · ${assignment.studentName}`}
+        title={assignment.title || "Assignment"}
+        description={`Student: ${assignment.studentName} · Subject: ${assignment.subjectName}`}
         actions={
-          <div className="flex flex-wrap gap-2">
-            <Link href="/teacher/assignments">
-              <Button variant="secondary">
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Back
-              </Button>
-            </Link>
-            {assignment.status === "Draft" ? (
-              <>
-                <Button onClick={handlePublish} disabled={busy}>
-                  <Send className="h-4 w-4" aria-hidden="true" />
-                  {busy ? "Publishing…" : "Publish"}
-                </Button>
-                <Button variant="danger" onClick={handleDelete} disabled={busy}>
-                  <Trash2 className="h-4 w-4" aria-hidden="true" />
-                  Delete
-                </Button>
-              </>
-            ) : null}
-            {assignment.status === "Submitted" ? (
-              <Link href={`/teacher/submissions/${assignment.id}`}>
-                <Button>
-                  <Inbox className="h-4 w-4" aria-hidden="true" />
-                  Review
-                </Button>
-              </Link>
-            ) : null}
-          </div>
+          <Link href="/teacher/assignments">
+            <Button variant="secondary">
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" /> All assignments
+            </Button>
+          </Link>
         }
       />
 
-      {actionError ? <Alert tone="error">{actionError}</Alert> : null}
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Brief</CardTitle>
-                <CardDescription>Instructions given to the student.</CardDescription>
-              </div>
-              <Badge tone={statusTone(assignment.status)}>{assignment.status}</Badge>
+      {/* --- Assignment brief --- */}
+      <Card>
+        <CardHeader>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <CardTitle>Brief</CardTitle>
+              <CardDescription>
+                Due {formatDate(assignment.dueDate)} · created {formatDate(assignment.createdAt)}
+              </CardDescription>
             </div>
-          </CardHeader>
-          <CardBody>
-            <p className="whitespace-pre-line text-sm text-[#111827]">{assignment.description}</p>
-          </CardBody>
-        </Card>
+            <Badge tone={statusTone(assignment.status)}>{assignment.status}</Badge>
+          </div>
+        </CardHeader>
+        <CardBody>
+          {assignment.description ? (
+            <p className="whitespace-pre-wrap text-sm text-[#111827]">{assignment.description}</p>
+          ) : (
+            <p className="text-sm italic text-[#6B7280]">No description provided.</p>
+          )}
+          <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                Submitted
+              </dt>
+              <dd className="text-sm text-[#111827]">{formatDate(assignment.submittedAt)}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                Submission File
+              </dt>
+              <dd className="text-sm text-[#111827]">
+                {assignment.submissionFileName ? (
+                  <span className="inline-flex items-center gap-1">
+                    <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+                    {assignment.submissionFileName}
+                  </span>
+                ) : (
+                  <span className="italic text-[#6B7280]">No file uploaded</span>
+                )}
+              </dd>
+            </div>
+            {assignment.marks != null ? (
+              <div>
+                <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                  Marks
+                </dt>
+                <dd className="text-sm text-[#111827]">{assignment.marks}</dd>
+              </div>
+            ) : null}
+            {assignment.feedback ? (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                  Feedback
+                </dt>
+                <dd className="whitespace-pre-wrap text-sm text-[#111827]">{assignment.feedback}</dd>
+              </div>
+            ) : null}
+          </dl>
+        </CardBody>
+      </Card>
 
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Details</CardTitle>
-            </CardHeader>
-            <CardBody>
-              <dl className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <dt className="text-[#6B7280]">Student</dt>
-                  <dd className="font-medium text-[#111827]">{assignment.studentName}</dd>
-                </div>
-                <div className="flex justify-between">
-                  <dt className="text-[#6B7280]">Subject</dt>
-                  <dd className="font-medium text-[#111827]">{assignment.subjectName}</dd>
-                </div>
-                <div className="flex justify-between">
-                  <dt className="text-[#6B7280]">Due</dt>
-                  <dd className="font-medium text-[#111827]">{formatDateTime(assignment.dueDate)}</dd>
-                </div>
-                <div className="flex justify-between">
-                  <dt className="text-[#6B7280]">Created</dt>
-                  <dd className="font-medium text-[#111827]">{formatDateTime(assignment.createdAt)}</dd>
-                </div>
-                {assignment.submittedAt ? (
-                  <div className="flex justify-between">
-                    <dt className="text-[#6B7280]">Submitted</dt>
-                    <dd className="font-medium text-[#111827]">{formatDateTime(assignment.submittedAt)}</dd>
-                  </div>
+      {/* --- Similarity panel --- */}
+      <Card data-testid="similarity-panel">
+        <CardHeader>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <CardTitle>Similarity Analysis</CardTitle>
+              <CardDescription>
+                Cosine + lexical comparison against peer submissions in this assignment.
+                Scores come from the analysis pipeline — re-running reuses prior embeddings.
+              </CardDescription>
+            </div>
+            {hasResult ? (
+              <Badge tone={levelTone(summary.level)} data-level={summary.level}>
+                {levelLabel(summary.level)} · {percent(summary.highestSimilarityScore)}
+              </Badge>
+            ) : null}
+          </div>
+        </CardHeader>
+        <CardBody className="space-y-4">
+          {!submitted ? (
+            <EmptyState
+              title="No submission yet"
+              description="Similarity analysis can be run once the student has submitted work."
+              icon={<Sparkles className="h-6 w-6" aria-hidden="true" />}
+            />
+          ) : (
+            <>
+              <div className="flex flex-wrap items-center gap-3">
+                <Button
+                  onClick={handleAnalyze}
+                  loading={triggering || analyzing}
+                  disabled={triggering || analyzing}
+                  data-testid="analyze-similarity-button"
+                >
+                  <Sparkles className="h-4 w-4" aria-hidden="true" />
+                  {analyzing
+                    ? "Analyzing…"
+                    : summary && summary.status !== "NotAnalyzed"
+                    ? "Re-analyze Similarity"
+                    : "Analyze Similarity"}
+                </Button>
+                {summary && summary.status !== "NotAnalyzed" ? (
+                  <Button
+                    variant="secondary"
+                    onClick={handleRefreshResult}
+                    disabled={analyzing}
+                  >
+                    <RefreshCw className="h-4 w-4" aria-hidden="true" /> Refresh result
+                  </Button>
                 ) : null}
-                {assignment.marks != null ? (
-                  <>
-                    <div className="flex justify-between">
-                      <dt className="text-[#6B7280]">Reviewed</dt>
-                      <dd className="font-medium text-[#111827]">{formatDateTime(assignment.updatedAt)}</dd>
-                    </div>
-                    <div className="flex justify-between">
-                      <dt className="text-[#6B7280]">Marks</dt>
-                      <dd className="font-medium text-[#111827]">{assignment.marks}</dd>
-                    </div>
-                  </>
-                ) : null}
-              </dl>
-            </CardBody>
-          </Card>
+              </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Files</CardTitle>
-              <CardDescription>Teacher brief and student submission.</CardDescription>
-            </CardHeader>
-            <CardBody>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] px-3 py-2">
-                  <FileText className="h-5 w-5 text-[#374151]" aria-hidden="true" />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-[#111827]">
-                      {assignment.attachmentFileName ?? "No attachment"}
-                    </p>
-                    {assignment.attachmentSize ? (
-                      <p className="text-xs text-[#6B7280]">
-                        {(assignment.attachmentSize / 1024).toFixed(1)} KB
-                      </p>
-                    ) : null}
-                  </div>
-                  {assignment.attachmentFileName ? (
-                    <Button
-                      variant="secondary"
-                      onClick={handleDownloadAttachment}
-                      aria-label="Download brief"
+              {triggerError ? <Alert tone="error">{triggerError}</Alert> : null}
+              {summaryError ? <Alert tone="error">{summaryError}</Alert> : null}
+
+              {analyzing ? (
+                <Alert tone="info">
+                  <span className="inline-flex items-center gap-2">
+                    <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    Analysis is running on the server. This page will refresh automatically.
+                  </span>
+                </Alert>
+              ) : null}
+
+              {/* --- Not analyzed yet --- */}
+              {summary === null || summary === undefined ? (
+                <EmptyState
+                  title="Similarity analysis has not been performed yet"
+                  description="Click 'Analyze Similarity' to queue a comparison against peer submissions in this assignment."
+                  icon={<Sparkles className="h-6 w-6" aria-hidden="true" />}
+                />
+              ) : null}
+
+              {/* --- Failed --- */}
+              {hasFailed ? (
+                <Alert tone="error">
+                  <span className="inline-flex items-start gap-2">
+                    <AlertTriangle className="mt-0.5 h-4 w-4" aria-hidden="true" />
+                    <span>
+                      <strong>Analysis failed.</strong>{" "}
+                      {summary.errorMessage ?? "See server logs for details."}
+                    </span>
+                  </span>
+                </Alert>
+              ) : null}
+
+              {/* --- Completed --- */}
+              {hasResult ? (
+                <div className="space-y-4" data-testid="similarity-result">
+                  {/* Top-line numbers */}
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div
+                      className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4"
+                      data-testid="similarity-score-tile"
                     >
-                      <Download className="h-4 w-4" aria-hidden="true" />
-                      Download
-                    </Button>
-                  ) : null}
-                </li>
-                <li className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] px-3 py-2">
-                  <FileText className="h-5 w-5 text-[#374151]" aria-hidden="true" />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-[#111827]">
-                      {assignment.submissionFileName ?? "No submission yet"}
-                    </p>
-                    {assignment.submissionSize ? (
-                      <p className="text-xs text-[#6B7280]">
-                        {(assignment.submissionSize / 1024).toFixed(1)} KB
-                      </p>
-                    ) : null}
+                      <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                        <Activity className="h-3.5 w-3.5" aria-hidden="true" />
+                        Highest Similarity
+                      </div>
+                      <div className="mt-1 text-2xl font-semibold text-[#111827]" data-testid="similarity-score">
+                        {percent(summary.highestSimilarityScore)}
+                      </div>
+                      <div className="text-xs text-[#6B7280]">vs {summary.comparedStudentName ?? "peer"}</div>
+                    </div>
+                    <div className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4">
+                      <div className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                        Lexical (TF‑IDF)
+                      </div>
+                      <div className="mt-1 text-2xl font-semibold text-[#111827]">
+                        {percent(summary.lexicalScore)}
+                      </div>
+                      <div className="text-xs text-[#6B7280]">Token overlap</div>
+                    </div>
+                    <div className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4">
+                      <div className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                        Semantic (MiniLM cosine)
+                      </div>
+                      <div className="mt-1 text-2xl font-semibold text-[#111827]">
+                        {percent(summary.semanticScore)}
+                      </div>
+                      <div className="text-xs text-[#6B7280]">384‑dim embedding</div>
+                    </div>
                   </div>
-                  {assignment.submissionFileName ? (
-                    <Link href={`/teacher/submissions/${assignment.id}`}>
-                      <Button variant="secondary">
-                        <Download className="h-4 w-4" aria-hidden="true" />
-                        Open
-                      </Button>
-                    </Link>
-                  ) : null}
-                </li>
-              </ul>
-            </CardBody>
-          </Card>
 
-          {assignment.feedback ? (
-            <Card>
-              <CardHeader>
-                <CardTitle>Feedback given</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <p className="whitespace-pre-line text-sm text-[#111827]">{assignment.feedback}</p>
-              </CardBody>
-            </Card>
-          ) : null}
-        </div>
-      </div>
+                  {/* Metadata */}
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-[#6B7280]">
+                    <span className="inline-flex items-center gap-1">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-[#16A34A]" aria-hidden="true" />
+                      Status: {summary.status}
+                    </span>
+                    <span>Analyzed: {formatDate(summary.analyzedAt)}</span>
+                  </div>
+
+                  {/* Peer matches */}
+                  {summary.matches && summary.matches.length > 0 ? (
+                    <div>
+                      <div className="mb-2 flex items-center gap-2 text-sm font-medium text-[#111827]">
+                        <ListChecks className="h-4 w-4" aria-hidden="true" />
+                        Closest peer submissions
+                      </div>
+                      <ul className="divide-y divide-[#E5E7EB] rounded-xl border border-[#E5E7EB]">
+                        {summary.matches.map((m, idx) => (
+                          <li
+                            key={`${m.submissionId}-${idx}`}
+                            className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm"
+                            data-testid="similarity-peer-row"
+                          >
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate font-medium text-[#111827]">{m.studentName}</p>
+                              <p className="text-xs text-[#6B7280]">
+                                Submission {m.submissionId.slice(0, 12)}…
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-3 text-xs text-[#6B7280]">
+                              <span>Lexical {m.lexicalScore.toFixed(2)}%</span>
+                              <span>Semantic {m.semanticScore.toFixed(2)}%</span>
+                              {/* Score only — no separate classification here. */}
+                              <Badge tone="slate">{m.finalScore.toFixed(2)}%</Badge>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <Alert tone="info">
+                      No peer submissions to compare against in this assignment yet. The
+                      analysis completed with no matches (0% similarity).
+                    </Alert>
+                  )}
+                </div>
+              ) : null}
+            </>
+          )}
+        </CardBody>
+      </Card>
     </div>
   );
 }

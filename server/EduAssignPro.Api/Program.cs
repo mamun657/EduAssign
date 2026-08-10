@@ -1,6 +1,8 @@
 using System.Text;
 using EduAssignPro.Api.Middleware;
 using EduAssignPro.Application;
+using EduAssignPro.Application.Abstractions;
+using EduAssignPro.Application.Configuration;
 using EduAssignPro.Application.Services;
 using EduAssignPro.Infrastructure;
 using EduAssignPro.Infrastructure.Mongo;
@@ -93,6 +95,12 @@ Log.Information("Admin seed password loaded: {SeedPwd}", seedPwdSet ? "YES" : "N
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+
+// Phase 6: Similarity detection wiring
+builder.Services.Configure<SimilarityOptions>(builder.Configuration.GetSection(SimilarityOptions.SectionName));
+builder.Services.AddHttpClient<IMlClient, SimilarityMlClient>();
+builder.Services.AddSingleton<SimilarityAnalysisBackgroundQueue>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<SimilarityAnalysisBackgroundQueue>());
 
 // ---- JWT ----
 var jwtSecret = builder.Configuration["Jwt:Secret"]

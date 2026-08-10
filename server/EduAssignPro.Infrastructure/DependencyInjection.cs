@@ -4,6 +4,7 @@ using EduAssignPro.Infrastructure.Mongo;
 using EduAssignPro.Infrastructure.Repositories;
 using EduAssignPro.Infrastructure.Security;
 using EduAssignPro.Infrastructure.Seed;
+using EduAssignPro.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +30,8 @@ public static class DependencyInjection
         services.AddScoped<IStudentEnrollmentRepository, StudentEnrollmentRepository>();
         services.AddScoped<ITeacherStudentSubjectRepository, TeacherStudentSubjectRepository>();
         services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+        services.AddScoped<ISimilarityAnalysisRepository, SimilarityAnalysisRepository>();
+        services.AddSingleton<ITextExtractor, PdfTextExtractor>();
         services.AddScoped<IFileRepository, GridFsFileRepository>(sp =>
         {
             var ctx = sp.GetRequiredService<MongoContext>();

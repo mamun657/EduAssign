@@ -1,0 +1,1208 @@
+Using launch settings from C:\EduAssign\server\EduAssignPro.Api\Properties\launchSettings.json...
+[21:33:47 INF] Loaded .env from C:\EduAssign\.env (10 entries)
+[21:33:47 INF] Mongo connection string loaded: YES
+[21:33:47 INF] Mongo database name: EduAssignPro
+[21:33:47 INF] JWT secret loaded: YES
+[21:33:47 INF] Admin seed email loaded: YES
+[21:33:47 INF] Admin seed password loaded: YES
+[21:33:47 INF] Running idempotent seed...
+[21:33:51 INF] Seed complete.
+[21:33:51 INF] Seed completed successfully.
+[21:33:51 INF] SimilarityAnalysisBackgroundQueue started.
+[21:33:51 INF] Now listening on: http://localhost:5220
+[21:33:51 INF] Application started. Press Ctrl+C to shut down.
+[21:33:51 INF] Hosting environment: Development
+[21:33:51 INF] Content root path: C:\EduAssign\server\EduAssignPro.Api
+[21:46:38 INF] HTTP OPTIONS /api/Auth/login responded 204 in 13.3033 ms
+[21:46:39 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:46:39 INF] HTTP POST /api/Auth/login responded 200 in 1182.4487 ms
+[21:46:40 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 1.6835 ms
+[21:46:40 INF] HTTP OPTIONS /api/assignments responded 204 in 0.1011 ms
+[21:46:40 INF] HTTP OPTIONS /api/assignments responded 204 in 0.1226 ms
+[21:46:40 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 384.3191 ms
+[21:46:40 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 305.7213 ms
+[21:46:41 ERR] HTTP GET /api/assignments responded 500 in 19.6204 ms
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToListAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 127
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:46:41 ERR] HTTP GET /api/assignments responded 500 in 1055.3738 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.Dropbox.RemoveMessage(Int32 responseTo)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 363
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:46:41 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToListAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 127
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:46:41 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.Dropbox.RemoveMessage(Int32 responseTo)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 363
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:46:41 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 305.4341 ms
+[21:46:41 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 298.2272 ms
+[21:46:42 INF] HTTP GET /api/assignments responded 200 in 1376.0912 ms
+[21:46:43 INF] HTTP GET /api/assignments responded 200 in 1112.8368 ms
+[21:46:45 INF] HTTP GET /api/assignments responded 200 in 1125.4292 ms
+[21:46:46 INF] HTTP GET /api/assignments responded 200 in 1130.5086 ms
+[21:46:47 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0879 ms
+[21:46:47 INF] HTTP OPTIONS /api/assignments responded 204 in 0.2129 ms
+[21:46:48 INF] HTTP GET /api/assignments responded 200 in 1136.7903 ms
+[21:46:49 INF] HTTP GET /api/assignments responded 200 in 1189.8390 ms
+[21:46:50 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.1466 ms
+[21:46:50 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.1994 ms
+[21:46:51 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 314.6055 ms
+[21:46:51 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 310.3910 ms
+[21:46:52 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 313.6552 ms
+[21:46:53 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 312.4256 ms
+[21:46:54 INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.3823 ms
+[21:46:55 INF] User arif+1786295489811855@test.local logged in
+[21:46:55 INF] HTTP POST /api/Auth/login responded 200 in 330.5217 ms
+[21:46:55 INF] HTTP OPTIONS /api/Students/available-subjects responded 204 in 0.1182 ms
+[21:46:55 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0585 ms
+[21:46:55 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0514 ms
+[21:46:55 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0804 ms
+[21:46:55 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 559.9655 ms
+[21:46:55 INF] HTTP GET /api/assignments responded 200 in 710.0335 ms
+[21:46:55 INF] HTTP GET /api/Students/available-subjects responded 200 in 756.0241 ms
+[21:46:56 ERR] HTTP GET /api/Students/enrolled-subjects responded 500 in 524.4844 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.StudentService.GetMyEnrolledSubjectsAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\StudentService.cs:line 155
+   at EduAssignPro.Api.Controllers.StudentsController.Enrolled(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\StudentsController.cs:line 26
+   at lambda_method304(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:46:56 ERR] HTTP GET /api/Students/available-subjects responded 500 in 332.9438 ms
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.StudentService.GetSubjectsAsync(IEnumerable`1 ids, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\StudentService.cs:line 316
+   at EduAssignPro.Application.Services.StudentService.GetAvailableSubjectsAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\StudentService.cs:line 51
+   at EduAssignPro.Api.Controllers.StudentsController.Available(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\StudentsController.cs:line 22
+   at lambda_method298(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:46:56 ERR] HTTP GET /api/assignments responded 500 in 375.8549 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 361
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:46:56 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.StudentService.GetMyEnrolledSubjectsAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\StudentService.cs:line 155
+   at EduAssignPro.Api.Controllers.StudentsController.Enrolled(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\StudentsController.cs:line 26
+   at lambda_method304(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:46:56 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.StudentService.GetSubjectsAsync(IEnumerable`1 ids, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\StudentService.cs:line 316
+   at EduAssignPro.Application.Services.StudentService.GetAvailableSubjectsAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\StudentService.cs:line 51
+   at EduAssignPro.Api.Controllers.StudentsController.Available(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\StudentsController.cs:line 22
+   at lambda_method298(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:46:56 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 361
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:46:56 INF] HTTP GET /api/Students/available-subjects responded 200 in 447.4795 ms
+[21:46:57 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 758.1308 ms
+[21:46:57 INF] HTTP GET /api/Students/available-subjects responded 200 in 443.3320 ms
+[21:46:57 INF] HTTP GET /api/assignments responded 200 in 1024.2314 ms
+[21:46:57 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 559.4007 ms
+[21:46:58 INF] HTTP GET /api/assignments responded 200 in 709.6000 ms
+[21:46:59 INF] HTTP GET /api/assignments responded 200 in 713.4507 ms
+[21:47:00 INF] HTTP GET /api/assignments responded 200 in 722.7037 ms
+[21:47:01 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.2658 ms
+[21:47:01 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0826 ms
+[21:47:01 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 548.3926 ms
+[21:47:02 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 540.6670 ms
+[21:47:03 INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.2665 ms
+[21:47:04 INF] User admin@eduassign.local logged in
+[21:47:04 INF] HTTP POST /api/Auth/login responded 200 in 331.6613 ms
+[21:47:04 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0431 ms
+[21:47:04 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.1009 ms
+[21:47:04 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0509 ms
+[21:47:04 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.1703 ms
+[21:47:04 INF] HTTP OPTIONS /api/assignments responded 204 in 0.1773 ms
+[21:47:04 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0943 ms
+[21:47:04 INF] HTTP GET /api/Subjects responded 200 in 71.9541 ms
+[21:47:04 INF] HTTP GET /api/Subjects responded 200 in 44.6152 ms
+[21:47:04 INF] HTTP GET /api/admin/students responded 200 in 122.3449 ms
+[21:47:04 INF] HTTP GET /api/admin/students responded 200 in 90.1707 ms
+[21:47:04 INF] HTTP GET /api/admin/teachers responded 200 in 366.4540 ms
+[21:47:04 INF] HTTP GET /api/AcademicLevels responded 200 in 406.1879 ms
+[21:47:04 INF] HTTP GET /api/admin/teachers responded 200 in 88.5061 ms
+[21:47:04 INF] HTTP GET /api/AcademicLevels responded 200 in 60.2063 ms
+[21:47:05 ERR] HTTP GET /api/assignments responded 500 in 1087.4090 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 363
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:47:05 ERR] HTTP GET /api/assignments responded 500 in 3.9016 ms
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToListAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 127
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:47:05 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 363
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:47:05 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToListAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 127
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:47:05 INF] HTTP GET /api/Subjects responded 200 in 54.4298 ms
+[21:47:05 INF] HTTP GET /api/AcademicLevels responded 200 in 54.7484 ms
+[21:47:05 INF] HTTP GET /api/admin/teachers responded 200 in 99.6871 ms
+[21:47:05 INF] HTTP GET /api/Subjects responded 200 in 45.3940 ms
+[21:47:05 INF] HTTP GET /api/AcademicLevels responded 200 in 47.3558 ms
+[21:47:05 INF] HTTP GET /api/admin/students responded 200 in 122.5818 ms
+[21:47:05 INF] HTTP GET /api/admin/teachers responded 200 in 88.7408 ms
+[21:47:05 INF] HTTP GET /api/admin/students responded 200 in 119.8747 ms
+[21:47:07 INF] HTTP GET /api/assignments responded 200 in 1658.2070 ms
+[21:47:08 INF] HTTP GET /api/assignments responded 200 in 1439.5956 ms
+[21:47:09 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0493 ms
+[21:47:09 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0415 ms
+[21:47:09 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0332 ms
+[21:47:09 INF] HTTP GET /api/AcademicLevels responded 200 in 68.9753 ms
+[21:47:09 INF] HTTP GET /api/admin/students responded 200 in 84.5987 ms
+[21:47:09 INF] HTTP GET /api/AcademicLevels responded 200 in 64.0923 ms
+[21:47:09 INF] HTTP GET /api/admin/students responded 200 in 84.8113 ms
+[21:47:10 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0335 ms
+[21:47:10 INF] HTTP GET /api/AcademicLevels responded 200 in 42.4956 ms
+[21:47:10 INF] HTTP GET /api/AcademicLevels responded 200 in 42.6353 ms
+[21:47:10 INF] HTTP GET /api/admin/teachers responded 200 in 120.1827 ms
+[21:47:10 INF] HTTP GET /api/admin/teachers responded 200 in 122.1448 ms
+[21:47:11 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0491 ms
+[21:47:11 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0241 ms
+[21:47:11 INF] HTTP GET /api/Subjects responded 200 in 61.1382 ms
+[21:47:11 INF] HTTP GET /api/Subjects responded 200 in 60.4859 ms
+[21:47:12 INF] HTTP GET /api/AcademicLevels responded 200 in 61.7494 ms
+[21:47:12 INF] HTTP OPTIONS /api/Subjects/by-academic-level/6a7899edfda21a2af890a6ee responded 204 in 0.0377 ms
+[21:47:12 INF] HTTP GET /api/AcademicLevels responded 200 in 61.8320 ms
+[21:47:13 INF] HTTP GET /api/Subjects/by-academic-level/6a7899edfda21a2af890a6ee responded 200 in 611.2117 ms
+[21:47:13 INF] HTTP OPTIONS /api/teacher-student-subjects responded 204 in 0.0258 ms
+[21:47:14 INF] HTTP GET /api/Subjects responded 200 in 44.7349 ms
+[21:47:14 INF] HTTP GET /api/admin/students responded 200 in 89.2891 ms
+[21:47:14 INF] HTTP GET /api/Subjects responded 200 in 43.5492 ms
+[21:47:14 INF] HTTP GET /api/admin/teachers responded 200 in 121.9598 ms
+[21:47:14 INF] HTTP GET /api/admin/students responded 200 in 84.5428 ms
+[21:47:14 INF] HTTP GET /api/admin/teachers responded 200 in 121.6083 ms
+[21:47:14 INF] HTTP GET /api/teacher-student-subjects responded 200 in 623.0665 ms
+[21:47:15 INF] HTTP GET /api/teacher-student-subjects responded 200 in 614.3772 ms
+[21:47:16 INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.0941 ms
+[21:47:17 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:47:17 INF] HTTP POST /api/Auth/login responded 200 in 306.1016 ms
+[21:47:17 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0432 ms
+[21:47:17 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0347 ms
+[21:47:17 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 363.7122 ms
+[21:47:18 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 420.1373 ms
+[21:47:18 ERR] HTTP GET /api/assignments responded 500 in 1.9769 ms
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToListAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 127
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:47:18 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.IsSignaled(CancellationTokenSource signalTokenSource, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.GetCancellationTokenContext(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.SemaphoreSlimSignalable.WaitSignaledAsync(TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionHelper.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.AcquireConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.GetChannelAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.InitializeAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadContext.CreateAsync(IReadBinding binding, Boolean retryRequested, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToListAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 127
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:47:18 ERR] HTTP GET /api/assignments responded 500 in 1118.3756 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 361
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:47:18 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 361
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:47:18 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 422.6259 ms
+[21:47:19 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 294.0041 ms
+[21:47:19 INF] HTTP GET /api/assignments responded 200 in 1335.6512 ms
+[21:47:21 INF] HTTP GET /api/assignments responded 200 in 1500.4639 ms
+[21:47:23 INF] HTTP GET /api/assignments responded 200 in 1502.7225 ms
+[21:47:25 INF] HTTP GET /api/assignments responded 200 in 1501.5375 ms
+[21:47:25 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0434 ms
+[21:47:27 INF] HTTP GET /api/assignments responded 200 in 1526.5064 ms
+[21:47:29 INF] HTTP GET /api/assignments responded 200 in 1521.0830 ms
+[21:47:29 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0453 ms
+[21:47:29 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0520 ms
+[21:47:30 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 425.7946 ms
+[21:47:30 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 420.3617 ms
+[21:47:31 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 421.6108 ms
+[21:47:32 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 433.3234 ms
+[21:47:33 INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.0438 ms
+[21:47:34 INF] User arif+1786295489811855@test.local logged in
+[21:47:34 INF] HTTP POST /api/Auth/login responded 200 in 342.1220 ms
+[21:47:34 INF] HTTP OPTIONS /api/Students/available-subjects responded 204 in 0.0456 ms
+[21:47:34 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.1046 ms
+[21:47:34 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0343 ms
+[21:47:34 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0271 ms
+[21:47:34 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0143 ms
+[21:47:34 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 530.3016 ms
+[21:47:34 INF] HTTP GET /api/Students/available-subjects responded 200 in 602.3868 ms
+[21:47:34 INF] HTTP GET /api/assignments responded 200 in 668.4666 ms
+[21:47:35 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 549.3695 ms
+[21:47:35 INF] HTTP GET /api/Students/available-subjects responded 200 in 510.1968 ms
+[21:47:35 ERR] HTTP GET /api/assignments responded 500 in 466.6106 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 362
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:47:35 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 362
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:47:35 INF] HTTP GET /api/Students/available-subjects responded 200 in 465.0433 ms
+[21:47:36 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 558.0431 ms
+[21:47:36 INF] HTTP GET /api/assignments responded 200 in 693.2440 ms
+[21:47:36 INF] HTTP GET /api/Students/available-subjects responded 200 in 444.6453 ms
+[21:47:36 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 534.8121 ms
+[21:47:36 INF] HTTP GET /api/assignments responded 200 in 677.3377 ms
+[21:47:38 INF] HTTP GET /api/assignments responded 200 in 697.1340 ms
+[21:47:39 INF] HTTP GET /api/assignments responded 200 in 673.7160 ms
+[21:47:39 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0536 ms
+[21:47:40 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 512.1645 ms
+[21:47:40 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 505.9184 ms
+[21:47:42 INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.0162 ms
+[21:47:42 INF] User admin@eduassign.local logged in
+[21:47:42 INF] HTTP POST /api/Auth/login responded 200 in 337.3407 ms
+[21:51:38 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:51:38 INF] HTTP POST /api/Auth/login responded 200 in 349.9086 ms
+[21:51:39 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.4756 ms
+[21:51:39 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0264 ms
+[21:51:39 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 319.4270 ms
+[21:51:40 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 292.1540 ms
+[21:51:40 INF] HTTP GET /api/assignments responded 200 in 1111.5974 ms
+[21:51:41 INF] HTTP GET /api/assignments responded 200 in 1120.9116 ms
+[21:51:43 INF] HTTP GET /api/assignments responded 200 in 1116.8296 ms
+[21:51:44 INF] HTTP GET /api/assignments responded 200 in 1102.9098 ms
+[21:51:45 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0311 ms
+[21:51:45 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0447 ms
+[21:51:46 INF] HTTP GET /api/assignments responded 200 in 1125.6427 ms
+[21:51:47 INF] HTTP GET /api/assignments responded 200 in 1117.9831 ms
+[21:51:48 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0431 ms
+[21:51:48 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0334 ms
+[21:51:48 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 312.6726 ms
+[21:51:49 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 307.5267 ms
+[21:51:50 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 311.7613 ms
+[21:51:50 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 309.4200 ms
+[21:51:51 INF] User arif+1786295489811855@test.local logged in
+[21:51:51 INF] HTTP POST /api/Auth/login responded 200 in 305.7841 ms
+[21:51:52 INF] HTTP OPTIONS /api/Students/available-subjects responded 204 in 0.0555 ms
+[21:51:52 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0227 ms
+[21:51:52 INF] HTTP OPTIONS /api/assignments responded 204 in 0.1648 ms
+[21:51:52 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0224 ms
+[21:51:52 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0228 ms
+[21:51:52 INF] HTTP GET /api/Students/available-subjects responded 200 in 425.2975 ms
+[21:51:52 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 531.4963 ms
+[21:51:52 INF] HTTP GET /api/assignments responded 200 in 704.0267 ms
+[21:51:52 INF] HTTP GET /api/Students/available-subjects responded 200 in 420.6098 ms
+[21:51:53 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 532.8797 ms
+[21:51:53 INF] HTTP GET /api/assignments responded 200 in 712.2418 ms
+[21:51:54 INF] HTTP GET /api/assignments responded 200 in 710.5933 ms
+[21:51:55 INF] HTTP GET /api/assignments responded 200 in 716.3127 ms
+[21:51:56 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 532.6582 ms
+[21:51:57 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 540.8777 ms
+[21:51:58 INF] User admin@eduassign.local logged in
+[21:51:58 INF] HTTP POST /api/Auth/login responded 200 in 321.3879 ms
+[21:51:58 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0232 ms
+[21:51:58 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0273 ms
+[21:51:58 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0105 ms
+[21:51:58 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0184 ms
+[21:51:58 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0114 ms
+[21:51:58 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0645 ms
+[21:51:58 INF] HTTP GET /api/Subjects responded 200 in 43.2663 ms
+[21:51:58 INF] HTTP GET /api/admin/students responded 200 in 88.6351 ms
+[21:51:58 INF] HTTP GET /api/admin/teachers responded 200 in 88.0660 ms
+[21:51:58 INF] HTTP GET /api/Subjects responded 200 in 44.6155 ms
+[21:51:59 INF] HTTP GET /api/admin/students responded 200 in 84.3917 ms
+[21:51:59 INF] HTTP GET /api/admin/teachers responded 200 in 90.4332 ms
+[21:51:59 INF] HTTP GET /api/AcademicLevels responded 200 in 406.1036 ms
+[21:51:59 INF] HTTP GET /api/AcademicLevels responded 200 in 44.3208 ms
+[21:52:00 INF] HTTP GET /api/assignments responded 200 in 1915.6811 ms
+[21:52:02 INF] HTTP GET /api/assignments responded 200 in 1457.9059 ms
+[21:52:04 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0213 ms
+[21:52:04 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0266 ms
+[21:52:04 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0189 ms
+[21:52:04 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0159 ms
+[21:52:04 INF] HTTP GET /api/admin/students responded 200 in 84.3408 ms
+[21:52:04 INF] HTTP GET /api/AcademicLevels responded 200 in 44.9399 ms
+[21:52:04 INF] HTTP GET /api/AcademicLevels responded 200 in 43.9723 ms
+[21:52:04 INF] HTTP GET /api/admin/students responded 200 in 85.0710 ms
+[21:52:05 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0201 ms
+[21:52:05 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0135 ms
+[21:52:05 INF] HTTP GET /api/AcademicLevels responded 200 in 43.2853 ms
+[21:52:05 INF] HTTP GET /api/AcademicLevels responded 200 in 42.2602 ms
+[21:52:05 INF] HTTP GET /api/admin/teachers responded 200 in 88.0673 ms
+[21:52:05 INF] HTTP GET /api/admin/teachers responded 200 in 89.4662 ms
+[21:52:06 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0288 ms
+[21:52:06 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0223 ms
+[21:52:06 INF] HTTP GET /api/Subjects responded 200 in 44.0007 ms
+[21:52:06 INF] HTTP GET /api/Subjects responded 200 in 44.2864 ms
+[21:52:07 INF] HTTP GET /api/AcademicLevels responded 200 in 44.2556 ms
+[21:52:07 INF] HTTP OPTIONS /api/Subjects/by-academic-level/6a7899edfda21a2af890a6ee responded 204 in 0.0357 ms
+[21:52:07 INF] HTTP GET /api/AcademicLevels responded 200 in 43.7001 ms
+[21:52:07 INF] HTTP GET /api/Subjects/by-academic-level/6a7899edfda21a2af890a6ee responded 200 in 595.0409 ms
+[21:52:08 INF] HTTP OPTIONS /api/teacher-student-subjects responded 204 in 0.0209 ms
+[21:52:08 INF] HTTP GET /api/Subjects responded 200 in 44.2531 ms
+[21:52:08 INF] HTTP GET /api/admin/students responded 200 in 86.0380 ms
+[21:52:08 INF] HTTP GET /api/admin/teachers responded 200 in 87.7641 ms
+[21:52:08 INF] HTTP GET /api/Subjects responded 200 in 44.4816 ms
+[21:52:08 INF] HTTP GET /api/admin/students responded 200 in 98.6186 ms
+[21:52:08 INF] HTTP GET /api/admin/teachers responded 200 in 97.8564 ms
+[21:52:09 INF] HTTP GET /api/teacher-student-subjects responded 200 in 561.2181 ms
+[21:52:09 INF] HTTP GET /api/teacher-student-subjects responded 200 in 561.7237 ms
+[21:52:10 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:52:10 INF] HTTP POST /api/Auth/login responded 200 in 310.1380 ms
+[21:52:11 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0408 ms
+[21:52:11 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0468 ms
+[21:52:11 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0355 ms
+[21:52:11 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0485 ms
+[21:52:11 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 297.4727 ms
+[21:52:11 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 323.6309 ms
+[21:52:12 INF] HTTP GET /api/assignments responded 200 in 1114.6042 ms
+[21:52:13 INF] HTTP GET /api/assignments responded 200 in 1126.9561 ms
+[21:52:15 INF] HTTP GET /api/assignments responded 200 in 1105.1776 ms
+[21:52:16 INF] HTTP GET /api/assignments responded 200 in 1100.6238 ms
+[21:52:17 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0422 ms
+[21:52:17 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0371 ms
+[21:52:18 INF] HTTP GET /api/assignments responded 200 in 1112.2572 ms
+[21:52:19 INF] HTTP GET /api/assignments responded 200 in 1099.0050 ms
+[21:52:19 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0455 ms
+[21:52:19 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0384 ms
+[21:52:20 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 311.3001 ms
+[21:52:20 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 310.1242 ms
+[21:52:21 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 308.7889 ms
+[21:52:21 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 312.5614 ms
+[21:52:22 INF] User arif+1786295489811855@test.local logged in
+[21:52:22 INF] HTTP POST /api/Auth/login responded 200 in 305.5371 ms
+[21:52:23 INF] HTTP OPTIONS /api/Students/available-subjects responded 204 in 0.0464 ms
+[21:52:23 INF] HTTP OPTIONS /api/Students/enrolled-subjects responded 204 in 0.0312 ms
+[21:52:23 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0107 ms
+[21:52:23 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0286 ms
+[21:52:23 INF] HTTP GET /api/Students/available-subjects responded 200 in 432.1631 ms
+[21:52:23 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 539.4348 ms
+[21:52:24 INF] HTTP GET /api/assignments responded 200 in 681.6616 ms
+[21:52:24 INF] HTTP GET /api/Students/available-subjects responded 200 in 416.2042 ms
+[21:52:24 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 530.4401 ms
+[21:52:24 INF] HTTP GET /api/assignments responded 200 in 670.8098 ms
+[21:52:26 INF] HTTP GET /api/assignments responded 200 in 684.2038 ms
+[21:52:26 INF] HTTP GET /api/assignments responded 200 in 680.7423 ms
+[21:52:28 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 511.6279 ms
+[21:52:28 INF] HTTP GET /api/Students/enrolled-subjects responded 200 in 507.7674 ms
+[21:52:29 INF] User admin@eduassign.local logged in
+[21:52:29 INF] HTTP POST /api/Auth/login responded 200 in 318.7216 ms
+[21:52:30 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0311 ms
+[21:52:30 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0150 ms
+[21:52:30 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0169 ms
+[21:52:30 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0131 ms
+[21:52:30 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0379 ms
+[21:52:30 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0486 ms
+[21:52:30 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0247 ms
+[21:52:30 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0196 ms
+[21:52:30 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0180 ms
+[21:52:30 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0386 ms
+[21:52:30 INF] HTTP GET /api/Subjects responded 200 in 43.0182 ms
+[21:52:30 INF] HTTP GET /api/AcademicLevels responded 200 in 44.9641 ms
+[21:52:30 INF] HTTP GET /api/admin/students responded 200 in 86.3501 ms
+[21:52:30 INF] HTTP GET /api/Subjects responded 200 in 41.7388 ms
+[21:52:30 INF] HTTP GET /api/admin/teachers responded 200 in 88.5906 ms
+[21:52:30 INF] HTTP GET /api/AcademicLevels responded 200 in 42.9932 ms
+[21:52:30 INF] HTTP GET /api/admin/students responded 200 in 85.6698 ms
+[21:52:30 INF] HTTP GET /api/admin/teachers responded 200 in 90.7599 ms
+[21:52:31 INF] HTTP GET /api/assignments responded 200 in 1511.0549 ms
+[21:52:33 INF] HTTP GET /api/assignments responded 200 in 1516.4970 ms
+[21:52:33 INF] HTTP GET /api/AcademicLevels responded 200 in 43.8770 ms
+[21:52:33 INF] HTTP GET /api/admin/students responded 200 in 89.0319 ms
+[21:52:33 INF] HTTP GET /api/AcademicLevels responded 200 in 43.7408 ms
+[21:52:33 INF] HTTP GET /api/admin/students responded 200 in 88.6122 ms
+[21:52:34 INF] HTTP GET /api/AcademicLevels responded 200 in 43.6647 ms
+[21:52:34 INF] HTTP GET /api/AcademicLevels responded 200 in 43.9395 ms
+[21:52:34 INF] HTTP GET /api/admin/teachers responded 200 in 90.6943 ms
+[21:52:34 INF] HTTP GET /api/admin/teachers responded 200 in 97.7593 ms
+[21:52:35 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0552 ms
+[21:52:35 INF] HTTP OPTIONS /api/Subjects responded 204 in 0.0165 ms
+[21:52:35 INF] HTTP GET /api/Subjects responded 200 in 47.2224 ms
+[21:52:35 INF] HTTP GET /api/Subjects responded 200 in 46.8640 ms
+[21:52:36 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0306 ms
+[21:52:36 INF] HTTP OPTIONS /api/AcademicLevels responded 204 in 0.0145 ms
+[21:52:36 INF] HTTP GET /api/AcademicLevels responded 200 in 43.4675 ms
+[21:52:36 INF] HTTP OPTIONS /api/Subjects/by-academic-level/6a7899edfda21a2af890a6ee responded 204 in 0.0438 ms
+[21:52:36 INF] HTTP GET /api/AcademicLevels responded 200 in 44.0308 ms
+[21:52:37 INF] HTTP GET /api/Subjects/by-academic-level/6a7899edfda21a2af890a6ee responded 200 in 618.7808 ms
+[21:52:37 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0340 ms
+[21:52:37 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0294 ms
+[21:52:37 INF] HTTP OPTIONS /api/teacher-student-subjects responded 204 in 0.0230 ms
+[21:52:37 INF] HTTP OPTIONS /api/admin/students responded 204 in 0.0303 ms
+[21:52:37 INF] HTTP OPTIONS /api/admin/teachers responded 204 in 0.0065 ms
+[21:52:37 INF] HTTP OPTIONS /api/teacher-student-subjects responded 204 in 0.0214 ms
+[21:52:37 INF] HTTP GET /api/Subjects responded 200 in 45.5505 ms
+[21:52:38 INF] HTTP GET /api/Subjects responded 200 in 45.3500 ms
+[21:52:38 INF] HTTP GET /api/admin/students responded 200 in 90.2827 ms
+[21:52:38 INF] HTTP GET /api/admin/teachers responded 200 in 90.5148 ms
+[21:52:38 INF] HTTP GET /api/admin/teachers responded 200 in 86.9306 ms
+[21:52:38 INF] HTTP GET /api/admin/students responded 200 in 89.1127 ms
+[21:52:38 INF] HTTP GET /api/teacher-student-subjects responded 200 in 547.8681 ms
+[21:52:39 INF] HTTP GET /api/teacher-student-subjects responded 200 in 567.8805 ms
+[21:52:40 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:52:40 INF] HTTP POST /api/Auth/login responded 200 in 315.6648 ms
+[21:52:40 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0236 ms
+[21:52:40 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0076 ms
+[21:52:40 INF] HTTP OPTIONS /api/teacher-student-subjects/mine responded 204 in 0.0293 ms
+[21:52:40 INF] HTTP OPTIONS /api/assignments responded 204 in 0.0255 ms
+[21:52:41 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 296.3638 ms
+[21:52:41 INF] HTTP GET /api/teacher-student-subjects/mine responded 200 in 305.5726 ms
+[21:52:42 INF] HTTP GET /api/assignments responded 200 in 1136.2701 ms
+[21:52:43 INF] HTTP GET /api/assignments responded 200 in 1104.3900 ms
+[21:52:45 INF] HTTP GET /api/assignments responded 200 in 1105.0058 ms
+[21:52:46 ERR] HTTP GET /api/assignments responded 500 in 799.8255 ms
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 362
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[21:52:46 ERR] Unhandled exception
+System.OperationCanceledException: The operation was canceled.
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytesAsync(Stream stream, Byte[] buffer, Int32 offset, Int32 count, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBufferAsync(Int32 responseTo, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.ReceiveMessageAsync(Int32 responseTo, IMessageEncoderSelector encoderSelector, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableReadOperationExecutor.ExecuteAsync[TResult](IRetryableReadOperation`1 operation, RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.ReadCommandOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at EduAssignPro.Application.Services.AssignmentService.BuildAsync(Assignment a, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 362
+   at EduAssignPro.Application.Services.AssignmentService.ListAsync(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AssignmentService.cs:line 129
+   at EduAssignPro.Api.Controllers.AssignmentsController.List(CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AssignmentsController.cs:line 31
+   at lambda_method47(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[21:58:26 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:58:26 INF] HTTP POST /api/Auth/login responded 200 in 307.7775 ms
+[21:58:29 INF] User arif+1786295489811855@test.local logged in
+[21:58:29 INF] HTTP POST /api/Auth/login responded 200 in 302.9454 ms
+[21:58:32 INF] User tariq.aziz+1786297226770@test.local logged in
+[21:58:32 INF] HTTP POST /api/Auth/login responded 200 in 315.2647 ms
+[21:58:35 INF] User arif+1786295489811855@test.local logged in
+[21:58:35 INF] HTTP POST /api/Auth/login responded 200 in 300.8509 ms
+[22:10:45 INF] HTTP POST /api/Auth/login responded 400 in 378.4353 ms
+[22:10:49 INF] HTTP POST /api/Auth/login responded 400 in 18.5797 ms
+[22:12:11 INF] User tariq.aziz+1786297226770@test.local logged in
+[22:12:11 INF] HTTP POST /api/Auth/login responded 200 in 866.7881 ms
+[22:20:55 INF] User imran.hossain+1786299239080@test.local logged in
+[22:20:55 INF] HTTP POST /api/Auth/login responded 200 in 405.2824 ms
+[22:20:55 INF] HTTP GET /api/assignments responded 200 in 296.8531 ms
+[22:21:03 INF] User imran.hossain+1786299239080@test.local logged in
+[22:21:03 INF] HTTP POST /api/Auth/login responded 200 in 330.5675 ms
+[22:21:03 INF] HTTP GET /api/assignments/6a78c3821d7f8cc453a2e46e responded 200 in 315.4149 ms
+[22:21:03 INF] HTTP GET /api/similarity/submissions/6a78c3821d7f8cc453a2e46e responded 404 in 99.2470 ms
+[22:21:14 INF] User imran.hossain+1786299239080@test.local logged in
+[22:21:14 INF] HTTP POST /api/Auth/login responded 200 in 331.1833 ms
+[22:21:14 INF] HTTP GET /api/assignments responded 200 in 240.7033 ms
+[22:21:14 ERR] HTTP POST /api/Auth/login responded 500 in 72.7787 ms
+EduAssignPro.Application.Exceptions.UnauthorizedException: Invalid email or password.
+   at EduAssignPro.Application.Services.AuthService.LoginAsync(LoginRequest request, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AuthService.cs:line 132
+   at EduAssignPro.Api.Controllers.AuthController.Login(LoginRequest request, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AuthController.cs:line 28
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[22:21:14 WRN] AppException: UNAUTHORIZED Invalid email or password.
+EduAssignPro.Application.Exceptions.UnauthorizedException: Invalid email or password.
+   at EduAssignPro.Application.Services.AuthService.LoginAsync(LoginRequest request, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Application\Services\AuthService.cs:line 132
+   at EduAssignPro.Api.Controllers.AuthController.Login(LoginRequest request, CancellationToken ct) in C:\EduAssign\server\EduAssignPro.Api\Controllers\AuthController.cs:line 28
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at EduAssignPro.Api.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\EduAssign\server\EduAssignPro.Api\Middleware\ExceptionMiddleware.cs:line 24
+[22:21:14 INF] HTTP GET /api/teacher-student-subjects responded 401 in 110.0468 ms

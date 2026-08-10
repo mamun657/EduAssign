@@ -1,0 +1,78 @@
+{
+  "startedAt": "2026-08-10T16:49:28.540Z",
+  "steps": {
+    "teacherUrlAfterLogin": "http://localhost:3000/teacher",
+    "hasAnalyzeButton": true,
+    "hasSimilarityHeading": true,
+    "pageBodySnippet": "teaching dashboard students subjects assignments submissions ea eduassign pro teacher imran hossain teacher sign out e2e final — algebra quiz student: sara khan · subject: bangla all assignments brief due jan 01, 1, 06:01 am · created aug 10, 2026, 12:14 am reviewed complete exercises 1-10 from chapter 3. submitted aug 10, 2026, 12:14 am submission file no file uploaded marks 92 feedback excellent work — clear reasoning throughout. similarity analysis cosine + lexical comparison against peer submissions in this assignment. scores come from the analysis pipeline — re-running reuses prior embeddings. low similarity · 0.00% re-analyze similarity refresh result highest similarity 0.00% vs peer lexical (tf‑idf) 0.00% token overlap semantic (minilm cosine) 0.00% 384‑dim embedding status: completed analyzed: aug 10, 2026, 10:29 pm no peer submissions to compare against in this assignment yet. the analysis completed with no matches (0% similarity).",
+    "tokenLen": 437,
+    "preSummary": {
+      "status": 200,
+      "body": "{\"submissionId\":\"6a78c3821d7f8cc453a2e46e\",\"assignmentId\":\"6a78c3821d7f8cc453a2e46e\",\"studentId\":\"6a78c3691d7f8cc453a2e1f7\",\"studentName\":\"Sara Khan\",\"status\":\"Completed\",\"overallScore\":0,\"highestSimilarityScore\":0,\"lexicalScore\":0,\"semanticScore\":0,\"comparedSubmissionId\":null,\"comparedStudentId\":null,\"comparedStudentName\":null,\"level\":\"Low\",\"analyzedAt\":\"2026-08-10T16:29:27.12Z\",\"errorMessage\":null,\"matches\":[]}"
+    },
+    "polledStatus": "Completed",
+    "postSummaryStatus": 200,
+    "postSummary": {
+      "submissionId": "6a78c3821d7f8cc453a2e46e",
+      "assignmentId": "6a78c3821d7f8cc453a2e46e",
+      "studentId": "6a78c3691d7f8cc453a2e1f7",
+      "studentName": "Sara Khan",
+      "status": "Completed",
+      "overallScore": 0,
+      "highestSimilarityScore": 0,
+      "lexicalScore": 0,
+      "semanticScore": 0,
+      "comparedSubmissionId": null,
+      "comparedStudentId": null,
+      "comparedStudentName": null,
+      "level": "Low",
+      "analyzedAt": "2026-08-10T16:49:39.572Z",
+      "errorMessage": null,
+      "matches": []
+    },
+    "studentUrlAfterLogin": "http://localhost:3000/student",
+    "studentPages": [
+      {
+        "path": "/student",
+        "status": 200,
+        "url": "http://localhost:3000/student",
+        "hasAnalyzeUI": false
+      },
+      {
+        "path": "/student/assignments",
+        "status": 200,
+        "url": "http://localhost:3000/student/assignments",
+        "hasAnalyzeUI": false
+      },
+      {
+        "path": "/student/submissions",
+        "status": 404,
+        "url": "http://localhost:3000/student/submissions",
+        "hasAnalyzeUI": false
+      }
+    ],
+    "studentApiChecks": {
+      "analyze": {
+        "status": 403
+      },
+      "summary": {
+        "status": 200
+      },
+      "list": {
+        "status": 403
+      },
+      "compare": {
+        "status": 405
+      }
+    }
+  },
+  "consoleErrors": [
+    {
+      "where": "student",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "networkAppErrors": [],
+  "pageErrors": [],
+  "finishedAt": "2026-08-10T16:49:49.053Z"
+}

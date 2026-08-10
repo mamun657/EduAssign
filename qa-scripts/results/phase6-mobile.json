@@ -1,0 +1,139 @@
+{
+  "section": "Phase 6 - Mobile viewport",
+  "startedAt": "2026-08-10T15:58:25.672Z",
+  "viewports": {
+    "mobile_390x844": {
+      "width": 390,
+      "height": 844,
+      "teacher": {
+        "routes": {
+          "/teacher": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 390,
+              "iw": 390
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_390x844_teacher__teacher.png"
+          },
+          "/teacher/assignments": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 390,
+              "iw": 390
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_390x844_teacher__teacher_assignments.png"
+          },
+          "/teacher/submissions": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 390,
+              "iw": 390
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_390x844_teacher__teacher_submissions.png"
+          }
+        },
+        "consoleErrors": [],
+        "networkAppErrors": []
+      },
+      "student": {
+        "routes": {
+          "/student": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 390,
+              "iw": 390
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_390x844_student__student.png"
+          },
+          "/student/assignments": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 390,
+              "iw": 390
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_390x844_student__student_assignments.png"
+          }
+        },
+        "consoleErrors": [],
+        "networkAppErrors": []
+      }
+    },
+    "mobile_375x812": {
+      "width": 375,
+      "height": 812,
+      "teacher": {
+        "routes": {
+          "/teacher": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 375,
+              "iw": 375
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_375x812_teacher__teacher.png"
+          },
+          "/teacher/assignments": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 375,
+              "iw": 375
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_375x812_teacher__teacher_assignments.png"
+          },
+          "/teacher/submissions": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 375,
+              "iw": 375
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_375x812_teacher__teacher_submissions.png"
+          }
+        },
+        "consoleErrors": [],
+        "networkAppErrors": []
+      },
+      "student": {
+        "routes": {
+          "/student": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 375,
+              "iw": 375
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_375x812_student__student.png"
+          },
+          "/student/assignments": {
+            "status": 200,
+            "url": "http://localhost:3000/login",
+            "overflow": false,
+            "metrics": {
+              "sw": 375,
+              "iw": 375
+            },
+            "shot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase6-mobile\\mobile_375x812_student__student_assignments.png"
+          }
+        },
+        "consoleErrors": [],
+        "networkAppErrors": []
+      }
+    }
+  },
+  "finishedAt": "2026-08-10T15:58:37.110Z"
+}

@@ -1,0 +1,120 @@
+{
+  "startedAt": "2026-08-10T16:50:41.390Z",
+  "consoleErrors": [],
+  "networkAppErrors": [],
+  "pageErrors": [],
+  "roles": {
+    "admin": [
+      {
+        "role": "admin",
+        "path": "/admin",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/login",
+        "overflow": false
+      },
+      {
+        "role": "admin",
+        "path": "/admin/students",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/login",
+        "overflow": false
+      },
+      {
+        "role": "admin",
+        "path": "/admin/teachers",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/login",
+        "overflow": false
+      },
+      {
+        "role": "admin",
+        "path": "/admin/subjects",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/login",
+        "overflow": false
+      },
+      {
+        "role": "admin",
+        "path": "/admin/curriculum",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/login",
+        "overflow": false
+      },
+      {
+        "role": "admin",
+        "path": "/admin/teacher-student-subject",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/login",
+        "overflow": false
+      }
+    ],
+    "teacher": [
+      {
+        "role": "teacher",
+        "path": "/teacher",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/teacher",
+        "overflow": false
+      },
+      {
+        "role": "teacher",
+        "path": "/teacher/students",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/teacher/students",
+        "overflow": false
+      },
+      {
+        "role": "teacher",
+        "path": "/teacher/subjects",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/teacher/subjects",
+        "overflow": false
+      },
+      {
+        "role": "teacher",
+        "path": "/teacher/assignments",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/teacher/assignments",
+        "overflow": false
+      },
+      {
+        "role": "teacher",
+        "path": "/teacher/submissions",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/teacher/submissions",
+        "overflow": false
+      },
+      {
+        "role": "teacher",
+        "path": "/teacher/assignments/6a78c3821d7f8cc453a2e46e",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/teacher/assignments/6a78c3821d7f8cc453a2e46e",
+        "overflow": false
+      }
+    ],
+    "student": [
+      {
+        "role": "student",
+        "path": "/student",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/student",
+        "overflow": false
+      },
+      {
+        "role": "student",
+        "path": "/student/subjects",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/student/subjects",
+        "overflow": false
+      },
+      {
+        "role": "student",
+        "path": "/student/assignments",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/student/assignments",
+        "overflow": false
+      }
+    ]
+  },
+  "finishedAt": "2026-08-10T16:51:06.126Z"
+}
