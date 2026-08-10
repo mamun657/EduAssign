@@ -459,7 +459,7 @@ export default function RegisterPage() {
           </form>
         </div>
 
-        {/* Right column — illustration card */}
+   
         <div className="mx-auto hidden w-full max-w-2xl xl:block xl:justify-self-end">
           <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/60">
             <Image

@@ -112,9 +112,9 @@ export default function LoginPage() {
       </header>
 
       {/* Main two-column content */}
-      <div className="grid min-h-[calc(100vh-73px)] items-center px-6 pb-2 sm:px-10 lg:px-14 xl:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] xl:gap-14">
+      <div className="grid min-h-[calc(100vh-73px)] items-center justify-items-center px-6 pb-4 sm:px-10 lg:px-14 xl:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)] xl:gap-10">
         {/* Left: form */}
-        <div className="mx-auto w-full max-w-md xl:mx-0 xl:max-w-lg xl:translate-x-4 xl:translate-y-6 xl:pl-10">
+        <div className="mx-auto w-full max-w-md xl:mx-0 xl:max-w-md xl:translate-x-2 xl:translate-y-4 xl:self-center xl:pl-8">
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
             Welcome back
           </h1>
@@ -122,7 +122,7 @@ export default function LoginPage() {
             Sign in to your EduAssign Pro workspace.
           </p>
 
-          <form onSubmit={onSubmit} className="mt-6 space-y-5">
+          <form onSubmit={onSubmit} className="mt-5 space-y-4">
             {error ? <Alert tone="error">{error}</Alert> : null}
             <Input
               label="Email Address"
@@ -198,7 +198,7 @@ export default function LoginPage() {
           </form>
 
           {/* Quick demo login */}
-          <div className="mt-6">
+          <div className="mt-5">
             <div className="flex items-center gap-3">
               <div className="h-px flex-1 bg-slate-200" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -251,8 +251,8 @@ export default function LoginPage() {
         </div>
 
         {/* Right: illustration */}
-        <div className="mt-4 hidden items-center justify-center xl:flex xl:translate-x-6 xl:translate-y-6">
-          <div className="relative aspect-square w-full max-w-3xl overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/60">
+        <div className="mt-6 hidden w-full items-center justify-center self-center xl:mt-0 xl:flex xl:translate-x-4 xl:translate-y-4">
+          <div className="relative aspect-square w-full max-w-[520px] overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/60">
             <Image
               src="/assets/img1.png"
               alt="EduAssign Pro workspace preview"
@@ -260,7 +260,8 @@ export default function LoginPage() {
               height={900}
               sizes="(max-width: 1279px) 0vw, 55vw"
               priority
-              className="absolute inset-0 h-full w-full select-none object-cover"
+              // className="absolute inset-0 h-full w-full select-none object-cover"
+               className="absolute inset-0 h-full w-full scale-125 object-cover select-none"
               draggable={false}
             />
           </div>
