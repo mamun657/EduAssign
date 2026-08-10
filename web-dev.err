@@ -1,0 +1,88 @@
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  ...
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/login" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="page" pagePath="login/page...">
+                          <SegmentTrieNode>
+                          <ClientPageRoot Component={function LoginPage} serverProvidedParams={{...}}>
+                            <LoginPage params={Promise} searchParams={Promise}>
+                              <div
+                                className="grid min-h-screen lg:grid-cols-2"
+-                               bis_skin_checked="1"
+                              >
+                                <div
+                                  className="relative hidden flex-col justify-between bg-slate-900 p-12 text-white lg:..."
+-                                 bis_skin_checked="1"
+                                >
+                                  <div
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="flex items-center gap-2"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                                  ...
+                                <div
+                                  className="flex items-center justify-center p-6 sm:p-12"
+-                                 bis_skin_checked="1"
+                                >
+                                  <div
+                                    className="w-full max-w-md"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="mb-8 flex items-center gap-2 lg:hidden"
+-                                     bis_skin_checked="1"
+                                    >
+                                    <h1>
+                                    <p>
+                                    <form onSubmit={function onSubmit} className="mt-8 space...">
+                                      <Input label="Email" type="email" autoComplete="email" required={true} value="" ...>
+                                        <div
+                                          className="flex flex-col gap-1.5"
+-                                         bis_skin_checked="1"
+                                        >
+                                      <div
+-                                       bis_skin_checked="1"
+                                      >
+                                        <Input label="Password" type="password" autoComplete="current-pa..." ...>
+                                          <div
+                                            className="flex flex-col gap-1.5"
+-                                           bis_skin_checked="1"
+                                          >
+                                        ...
+                                      ...
+                        ...
+                      ...
+                  ...
+ 
+⨯ The requested resource isn't a valid image for /assets/img1.png received null
