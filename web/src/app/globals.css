@@ -1,19 +1,52 @@
 @import "tailwindcss";
 
+/* ────────────────────────────────────────────────────────────────────────────
+   EduAssign Pro design tokens.
+   Spec palette:
+     background     #FFFFFF / #F9FAFB
+     text           #111827  (primary)  / #6B7280  (secondary)
+     border         #E5E7EB
+     success        #16A34A
+     warning        #F59E0B
+     error          #DC2626
+   ────────────────────────────────────────────────────────────────────────── */
 @theme inline {
   --font-sans: var(--font-geist-sans);
+
+  /* Neutrals — Slate/Gray scale aligned with the spec. */
+  --color-app-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-surface-2: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-border-strong: #d1d5db;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --color-text-subtle: #9ca3af;
+
+  /* Brand (kept from existing system; used sparingly for active focus). */
   --color-brand-50: #f5f7fb;
   --color-brand-100: #e6ecf5;
   --color-brand-500: #4f46e5;
   --color-brand-600: #4338ca;
   --color-brand-700: #3730a3;
+
+  /* Status */
+  --color-success: #16a34a;
+  --color-success-bg: #ecfdf5;
+  --color-warning: #f59e0b;
+  --color-warning-bg: #fffbeb;
+  --color-error: #dc2626;
+  --color-error-bg: #fef2f2;
+  --color-info: #2563eb;
+  --color-info-bg: #eff6ff;
 }
 
 html,
 body {
-  background: #f8fafc;
-  color: #0f172a;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--color-app-bg);
+  color: var(--color-text);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 * {
@@ -24,4 +57,15 @@ body {
 /* Reusable focus ring for keyboard nav */
 :focus-visible {
   outline: none;
+}
+
+/* Prevent horizontal overflow caused by the new shell on small viewports. */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Lock body scroll while the mobile drawer is open. */
+body[data-drawer-open="true"] {
+  overflow: hidden;
 }

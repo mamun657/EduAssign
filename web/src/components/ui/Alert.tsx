@@ -11,10 +11,10 @@ interface AlertProps {
 }
 
 const tones: Record<AlertTone, string> = {
-  info: "bg-sky-50 text-sky-800 border-sky-200",
-  success: "bg-emerald-50 text-emerald-800 border-emerald-200",
-  error: "bg-rose-50 text-rose-800 border-rose-200",
-  warning: "bg-amber-50 text-amber-800 border-amber-200",
+  info: "bg-[#EFF6FF] text-[#1E40AF] border-[#BFDBFE]",
+  success: "bg-[#ECFDF5] text-[#15803D] border-[#A7F3D0]",
+  error: "bg-[#FEF2F2] text-[#991B1B] border-[#FECACA]",
+  warning: "bg-[#FFFBEB] text-[#92400E] border-[#FDE68A]",
 };
 
 export default function Alert({ tone = "info", children, className = "" }: AlertProps) {

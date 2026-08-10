@@ -35,4 +35,16 @@ public record AssignmentResponse(
     string? Feedback,
     string Status,
     DateTime CreatedAt,
-    DateTime UpdatedAt);
+    DateTime UpdatedAt,
+    string? AttachmentFileName,
+    string? AttachmentContentType,
+    long? AttachmentSize,
+    string? SubmissionFileName,
+    string? SubmissionContentType,
+    long? SubmissionSize);
+
+public record StoredFileResponse(
+    string Id,
+    string FileName,
+    string ContentType,
+    long Size);

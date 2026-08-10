@@ -64,6 +64,29 @@ public interface IAssignmentRepository
     Task<bool> DeleteAsync(string id, CancellationToken ct = default);
 }
 
+public class StoredFile
+{
+    public string Id { get; set; } = string.Empty;
+    public string FileName { get; set; } = string.Empty;
+    public string ContentType { get; set; } = "application/octet-stream";
+    public long Size { get; set; }
+    private Func<Stream>? _openReadStream;
+    public void WithOpenStream(Func<Stream> factory) => _openReadStream = factory;
+    public Stream OpenReadStream()
+    {
+        if (_openReadStream is null)
+            throw new InvalidOperationException("No stream factory set on this StoredFile.");
+        return _openReadStream();
+    }
+}
+
+public interface IFileRepository
+{
+    Task<StoredFile> UploadAsync(Stream stream, string fileName, string contentType, CancellationToken ct = default);
+    Task<StoredFile?> GetAsync(string id, CancellationToken ct = default);
+    Task DeleteAsync(string id, CancellationToken ct = default);
+}
+
 public interface IUnitOfWork
 {
     Task EnsureIndexesAsync(CancellationToken ct = default);

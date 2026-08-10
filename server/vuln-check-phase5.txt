@@ -1,0 +1,39 @@
+﻿  Determining projects to restore...
+C:\EduAssign\server\EduAssignPro.Infrastructure\EduAssignPro.Infrastructure.csproj : warning NU1902: Package 'SharpCompress' 0.30.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-6c8g-7p36-r338 [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Application\EduAssignPro.Application.csproj : warning NU1902: Package 'SharpCompress' 0.30.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-6c8g-7p36-r338 [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Tests\EduAssignPro.Tests.csproj : warning NU1902: Package 'SharpCompress' 0.30.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-6c8g-7p36-r338 [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Api\EduAssignPro.Api.csproj : warning NU1902: Package 'SharpCompress' 0.30.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-6c8g-7p36-r338 [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Tests\EduAssignPro.Tests.csproj : warning NU1903: Package 'Snappier' 1.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-pggp-6c3x-2xmx [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Api\EduAssignPro.Api.csproj : warning NU1903: Package 'Snappier' 1.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-pggp-6c3x-2xmx [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Application\EduAssignPro.Application.csproj : warning NU1903: Package 'Snappier' 1.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-pggp-6c3x-2xmx [C:\EduAssign\server\EduAssignPro.slnx]
+C:\EduAssign\server\EduAssignPro.Infrastructure\EduAssignPro.Infrastructure.csproj : warning NU1903: Package 'Snappier' 1.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-pggp-6c3x-2xmx [C:\EduAssign\server\EduAssignPro.slnx]
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+Project `EduAssignPro.Api` has the following vulnerable packages
+   [net10.0]: 
+   Transitive Package      Resolved   Severity   Advisory URL                                     
+   > SharpCompress         0.30.1     Moderate   https://github.com/advisories/GHSA-6c8g-7p36-r338
+   > Snappier              1.0.0      High       https://github.com/advisories/GHSA-pggp-6c3x-2xmx
+
+Project `EduAssignPro.Application` has the following vulnerable packages
+   [net10.0]: 
+   Transitive Package      Resolved   Severity   Advisory URL                                     
+   > SharpCompress         0.30.1     Moderate   https://github.com/advisories/GHSA-6c8g-7p36-r338
+   > Snappier              1.0.0      High       https://github.com/advisories/GHSA-pggp-6c3x-2xmx
+
+The given project `EduAssignPro.Domain` has no vulnerable packages given the current sources.
+Project `EduAssignPro.Infrastructure` has the following vulnerable packages
+   [net10.0]: 
+   Transitive Package      Resolved   Severity   Advisory URL                                     
+   > SharpCompress         0.30.1     Moderate   https://github.com/advisories/GHSA-6c8g-7p36-r338
+   > Snappier              1.0.0      High       https://github.com/advisories/GHSA-pggp-6c3x-2xmx
+
+Project `EduAssignPro.Tests` has the following vulnerable packages
+   [net10.0]: 
+   Transitive Package      Resolved   Severity   Advisory URL                                     
+   > SharpCompress         0.30.1     Moderate   https://github.com/advisories/GHSA-6c8g-7p36-r338
+   > Snappier              1.0.0      High       https://github.com/advisories/GHSA-pggp-6c3x-2xmx
+

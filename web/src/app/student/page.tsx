@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
-import Topbar from "@/components/layout/Topbar";
+import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
 import { Card, CardBody, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
@@ -30,12 +30,9 @@ function formatDate(iso: string): string {
 export default function StudentDashboardPage() {
   return (
     <RouteGuard roles={["Student"]}>
-      <div className="min-h-screen bg-slate-50">
-        <Topbar />
-        <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <StudentDashboard />
-        </main>
-      </div>
+      <DashboardShell role="Student">
+        <StudentDashboard />
+      </DashboardShell>
     </RouteGuard>
   );
 }
@@ -74,7 +71,6 @@ function StudentDashboard() {
 
   const enrolledIds = new Set(enrolled.map((s) => s.subjectId));
 
-  // Group selected optional subjects by elective group (to compute "remaining slots")
   const groupState = (() => {
     const out = new Map<string, { max: number; selected: number }>();
     available?.electiveGroups.forEach((g) => {
@@ -123,7 +119,7 @@ function StudentDashboard() {
       {error ? <Alert tone="error">{error}</Alert> : null}
 
       {loading ? (
-        <p className="text-sm text-slate-500">Loading…</p>
+        <p className="text-sm text-[#6B7280]">Loading…</p>
       ) : available ? (
         <>
           <Card>
@@ -140,11 +136,11 @@ function StudentDashboard() {
                   return (
                     <div
                       key={s.subjectId}
-                      className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3"
+                      className="flex items-center justify-between rounded-lg border border-[#E5E7EB] px-4 py-3"
                     >
                       <div>
-                        <p className="text-sm font-medium text-slate-900">{s.subjectName}</p>
-                        <p className="text-xs text-slate-500">{s.subjectCode}</p>
+                        <p className="text-sm font-medium text-[#111827]">{s.subjectName}</p>
+                        <p className="text-xs text-[#6B7280]">{s.subjectCode}</p>
                       </div>
                       {isEnrolled ? (
                         <Badge tone="emerald">Enrolled</Badge>
@@ -167,12 +163,7 @@ function StudentDashboard() {
           {available.electiveGroups.map((g) => {
             const state = groupState.get(g.name) ?? { max: g.maxChoicesInGroup, selected: 0 };
             const remaining = state.max - state.selected;
-            // Detect option-grouped electives (e.g. College ScienceOptional with
-            // Biology + Higher Mathematics). When options[] is non-empty, the
-            // student picks ONE option and all sibling papers in that option
-            // auto-enroll. Cross-option selection is blocked.
             const hasOptions = (g.options?.length ?? 0) > 0;
-            // Compute which option the student has already picked (if any).
             const chosenOptionKey = hasOptions
               ? enrolled.find(
                   (e) =>
@@ -199,9 +190,6 @@ function StudentDashboard() {
                 <CardBody className="space-y-4">
                   {hasOptions
                     ? g.options!.map((opt) => {
-                        // An option is "selected" only when one of its papers
-                        // is in the enrolled list (the very first pick from
-                        // this option auto-enrolls all sibling papers).
                         const anyEnrolled = opt.subjects.some((s) =>
                           enrolledIds.has(s.subjectId)
                         );
@@ -210,7 +198,7 @@ function StudentDashboard() {
                         return (
                           <div key={opt.key}>
                             <div className="mb-2 flex items-center gap-2">
-                              <p className="text-sm font-semibold text-slate-700">
+                              <p className="text-sm font-semibold text-[#111827]">
                                 {opt.displayName}
                               </p>
                               {anyEnrolled ? (
@@ -222,24 +210,19 @@ function StudentDashboard() {
                             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                               {opt.subjects.map((s) => {
                                 const isEnrolled = enrolledIds.has(s.subjectId);
-                                // Disable cross-option selection.
                                 const blocked = anotherOptionTaken && !isEnrolled;
-                                // Within the same option, every paper is part
-                                // of the same pick — once one paper is
-                                // enrolled, the others are NOT separately
-                                // selectable (they're already auto-enrolled).
                                 const siblingTaken = anyEnrolled && !isEnrolled;
                                 const disabled = blocked || siblingTaken;
                                 return (
                                   <div
                                     key={s.subjectId}
-                                    className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3"
+                                    className="flex items-center justify-between rounded-lg border border-[#E5E7EB] px-4 py-3"
                                   >
                                     <div>
-                                      <p className="text-sm font-medium text-slate-900">
+                                      <p className="text-sm font-medium text-[#111827]">
                                         {s.subjectName}
                                       </p>
-                                      <p className="text-xs text-slate-500">{s.subjectCode}</p>
+                                      <p className="text-xs text-[#6B7280]">{s.subjectCode}</p>
                                     </div>
                                     {isEnrolled ? (
                                       <Button
@@ -277,11 +260,11 @@ function StudentDashboard() {
                         return (
                           <div
                             key={s.subjectId}
-                            className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3"
+                            className="flex items-center justify-between rounded-lg border border-[#E5E7EB] px-4 py-3"
                           >
                             <div>
-                              <p className="text-sm font-medium text-slate-900">{s.subjectName}</p>
-                              <p className="text-xs text-slate-500">{s.subjectCode}</p>
+                              <p className="text-sm font-medium text-[#111827]">{s.subjectName}</p>
+                              <p className="text-xs text-[#6B7280]">{s.subjectCode}</p>
                             </div>
                             {isEnrolled ? (
                               <Button
@@ -319,11 +302,11 @@ function StudentDashboard() {
             </CardHeader>
             <CardBody>
               {assignments.length === 0 ? (
-                <p className="text-sm text-slate-500">No assignments yet.</p>
+                <p className="text-sm text-[#6B7280]">No assignments yet.</p>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="min-w-full text-sm">
-                    <thead className="text-left text-xs uppercase tracking-wide text-slate-500">
+                    <thead className="text-left text-xs uppercase tracking-wide text-[#6B7280]">
                       <tr>
                         <th className="py-2 pr-4">Title</th>
                         <th className="py-2 pr-4">Subject</th>
@@ -332,10 +315,10 @@ function StudentDashboard() {
                         <th className="py-2 pr-4">Grade</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100">
+                    <tbody className="divide-y divide-[#E5E7EB]">
                       {assignments.map((a) => (
-                        <tr key={a.id} className="text-slate-700">
-                          <td className="py-3 pr-4 font-medium text-slate-900">{a.title}</td>
+                        <tr key={a.id} className="text-[#374151]">
+                          <td className="py-3 pr-4 font-medium text-[#111827]">{a.title}</td>
                           <td className="py-3 pr-4">{a.subjectName}</td>
                           <td className="py-3 pr-4">{formatDate(a.dueDate)}</td>
                           <td className="py-3 pr-4">

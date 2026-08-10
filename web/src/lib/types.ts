@@ -220,6 +220,14 @@ export interface Assignment {
   status: AssignmentStatus;
   createdAt: string;
   updatedAt: string;
+  // File attachment metadata (teacher's brief). Null if no attachment yet.
+  attachmentFileName?: string | null;
+  attachmentContentType?: string | null;
+  attachmentSize?: number | null;
+  // Student submission file metadata. Null if no submission file yet.
+  submissionFileName?: string | null;
+  submissionContentType?: string | null;
+  submissionSize?: number | null;
 }
 
 export interface CreateAssignmentRequest {

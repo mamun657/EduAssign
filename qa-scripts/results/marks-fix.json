@@ -1,0 +1,42 @@
+{
+  "adminLogin": true,
+  "teacherLogin": true,
+  "studentLogin": true,
+  "assignmentId": "6a79a6e21f258498c51e4873",
+  "submitted": true,
+  "reviewPageLabel": "Marks (0 – 100)",
+  "reviewPageInputAttrs": {
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "type": "number",
+    "required": true
+  },
+  "attempt101Outcome": {
+    "validationAlertShown": false,
+    "reviewApiCallsDuringAttempt": [],
+    "inputValidity": {
+      "value": "101",
+      "validityValid": false,
+      "rangeUnderflow": false,
+      "rangeOverflow": true
+    }
+  },
+  "attempt100Outcome": {
+    "apiCalled": 1,
+    "requestBody": {
+      "body": "{\"marks\":100,\"feedback\":\"A valid score of 100. Great job.\"}"
+    },
+    "status": 200
+  },
+  "persistedMarks": 100,
+  "persistedStatus": "Reviewed",
+  "screenshots": [
+    "01-review-page-loaded.png",
+    "02-attempt-101.png",
+    "03-after-100.png"
+  ],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatal": null
+}

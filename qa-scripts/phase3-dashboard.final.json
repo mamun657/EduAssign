@@ -1,0 +1,248 @@
+{
+  "startedAt": "2026-08-10T06:26:59.593Z",
+  "viewports": {
+    "1440x900": {
+      "login": {
+        "ok": true,
+        "status": 200,
+        "role": "Admin"
+      },
+      "routes": {
+        "/admin": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nWelcome back, Syste"
+        },
+        "/admin/students": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nStudents\n\nManage st"
+        },
+        "/admin/teachers": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nTeachers\n\nAdd teach"
+        },
+        "/admin/subjects": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nSubjects\n\nDefine th"
+        },
+        "/admin/curriculum": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nCurriculum\n\nAcademi"
+        },
+        "/admin/teacher-student-subject": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nTeacher → Student →"
+        },
+        "/admin/assignments": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nAssignments\n\nAll as"
+        },
+        "/admin/submissions": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nSubmissions\n\nAssign"
+        }
+      },
+      "consoleErrors": [],
+      "networkErrors": []
+    },
+    "1280x800": {
+      "login": {
+        "ok": true,
+        "status": 200,
+        "role": "Admin"
+      },
+      "routes": {
+        "/admin": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nWelcome back, Syste"
+        },
+        "/admin/students": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nStudents\n\nManage st"
+        },
+        "/admin/teachers": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nTeachers\n\nAdd teach"
+        },
+        "/admin/subjects": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nSubjects\n\nDefine th"
+        },
+        "/admin/curriculum": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nCurriculum\n\nAcademi"
+        },
+        "/admin/teacher-student-subject": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nTeacher → Student →"
+        },
+        "/admin/assignments": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nAssignments\n\nAll as"
+        },
+        "/admin/submissions": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "ADMINISTRATION\nOverview\nStudents\nTeachers\nSubjects\nCurriculum\nTeacher → Student → Subject\nAssignments\nSubmissions\nEA\nEduAssign Pro\nAdministrator\nSystem Administrator\nAdmin\nSign out\nSubmissions\n\nAssign"
+        }
+      },
+      "consoleErrors": [],
+      "networkErrors": []
+    },
+    "390x844": {
+      "login": {
+        "ok": true,
+        "status": 200,
+        "role": "Admin"
+      },
+      "routes": {
+        "/admin": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nWelcome back, System\n\nOperational snapshot of students, teachers, subjects and assignments.\n\nACTIVE STUDENTS\n\n20\n\nACTIVE TEACHERS\n\n4\n\nACTIVE SUBJECTS\n\n19\n\nACADEMIC LEVELS\n\n2\n\nTOTAL AS"
+        },
+        "/admin/students": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nStudents\n\nManage student accounts and review their subject selections.\n\nAll students\n\n20 of 20 shown\n\nLevel\nAll levels\nCollege\nSchool\nStatus\nAll statuses\nActive\nInactive\nNAME\tEMAIL\tLE"
+        },
+        "/admin/teachers": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nTeachers\n\nAdd teaching staff and manage their account state.\n\nAll teachers\n\n5 total\n\nAdd teacher\nNAME\tEMAIL\tLEVEL\tSTATUS\tACTIONS\nTariq Aziz\ttariq.aziz+1786296126757@test.local\tSchool\t"
+        },
+        "/admin/subjects": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nSubjects\n\nDefine the subjects available across the system.\n\nAll subjects\n\n21 total\n\nAdd subject\nCODE\tNAME\tSTATUS\tACTIONS\nSCH_BANG\tBangla\tActive\t\nEdit\nDeactivate\nDelete\n\nCOL_BANG_1\tBan"
+        },
+        "/admin/curriculum": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nCurriculum\n\nAcademic levels and the subjects assigned to each level.\n\nAcademic levels\n\nSelect a level to view its curriculum.\n\nCollege\nActive\nSchool\nActive\nSubjects for this level\n\nCo"
+        },
+        "/admin/teacher-student-subject": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nTeacher → Student → Subject\n\nAssign teaching staff to deliver specific subjects to specific students.\n\nNew link\n\nPick a student first — the subject menu only shows subjects they can t"
+        },
+        "/admin/assignments": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nAssignments\n\nAll assignments across the system.\n\nTOTAL\n\n6\n\nDRAFT\n\n1\n\nPUBLISHED\n\n2\n\nSUBMITTED\n\n1\n\nREVIEWED\n\n2\n\nAll assignments\n\n6 of 6 shown\n\nAll statuses\nDraft\nPublished\nSubmitted\nRev"
+        },
+        "/admin/submissions": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nSubmissions\n\nAssignments students have submitted and teachers have reviewed.\n\nAll submissions\n\n3 shown · 1 pending review · 2 reviewed\n\nAll\nSubmitted only\nReviewed only\nTITLE\tSTUDENT\t"
+        }
+      },
+      "consoleErrors": [],
+      "networkErrors": []
+    },
+    "375x812": {
+      "login": {
+        "ok": true,
+        "status": 200,
+        "role": "Admin"
+      },
+      "routes": {
+        "/admin": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nWelcome back, System\n\nOperational snapshot of students, teachers, subjects and assignments.\n\nACTIVE STUDENTS\n\n20\n\nACTIVE TEACHERS\n\n4\n\nACTIVE SUBJECTS\n\n19\n\nACADEMIC LEVELS\n\n2\n\nTOTAL AS"
+        },
+        "/admin/students": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nStudents\n\nManage student accounts and review their subject selections.\n\nAll students\n\n20 of 20 shown\n\nLevel\nAll levels\nCollege\nSchool\nStatus\nAll statuses\nActive\nInactive\nNAME\tEMAIL\tLE"
+        },
+        "/admin/teachers": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nTeachers\n\nAdd teaching staff and manage their account state.\n\nAll teachers\n\n5 total\n\nAdd teacher\nNAME\tEMAIL\tLEVEL\tSTATUS\tACTIONS\nTariq Aziz\ttariq.aziz+1786296126757@test.local\tSchool\t"
+        },
+        "/admin/subjects": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nSubjects\n\nDefine the subjects available across the system.\n\nAll subjects\n\n21 total\n\nAdd subject\nCODE\tNAME\tSTATUS\tACTIONS\nSCH_BANG\tBangla\tActive\t\nEdit\nDeactivate\nDelete\n\nCOL_BANG_1\tBan"
+        },
+        "/admin/curriculum": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nCurriculum\n\nAcademic levels and the subjects assigned to each level.\n\nAcademic levels\n\nSelect a level to view its curriculum.\n\nCollege\nActive\nSchool\nActive\nSubjects for this level\n\nCo"
+        },
+        "/admin/teacher-student-subject": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nTeacher → Student → Subject\n\nAssign teaching staff to deliver specific subjects to specific students.\n\nNew link\n\nPick a student first — the subject menu only shows subjects they can t"
+        },
+        "/admin/assignments": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nAssignments\n\nAll assignments across the system.\n\nTOTAL\n\n6\n\nDRAFT\n\n1\n\nPUBLISHED\n\n2\n\nSUBMITTED\n\n1\n\nREVIEWED\n\n2\n\nAll assignments\n\n6 of 6 shown\n\nAll statuses\nDraft\nPublished\nSubmitted\nRev"
+        },
+        "/admin/submissions": {
+          "horizontalOverflow": false,
+          "bodyHasContent": true,
+          "snippet": "EA\nEduAssign Pro\nSubmissions\n\nAssignments students have submitted and teachers have reviewed.\n\nAll submissions\n\n3 shown · 1 pending review · 2 reviewed\n\nAll\nSubmitted only\nReviewed only\nTITLE\tSTUDENT\t"
+        }
+      },
+      "consoleErrors": [],
+      "networkErrors": []
+    }
+  },
+  "crud": {
+    "subjects": {
+      "beforeCount": 21,
+      "createdStatus": 200,
+      "createdId": "6a796fe03b163ff3f038f582",
+      "createdVisibleInList": true,
+      "afterCreateCount": 22,
+      "deactivatedStatus": 404,
+      "removedAfterDeactivate": true,
+      "afterDeactCount": 22
+    }
+  },
+  "teacher": {
+    "login": {
+      "ok": true,
+      "email": "p3teacher+1786343826720@test.local",
+      "teacherCreated": 200
+    },
+    "dashboard": {
+      "url": "http://localhost:3000/teacher",
+      "horizontalOverflow": false,
+      "errors": []
+    }
+  },
+  "student": {
+    "login": {
+      "ok": true,
+      "email": "p3student+1786343834300@test.local",
+      "studentRegistered": 200
+    },
+    "dashboard": {
+      "url": "http://localhost:3000/student",
+      "horizontalOverflow": false,
+      "errors": []
+    }
+  },
+  "finishedAt": "2026-08-10T06:37:21.090Z",
+  "pass": true,
+  "error": null
+}

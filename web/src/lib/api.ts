@@ -180,11 +180,18 @@ export const AcademicLevels = {
 // --- Subjects ---
 import type {
   CreateSubjectRequest,
+  CurriculumSubject,
   Subject,
   UpdateSubjectRequest,
 } from "./types";
 export const Subjects = {
   list: () => apiRequest<Subject[]>("/Subjects"),
+  // Returns the curriculum subjects (compulsory + elective groups + options)
+  // for a specific academic level. Used by the admin Curriculum page.
+  byAcademicLevel: (academicLevelId: string) =>
+    apiRequest<CurriculumSubject[]>(
+      `/Subjects/by-academic-level/${academicLevelId}`,
+    ),
   create: (req: CreateSubjectRequest) =>
     apiRequest<Subject, CreateSubjectRequest>("/Subjects", {
       method: "POST",
@@ -200,6 +207,8 @@ export const Subjects = {
       method: "PUT",
       body: { isActive: false },
     }),
+  remove: (id: string) =>
+    apiRequest<unknown, unknown>(`/Subjects/${id}`, { method: "DELETE" }),
 };
 
 // --- Students (self-service) ---
@@ -281,6 +290,60 @@ import type {
   SubmitAssignmentRequest,
   UpdateAssignmentRequest,
 } from "./types";
+
+/**
+ * POST a multipart/form-data upload. The browser builds the multipart body for
+ * us so we don't need any runtime dep. We attach the bearer token manually
+ * because the default apiRequest serializes JSON, not FormData.
+ */
+async function apiUpload<TResponse>(
+  path: string,
+  formData: FormData,
+): Promise<TResponse> {
+  const token = getToken();
+  const url = buildUrl(path);
+  const res = await fetch(url, {
+    method: "POST",
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    body: formData,
+  });
+  const text = await res.text();
+  const payload = text ? safeParse(text) : null;
+  if (!res.ok) {
+    if (res.status === 401) clearAuth();
+    throw extractError(res.status, payload);
+  }
+  return (payload as TResponse) ?? (undefined as TResponse);
+}
+
+/**
+ * GET a binary blob (file) using the bearer token. Returns
+ * { blob, contentType, fileName } so the caller can save it with a meaningful
+ * filename. The backend sends Content-Disposition: attachment; filename=... so
+ * we parse the filename out of the headers when present.
+ */
+async function apiDownload(
+  path: string,
+): Promise<{ blob: Blob; contentType: string; fileName: string }> {
+  const token = getToken();
+  const url = buildUrl(path);
+  const res = await fetch(url, {
+    method: "GET",
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+  });
+  if (!res.ok) {
+    if (res.status === 401) clearAuth();
+    const text = await res.text();
+    throw extractError(res.status, text ? safeParse(text) : null);
+  }
+  const contentType = res.headers.get("Content-Type") ?? "application/octet-stream";
+  const dispo = res.headers.get("Content-Disposition") ?? "";
+  const match = /filename\*?=(?:UTF-8'')?"?([^";]+)"?/i.exec(dispo);
+  const fileName = match ? decodeURIComponent(match[1] ?? "download") : "download";
+  const blob = await res.blob();
+  return { blob, contentType, fileName };
+}
+
 export const Assignments = {
   // Both teacher and student can call this; backend returns role-filtered list.
   list: (params?: { studentId?: string; subjectId?: string }) =>
@@ -312,4 +375,28 @@ export const Assignments = {
       `/assignments/${id}/review`,
       { method: "POST", body: req },
     ),
+  /**
+   * Teacher-only: upload a PDF/image as the assignment brief attachment.
+   * Replaces any existing attachment.
+   */
+  uploadAttachment: (id: string, file: File) => {
+    const fd = new FormData();
+    fd.append("file", file);
+    return apiUpload<Assignment>(`/assignments/${id}/attachment`, fd);
+  },
+  /** Teacher (owner) or Student (assigned, published only): download attachment. */
+  downloadAttachment: (id: string) =>
+    apiDownload(`/assignments/${id}/attachment`),
+  /**
+   * Student-only: upload the student's submission file (PDF/image/etc).
+   * Replaces any existing submission file.
+   */
+  uploadSubmissionFile: (id: string, file: File) => {
+    const fd = new FormData();
+    fd.append("file", file);
+    return apiUpload<Assignment>(`/assignments/${id}/submission-file`, fd);
+  },
+  /** Teacher (owner): download the student's submission file. */
+  downloadSubmissionFile: (id: string) =>
+    apiDownload(`/assignments/${id}/submission-file`),
 };

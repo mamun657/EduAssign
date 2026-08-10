@@ -1,0 +1,58 @@
+{
+  "section": "Phase 4 — Security & Negative Tests",
+  "startedAt": "2026-08-10T09:32:55.077Z",
+  "tests": {
+    "T1_unauthTeacherRedirect": {
+      "finalUrl": "http://localhost:3000/login",
+      "pass": true
+    },
+    "T2_studentAdminRedirect": {
+      "finalUrl": "http://localhost:3000/student",
+      "pass": true
+    },
+    "T3_studentTeacherRedirect": {
+      "finalUrl": "http://localhost:3000/student",
+      "pass": true
+    },
+    "T4_studentCreateAssignment": {
+      "status": 403,
+      "pass": true
+    },
+    "T5_studentReview": {
+      "status": 403,
+      "pass": true
+    },
+    "T6_teacherReviewOwn": {
+      "status": 200,
+      "pass": true
+    },
+    "T7_studentTssEndpoint": {
+      "status": 403,
+      "pass": true
+    },
+    "T8_studentAdminStudents": {
+      "status": 403,
+      "pass": true
+    },
+    "T9_unauthMe": {
+      "status": 401,
+      "pass": true
+    },
+    "T10_invalidFileType": {
+      "status": 400,
+      "pass": true
+    }
+  },
+  "fatalError": null,
+  "setup": {
+    "publishedId": "6a799a91e6406a265f134fba",
+    "teacherTokenOk": true
+  },
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "pass": true
+  },
+  "finishedAt": "2026-08-10T09:33:26.703Z"
+}

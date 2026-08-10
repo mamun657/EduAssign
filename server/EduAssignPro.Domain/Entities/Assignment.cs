@@ -65,4 +65,37 @@ public class Assignment
 
     [BsonElement("updatedAt")]
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    // --- Phase 4: file attachments (teacher's brief + student's submission) ---
+    [BsonElement("attachmentFileId")]
+    [BsonIgnoreIfNull]
+    public string? AttachmentFileId { get; set; }
+
+    [BsonElement("attachmentFileName")]
+    [BsonIgnoreIfNull]
+    public string? AttachmentFileName { get; set; }
+
+    [BsonElement("attachmentContentType")]
+    [BsonIgnoreIfNull]
+    public string? AttachmentContentType { get; set; }
+
+    [BsonElement("attachmentSize")]
+    [BsonIgnoreIfNull]
+    public long? AttachmentSize { get; set; }
+
+    [BsonElement("submissionFileId")]
+    [BsonIgnoreIfNull]
+    public string? SubmissionFileId { get; set; }
+
+    [BsonElement("submissionFileName")]
+    [BsonIgnoreIfNull]
+    public string? SubmissionFileName { get; set; }
+
+    [BsonElement("submissionContentType")]
+    [BsonIgnoreIfNull]
+    public string? SubmissionContentType { get; set; }
+
+    [BsonElement("submissionSize")]
+    [BsonIgnoreIfNull]
+    public long? SubmissionSize { get; set; }
 }

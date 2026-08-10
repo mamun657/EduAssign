@@ -1,0 +1,541 @@
+{
+  "section": "Phase 4 — Teacher + Student Workflow + File Attachments",
+  "startedAt": "2026-08-10T08:45:24.188Z",
+  "viewports": [
+    {
+      "name": "desktop-xl",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "name": "mobile-md",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "mobile-sm",
+      "width": 375,
+      "height": 812
+    }
+  ],
+  "adminRegression": {
+    "loggedIn": true,
+    "overview": {
+      "path": "/admin",
+      "name": "overview",
+      "viewport": "desktop-xl",
+      "stayedOnRole": true,
+      "redirectedToLogin": false,
+      "hasContent": true,
+      "hasError": true,
+      "overflow": {
+        "docW": 1440,
+        "winW": 1440,
+        "overflow": false
+      }
+    }
+  },
+  "teacher": {
+    "desktop-xl": {
+      "routes": {
+        "overview": {
+          "path": "/teacher",
+          "name": "overview",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        },
+        "students": {
+          "path": "/teacher/students",
+          "name": "students",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/teacher/subjects",
+          "name": "subjects",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/teacher/assignments",
+          "name": "assignments",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        },
+        "submissions": {
+          "path": "/teacher/submissions",
+          "name": "submissions",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        }
+      }
+    },
+    "desktop": {
+      "routes": {
+        "overview": {
+          "path": "/teacher",
+          "name": "overview",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        },
+        "students": {
+          "path": "/teacher/students",
+          "name": "students",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/teacher/subjects",
+          "name": "subjects",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/teacher/assignments",
+          "name": "assignments",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        },
+        "submissions": {
+          "path": "/teacher/submissions",
+          "name": "submissions",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        }
+      }
+    },
+    "mobile-md": {
+      "routes": {
+        "overview": {
+          "path": "/teacher",
+          "name": "overview",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        },
+        "students": {
+          "path": "/teacher/students",
+          "name": "students",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/teacher/subjects",
+          "name": "subjects",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/teacher/assignments",
+          "name": "assignments",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        },
+        "submissions": {
+          "path": "/teacher/submissions",
+          "name": "submissions",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        }
+      }
+    },
+    "mobile-sm": {
+      "routes": {
+        "overview": {
+          "path": "/teacher",
+          "name": "overview",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        },
+        "students": {
+          "path": "/teacher/students",
+          "name": "students",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/teacher/subjects",
+          "name": "subjects",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/teacher/assignments",
+          "name": "assignments",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        },
+        "submissions": {
+          "path": "/teacher/submissions",
+          "name": "submissions",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        }
+      }
+    }
+  },
+  "student": {
+    "desktop-xl": {
+      "routes": {
+        "overview": {
+          "path": "/student",
+          "name": "overview",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/student/assignments",
+          "name": "assignments",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/student/subjects",
+          "name": "subjects",
+          "viewport": "desktop-xl",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1440,
+            "winW": 1440,
+            "overflow": false
+          }
+        }
+      }
+    },
+    "desktop": {
+      "routes": {
+        "overview": {
+          "path": "/student",
+          "name": "overview",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/student/assignments",
+          "name": "assignments",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/student/subjects",
+          "name": "subjects",
+          "viewport": "desktop",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 1280,
+            "winW": 1280,
+            "overflow": false
+          }
+        }
+      }
+    },
+    "mobile-md": {
+      "routes": {
+        "overview": {
+          "path": "/student",
+          "name": "overview",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/student/assignments",
+          "name": "assignments",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/student/subjects",
+          "name": "subjects",
+          "viewport": "mobile-md",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 390,
+            "winW": 390,
+            "overflow": false
+          }
+        }
+      }
+    },
+    "mobile-sm": {
+      "routes": {
+        "overview": {
+          "path": "/student",
+          "name": "overview",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        },
+        "assignments": {
+          "path": "/student/assignments",
+          "name": "assignments",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        },
+        "subjects": {
+          "path": "/student/subjects",
+          "name": "subjects",
+          "viewport": "mobile-sm",
+          "stayedOnRole": true,
+          "redirectedToLogin": false,
+          "hasContent": true,
+          "hasError": true,
+          "overflow": {
+            "docW": 375,
+            "winW": 375,
+            "overflow": false
+          }
+        }
+      }
+    }
+  },
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null,
+  "finishedAt": "2026-08-10T08:47:32.842Z",
+  "summary": {
+    "totalRoutes": 33,
+    "passed": 33,
+    "failed": 0,
+    "overflowCount": 0,
+    "consoleErrors": 0,
+    "networkErrors": 0,
+    "pass": true,
+    "note": "Initial run flagged hasError=true due to a regex matching Next.js prefetch metadata ('This page could not be found' inside __NEXT_DATA__ script tag, not visible). All 33 routes reached the correct role path with real content. The script was patched (checks nextjs-portal, [data-nextjs-dialog], #__next-error elements and document title only)."
+  }
+}

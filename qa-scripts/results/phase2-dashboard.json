@@ -1,0 +1,367 @@
+{
+  "section": "Phase 2 DashboardShell + Sidebar",
+  "startedAt": "2026-08-10T05:38:35.398Z",
+  "credentials": {
+    "adminEmail": "admin@eduassign.local",
+    "teacherEmail": "tariq.aziz+1786297226770@test.local",
+    "studentEmail": "sara.khan+1786299239080@test.local"
+  },
+  "runs": {
+    "admin-desktop-1440": {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 900
+      },
+      "role": "Admin",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/admin",
+      "sidebarVisible": true,
+      "sidebarWidth": 260,
+      "sidebarLeft": 0,
+      "hamburgerVisible": false,
+      "desktopSidebarVisible": true,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false
+      },
+      "navLinkCount": 6,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "admin-desktop-1280": {
+      "viewport": {
+        "name": "desktop-1280",
+        "width": 1280,
+        "height": 800
+      },
+      "role": "Admin",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/admin",
+      "sidebarVisible": true,
+      "sidebarWidth": 260,
+      "sidebarLeft": 0,
+      "hamburgerVisible": false,
+      "desktopSidebarVisible": true,
+      "overflow": {
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "overflow": false
+      },
+      "navLinkCount": 6,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "admin-mobile-390": {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "role": "Admin",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/admin",
+      "sidebarVisible": false,
+      "sidebarWidth": null,
+      "sidebarLeft": null,
+      "hamburgerVisible": true,
+      "drawerInitiallyOpen": false,
+      "drawerOpens": true,
+      "drawerAsideVisible": false,
+      "drawerEscapeCloses": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false
+      },
+      "navLinkCount": 6,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "admin-mobile-375": {
+      "viewport": {
+        "name": "mobile-375",
+        "width": 375,
+        "height": 812
+      },
+      "role": "Admin",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/admin",
+      "sidebarVisible": false,
+      "sidebarWidth": null,
+      "sidebarLeft": null,
+      "hamburgerVisible": true,
+      "drawerInitiallyOpen": false,
+      "drawerOpens": true,
+      "drawerAsideVisible": false,
+      "drawerEscapeCloses": true,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false
+      },
+      "navLinkCount": 6,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "teacher-desktop-1440": {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 900
+      },
+      "role": "Teacher",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/teacher",
+      "sidebarVisible": true,
+      "sidebarWidth": 260,
+      "sidebarLeft": 0,
+      "hamburgerVisible": false,
+      "desktopSidebarVisible": true,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "teacher-desktop-1280": {
+      "viewport": {
+        "name": "desktop-1280",
+        "width": 1280,
+        "height": 800
+      },
+      "role": "Teacher",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/teacher",
+      "sidebarVisible": true,
+      "sidebarWidth": 260,
+      "sidebarLeft": 0,
+      "hamburgerVisible": false,
+      "desktopSidebarVisible": true,
+      "overflow": {
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "teacher-mobile-390": {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "role": "Teacher",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/teacher",
+      "sidebarVisible": false,
+      "sidebarWidth": null,
+      "sidebarLeft": null,
+      "hamburgerVisible": true,
+      "drawerInitiallyOpen": false,
+      "drawerOpens": true,
+      "drawerAsideVisible": false,
+      "drawerEscapeCloses": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "teacher-mobile-375": {
+      "viewport": {
+        "name": "mobile-375",
+        "width": 375,
+        "height": 812
+      },
+      "role": "Teacher",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/teacher",
+      "sidebarVisible": false,
+      "sidebarWidth": null,
+      "sidebarLeft": null,
+      "hamburgerVisible": true,
+      "drawerInitiallyOpen": false,
+      "drawerOpens": true,
+      "drawerAsideVisible": false,
+      "drawerEscapeCloses": true,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "student-desktop-1440": {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 900
+      },
+      "role": "Student",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/student",
+      "sidebarVisible": true,
+      "sidebarWidth": 260,
+      "sidebarLeft": 0,
+      "hamburgerVisible": false,
+      "desktopSidebarVisible": true,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "student-desktop-1280": {
+      "viewport": {
+        "name": "desktop-1280",
+        "width": 1280,
+        "height": 800
+      },
+      "role": "Student",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/student",
+      "sidebarVisible": true,
+      "sidebarWidth": 260,
+      "sidebarLeft": 0,
+      "hamburgerVisible": false,
+      "desktopSidebarVisible": true,
+      "overflow": {
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "student-mobile-390": {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "role": "Student",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/student",
+      "sidebarVisible": false,
+      "sidebarWidth": null,
+      "sidebarLeft": null,
+      "hamburgerVisible": true,
+      "drawerInitiallyOpen": false,
+      "drawerOpens": true,
+      "drawerAsideVisible": false,
+      "drawerEscapeCloses": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    },
+    "student-mobile-375": {
+      "viewport": {
+        "name": "mobile-375",
+        "width": 375,
+        "height": 812
+      },
+      "role": "Student",
+      "loginStatus": 200,
+      "loginRedirected": true,
+      "afterLoginUrl": "http://localhost:3000/student",
+      "sidebarVisible": false,
+      "sidebarWidth": null,
+      "sidebarLeft": null,
+      "hamburgerVisible": true,
+      "drawerInitiallyOpen": false,
+      "drawerOpens": true,
+      "drawerAsideVisible": false,
+      "drawerEscapeCloses": true,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false
+      },
+      "navLinkCount": 4,
+      "signOutVisible": true,
+      "afterLogoutToken": null,
+      "afterLogoutUrl": "http://localhost:3000/login",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "fatalError": null
+    }
+  },
+  "fatalError": null,
+  "finishedAt": "2026-08-10T05:46:34.919Z"
+}

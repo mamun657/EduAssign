@@ -1,0 +1,11 @@
+﻿C:\Program Files\dotnet\sdk\10.0.302\Current\Microsoft.Common.props(34,3): error MSB4024: The imported project file "C:\EduAssign\server\Directory.Build.props" could not be loaded. An XML comment cannot contain '--', and '-' cannot be the last character. Line 7, position 26. [C:\EduAssign\server\EduAssignPro.Tests\EduAssignPro.Tests.csproj]
+C:\Program Files\dotnet\sdk\10.0.302\Current\Microsoft.Common.props(34,3): error MSB4024: The imported project file "C:\EduAssign\server\Directory.Build.props" could not be loaded. An XML comment cannot contain '--', and '-' cannot be the last character. Line 7, position 26. [C:\EduAssign\server\EduAssignPro.Application\EduAssignPro.Application.csproj]
+C:\Program Files\dotnet\sdk\10.0.302\Current\Microsoft.Common.props(34,3): error MSB4024: The imported project file "C:\EduAssign\server\Directory.Build.props" could not be loaded. An XML comment cannot contain '--', and '-' cannot be the last character. Line 7, position 26. [C:\EduAssign\server\EduAssignPro.Api\EduAssignPro.Api.csproj]
+C:\Program Files\dotnet\sdk\10.0.302\Current\Microsoft.Common.props(34,3): error MSB4024: The imported project file "C:\EduAssign\server\Directory.Build.props" could not be loaded. An XML comment cannot contain '--', and '-' cannot be the last character. Line 7, position 26. [C:\EduAssign\server\EduAssignPro.Infrastructure\EduAssignPro.Infrastructure.csproj]
+C:\Program Files\dotnet\sdk\10.0.302\Current\Microsoft.Common.props(34,3): error MSB4024: The imported project file "C:\EduAssign\server\Directory.Build.props" could not be loaded. An XML comment cannot contain '--', and '-' cannot be the last character. Line 7, position 26. [C:\EduAssign\server\EduAssignPro.Domain\EduAssignPro.Domain.csproj]
+
+Build FAILED.
+    8 Warning(s)
+    5 Error(s)
+
+Time Elapsed 00:00:01.73

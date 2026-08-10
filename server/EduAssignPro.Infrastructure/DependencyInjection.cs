@@ -29,6 +29,11 @@ public static class DependencyInjection
         services.AddScoped<IStudentEnrollmentRepository, StudentEnrollmentRepository>();
         services.AddScoped<ITeacherStudentSubjectRepository, TeacherStudentSubjectRepository>();
         services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+        services.AddScoped<IFileRepository, GridFsFileRepository>(sp =>
+        {
+            var ctx = sp.GetRequiredService<MongoContext>();
+            return new GridFsFileRepository(ctx.Database);
+        });
         services.AddScoped<IUnitOfWork, MongoIndexInitializer>();
 
         // Security

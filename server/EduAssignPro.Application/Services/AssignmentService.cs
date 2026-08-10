@@ -14,14 +14,32 @@ public class AssignmentService
     private readonly ITeacherStudentSubjectRepository _teacherStudentSubjects;
     private readonly IUserRepository _users;
     private readonly ISubjectRepository _subjects;
+    private readonly IFileRepository _files;
     private readonly ICurrentUser _currentUser;
     private readonly ILogger<AssignmentService> _logger;
+
+    // Phase 4: file-type allowlist + size cap for assignment + submission uploads.
+    // PDF + common image formats. Reject anything else so the storage bucket stays clean.
+    private static readonly HashSet<string> AllowedContentTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "application/pdf",
+        "image/png",
+        "image/jpeg",
+        "image/jpg",
+        "image/gif",
+        "image/webp",
+        "text/plain",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    };
+    private const long MaxAttachmentBytes = 10 * 1024 * 1024; // 10 MB
 
     public AssignmentService(
         IAssignmentRepository assignments,
         ITeacherStudentSubjectRepository teacherStudentSubjects,
         IUserRepository users,
         ISubjectRepository subjects,
+        IFileRepository files,
         ICurrentUser currentUser,
         ILogger<AssignmentService> logger)
     {
@@ -29,6 +47,7 @@ public class AssignmentService
         _teacherStudentSubjects = teacherStudentSubjects;
         _users = users;
         _subjects = subjects;
+        _files = files;
         _currentUser = currentUser;
         _logger = logger;
     }
@@ -203,6 +222,107 @@ public class AssignmentService
         return await BuildAsync(updated!, ct);
     }
 
+    // ---- Phase 4: file attachment upload/download ----
+
+    public async Task<StoredFileResponse> UploadAttachmentAsync(
+        string id, Stream stream, string fileName, string contentType, CancellationToken ct = default)
+    {
+        EnsureTeacher();
+        var assignment = await _assignments.GetByIdAsync(id, ct)
+            ?? throw new NotFoundException("Assignment not found.");
+        if (assignment.TeacherId != _currentUser.UserId)
+            throw new ForbiddenException("You can only upload attachments to your own assignments.");
+
+        ValidateUpload(fileName, contentType, stream);
+
+        // Replace existing attachment if present.
+        if (!string.IsNullOrEmpty(assignment.AttachmentFileId))
+        {
+            try { await _files.DeleteAsync(assignment.AttachmentFileId!, ct); } catch { /* best-effort */ }
+        }
+
+        var stored = await _files.UploadAsync(stream, fileName, contentType, ct);
+        var update = Builders<Assignment>.Update
+            .Set(a => a.AttachmentFileId, stored.Id)
+            .Set(a => a.AttachmentFileName, stored.FileName)
+            .Set(a => a.AttachmentContentType, stored.ContentType)
+            .Set(a => a.AttachmentSize, stored.Size)
+            .Set(a => a.UpdatedAt, DateTime.UtcNow);
+        await _assignments.UpdateAsync(id, update, ct);
+        _logger.LogInformation("Assignment {Id} attachment uploaded: {File} ({Size} bytes)", id, stored.FileName, stored.Size);
+        return new StoredFileResponse(stored.Id, stored.FileName, stored.ContentType, stored.Size);
+    }
+
+    public async Task<StoredFile> GetAttachmentAsync(string id, CancellationToken ct = default)
+    {
+        var assignment = await _assignments.GetByIdAsync(id, ct)
+            ?? throw new NotFoundException("Assignment not found.");
+        EnsureCanAccess(assignment);
+        if (string.IsNullOrEmpty(assignment.AttachmentFileId))
+            throw new NotFoundException("This assignment has no attachment.");
+        var stored = await _files.GetAsync(assignment.AttachmentFileId!, ct)
+            ?? throw new NotFoundException("Attachment file not found.");
+        return stored;
+    }
+
+    public async Task<StoredFileResponse> UploadSubmissionFileAsync(
+        string id, Stream stream, string fileName, string contentType, CancellationToken ct = default)
+    {
+        EnsureStudent();
+        var assignment = await _assignments.GetByIdAsync(id, ct)
+            ?? throw new NotFoundException("Assignment not found.");
+        if (assignment.StudentId != _currentUser.UserId)
+            throw new ForbiddenException("You can only submit your own assignments.");
+        if (!assignment.IsPublished)
+            throw new ValidationException("This assignment is not published yet.");
+        if (assignment.SubmittedAt is not null)
+            throw new ConflictException("This assignment has already been submitted. Use resubmit instead.");
+
+        ValidateUpload(fileName, contentType, stream);
+
+        // Replace existing submission file if any (allows re-uploading before submit).
+        if (!string.IsNullOrEmpty(assignment.SubmissionFileId))
+        {
+            try { await _files.DeleteAsync(assignment.SubmissionFileId!, ct); } catch { /* best-effort */ }
+        }
+
+        var stored = await _files.UploadAsync(stream, fileName, contentType, ct);
+        var update = Builders<Assignment>.Update
+            .Set(a => a.SubmissionFileId, stored.Id)
+            .Set(a => a.SubmissionFileName, stored.FileName)
+            .Set(a => a.SubmissionContentType, stored.ContentType)
+            .Set(a => a.SubmissionSize, stored.Size)
+            .Set(a => a.UpdatedAt, DateTime.UtcNow);
+        await _assignments.UpdateAsync(id, update, ct);
+        _logger.LogInformation("Assignment {Id} submission file uploaded: {File} ({Size} bytes)", id, stored.FileName, stored.Size);
+        return new StoredFileResponse(stored.Id, stored.FileName, stored.ContentType, stored.Size);
+    }
+
+    public async Task<StoredFile> GetSubmissionFileAsync(string id, CancellationToken ct = default)
+    {
+        EnsureTeacher();
+        var assignment = await _assignments.GetByIdAsync(id, ct)
+            ?? throw new NotFoundException("Assignment not found.");
+        if (assignment.TeacherId != _currentUser.UserId)
+            throw new ForbiddenException("You can only download submissions for your own assignments.");
+        if (string.IsNullOrEmpty(assignment.SubmissionFileId))
+            throw new NotFoundException("This assignment has no submission file.");
+        var stored = await _files.GetAsync(assignment.SubmissionFileId!, ct)
+            ?? throw new NotFoundException("Submission file not found.");
+        return stored;
+    }
+
+    private static void ValidateUpload(string fileName, string contentType, Stream stream)
+    {
+        if (string.IsNullOrWhiteSpace(fileName))
+            throw new ValidationException("File name is required.");
+        if (!AllowedContentTypes.Contains(contentType ?? ""))
+            throw new ValidationException(
+                "Unsupported file type. Allowed: PDF, PNG, JPEG, GIF, WebP, TXT, DOC, DOCX.");
+        if (stream.CanSeek && stream.Length > MaxAttachmentBytes)
+            throw new ValidationException($"File too large. Max size is {MaxAttachmentBytes / (1024 * 1024)} MB.");
+    }
+
     private void EnsureCanAccess(Assignment assignment)
     {
         var role = _currentUser.Role;
@@ -226,7 +346,9 @@ public class AssignmentService
             a.SubjectId, subject?.Name ?? "Unknown",
             a.Title, a.Description, a.DueDate, a.IsPublished, a.IsActive,
             a.SubmissionText, a.SubmittedAt, a.Marks, a.Feedback, a.Status.ToString(),
-            a.CreatedAt, a.UpdatedAt);
+            a.CreatedAt, a.UpdatedAt,
+            a.AttachmentFileName, a.AttachmentContentType, a.AttachmentSize,
+            a.SubmissionFileName, a.SubmissionContentType, a.SubmissionSize);
     }
 
     private async Task<User> GetCurrentUserAsync(CancellationToken ct)

@@ -13,7 +13,18 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
+    <PackageReference Include="MongoDB.Driver.GridFS" Version="2.28.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
+    <!--
+      Transitive overrides for MongoDB.Driver:
+        Snappier 1.0.0 has CVE-2026-44302 (uncatchable infinite loop in
+        SnappyStream decompression; CVSS 7.5 / High). 1.3.1 is the patched
+        release. SharpCompress 0.30.1 has GHSA-6c8g-7p36-r338 (Moderate);
+        0.50.4 is the current stable. Pinning these explicitly here
+        causes NuGet to lift them above the MongoDB.Driver 2.28.0 minimum.
+    -->
+    <PackageReference Include="Snappier" Version="1.3.1" />
+    <PackageReference Include="SharpCompress" Version="0.50.4" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -14,13 +14,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-slate-900 text-white hover:bg-slate-800 active:bg-slate-950 focus-visible:ring-slate-900 disabled:bg-slate-400",
+    "bg-[#111827] text-[#FFFFFF] hover:bg-[#1F2937] active:bg-[#0B1220] focus-visible:ring-[#111827] disabled:bg-[#9CA3AF]",
   secondary:
-    "bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 active:bg-slate-100 focus-visible:ring-slate-300 disabled:opacity-60",
+    "bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] hover:bg-[#F9FAFB] active:bg-[#F3F4F6] focus-visible:ring-[#111827] disabled:opacity-60",
   ghost:
-    "bg-transparent text-slate-700 hover:bg-slate-100 active:bg-slate-200 focus-visible:ring-slate-300 disabled:opacity-50",
+    "bg-transparent text-[#111827] hover:bg-[#F9FAFB] active:bg-[#F3F4F6] focus-visible:ring-[#111827] disabled:opacity-50",
   danger:
-    "bg-rose-600 text-white hover:bg-rose-500 active:bg-rose-700 focus-visible:ring-rose-500 disabled:bg-rose-300",
+    "bg-[#DC2626] text-[#FFFFFF] hover:bg-[#B91C1C] active:bg-[#991B1B] focus-visible:ring-[#DC2626] disabled:bg-[#FCA5A5]",
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -48,7 +48,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       disabled={disabled || loading}
       className={[
         "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFFFF]",
         "disabled:cursor-not-allowed",
         variantClasses[variant],
         sizeClasses[size],

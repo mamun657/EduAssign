@@ -1,0 +1,94 @@
+{
+  "section": "Phase 4 — End-to-End Workflow (Real PDF + File Upload + Review)",
+  "startedAt": "2026-08-10T09:31:51.779Z",
+  "steps": {
+    "teacherLoggedIn": true,
+    "tssLinkFound": true,
+    "tssLink": {
+      "id": "6a78bc0e1d7f8cc453a2c4c8",
+      "subject": "Biology",
+      "student": "Arif Ahmed"
+    },
+    "assignmentCreated": {
+      "status": 200,
+      "body": {
+        "id": "6a799a91e6406a265f134fba",
+        "teacherId": "6a78bb901d7f8cc453a2bfe2",
+        "teacherName": "Tariq Aziz",
+        "studentId": "6a78b4c41d7f8cc453a2a64d",
+        "studentName": "Arif Ahmed",
+        "subjectId": "6a7899edfda21a2af890a6f3",
+        "subjectName": "Biology",
+        "title": "Phase 4 E2E — Photosynthesis Brief",
+        "description": "Write a 500-word report on photosynthesis with citations.",
+        "dueDate": "2026-08-24T09:32:01.476Z",
+        "isPublished": false,
+        "isActive": true,
+        "submissionText": null,
+        "submittedAt": null,
+        "marks": null,
+        "feedback": null,
+        "status": "Draft",
+        "createdAt": "2026-08-10T09:32:01.6865532Z",
+        "updatedAt": "2026-08-10T09:32:01.6865533Z",
+        "attachmentFileName": null,
+        "attachmentContentType": null,
+        "attachmentSize": null,
+        "submissionFileName": null,
+        "submissionContentType": null,
+        "submissionSize": null
+      }
+    },
+    "attachmentUploaded": {
+      "status": 200
+    },
+    "published": {
+      "status": 200,
+      "isPublished": true,
+      "status2": "Published"
+    },
+    "teacherSeesPublished": true,
+    "studentSeesAssignment": true,
+    "studentAssignmentStatus": "Published",
+    "studentDownloadedAttachment": {
+      "status": 200,
+      "contentType": "application/pdf",
+      "size": 321,
+      "head": "%PDF-1.4"
+    },
+    "studentUploadedFile": {
+      "status": 200
+    },
+    "studentSubmitted": {
+      "status": 200,
+      "assignmentStatus": "Submitted",
+      "submittedAt": "2026-08-10T09:32:07.693Z"
+    },
+    "teacherDownloadedSubmission": {
+      "status": 200,
+      "contentType": "application/pdf",
+      "size": 229
+    },
+    "teacherReviewed": {
+      "status": 200,
+      "marks": 92,
+      "feedback": "Excellent work on photosynthesis — strong citations and clear structure.",
+      "status2": "Reviewed"
+    },
+    "studentSawReview": {
+      "status": "Reviewed",
+      "marks": 92,
+      "feedback": "Excellent work on photosynthesis — strong citations and clear structure."
+    }
+  },
+  "consoleErrors": [],
+  "networkErrors": [],
+  "fatalError": null,
+  "summary": {
+    "stepsCompleted": 15,
+    "consoleErrors": 0,
+    "networkErrors": 0,
+    "pass": true
+  },
+  "finishedAt": "2026-08-10T09:32:13.565Z"
+}

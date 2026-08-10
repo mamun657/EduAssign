@@ -11,12 +11,12 @@ interface BadgeProps {
 }
 
 const tones: Record<Tone, string> = {
-  slate: "bg-slate-100 text-slate-700 ring-slate-200",
-  emerald: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  amber: "bg-amber-50 text-amber-700 ring-amber-200",
-  rose: "bg-rose-50 text-rose-700 ring-rose-200",
-  sky: "bg-sky-50 text-sky-700 ring-sky-200",
-  violet: "bg-violet-50 text-violet-700 ring-violet-200",
+  slate: "bg-[#F9FAFB] text-[#374151] ring-[#E5E7EB]",
+  emerald: "bg-[#ECFDF5] text-[#16A34A] ring-[#A7F3D0]",
+  amber: "bg-[#FFFBEB] text-[#B45309] ring-[#FDE68A]",
+  rose: "bg-[#FEF2F2] text-[#DC2626] ring-[#FECACA]",
+  sky: "bg-[#EFF6FF] text-[#1D4ED8] ring-[#BFDBFE]",
+  violet: "bg-[#F5F3FF] text-[#6D28D9] ring-[#DDD6FE]",
 };
 
 export default function Badge({ children, tone = "slate", className = "" }: BadgeProps) {
