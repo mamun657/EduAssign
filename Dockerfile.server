@@ -27,11 +27,14 @@ WORKDIR /src
 # .next, bin/obj, and the web/ folder out of this image.
 COPY server/ ./
 
-# Restore + publish the API project. We publish from the repo-root context
-# by passing the relative csproj path so the project.assets.json is resolved
-# correctly.
-RUN dotnet restore server/EduAssignPro.Api/EduAssignPro.Api.csproj
-RUN dotnet publish server/EduAssignPro.Api/EduAssignPro.Api.csproj \
+# Restore + publish the API project.
+#
+# `COPY server/ ./` flattens the `server/` directory into `/src`, so the
+# csproj lives at `EduAssignPro.Api/EduAssignPro.Api.csproj` relative to
+# /src — NOT under `server/...`. (Earlier the path was incorrectly written
+# as `server/...`, which produced MSB1009 during Render's build.)
+RUN dotnet restore EduAssignPro.Api/EduAssignPro.Api.csproj
+RUN dotnet publish EduAssignPro.Api/EduAssignPro.Api.csproj \
     -c Release \
     -o /app/publish \
     --no-restore \
