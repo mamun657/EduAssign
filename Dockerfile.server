@@ -1,0 +1,57 @@
+# Multi-stage build for the EduAssign Pro API.
+#
+# Why a Dockerfile rather than Render's native .NET build?
+#   * The solution targets `net10.0`, which Render's stock .NET build image
+#     may not support. Going through Docker lets us pin the exact SDK tag.
+#   * Render passes a `PORT` env var at runtime; `Program.cs` reads it and
+#     binds to `0.0.0.0:${PORT}` automatically — see the port binding block
+#     in EduAssignPro.Api/Program.cs.
+#
+# Build from the repo root:
+#   docker build -f Dockerfile.server -t eduassign-api .
+#
+# Run locally:
+#   docker run -p 8080:8080 \
+#     -e MONGO__CONNECTIONSTRING='mongodb://host.docker.internal:27017' \
+#     -e JWT__SECRET='replace-with-a-long-secret' \
+#     -e SEED__ADMINEMAIL='admin@eduassign.local' \
+#     -e SEED__ADMINPASSWORD='change-me' \
+#     -e CORS__ALLOWEDORIGINS='https://eduassign-6w15.onrender.com' \
+#     eduassign-api
+
+# ---------- Stage 1: build ----------
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+# Copy the full solution + source. The .dockerignore keeps node_modules,
+# .next, bin/obj, and the web/ folder out of this image.
+COPY server/ ./
+
+# Restore + publish the API project. We publish from the repo-root context
+# by passing the relative csproj path so the project.assets.json is resolved
+# correctly.
+RUN dotnet restore server/EduAssignPro.Api/EduAssignPro.Api.csproj
+RUN dotnet publish server/EduAssignPro.Api/EduAssignPro.Api.csproj \
+    -c Release \
+    -o /app/publish \
+    --no-restore \
+    /p:UseAppHost=false
+
+# ---------- Stage 2: runtime ----------
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+
+# Render sets PORT; the API binds to 0.0.0.0:${PORT}. We document 8080 here
+# purely for documentation / local-dev parity.
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV PORT=8080
+EXPOSE 8080
+
+# Copy the published output from the build stage.
+COPY --from=build /app/publish ./
+
+# Non-root user for least-privilege.
+RUN useradd --create-home --shell /usr/sbin/nologin app 2>/dev/null || true
+USER app
+
+ENTRYPOINT ["dotnet", "EduAssignPro.Api.dll"]

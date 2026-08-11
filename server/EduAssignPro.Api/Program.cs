@@ -250,6 +250,19 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+// ---- Port binding (Render / Fly / Railway / Heroku compatibility) ----
+// PaaS platforms assign a port at runtime via the `PORT` env var and expect
+// the process to listen on `0.0.0.0:${PORT}`. Locally (and in tests) we fall
+// back to Kestrel's defaults — Development uses the launchSettings.json URL
+// (http://localhost:5220) and production defaults to 8080 inside the image.
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(port))
+{
+    Log.Information("Binding to 0.0.0.0:{Port} from PORT env var", port);
+    app.Urls.Clear();
+    app.Urls.Add($"http://0.0.0.0:{port}");
+}
+
 app.Run();
 
 // Make the implicit Program class visible to the test project so

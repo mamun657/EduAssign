@@ -1,0 +1,52 @@
+# Keep Docker build context small and prevent secrets / binaries leaking in.
+#
+# Patterns are evaluated relative to the repo root (the build context).
+
+# ---------- VCS / OS noise ----------
+.git
+.gitignore
+.gitattributes
+.github
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# ---------- Logs / local artefacts ----------
+*.log
+**/*.log
+**/*.err
+**/*.tmp
+**/*.swp
+
+# ---------- User secrets & env files (NEVER commit secrets) ----------
+**/.env
+**/.env.*
+!**/.env.example
+**/secrets.json
+**/appsettings.*.local.json
+
+# ---------- Frontend (not needed for API image) ----------
+web/node_modules
+web/.next
+web/out
+web/.turbo
+web/coverage
+
+# ---------- Backend build outputs ----------
+**/bin
+**/obj
+**/*.user
+**/*.suo
+**/*.userprefs
+
+# ---------- QA / scripts ----------
+qa-scripts
+docs
+*.md
+!server/**/*.md
+
+# ---------- Python ML sidecar (separate service) ----------
+ml-service/__pycache__
+ml-service/real_pdfs
+ml-service/*.py

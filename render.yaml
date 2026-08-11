@@ -1,0 +1,81 @@
+# Render Blueprint — orchestrates both services from a single deploy.
+#
+# After merging this file, create a new "Blueprint Instance" in Render
+# pointing at this repo. Render will read this file and provision:
+#   1. eduassign-api  — the .NET 10 backend (Docker)
+#   2. eduassign-web  — the Next.js frontend (Node, static build)
+#
+# Env-var values shown are PLACEHOLDERS. Render's dashboard will prompt
+# you to fill secrets (Mongo URI, JWT key, admin creds, CORS origin) when
+# applying the blueprint. They are NOT committed in this file.
+
+services:
+  # -----------------------------------------------------------
+  # 1) Backend API — Docker image built from ./Dockerfile.server
+  # -----------------------------------------------------------
+  - type: web
+    name: eduassign-api
+    runtime: docker
+    rootDir: .
+    plan: free
+    dockerfilePath: ./Dockerfile.server
+    dockerContext: .
+    autoDeploy: true
+    healthCheckPath: /api/Health/ping
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      # NOTE: ASP.NET Core reads these via `Program.cs` .env loader which
+      # replaces `__` with `:` (see Program.cs line 63). The names below
+      # MUST stay in sync with the keys consumed by:
+      #   * builder.Configuration["Mongo:ConnectionString"] / "Mongo:DatabaseName"
+      #   * builder.Configuration["Jwt:Secret"] / "Jwt:Issuer" / "Jwt:Audience"
+      #   * builder.Configuration["Seed:AdminEmail".."Seed:AdminLastName"]
+      #   * builder.Configuration["Cors:AllowedOrigins"]
+      - key: MONGO__CONNECTIONSTRING
+        sync: false                 # enter via Render UI as a secret
+      - key: MONGO__DATABASENAME
+        value: EduAssignPro
+      - key: JWT__SECRET
+        sync: false                 # enter via Render UI as a secret
+      - key: JWT__ISSUER
+        value: EduAssignPro
+      - key: JWT__AUDIENCE
+        value: EduAssignPro.Client
+      - key: SEED__ADMINEMAIL
+        sync: false
+      - key: SEED__ADMINPASSWORD
+        sync: false
+      - key: SEED__ADMINFIRSTNAME
+        value: System
+      - key: SEED__ADMINLASTNAME
+        value: Administrator
+      - key: CORS__ALLOWEDORIGINS
+        value: https://eduassign-6w15.onrender.com
+      - key: PORT
+        fromService:
+          type: web
+          name: eduassign-api
+          property: port
+
+  # -----------------------------------------------------------
+  # 2) Frontend — Next.js, served by `next start`
+  # -----------------------------------------------------------
+  - type: web
+    name: eduassign-web
+    runtime: node
+    rootDir: web
+    plan: free
+    buildCommand: npm install --no-audit --no-fund && npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NEXT_PUBLIC_API_BASE_URL
+        value: https://eduassign-api.onrender.com
+
+# After applying the blueprint:
+#   * eduassign-api will be reachable at https://eduassign-api.onrender.com
+#   * eduassign-web stays at https://eduassign-6w15.onrender.com
+#   * The frontend's NEXT_PUBLIC_API_BASE_URL points at the API service.
