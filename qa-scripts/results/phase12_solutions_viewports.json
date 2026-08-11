@@ -1,0 +1,180 @@
+{
+  "ranAt": "2026-08-11T09:01:38.464Z",
+  "results": [
+    {
+      "viewport": "desktop_1440x900",
+      "width": 1440,
+      "height": 900,
+      "errors": [],
+      "data": {
+        "sectionTop": 3511,
+        "sectionHeight": 1328,
+        "illustration": {
+          "x": 744,
+          "y": 3639,
+          "w": 560,
+          "h": 560,
+          "naturalW": 1254,
+          "naturalH": 1254,
+          "complete": true
+        },
+        "wrapper": null,
+        "grid": {
+          "y": 4295,
+          "w": 1168
+        },
+        "roleNames": [
+          "Admin",
+          "Teacher",
+          "Student"
+        ],
+        "heading": "One workspace,three clear roles.",
+        "docScrollWidth": 1440,
+        "winWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "centered": null
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12_solutions\\roles_desktop_1440x900.png"
+    },
+    {
+      "viewport": "desktop_1280x800",
+      "width": 1280,
+      "height": 800,
+      "errors": [],
+      "data": {
+        "sectionTop": 3411,
+        "sectionHeight": 1328,
+        "illustration": {
+          "x": 664,
+          "y": 3539,
+          "w": 560,
+          "h": 560,
+          "naturalW": 1254,
+          "naturalH": 1254,
+          "complete": true
+        },
+        "wrapper": null,
+        "grid": {
+          "y": 4195,
+          "w": 1168
+        },
+        "roleNames": [
+          "Admin",
+          "Teacher",
+          "Student"
+        ],
+        "heading": "One workspace,three clear roles.",
+        "docScrollWidth": 1280,
+        "winWidth": 1280,
+        "hasHorizontalOverflow": false,
+        "centered": null
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12_solutions\\roles_desktop_1280x800.png"
+    },
+    {
+      "viewport": "tablet_768x1024",
+      "width": 768,
+      "height": 1024,
+      "errors": [],
+      "data": {
+        "sectionTop": 4659,
+        "sectionHeight": 1754,
+        "illustration": {
+          "x": 164,
+          "y": 5031,
+          "w": 440,
+          "h": 440,
+          "naturalW": 1254,
+          "naturalH": 1254,
+          "complete": true
+        },
+        "wrapper": null,
+        "grid": {
+          "y": 5551,
+          "w": 688
+        },
+        "roleNames": [
+          "Admin",
+          "Teacher",
+          "Student"
+        ],
+        "heading": "One workspace,three clear roles.",
+        "docScrollWidth": 768,
+        "winWidth": 768,
+        "hasHorizontalOverflow": false,
+        "centered": null
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12_solutions\\roles_tablet_768x1024.png"
+    },
+    {
+      "viewport": "mobile_390x844",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "data": {
+        "sectionTop": 4708,
+        "sectionHeight": 1928,
+        "illustration": {
+          "x": 24,
+          "y": 5027,
+          "w": 342,
+          "h": 342,
+          "naturalW": 1254,
+          "naturalH": 1254,
+          "complete": true
+        },
+        "wrapper": null,
+        "grid": {
+          "y": 5433,
+          "w": 342
+        },
+        "roleNames": [
+          "Admin",
+          "Teacher",
+          "Student"
+        ],
+        "heading": "One workspace,three clear roles.",
+        "docScrollWidth": 390,
+        "winWidth": 390,
+        "hasHorizontalOverflow": false,
+        "centered": null
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12_solutions\\roles_mobile_390x844.png"
+    },
+    {
+      "viewport": "mobile_360x800",
+      "width": 360,
+      "height": 800,
+      "errors": [],
+      "data": {
+        "sectionTop": 4723,
+        "sectionHeight": 1898,
+        "illustration": {
+          "x": 24,
+          "y": 5042,
+          "w": 312,
+          "h": 312,
+          "naturalW": 1254,
+          "naturalH": 1254,
+          "complete": true
+        },
+        "wrapper": null,
+        "grid": {
+          "y": 5418,
+          "w": 312
+        },
+        "roleNames": [
+          "Admin",
+          "Teacher",
+          "Student"
+        ],
+        "heading": "One workspace,three clear roles.",
+        "docScrollWidth": 360,
+        "winWidth": 360,
+        "hasHorizontalOverflow": false,
+        "centered": null
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12_solutions\\roles_mobile_360x800.png"
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "ranAt": "2026-08-11T10:07:20.062Z",
+  "bodyAudit": {
+    "Assignment Management": {
+      "expected": "Create and manage class assignments.",
+      "actual": "Create and manage class assignments.",
+      "match": true
+    },
+    "Student Management": {
+      "expected": "Organize students by level and subject.",
+      "actual": "Organize students by level and subject.",
+      "match": true
+    },
+    "Teacher Management": {
+      "expected": "Assign teachers to classes and subjects.",
+      "actual": "Assign teachers to classes and subjects.",
+      "match": true
+    },
+    "Submission & Grading": {
+      "expected": "Review submissions, marks, and feedback.",
+      "actual": "Review submissions, marks, and feedback.",
+      "match": true
+    },
+    "Curriculum Management": {
+      "expected": "Manage subjects, levels, and electives.",
+      "actual": "Manage subjects, levels, and electives.",
+      "match": true
+    },
+    "AI-Powered Similarity Detection": {
+      "expected": "Detect similar submissions with AI.",
+      "actual": "Detect similar submissions with AI.",
+      "match": true
+    }
+  },
+  "results": [
+    {
+      "viewport": "desktop_1440x900",
+      "width": 1440,
+      "height": 900,
+      "errors": [],
+      "data": {
+        "sectionTop": 892,
+        "sectionHeight": 1112,
+        "illustration": {
+          "x": 845,
+          "y": 972,
+          "w": 459,
+          "h": 306,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "headerHeight": 306,
+        "heading": "Everything you needto run assignments.",
+        "featureCards": [
+          {
+            "title": "Assignment Management",
+            "body": "Create and manage class assignments."
+          },
+          {
+            "title": "Student Management",
+            "body": "Organize students by level and subject."
+          },
+          {
+            "title": "Teacher Management",
+            "body": "Assign teachers to classes and subjects."
+          },
+          {
+            "title": "Submission & Grading",
+            "body": "Review submissions, marks, and feedback."
+          },
+          {
+            "title": "Curriculum Management",
+            "body": "Manage subjects, levels, and electives."
+          },
+          {
+            "title": "AI-Powered Similarity Detection",
+            "body": "Detect similar submissions with AI."
+          }
+        ],
+        "hasFeaturesLabel": true,
+        "docScrollWidth": 1440,
+        "winWidth": 1440,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12c_features\\features_desktop_1440x900.png"
+    },
+    {
+      "viewport": "desktop_1280x800",
+      "width": 1280,
+      "height": 800,
+      "errors": [],
+      "data": {
+        "sectionTop": 792,
+        "sectionHeight": 1112,
+        "illustration": {
+          "x": 765,
+          "y": 872,
+          "w": 459,
+          "h": 306,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "headerHeight": 306,
+        "heading": "Everything you needto run assignments.",
+        "featureCards": [
+          {
+            "title": "Assignment Management",
+            "body": "Create and manage class assignments."
+          },
+          {
+            "title": "Student Management",
+            "body": "Organize students by level and subject."
+          },
+          {
+            "title": "Teacher Management",
+            "body": "Assign teachers to classes and subjects."
+          },
+          {
+            "title": "Submission & Grading",
+            "body": "Review submissions, marks, and feedback."
+          },
+          {
+            "title": "Curriculum Management",
+            "body": "Manage subjects, levels, and electives."
+          },
+          {
+            "title": "AI-Powered Similarity Detection",
+            "body": "Detect similar submissions with AI."
+          }
+        ],
+        "hasFeaturesLabel": true,
+        "docScrollWidth": 1280,
+        "winWidth": 1280,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12c_features\\features_desktop_1280x800.png"
+    },
+    {
+      "viewport": "tablet_768x1024",
+      "width": 768,
+      "height": 1024,
+      "errors": [],
+      "data": {
+        "sectionTop": 1016,
+        "sectionHeight": 1313,
+        "illustration": {
+          "x": 164,
+          "y": 1244,
+          "w": 440,
+          "h": 293,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "headerHeight": 457,
+        "heading": "Everything you needto run assignments.",
+        "featureCards": [
+          {
+            "title": "Assignment Management",
+            "body": "Create and manage class assignments."
+          },
+          {
+            "title": "Student Management",
+            "body": "Organize students by level and subject."
+          },
+          {
+            "title": "Teacher Management",
+            "body": "Assign teachers to classes and subjects."
+          },
+          {
+            "title": "Submission & Grading",
+            "body": "Review submissions, marks, and feedback."
+          },
+          {
+            "title": "Curriculum Management",
+            "body": "Manage subjects, levels, and electives."
+          },
+          {
+            "title": "AI-Powered Similarity Detection",
+            "body": "Detect similar submissions with AI."
+          }
+        ],
+        "hasFeaturesLabel": true,
+        "docScrollWidth": 768,
+        "winWidth": 768,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12c_features\\features_tablet_768x1024.png"
+    },
+    {
+      "viewport": "mobile_390x844",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "data": {
+        "sectionTop": 836,
+        "sectionHeight": 1376,
+        "illustration": {
+          "x": 24,
+          "y": 1031,
+          "w": 342,
+          "h": 228,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "headerHeight": 367,
+        "heading": "Everything you needto run assignments.",
+        "featureCards": [
+          {
+            "title": "Assignment Management",
+            "body": "Create and manage class assignments."
+          },
+          {
+            "title": "Student Management",
+            "body": "Organize students by level and subject."
+          },
+          {
+            "title": "Teacher Management",
+            "body": "Assign teachers to classes and subjects."
+          },
+          {
+            "title": "Submission & Grading",
+            "body": "Review submissions, marks, and feedback."
+          },
+          {
+            "title": "Curriculum Management",
+            "body": "Manage subjects, levels, and electives."
+          },
+          {
+            "title": "AI-Powered Similarity Detection",
+            "body": "Detect similar submissions with AI."
+          }
+        ],
+        "hasFeaturesLabel": true,
+        "docScrollWidth": 390,
+        "winWidth": 390,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12c_features\\features_mobile_390x844.png"
+    },
+    {
+      "viewport": "mobile_360x800",
+      "width": 360,
+      "height": 800,
+      "errors": [],
+      "data": {
+        "sectionTop": 792,
+        "sectionHeight": 1431,
+        "illustration": {
+          "x": 24,
+          "y": 1062,
+          "w": 312,
+          "h": 208,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "headerHeight": 422,
+        "heading": "Everything you needto run assignments.",
+        "featureCards": [
+          {
+            "title": "Assignment Management",
+            "body": "Create and manage class assignments."
+          },
+          {
+            "title": "Student Management",
+            "body": "Organize students by level and subject."
+          },
+          {
+            "title": "Teacher Management",
+            "body": "Assign teachers to classes and subjects."
+          },
+          {
+            "title": "Submission & Grading",
+            "body": "Review submissions, marks, and feedback."
+          },
+          {
+            "title": "Curriculum Management",
+            "body": "Manage subjects, levels, and electives."
+          },
+          {
+            "title": "AI-Powered Similarity Detection",
+            "body": "Detect similar submissions with AI."
+          }
+        ],
+        "hasFeaturesLabel": true,
+        "docScrollWidth": 360,
+        "winWidth": 360,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12c_features\\features_mobile_360x800.png"
+    }
+  ]
+}

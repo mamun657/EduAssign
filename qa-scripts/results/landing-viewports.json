@@ -1,0 +1,80 @@
+{
+  "base": "http://localhost:3000",
+  "startedAt": "2026-08-11T03:18:16.278Z",
+  "viewports": [
+    {
+      "name": "1440x900",
+      "width": 1440,
+      "height": 900,
+      "isMobile": false,
+      "horizontalOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "mobileDrawer": null,
+      "ctaNav": {
+        "registeredNavigated": true,
+        "url": "http://localhost:3000/register"
+      },
+      "ok": true
+    },
+    {
+      "name": "1280x800",
+      "width": 1280,
+      "height": 800,
+      "isMobile": false,
+      "horizontalOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "mobileDrawer": null,
+      "ctaNav": {
+        "registeredNavigated": true,
+        "url": "http://localhost:3000/register"
+      },
+      "ok": true
+    },
+    {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "isMobile": true,
+      "horizontalOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "mobileDrawer": {
+        "opened": true,
+        "bodyLocked": true
+      },
+      "ctaNav": null,
+      "ok": true
+    },
+    {
+      "name": "375x812",
+      "width": 375,
+      "height": 812,
+      "isMobile": true,
+      "horizontalOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "mobileDrawer": {
+        "opened": true,
+        "bodyLocked": true
+      },
+      "ctaNav": null,
+      "ok": true
+    }
+  ],
+  "ok": true,
+  "failureReason": null
+}

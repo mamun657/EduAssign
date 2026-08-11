@@ -1,0 +1,67 @@
+{
+  "base": "http://localhost:3000",
+  "startedAt": "2026-08-11T03:19:13.410Z",
+  "routes": [
+    {
+      "name": "landing",
+      "url": "/",
+      "finalUrl": "http://localhost:3000/",
+      "expect": "landing",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "ok": true
+    },
+    {
+      "name": "login",
+      "url": "/login",
+      "finalUrl": "http://localhost:3000/login",
+      "expect": "login",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "ok": true
+    },
+    {
+      "name": "register",
+      "url": "/register",
+      "finalUrl": "http://localhost:3000/register",
+      "expect": "register",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "ok": true
+    },
+    {
+      "name": "admin-dashboard",
+      "url": "/admin",
+      "finalUrl": "http://localhost:3000/login",
+      "expect": "redirect-to-login-or-dash",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "ok": true
+    },
+    {
+      "name": "teacher-dashboard",
+      "url": "/teacher",
+      "finalUrl": "http://localhost:3000/login",
+      "expect": "redirect-to-login-or-dash",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "ok": true
+    },
+    {
+      "name": "student-dashboard",
+      "url": "/student",
+      "finalUrl": "http://localhost:3000/login",
+      "expect": "redirect-to-login-or-dash",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "ok": true
+    }
+  ],
+  "ok": true
+}

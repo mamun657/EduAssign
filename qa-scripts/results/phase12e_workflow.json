@@ -1,0 +1,481 @@
+{
+  "results": [
+    {
+      "viewport": "desktop_1440x900",
+      "width": 1440,
+      "height": 900,
+      "errors": [],
+      "data": {
+        "sectionTop": 2004,
+        "sectionHeight": 718,
+        "illustration": {
+          "x": 636,
+          "y": 2060,
+          "w": 668,
+          "h": 445,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "heading": "How EduAssign Proworks.",
+        "lede": "A simple flow from setup to reviewed submissions.",
+        "steps": [
+          {
+            "n": "01",
+            "title": "Set Up",
+            "body": "Set up your institution."
+          },
+          {
+            "n": "02",
+            "title": "Assign",
+            "body": "Create and assign work."
+          },
+          {
+            "n": "03",
+            "title": "Submit",
+            "body": "Submit assignments easily."
+          },
+          {
+            "n": "04",
+            "title": "Review",
+            "body": "Review, grade, and give feedback."
+          }
+        ],
+        "docScrollWidth": 1440,
+        "winWidth": 1440,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12e_workflow\\workflow_desktop_1440x900.png"
+    },
+    {
+      "viewport": "desktop_1280x800",
+      "width": 1280,
+      "height": 800,
+      "errors": [],
+      "data": {
+        "sectionTop": 1904,
+        "sectionHeight": 718,
+        "illustration": {
+          "x": 556,
+          "y": 1960,
+          "w": 668,
+          "h": 445,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "heading": "How EduAssign Proworks.",
+        "lede": "A simple flow from setup to reviewed submissions.",
+        "steps": [
+          {
+            "n": "01",
+            "title": "Set Up",
+            "body": "Set up your institution."
+          },
+          {
+            "n": "02",
+            "title": "Assign",
+            "body": "Create and assign work."
+          },
+          {
+            "n": "03",
+            "title": "Submit",
+            "body": "Submit assignments easily."
+          },
+          {
+            "n": "04",
+            "title": "Review",
+            "body": "Review, grade, and give feedback."
+          }
+        ],
+        "docScrollWidth": 1280,
+        "winWidth": 1280,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12e_workflow\\workflow_desktop_1280x800.png"
+    },
+    {
+      "viewport": "tablet_768x1024",
+      "width": 768,
+      "height": 1024,
+      "errors": [],
+      "data": {
+        "sectionTop": 2329,
+        "sectionHeight": 948,
+        "illustration": {
+          "x": 84,
+          "y": 2551,
+          "w": 600,
+          "h": 400,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "heading": "How EduAssign Proworks.",
+        "lede": "A simple flow from setup to reviewed submissions.",
+        "steps": [
+          {
+            "n": "01",
+            "title": "Set Up",
+            "body": "Set up your institution."
+          },
+          {
+            "n": "02",
+            "title": "Assign",
+            "body": "Create and assign work."
+          },
+          {
+            "n": "03",
+            "title": "Submit",
+            "body": "Submit assignments easily."
+          },
+          {
+            "n": "04",
+            "title": "Review",
+            "body": "Review, grade, and give feedback."
+          }
+        ],
+        "docScrollWidth": 768,
+        "winWidth": 768,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12e_workflow\\workflow_tablet_768x1024.png"
+    },
+    {
+      "viewport": "mobile_390x844",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "data": {
+        "sectionTop": 2212,
+        "sectionHeight": 901,
+        "illustration": {
+          "x": 24,
+          "y": 2404,
+          "w": 342,
+          "h": 228,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "heading": "How EduAssign Proworks.",
+        "lede": "A simple flow from setup to reviewed submissions.",
+        "steps": [
+          {
+            "n": "01",
+            "title": "Set Up",
+            "body": "Set up your institution."
+          },
+          {
+            "n": "02",
+            "title": "Assign",
+            "body": "Create and assign work."
+          },
+          {
+            "n": "03",
+            "title": "Submit",
+            "body": "Submit assignments easily."
+          },
+          {
+            "n": "04",
+            "title": "Review",
+            "body": "Review, grade, and give feedback."
+          }
+        ],
+        "docScrollWidth": 390,
+        "winWidth": 390,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12e_workflow\\workflow_mobile_390x844.png"
+    },
+    {
+      "viewport": "mobile_360x800",
+      "width": 360,
+      "height": 800,
+      "errors": [],
+      "data": {
+        "sectionTop": 2223,
+        "sectionHeight": 939,
+        "illustration": {
+          "x": 24,
+          "y": 2473,
+          "w": 312,
+          "h": 208,
+          "naturalW": 1536,
+          "naturalH": 1024,
+          "complete": true
+        },
+        "heading": "How EduAssign Proworks.",
+        "lede": "A simple flow from setup to reviewed submissions.",
+        "steps": [
+          {
+            "n": "01",
+            "title": "Set Up",
+            "body": "Set up your institution."
+          },
+          {
+            "n": "02",
+            "title": "Assign",
+            "body": "Create and assign work."
+          },
+          {
+            "n": "03",
+            "title": "Submit",
+            "body": "Submit assignments easily."
+          },
+          {
+            "n": "04",
+            "title": "Review",
+            "body": "Review, grade, and give feedback."
+          }
+        ],
+        "docScrollWidth": 360,
+        "winWidth": 360,
+        "hasHorizontalOverflow": false
+      },
+      "screenshot": "C:\\EduAssign\\qa-scripts\\screenshots\\phase12e_workflow\\workflow_mobile_360x800.png"
+    }
+  ],
+  "stepAudit": {
+    "desktop_1440x900::Set Up": {
+      "viewport": "desktop_1440x900",
+      "n_expected": "01",
+      "n_actual": "01",
+      "n_match": true,
+      "title_expected": "Set Up",
+      "title_actual": "Set Up",
+      "title_match": true,
+      "body_expected": "Set up your institution.",
+      "body_actual": "Set up your institution.",
+      "body_match": true
+    },
+    "desktop_1440x900::Assign": {
+      "viewport": "desktop_1440x900",
+      "n_expected": "02",
+      "n_actual": "02",
+      "n_match": true,
+      "title_expected": "Assign",
+      "title_actual": "Assign",
+      "title_match": true,
+      "body_expected": "Create and assign work.",
+      "body_actual": "Create and assign work.",
+      "body_match": true
+    },
+    "desktop_1440x900::Submit": {
+      "viewport": "desktop_1440x900",
+      "n_expected": "03",
+      "n_actual": "03",
+      "n_match": true,
+      "title_expected": "Submit",
+      "title_actual": "Submit",
+      "title_match": true,
+      "body_expected": "Submit assignments easily.",
+      "body_actual": "Submit assignments easily.",
+      "body_match": true
+    },
+    "desktop_1440x900::Review": {
+      "viewport": "desktop_1440x900",
+      "n_expected": "04",
+      "n_actual": "04",
+      "n_match": true,
+      "title_expected": "Review",
+      "title_actual": "Review",
+      "title_match": true,
+      "body_expected": "Review, grade, and give feedback.",
+      "body_actual": "Review, grade, and give feedback.",
+      "body_match": true
+    },
+    "desktop_1280x800::Set Up": {
+      "viewport": "desktop_1280x800",
+      "n_expected": "01",
+      "n_actual": "01",
+      "n_match": true,
+      "title_expected": "Set Up",
+      "title_actual": "Set Up",
+      "title_match": true,
+      "body_expected": "Set up your institution.",
+      "body_actual": "Set up your institution.",
+      "body_match": true
+    },
+    "desktop_1280x800::Assign": {
+      "viewport": "desktop_1280x800",
+      "n_expected": "02",
+      "n_actual": "02",
+      "n_match": true,
+      "title_expected": "Assign",
+      "title_actual": "Assign",
+      "title_match": true,
+      "body_expected": "Create and assign work.",
+      "body_actual": "Create and assign work.",
+      "body_match": true
+    },
+    "desktop_1280x800::Submit": {
+      "viewport": "desktop_1280x800",
+      "n_expected": "03",
+      "n_actual": "03",
+      "n_match": true,
+      "title_expected": "Submit",
+      "title_actual": "Submit",
+      "title_match": true,
+      "body_expected": "Submit assignments easily.",
+      "body_actual": "Submit assignments easily.",
+      "body_match": true
+    },
+    "desktop_1280x800::Review": {
+      "viewport": "desktop_1280x800",
+      "n_expected": "04",
+      "n_actual": "04",
+      "n_match": true,
+      "title_expected": "Review",
+      "title_actual": "Review",
+      "title_match": true,
+      "body_expected": "Review, grade, and give feedback.",
+      "body_actual": "Review, grade, and give feedback.",
+      "body_match": true
+    },
+    "tablet_768x1024::Set Up": {
+      "viewport": "tablet_768x1024",
+      "n_expected": "01",
+      "n_actual": "01",
+      "n_match": true,
+      "title_expected": "Set Up",
+      "title_actual": "Set Up",
+      "title_match": true,
+      "body_expected": "Set up your institution.",
+      "body_actual": "Set up your institution.",
+      "body_match": true
+    },
+    "tablet_768x1024::Assign": {
+      "viewport": "tablet_768x1024",
+      "n_expected": "02",
+      "n_actual": "02",
+      "n_match": true,
+      "title_expected": "Assign",
+      "title_actual": "Assign",
+      "title_match": true,
+      "body_expected": "Create and assign work.",
+      "body_actual": "Create and assign work.",
+      "body_match": true
+    },
+    "tablet_768x1024::Submit": {
+      "viewport": "tablet_768x1024",
+      "n_expected": "03",
+      "n_actual": "03",
+      "n_match": true,
+      "title_expected": "Submit",
+      "title_actual": "Submit",
+      "title_match": true,
+      "body_expected": "Submit assignments easily.",
+      "body_actual": "Submit assignments easily.",
+      "body_match": true
+    },
+    "tablet_768x1024::Review": {
+      "viewport": "tablet_768x1024",
+      "n_expected": "04",
+      "n_actual": "04",
+      "n_match": true,
+      "title_expected": "Review",
+      "title_actual": "Review",
+      "title_match": true,
+      "body_expected": "Review, grade, and give feedback.",
+      "body_actual": "Review, grade, and give feedback.",
+      "body_match": true
+    },
+    "mobile_390x844::Set Up": {
+      "viewport": "mobile_390x844",
+      "n_expected": "01",
+      "n_actual": "01",
+      "n_match": true,
+      "title_expected": "Set Up",
+      "title_actual": "Set Up",
+      "title_match": true,
+      "body_expected": "Set up your institution.",
+      "body_actual": "Set up your institution.",
+      "body_match": true
+    },
+    "mobile_390x844::Assign": {
+      "viewport": "mobile_390x844",
+      "n_expected": "02",
+      "n_actual": "02",
+      "n_match": true,
+      "title_expected": "Assign",
+      "title_actual": "Assign",
+      "title_match": true,
+      "body_expected": "Create and assign work.",
+      "body_actual": "Create and assign work.",
+      "body_match": true
+    },
+    "mobile_390x844::Submit": {
+      "viewport": "mobile_390x844",
+      "n_expected": "03",
+      "n_actual": "03",
+      "n_match": true,
+      "title_expected": "Submit",
+      "title_actual": "Submit",
+      "title_match": true,
+      "body_expected": "Submit assignments easily.",
+      "body_actual": "Submit assignments easily.",
+      "body_match": true
+    },
+    "mobile_390x844::Review": {
+      "viewport": "mobile_390x844",
+      "n_expected": "04",
+      "n_actual": "04",
+      "n_match": true,
+      "title_expected": "Review",
+      "title_actual": "Review",
+      "title_match": true,
+      "body_expected": "Review, grade, and give feedback.",
+      "body_actual": "Review, grade, and give feedback.",
+      "body_match": true
+    },
+    "mobile_360x800::Set Up": {
+      "viewport": "mobile_360x800",
+      "n_expected": "01",
+      "n_actual": "01",
+      "n_match": true,
+      "title_expected": "Set Up",
+      "title_actual": "Set Up",
+      "title_match": true,
+      "body_expected": "Set up your institution.",
+      "body_actual": "Set up your institution.",
+      "body_match": true
+    },
+    "mobile_360x800::Assign": {
+      "viewport": "mobile_360x800",
+      "n_expected": "02",
+      "n_actual": "02",
+      "n_match": true,
+      "title_expected": "Assign",
+      "title_actual": "Assign",
+      "title_match": true,
+      "body_expected": "Create and assign work.",
+      "body_actual": "Create and assign work.",
+      "body_match": true
+    },
+    "mobile_360x800::Submit": {
+      "viewport": "mobile_360x800",
+      "n_expected": "03",
+      "n_actual": "03",
+      "n_match": true,
+      "title_expected": "Submit",
+      "title_actual": "Submit",
+      "title_match": true,
+      "body_expected": "Submit assignments easily.",
+      "body_actual": "Submit assignments easily.",
+      "body_match": true
+    },
+    "mobile_360x800::Review": {
+      "viewport": "mobile_360x800",
+      "n_expected": "04",
+      "n_actual": "04",
+      "n_match": true,
+      "title_expected": "Review",
+      "title_actual": "Review",
+      "title_match": true,
+      "body_expected": "Review, grade, and give feedback.",
+      "body_actual": "Review, grade, and give feedback.",
+      "body_match": true
+    }
+  }
+}

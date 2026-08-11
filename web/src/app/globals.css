@@ -59,13 +59,89 @@ body {
   outline: none;
 }
 
-/* Prevent horizontal overflow caused by the new shell on small viewports. */
-html,
+/* Prevent horizontal overflow caused by the new shell on small viewports.
+   Apply only to <body>, not <html>, so html remains the document scroller
+   and `position: sticky` on body descendants (e.g. the landing navbar)
+   correctly pins to the viewport top. Do NOT set `overflow-x: hidden` on
+   <html> — that turns html into a scroll container, which breaks sticky
+   positioning on body descendants.
+   `overflow-x: clip` clips without creating a scroll container, which is
+   the safe alternative if any ancestor needs horizontal clipping. */
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Lock body scroll while the mobile drawer is open. */
 body[data-drawer-open="true"] {
   overflow: hidden;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Hero marquee (Phase 9)
+   Seamless right-to-left infinite scroll for the bottom proof line in the
+   dark hero. The track is rendered twice (A + B) inside .hero-marquee-track,
+   and the @keyframes translates the whole track by -50% so that when the
+   first copy scrolls off the left, the second copy is in the identical
+   position the first copy started at — no visible jump, infinite loop.
+
+   The animation is purely cosmetic. `prefers-reduced-motion: reduce` disables
+   it so the page is accessible and SSR-safe (no JS).
+   ────────────────────────────────────────────────────────────────────────── */
+@keyframes hero-marquee-rtl {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.hero-marquee-track {
+  /* The track holds two identical copies side-by-side; we translate -50%. */
+  display: flex;
+  width: max-content;
+  animation: hero-marquee-rtl 38s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Subtle, premium hero entrance — used by the hero content column and the
+   hero image. Pure CSS, deterministic, no SSR risk. */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-fade-in {
+  animation: hero-fade-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-fade-in-delay-1 {
+  animation-delay: 120ms;
+}
+
+.hero-fade-in-delay-2 {
+  animation-delay: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .hero-fade-in-delay-1,
+  .hero-fade-in-delay-2 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
