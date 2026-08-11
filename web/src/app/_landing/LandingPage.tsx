@@ -55,10 +55,12 @@ function SectionLabel({
   index,
   children,
   tone = "dark",
+  dash = true,
 }: {
   index?: string;
   children: React.ReactNode;
   tone?: "dark" | "light";
+  dash?: boolean;
 }) {
   const isLight = tone === "light";
   return (
@@ -69,25 +71,6 @@ function SectionLabel({
         isLight ? "text-white/55" : "text-[#666666]",
       ].join(" ")}
     >
-      {index ? (
-        <span
-          className={[
-            "tabular-nums",
-            isLight ? "text-white/35" : "text-[#9A9A9A]",
-          ].join(" ")}
-        >
-          {index}
-        </span>
-      ) : null}
-      {index ? (
-        <span
-          aria-hidden="true"
-          className={[
-            "h-px w-6",
-            isLight ? "bg-white/30" : "bg-black/25",
-          ].join(" ")}
-        />
-      ) : null}
       <span>{children}</span>
     </div>
   );
@@ -199,8 +182,7 @@ function Hero() {
               On desktop this column takes ~50% of the width so the headline
               reads as two lines and the composition has room to breathe. */}
           <div className="hero-fade-in relative z-10 w-full max-w-[640px] lg:w-[50%]">
-            <span className="inline-flex w-fit items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
-              <span className="inline-block h-px w-6 bg-white/40" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
               Assignment &amp; Submission Platform
             </span>
 
@@ -494,10 +476,7 @@ function Features() {
               number + monochrome line icon. Right column holds title + body. */}
           <article className="grid gap-6 border-b border-black/10 py-7 sm:py-9 lg:grid-cols-12 lg:items-start lg:gap-12">
             <div className="lg:col-span-5">
-              <span className="text-[12px] font-medium tabular-nums tracking-wider text-[#9A9A9A]">
-                {heroFeature.index}
-              </span>
-              <div className="mt-5 text-[#111111] sm:mt-6">
+              <div className="text-[#111111]">
                 {heroFeature.icon}
               </div>
             </div>
@@ -526,13 +505,8 @@ function Features() {
                   "px-0 sm:px-0",
                 ].join(" ")}
               >
-                <div className="flex items-start gap-3">
-                  <span className="text-[12px] font-medium tabular-nums tracking-wider text-[#9A9A9A]">
-                    {f.index}
-                  </span>
-                  <span className="text-[#111111]">
-                    {f.icon}
-                  </span>
+                <div className="text-[#111111]">
+                  {f.icon}
                 </div>
                 <h3 className="mt-4 text-[15px] font-semibold leading-[1.25] tracking-[-0.01em] text-[#111111] sm:text-[16px]">
                   {f.title}
@@ -554,33 +528,27 @@ function Features() {
    ──────────────────────────────────────────────────────────────────────────── */
 
 function HowItWorks() {
-  // BLACK section — editorial 4-step workflow.
-  // Two-column header: section label + heading + one short supporting line
-  // (left), img4.png illustration (right). Four numbered steps below as a
-  // compact editorial row.
-  // Phase 12g: tighten further to match the polished reference — make the
-  // illustration the dominant right-side visual, trim padding & gaps so
-  // the whole section fits comfortably in one desktop viewport.
+  // BLACK section — editorial workflow showcase. Two-column header:
+  // eyebrow + heading + supporting paragraph on the LEFT, smaller fig7.png
+  // illustration on the RIGHT. Compact 4-step row at the bottom. No
+  // dashboard card, no border, no shadow, no large numbers, no decorative
+  // dash beside the eyebrow.
   const steps = [
     {
-      n: "01",
-      title: "Set Up",
+      title: "Setup",
       body: "Set up your institution.",
     },
     {
-      n: "02",
       title: "Assign",
       body: "Create and assign work.",
     },
     {
-      n: "03",
       title: "Submit",
       body: "Submit assignments easily.",
     },
     {
-      n: "04",
       title: "Review",
-      body: "Review, grade, and give feedback.",
+      body: "Review and give feedback.",
     },
   ];
 
@@ -591,63 +559,59 @@ function HowItWorks() {
       className="bg-black text-white"
       aria-label="How it works"
     >
-      <Container className="py-10 sm:py-12 lg:py-14">
-        {/* Section header — editorial two-column intro: eyebrow + heading +
-            one short supporting line (left), img4.png illustration (right).
-            Illustration is the dominant visual; copy stays minimal. */}
-        <div className="grid items-center gap-5 sm:gap-6 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-5">
-            <SectionLabel index="02" tone="light">
+      <Container className="py-14 sm:py-16 lg:py-20">
+        {/* Top band: text on the LEFT, illustration on the RIGHT. Stacks on
+            tablet/mobile so the heading reads first, then the supporting
+            paragraph, then the illustration. */}
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          {/* LEFT — eyebrow + heading + supporting paragraph */}
+          <div className="lg:col-span-7">
+            <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
               Workflow
-            </SectionLabel>
-            <div className="mt-2.5">
-              <SectionHeading size="md" tone="light">
-                How EduAssign Pro
-                <br />
-                works.
-              </SectionHeading>
             </div>
-            <p className="mt-2.5 max-w-[360px] text-[14px] leading-[1.5] text-white/55 sm:text-[15px]">
-              A simple flow from setup to reviewed submissions.
+            <h2 className="mt-4 text-[36px] font-semibold leading-[1.04] tracking-[-0.02em] text-white sm:text-[44px] lg:text-[52px]">
+              One clear workflow
+              <br />
+              for every institution.
+            </h2>
+            <p className="mt-5 max-w-[420px] text-[14px] leading-[1.6] text-white/60 sm:text-[15px]">
+              Bring classes, assignments, submissions, review, and academic
+              management into one dependable workspace. Less switching tools,
+              more teaching.
             </p>
           </div>
-          <div className="lg:col-span-7">
-            <div className="mx-auto w-full max-w-[520px] sm:max-w-[600px] lg:mx-0 lg:ml-auto lg:max-w-[760px]">
-              <div
-                className="relative w-full overflow-hidden"
-                style={{ aspectRatio: "3 / 2" }}
-              >
-                <img
-                  src="/assets/img4.png"
-                  alt="EduAssign Pro workflow illustration"
-                  draggable={false}
-                  className="absolute inset-0 h-full w-full select-none object-contain"
-                  style={{
-                    pointerEvents: "none",
-                    userSelect: "none",
-                  }}
-                />
-              </div>
+
+          {/* RIGHT — illustration. Smaller, right-aligned, no card, no
+              border, no background. Transparent background preserved. */}
+          <div className="lg:col-span-5">
+            <div className="mx-auto w-full max-w-[420px] lg:ml-auto lg:mr-0">
+              <img
+                src="/assets/fig7.png"
+                alt="EduAssign Pro workflow illustration"
+                draggable={false}
+                className="block h-auto w-full select-none"
+                style={{
+                  pointerEvents: "none",
+                  userSelect: "none",
+                }}
+              />
             </div>
           </div>
         </div>
 
-        {/* Editorial numbered list — 4 columns on desktop, single column on
-            tablet/mobile with horizontal dividers. Compact: subtle numbers,
-            tight padding, short one-line descriptions. */}
-        <ol className="mt-7 grid grid-cols-1 divide-y divide-white/10 border-t border-white/10 sm:mt-8 sm:grid-cols-2 sm:divide-white/10 lg:mt-9 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:divide-white/10">
+        {/* Compact 4-step flow. Minimal: step name + one short description per
+            item. Thin dividers between steps on desktop; horizontal lines on
+            smaller viewports. */}
+        <ol className="mt-10 grid grid-cols-1 divide-y divide-white/10 border-t border-white/10 sm:mt-12 sm:grid-cols-2 sm:divide-white/10 lg:mt-14 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:divide-white/10">
           {steps.map((s) => (
             <li
-              key={s.n}
-              className="group relative px-0 py-4 sm:px-6 sm:py-6 lg:px-7 lg:py-6 lg:first:pl-0 lg:last:pr-0"
+              key={s.title}
+              className="px-0 py-5 sm:px-6 sm:py-6 lg:px-7 lg:py-6 lg:first:pl-0 lg:last:pr-0"
             >
-              <span className="block text-[22px] font-medium leading-none tracking-[0.04em] text-white/20 sm:text-[24px] lg:text-[26px]">
-                {s.n}
-              </span>
-              <h3 className="mt-2 text-[15px] font-semibold leading-[1.2] tracking-[-0.01em] text-white sm:text-[16px]">
+              <h3 className="text-[15px] font-semibold leading-[1.2] tracking-[-0.01em] text-white sm:text-[16px]">
                 {s.title}
               </h3>
-              <p className="mt-1 max-w-[220px] text-[12.5px] leading-[1.45] text-white/55">
+              <p className="mt-1.5 max-w-[220px] text-[12.5px] leading-[1.5] text-white/55 sm:text-[13px]">
                 {s.body}
               </p>
             </li>
@@ -718,7 +682,7 @@ function Roles() {
         <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-16">
           {/* LEFT — copy (~45% of the section width on desktop). */}
           <div className="lg:col-span-5">
-            <SectionLabel index="03" tone="dark">
+            <SectionLabel tone="dark" dash={false}>
               Solutions
             </SectionLabel>
             <h2 className="mt-6 text-[40px] font-semibold leading-[1.04] tracking-[-0.02em] text-[#111111] sm:text-[52px] lg:text-[64px]">
@@ -772,10 +736,7 @@ function Roles() {
                   "lg:first:pl-0 lg:last:pr-0",
                 ].join(" ")}
               >
-                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#666666]">
-                  Role {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-6 text-[36px] font-semibold leading-[1.1] tracking-[-0.02em] text-[#111111] sm:text-[44px]">
+                <h3 className="text-[36px] font-semibold leading-[1.1] tracking-[-0.02em] text-[#111111] sm:text-[44px]">
                   {r.role}
                 </h3>
                 <p className="mt-3 text-[16px] text-[#666666]">
@@ -785,13 +746,9 @@ function Roles() {
                   {r.points.map((p, idx) => (
                     <li
                       key={p}
-                      className="flex items-start gap-3 leading-[1.55]"
+                      className="leading-[1.55]"
                     >
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 inline-block h-[1px] w-3 shrink-0 bg-[#111111]"
-                      />
-                      <span>{p}</span>
+                      {p}
                     </li>
                   ))}
                 </ul>
@@ -1194,10 +1151,7 @@ function Security() {
                 "lg:first:pl-0 lg:last:pr-0",
               ].join(" ")}
             >
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/40">
-                {String(i + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-6 text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-white sm:text-[24px]">
+              <h3 className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-white sm:text-[24px]">
                 {it.title}
               </h3>
               <p className="mt-3 max-w-[420px] text-[15px] leading-[1.65] text-white/55">
@@ -1315,57 +1269,6 @@ function FAQ() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────────────────────
-   Final CTA
-   ──────────────────────────────────────────────────────────────────────────── */
-
-function FinalCTA() {
-  // DARKER premium closing statement (#050505) — deliberately a slightly
-  // different dark tone than the footer (#111111) so the two adjacent
-  // black sections read as distinct areas instead of merging into one
-  // giant black block.
-  return (
-    <section
-      data-nav-tone="light"
-      className="text-white"
-      style={{ backgroundColor: "#050505" }}
-      aria-label="Get started"
-    >
-      <Container className="py-32 sm:py-40 lg:py-56">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionLabel index="08" tone="light">
-            Ready to get started
-          </SectionLabel>
-          <h2 className="mt-8 text-[44px] font-semibold leading-[1.04] tracking-[-0.02em] text-white sm:text-[64px] lg:text-[80px]">
-            Ready to simplify
-            <br />
-            academic assignments?
-          </h2>
-          <p className="mx-auto mt-8 max-w-[560px] text-[16px] leading-[1.65] text-white/65 sm:text-[18px]">
-            Bring assignments, submissions, review, and academic workflows
-            into one professional workspace.
-          </p>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/register"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-black transition-[transform,filter,background-color] duration-200 hover:-translate-y-0.5 hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              Create an account
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/login"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 bg-transparent px-6 text-sm font-medium text-white/85 transition-colors hover:border-white/40 hover:text-white"
-            >
-              Sign in
-            </Link>
           </div>
         </div>
       </Container>
@@ -1514,7 +1417,6 @@ export default function LandingPage() {
         <AISimilarity />
         <Security />
         <FAQ />
-        <FinalCTA />
       </main>
       <Footer />
     </div>

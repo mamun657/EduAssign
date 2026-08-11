@@ -90,68 +90,42 @@ export default function LandingNav() {
     setOpen(false);
   }
 
-  // ---- Surface styling (per tone) ----------------------------------------
-  const isLight = tone === "light";
+  // ---- Navbar tokens -----------------------------------------------------
+  // Solid black navbar with high-contrast white type regardless of which
+  // section the user is on. No translucency, no opacity, no inherited gray
+  // text. The previous tone-aware surface flipped to `bg-white/40` over the
+  // white Features section, which made the navbar look washed out — that is
+  // now removed entirely.
 
-  // At the very top (over the BLACK hero) the navbar uses a faint
-  // translucent dark surface — light enough to feel like the hero is
-  // uninterrupted, dark enough that white text stays legible even if
-  // the browser viewport above the hero leaks through. Once scrolled,
-  // the navbar gains a stronger translucent surface + hairline border.
+  // At the very top the navbar is solid black with no border. Once scrolled
+  // it gains a hairline white border + a subtle bottom shadow for elevation.
   const surface = scrolled
-    ? isLight
-      ? [
-          "border-white/10",
-          "bg-black/70",
-          "supports-[backdrop-filter]:bg-black/60",
-          "backdrop-blur-xl backdrop-saturate-150",
-        ].join(" ")
-      : [
-          "border-black/10",
-          "bg-white/80",
-          "supports-[backdrop-filter]:bg-white/70",
-          "backdrop-blur-xl backdrop-saturate-150",
-        ].join(" ")
-    : isLight
-      ? [
-          "border-transparent",
-          "bg-black/35",
-          "supports-[backdrop-filter]:bg-black/20",
-          "backdrop-blur-md backdrop-saturate-150",
-        ].join(" ")
-      : [
-          "border-transparent",
-          "bg-white/40",
-          "supports-[backdrop-filter]:bg-white/30",
-          "backdrop-blur-md backdrop-saturate-150",
-        ].join(" ");
+    ? "border-b border-white/10 bg-black shadow-[0_1px_0_rgba(255,255,255,0.04),0_8px_24px_rgba(0,0,0,0.35)]"
+    : "border-b border-transparent bg-black";
 
-  // ---- Foreground colors (per tone) -------------------------------------
-  const fgText = isLight ? "text-white/80" : "text-[#151515]/85";
-  const fgTextHover = isLight ? "hover:text-white" : "hover:text-black";
-  const fgBrand = isLight ? "text-white" : "text-[#111111]";
+  // Foreground palette — locked to bright white so the navbar is crisp and
+  // readable on every section.
+  const fgText = "text-white";
+  const fgTextHover = "hover:text-white/70";
+  const fgBrand = "text-white";
 
-  // Primary CTA — flips B/W with the section under it.
-  const ctaPrimary = isLight
-    ? "bg-white text-black hover:bg-white/90 focus-visible:ring-white/60 focus-visible:ring-offset-black"
-    : "bg-black text-white hover:bg-black/90 focus-visible:ring-black/40 focus-visible:ring-offset-white";
+  // Primary CTA — bright white pill with black text on every tone.
+  const ctaPrimary =
+    "bg-white text-black hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
-  const hamburger = isLight ? "hover:bg-white/10" : "hover:bg-black/5";
-  const drawerBg = isLight ? "bg-black/95 border-white/10" : "bg-white/95 border-black/10";
-  const drawerItem = isLight
-    ? "text-white/90 hover:bg-white/10"
-    : "text-[#151515]/90 hover:bg-black/5";
-  const drawerBorder = isLight ? "border-white/10" : "border-black/10";
-  const drawerSignIn = isLight
-    ? "border-white/15 text-white hover:bg-white/10"
-    : "border-black/15 text-[#151515] hover:bg-black/5";
+  const hamburger = "hover:bg-white/10";
+  const drawerBg = "bg-black border-white/10";
+  const drawerItem = "text-white hover:bg-white/10";
+  const drawerBorder = "border-white/10";
+  const drawerSignIn =
+    "border-white/25 bg-black text-white hover:bg-white/10";
 
   return (
     <header
       data-scrolled={scrolled ? "true" : "false"}
       data-tone={tone}
       className={[
-        "sticky top-0 z-30 w-full border-b transition-[background-color,border-color,color,box-shadow,backdrop-filter] duration-300 ease-out",
+        "sticky top-0 z-30 w-full transition-[background-color,border-color,color,box-shadow] duration-300 ease-out",
         surface,
       ].join(" ")}
     >
@@ -168,15 +142,15 @@ export default function LandingNav() {
           aria-label="EduAssign Pro home"
           onClick={close}
         >
-          <span
-            className={[
-              "inline-flex h-8 w-8 items-center justify-center rounded-md",
-              isLight ? "bg-white text-black" : "bg-black text-white",
-            ].join(" ")}
-          >
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-black">
             <GraduationCap className="h-4 w-4" aria-hidden="true" />
           </span>
-          <span className={["text-[15px] font-semibold tracking-tight", fgBrand].join(" ")}>
+          <span
+            className={[
+              "text-[15px] font-semibold tracking-tight",
+              fgBrand,
+            ].join(" ")}
+          >
             EduAssign Pro
           </span>
         </Link>
@@ -206,10 +180,7 @@ export default function LandingNav() {
           <Link
             href="/login"
             className={[
-              "inline-flex h-10 items-center justify-center rounded-md border px-4 text-[14px] font-medium transition-colors",
-              isLight
-                ? "border-white/20 text-white hover:bg-white/10"
-                : "border-black/15 text-[#111111] hover:bg-black/5",
+              "inline-flex h-10 items-center justify-center rounded-md border border-white/25 bg-black px-4 text-[14px] font-medium text-white transition-colors hover:bg-white/10",
             ].join(" ")}
           >
             Sign in
@@ -217,7 +188,7 @@ export default function LandingNav() {
           <Link
             href="/register"
             className={[
-              "inline-flex h-10 items-center justify-center rounded-full px-4 text-[14px] font-semibold transition-[transform,filter,background-color] duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+              "inline-flex h-10 items-center justify-center rounded-full px-4 text-[14px] font-semibold transition-[transform,filter,background-color] duration-200 hover:-translate-y-0.5",
               ctaPrimary,
             ].join(" ")}
           >
@@ -232,8 +203,7 @@ export default function LandingNav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           className={[
-            "inline-flex h-10 w-10 items-center justify-center rounded-md transition-colors lg:hidden",
-            isLight ? "text-white" : "text-[#151515]",
+            "inline-flex h-10 w-10 items-center justify-center rounded-md text-white transition-colors lg:hidden",
             hamburger,
           ].join(" ")}
         >
@@ -261,8 +231,7 @@ export default function LandingNav() {
           tabIndex={open ? 0 : -1}
           onClick={close}
           className={[
-            "fixed inset-0 transition-opacity",
-            isLight ? "bg-black" : "bg-white",
+            "fixed inset-0 bg-black transition-opacity",
             open ? "opacity-70" : "opacity-0",
           ].join(" ")}
           style={{ top: scrolled ? 56 : 64 }}
@@ -270,7 +239,7 @@ export default function LandingNav() {
         {/* Panel */}
         <div
           className={[
-            "relative mx-3 mt-2 overflow-hidden rounded-xl border backdrop-blur-xl transition-all",
+            "relative mx-3 mt-2 overflow-hidden rounded-xl border transition-all",
             drawerBg,
             open
               ? "translate-y-0 opacity-100"
@@ -289,13 +258,20 @@ export default function LandingNav() {
                 key={l.href}
                 href={l.href}
                 onClick={close}
-                className={["rounded-md px-3 py-2.5 text-sm font-medium", drawerItem].join(" ")}
+                className={[
+                  "rounded-md px-3 py-2.5 text-sm font-medium",
+                  drawerItem,
+                ].join(" ")}
               >
                 {l.label}
               </a>
             ))}
           </nav>
-          <div className={["flex flex-col gap-2 border-t p-3", drawerBorder].join(" ")}>
+          <div
+            className={["flex flex-col gap-2 border-t p-3", drawerBorder].join(
+              " ",
+            )}
+          >
             <Link
               href="/login"
               onClick={close}
@@ -309,10 +285,7 @@ export default function LandingNav() {
             <Link
               href="/register"
               onClick={close}
-              className={[
-                "inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold",
-                isLight ? "bg-white text-black" : "bg-black text-white",
-              ].join(" ")}
+              className="inline-flex h-11 items-center justify-center rounded-full bg-white text-sm font-semibold text-black"
             >
               Get Started
             </Link>

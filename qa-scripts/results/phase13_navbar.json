@@ -1,0 +1,320 @@
+[
+  {
+    "viewport": "desktop_1440x900",
+    "width": 1440,
+    "height": 900,
+    "errors": [],
+    "top": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "rgba(0, 0, 0, 0)",
+      "navLinks": [
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "brand": {
+        "text": "EduAssign Pro",
+        "color": "rgb(255, 255, 255)"
+      },
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "scrolled": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "hover": {
+      "text": "Features",
+      "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.7)"
+    },
+    "overflow": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "hasOverflow": false
+    }
+  },
+  {
+    "viewport": "desktop_1280x800",
+    "width": 1280,
+    "height": 800,
+    "errors": [],
+    "top": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "rgba(0, 0, 0, 0)",
+      "navLinks": [
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "brand": {
+        "text": "EduAssign Pro",
+        "color": "rgb(255, 255, 255)"
+      },
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "scrolled": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "hover": {
+      "text": "Features",
+      "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.7)"
+    },
+    "overflow": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "hasOverflow": false
+    }
+  },
+  {
+    "viewport": "tablet_768x1024",
+    "width": 768,
+    "height": 1024,
+    "errors": [],
+    "top": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "rgba(0, 0, 0, 0)",
+      "navLinks": [
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "brand": {
+        "text": "EduAssign Pro",
+        "color": "rgb(255, 255, 255)"
+      },
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "scrolled": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "hover": null,
+    "overflow": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "hasOverflow": false
+    }
+  },
+  {
+    "viewport": "mobile_390x844",
+    "width": 390,
+    "height": 844,
+    "errors": [],
+    "top": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "rgba(0, 0, 0, 0)",
+      "navLinks": [
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Features",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "How It Works",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "Solutions",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "FAQ",
+          "color": "rgb(255, 255, 255)"
+        }
+      ],
+      "brand": {
+        "text": "EduAssign Pro",
+        "color": "rgb(255, 255, 255)"
+      },
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "scrolled": {
+      "bg": "rgb(0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderBottom": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "ctaGetStarted": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)"
+      },
+      "signIn": {
+        "bg": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "border": "oklab(0.999994 0.0000455678 0.0000200868 / 0.25)"
+      }
+    },
+    "hover": null,
+    "overflow": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "hasOverflow": false
+    }
+  }
+]
