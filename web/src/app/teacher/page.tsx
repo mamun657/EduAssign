@@ -9,10 +9,9 @@ import {
   Inbox,
   Plus,
   ArrowRight,
-  Clock,
-  CheckCircle2,
   FileText,
   Eye,
+  Sparkles,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
@@ -23,6 +22,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
+import StatCard from "@/components/ui/StatCard";
 import { Assignments, TeacherAssignments } from "@/lib/api";
 import type {
   Assignment,
@@ -40,16 +40,16 @@ function formatDate(iso: string): string {
   });
 }
 
-function statusTone(status: AssignmentStatus) {
+function statusTone(status: AssignmentStatus): "success" | "info" | "warning" | "neutral" {
   switch (status) {
     case "Reviewed":
-      return "emerald" as const;
+      return "success";
     case "Submitted":
-      return "sky" as const;
+      return "info";
     case "Published":
-      return "amber" as const;
+      return "warning";
     default:
-      return "slate" as const;
+      return "neutral";
   }
 }
 
@@ -60,50 +60,6 @@ export default function TeacherDashboardPage() {
         <TeacherOverview />
       </DashboardShell>
     </RouteGuard>
-  );
-}
-
-function KpiCard({
-  label,
-  value,
-  icon,
-  tone = "slate",
-  hint,
-}: {
-  label: string;
-  value: number | string;
-  icon: React.ReactNode;
-  tone?: "slate" | "emerald" | "amber" | "sky";
-  hint?: string;
-}) {
-  const ringColor: Record<string, string> = {
-    slate: "bg-[#F9FAFB] text-[#374151]",
-    emerald: "bg-[#ECFDF5] text-[#16A34A]",
-    amber: "bg-[#FFFBEB] text-[#B45309]",
-    sky: "bg-[#EFF6FF] text-[#1D4ED8]",
-  };
-  return (
-    <Card>
-      <CardBody>
-        <div className="flex items-center justify-between gap-4">
-          <div className="min-w-0">
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
-              {label}
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{value}</p>
-            {hint ? (
-              <p className="mt-1 text-xs text-[#6B7280]">{hint}</p>
-            ) : null}
-          </div>
-          <div
-            className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${ringColor[tone]}`}
-            aria-hidden="true"
-          >
-            {icon}
-          </div>
-        </div>
-      </CardBody>
-    </Card>
   );
 }
 
@@ -166,11 +122,12 @@ function TeacherOverview() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title={`Hello, ${user?.firstName ?? "Teacher"}`}
+        eyebrow={`Welcome back${user?.firstName ? `, ${user.firstName}` : ""}`}
+        title="Teacher dashboard"
         description="Manage your students, assignments, and submission reviews."
         actions={
           <Link href="/teacher/assignments/new">
-            <Button>
+            <Button variant="success">
               <Plus className="h-4 w-4" aria-hidden="true" />
               New assignment
             </Button>
@@ -178,41 +135,41 @@ function TeacherOverview() {
         }
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
 
       <section aria-label="Key metrics" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard
+        <StatCard
           label="Students"
           value={uniqueStudents.size}
           icon={<Users className="h-5 w-5" aria-hidden="true" />}
-          tone="slate"
+          tone="emerald"
           hint="Assigned to you"
         />
-        <KpiCard
+        <StatCard
           label="Subjects"
           value={uniqueSubjects.size}
           icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
-          tone="slate"
+          tone="violet"
           hint="You teach"
         />
-        <KpiCard
+        <StatCard
           label="Assignments"
           value={total}
           icon={<ClipboardList className="h-5 w-5" aria-hidden="true" />}
-          tone="amber"
+          tone="blue"
           hint={`${drafts} draft · ${published} published`}
         />
-        <KpiCard
+        <StatCard
           label="To review"
           value={submitted}
           icon={<Inbox className="h-5 w-5" aria-hidden="true" />}
-          tone="sky"
+          tone="amber"
           hint={`${reviewed} reviewed`}
         />
       </section>
 
       {loading ? (
-        <p className="text-sm text-[#6B7280]">Loading…</p>
+        <p className="text-[13px] text-slate-500">Loading…</p>
       ) : links.length === 0 ? (
         <EmptyState
           title="No students assigned yet"
@@ -228,30 +185,34 @@ function TeacherOverview() {
                   <CardTitle>Pending review</CardTitle>
                   <CardDescription>Submissions waiting for marks and feedback.</CardDescription>
                 </div>
-                <Link href="/teacher/submissions" className="text-sm font-medium text-[#111827] hover:underline">
+                <Link
+                  href="/teacher/submissions"
+                  className="inline-flex items-center gap-1 text-[12.5px] font-medium text-emerald-700 hover:text-emerald-800 hover:underline"
+                >
                   View all
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
               </div>
             </CardHeader>
-            <CardBody>
+            <CardBody className="p-0">
               {pendingReview.length === 0 ? (
-                <p className="text-sm text-[#6B7280]">No submissions waiting on you.</p>
+                <p className="px-5 py-6 text-center text-[13px] text-slate-500">No submissions waiting on you.</p>
               ) : (
-                <ul className="space-y-3">
+                <ul className="divide-y divide-slate-200">
                   {pendingReview.map((a) => (
                     <li
                       key={a.id}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-[#E5E7EB] px-3 py-2"
+                      className="flex h-[52px] items-center justify-between gap-3 px-5"
                     >
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-[#111827]">{a.title}</p>
-                        <p className="text-xs text-[#6B7280]">
+                        <p className="truncate text-[13.5px] font-medium text-slate-900">{a.title}</p>
+                        <p className="text-[12px] text-slate-500">
                           {a.studentName} · {a.subjectName}
                         </p>
                       </div>
                       <Link
                         href={`/teacher/submissions/${a.id}`}
-                        className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-[#E5E7EB] px-2.5 py-1.5 text-xs font-medium text-[#111827] hover:bg-[#F9FAFB]"
+                        className="inline-flex shrink-0 items-center gap-1.5 rounded-[9px] border border-slate-300 bg-white px-2.5 py-1.5 text-[12.5px] font-medium text-slate-800 hover:bg-slate-50"
                       >
                         Review
                         <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -270,45 +231,53 @@ function TeacherOverview() {
                   <CardTitle>Recent assignments</CardTitle>
                   <CardDescription>Your five most recently updated assignments.</CardDescription>
                 </div>
-                <Link href="/teacher/assignments" className="text-sm font-medium text-[#111827] hover:underline">
+                <Link
+                  href="/teacher/assignments"
+                  className="inline-flex items-center gap-1 text-[12.5px] font-medium text-emerald-700 hover:text-emerald-800 hover:underline"
+                >
                   View all
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
               </div>
             </CardHeader>
-            <CardBody>
+            <CardBody className="p-0">
               {recent.length === 0 ? (
-                <EmptyState
-                  title="No assignments yet"
-                  description="Create your first assignment and attach the brief PDF."
-                  icon={<ClipboardList className="h-6 w-6" aria-hidden="true" />}
-                  action={
-                    <Link href="/teacher/assignments/new">
-                      <Button>
-                        <Plus className="h-4 w-4" aria-hidden="true" />
-                        New assignment
-                      </Button>
-                    </Link>
-                  }
-                />
+                <div className="p-5">
+                  <EmptyState
+                    title="No assignments yet"
+                    description="Create your first assignment and attach the brief PDF."
+                    icon={<ClipboardList className="h-6 w-6" aria-hidden="true" />}
+                    action={
+                      <Link href="/teacher/assignments/new">
+                        <Button variant="success">
+                          <Plus className="h-4 w-4" aria-hidden="true" />
+                          New assignment
+                        </Button>
+                      </Link>
+                    }
+                  />
+                </div>
               ) : (
-                <ul className="space-y-3">
+                <ul className="divide-y divide-slate-200">
                   {recent.map((a) => (
                     <li
                       key={a.id}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-[#E5E7EB] px-3 py-2"
+                      className="flex h-[52px] items-center justify-between gap-3 px-5"
                     >
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-[#111827]">{a.title}</p>
-                        <p className="text-xs text-[#6B7280]">
+                        <p className="truncate text-[13.5px] font-medium text-slate-900">{a.title}</p>
+                        <p className="text-[12px] text-slate-500">
                           {a.studentName} · {a.subjectName} · due {formatDate(a.dueDate)}
                         </p>
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
-                        <Badge tone={statusTone(a.status)}>{a.status}</Badge>
+                        <Badge tone={statusTone(a.status)} withDot>
+                          {a.status}
+                        </Badge>
                         <Link
                           href={`/teacher/assignments/${a.id}`}
                           aria-label={`View assignment ${a.title}`}
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E7EB] text-[#111827] hover:bg-[#F9FAFB]"
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-[9px] border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
                         >
                           <Eye className="h-4 w-4" aria-hidden="true" />
                         </Link>
@@ -331,40 +300,47 @@ function TeacherOverview() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/teacher/assignments/new"
-              className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] px-4 py-3 hover:bg-[#F9FAFB]"
+              className="flex items-center gap-3 rounded-[10px] border border-slate-200 bg-white px-4 py-3 hover:bg-slate-50"
             >
-              <Plus className="h-5 w-5 text-[#111827]" aria-hidden="true" />
-              <span className="text-sm font-medium text-[#111827]">Create assignment</span>
+              <span className="grid h-9 w-9 place-items-center rounded-[9px] bg-emerald-50 text-emerald-700">
+                <Plus className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="text-[13.5px] font-medium text-slate-900">Create assignment</span>
             </Link>
             <Link
               href="/teacher/assignments"
-              className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] px-4 py-3 hover:bg-[#F9FAFB]"
+              className="flex items-center gap-3 rounded-[10px] border border-slate-200 bg-white px-4 py-3 hover:bg-slate-50"
             >
-              <FileText className="h-5 w-5 text-[#111827]" aria-hidden="true" />
-              <span className="text-sm font-medium text-[#111827]">List assignments</span>
+              <span className="grid h-9 w-9 place-items-center rounded-[9px] bg-blue-50 text-blue-700">
+                <FileText className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="text-[13.5px] font-medium text-slate-900">List assignments</span>
             </Link>
             <Link
               href="/teacher/submissions"
-              className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] px-4 py-3 hover:bg-[#F9FAFB]"
+              className="flex items-center gap-3 rounded-[10px] border border-slate-200 bg-white px-4 py-3 hover:bg-slate-50"
             >
-              <Inbox className="h-5 w-5 text-[#111827]" aria-hidden="true" />
-              <span className="text-sm font-medium text-[#111827]">Review submissions</span>
+              <span className="grid h-9 w-9 place-items-center rounded-[9px] bg-amber-50 text-amber-700">
+                <Inbox className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="text-[13.5px] font-medium text-slate-900">Review submissions</span>
             </Link>
             <Link
               href="/teacher/students"
-              className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] px-4 py-3 hover:bg-[#F9FAFB]"
+              className="flex items-center gap-3 rounded-[10px] border border-slate-200 bg-white px-4 py-3 hover:bg-slate-50"
             >
-              <Users className="h-5 w-5 text-[#111827]" aria-hidden="true" />
-              <span className="text-sm font-medium text-[#111827]">My students</span>
+              <span className="grid h-9 w-9 place-items-center rounded-[9px] bg-violet-50 text-violet-700">
+                <Users className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="text-[13.5px] font-medium text-slate-900">My students</span>
             </Link>
           </div>
         </CardBody>
       </Card>
 
-      {/* Hidden helper so eslint thinks the icons are used. */}
+      {/* Hidden helper so eslint thinks the icon is used. */}
       <span className="hidden">
-        <Clock className="h-4 w-4" aria-hidden="true" />
-        <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+        <Sparkles className="h-4 w-4" aria-hidden="true" />
       </span>
     </div>
   );

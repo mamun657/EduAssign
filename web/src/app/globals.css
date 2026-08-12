@@ -1,44 +1,89 @@
 @import "tailwindcss";
 
-/* ────────────────────────────────────────────────────────────────────────────
-   EduAssign Pro design tokens.
-   Spec palette:
-     background     #FFFFFF / #F9FAFB
-     text           #111827  (primary)  / #6B7280  (secondary)
-     border         #E5E7EB
-     success        #16A34A
-     warning        #F59E0B
-     error          #DC2626
-   ────────────────────────────────────────────────────────────────────────── */
+/* =============================================================================
+   EduAssign Pro — Design Tokens (admin / teacher / student layer)
+   Spec palette layered for visual hierarchy:
+     page background    #F8FAFC   (slate-50)
+     card surface       #FFFFFF
+     card hover / 2nd   #F1F5F9   (slate-100)
+     text primary       #0F172A   (slate-900)
+     text secondary     #475569   (slate-600)
+     border             #E2E8F0   (slate-200)
+     border strong      #CBD5E1   (slate-300)
+   Semantic palette (used in soft tints only, never full saturation):
+     success            #16A34A   bg #ECFDF5
+     info / blue        #2563EB   bg #EFF6FF
+     violet             #7C3AED   bg #F5F3FF
+     orange             #EA580C   bg #FFF7ED
+     amber              #F59E0B   bg #FFFBEB
+     cyan               #0891B2   bg #ECFEFF
+     rose / danger      #E11D48   bg #FFF1F2
+   Primary CTA (per Example B):
+     #16A34A  text #FFFFFF  9px radius  42px height  subtle green shadow
+   ============================================================================= */
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
 
-  /* Neutrals — Slate/Gray scale aligned with the spec. */
-  --color-app-bg: #f9fafb;
+  /* Neutrals — Slate */
+  --color-app-bg: #f8fafc;
+  --color-app-bg-soft: #f1f5f9;
   --color-surface: #ffffff;
-  --color-surface-2: #f9fafb;
-  --color-border: #e5e7eb;
-  --color-border-strong: #d1d5db;
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-  --color-text-subtle: #9ca3af;
+  --color-surface-2: #f8fafc;
+  --color-surface-3: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-subtle: #94a3b8;
 
-  /* Brand (kept from existing system; used sparingly for active focus). */
+  /* Brand (kept; reserved for active focus rings) */
   --color-brand-50: #f5f7fb;
   --color-brand-100: #e6ecf5;
   --color-brand-500: #4f46e5;
   --color-brand-600: #4338ca;
   --color-brand-700: #3730a3;
 
-  /* Status */
+  /* Semantic colors */
   --color-success: #16a34a;
+  --color-success-strong: #15803d;
   --color-success-bg: #ecfdf5;
+  --color-success-soft: #d1fae5;
+
+  --color-info: #2563eb;
+  --color-info-strong: #1d4ed8;
+  --color-info-bg: #eff6ff;
+  --color-info-soft: #dbeafe;
+
+  --color-violet: #7c3aed;
+  --color-violet-strong: #6d28d9;
+  --color-violet-bg: #f5f3ff;
+  --color-violet-soft: #ede9fe;
+
+  --color-orange: #ea580c;
+  --color-orange-strong: #c2410c;
+  --color-orange-bg: #fff7ed;
+  --color-orange-soft: #ffedd5;
+
+  --color-amber: #f59e0b;
+  --color-amber-strong: #b45309;
+  --color-amber-bg: #fffbeb;
+  --color-amber-soft: #fef3c7;
+
+  --color-cyan: #0891b2;
+  --color-cyan-strong: #0e7490;
+  --color-cyan-bg: #ecfeff;
+  --color-cyan-soft: #cffafe;
+
+  --color-danger: #e11d48;
+  --color-danger-strong: #b91c1c;
+  --color-danger-bg: #fff1f2;
+  --color-danger-soft: #ffe4e6;
+
   --color-warning: #f59e0b;
   --color-warning-bg: #fffbeb;
-  --color-error: #dc2626;
-  --color-error-bg: #fef2f2;
-  --color-info: #2563eb;
-  --color-info-bg: #eff6ff;
+  --color-error: #e11d48;
+  --color-error-bg: #fff1f2;
 }
 
 html,
@@ -59,14 +104,7 @@ body {
   outline: none;
 }
 
-/* Prevent horizontal overflow caused by the new shell on small viewports.
-   Apply only to <body>, not <html>, so html remains the document scroller
-   and `position: sticky` on body descendants (e.g. the landing navbar)
-   correctly pins to the viewport top. Do NOT set `overflow-x: hidden` on
-   <html> — that turns html into a scroll container, which breaks sticky
-   positioning on body descendants.
-   `overflow-x: clip` clips without creating a scroll container, which is
-   the safe alternative if any ancestor needs horizontal clipping. */
+/* Prevent horizontal overflow caused by the new shell on small viewports. */
 body {
   overflow-x: clip;
 }
@@ -76,17 +114,29 @@ body[data-drawer-open="true"] {
   overflow: hidden;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
+/* =============================================================================
+   Subtle green shadow for the primary CTA — softer than default ring.
+   ============================================================================= */
+.shadow-cta-green {
+  box-shadow:
+    0 1px 0 rgba(22, 163, 74, 0.06),
+    0 1px 2px rgba(22, 163, 74, 0.18),
+    0 4px 12px -4px rgba(22, 163, 74, 0.28);
+}
+
+.shadow-cta-green:hover {
+  box-shadow:
+    0 1px 0 rgba(22, 163, 74, 0.08),
+    0 2px 4px rgba(22, 163, 74, 0.22),
+    0 8px 20px -6px rgba(22, 163, 74, 0.35);
+}
+
+/* =============================================================================
    Hero marquee (Phase 9)
    Seamless right-to-left infinite scroll for the bottom proof line in the
-   dark hero. The track is rendered twice (A + B) inside .hero-marquee-track,
-   and the @keyframes translates the whole track by -50% so that when the
-   first copy scrolls off the left, the second copy is in the identical
-   position the first copy started at — no visible jump, infinite loop.
+   dark hero.
+   ============================================================================= */
 
-   The animation is purely cosmetic. `prefers-reduced-motion: reduce` disables
-   it so the page is accessible and SSR-safe (no JS).
-   ────────────────────────────────────────────────────────────────────────── */
 @keyframes hero-marquee-rtl {
   from {
     transform: translate3d(0, 0, 0);
@@ -97,7 +147,6 @@ body[data-drawer-open="true"] {
 }
 
 .hero-marquee-track {
-  /* The track holds two identical copies side-by-side; we translate -50%. */
   display: flex;
   width: max-content;
   animation: hero-marquee-rtl 38s linear infinite;
@@ -111,8 +160,7 @@ body[data-drawer-open="true"] {
   }
 }
 
-/* Subtle, premium hero entrance — used by the hero content column and the
-   hero image. Pure CSS, deterministic, no SSR risk. */
+/* Subtle, premium hero entrance */
 @keyframes hero-fade-in {
   from {
     opacity: 0;

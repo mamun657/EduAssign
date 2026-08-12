@@ -15,6 +15,8 @@ public class AdminService
     private readonly ISubjectRepository _subjects;
     private readonly IStudentEnrollmentRepository _enrollments;
     private readonly ITeacherStudentSubjectRepository _teacherStudentSubjects;
+    private readonly IAssignmentRepository _assignments;
+    private readonly ISimilarityAnalysisRepository _similarityAnalyses;
     private readonly ICurrentUser _currentUser;
     private readonly IPasswordHasher _passwordHasher;
     private readonly ILogger<AdminService> _logger;
@@ -26,6 +28,8 @@ public class AdminService
         ISubjectRepository subjects,
         IStudentEnrollmentRepository enrollments,
         ITeacherStudentSubjectRepository teacherStudentSubjects,
+        IAssignmentRepository assignments,
+        ISimilarityAnalysisRepository similarityAnalyses,
         ICurrentUser currentUser,
         IPasswordHasher passwordHasher,
         ILogger<AdminService> logger)
@@ -36,6 +40,8 @@ public class AdminService
         _subjects = subjects;
         _enrollments = enrollments;
         _teacherStudentSubjects = teacherStudentSubjects;
+        _assignments = assignments;
+        _similarityAnalyses = similarityAnalyses;
         _currentUser = currentUser;
         _passwordHasher = passwordHasher;
         _logger = logger;
@@ -185,6 +191,85 @@ public class AdminService
             MongoDB.Driver.Builders<User>.Update.Set(u => u.UpdatedAt, user.UpdatedAt));
         await _users.UpdateAsync(userId, update, ct);
         _logger.LogInformation("Admin set user {UserId} active={Active}", userId, isActive);
+    }
+
+    /// <summary>
+    /// Permanently removes a user from the system and cascades into related
+    /// domain data (assignments, teacher/student links, enrollments, similarity
+    /// analyses) so the database is not left with orphan documents.
+    ///
+    /// Safety:
+    ///   - Admin users cannot be deleted (would lock out the system).
+    ///   - Admins cannot delete their own account.
+    ///   - All deletes are best-effort and logged; a failure in a single
+    ///     cascade is surfaced as a ConflictException so the admin knows the
+    ///     delete did not fully complete.
+    /// </summary>
+    public async Task DeleteUserAsync(string userId, CancellationToken ct = default)
+    {
+        EnsureAdmin();
+
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new ValidationException("User id is required.");
+
+        var user = await _users.GetByIdAsync(userId, ct)
+            ?? throw new NotFoundException("User not found.");
+
+        // Refuse to delete admin accounts. There must always be at least one
+        // admin in the system, and we don't want a typo to lock everyone out.
+        if (user.Role == Role.Admin)
+            throw new ConflictException("Admin accounts cannot be deleted.");
+
+        // Refuse self-delete so the current admin can't accidentally lock
+        // themselves out of the panel.
+        if (!string.IsNullOrEmpty(_currentUser.UserId) && _currentUser.UserId == user.Id)
+            throw new ConflictException("You cannot delete your own account.");
+
+        long enrollmentsDeleted = 0;
+        long tssDeleted = 0;
+        long assignmentsDeleted = 0;
+        long similarityDeleted = 0;
+
+        try
+        {
+            if (user.Role == Role.Student)
+            {
+                enrollmentsDeleted = await _enrollments.DeleteByStudentAsync(user.Id, ct);
+                tssDeleted = await _teacherStudentSubjects.DeleteByStudentAsync(user.Id, ct);
+                similarityDeleted = await _similarityAnalyses.DeleteByStudentAsync(user.Id, ct);
+                assignmentsDeleted = await _assignments.DeleteByStudentAsync(user.Id, ct);
+            }
+            else if (user.Role == Role.Teacher)
+            {
+                tssDeleted = await _teacherStudentSubjects.DeleteByTeacherAsync(user.Id, ct);
+                // Similarity analyses live on assignments — cascade via the
+                // teacher's assignments first.
+                similarityDeleted = await _similarityAnalyses.DeleteByTeacherAsync(user.Id, ct);
+                assignmentsDeleted = await _assignments.DeleteByTeacherAsync(user.Id, ct);
+            }
+
+            var deleted = await _users.DeleteAsync(user.Id, ct);
+            if (!deleted)
+                throw new NotFoundException("User was already removed.");
+
+            _logger.LogInformation(
+                "Admin deleted user {UserId} ({Role}). Cascade: enrollments={Enr}, tss={Tss}, assignments={Asn}, similarity={Sim}",
+                user.Id, user.Role, enrollmentsDeleted, tssDeleted, assignmentsDeleted, similarityDeleted);
+        }
+        catch (NotFoundException)
+        {
+            throw;
+        }
+        catch (AppException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to delete user {UserId} ({Role})", user.Id, user.Role);
+            throw new ConflictException(
+                $"Could not fully delete this user because related data could not be removed: {ex.Message}");
+        }
     }
 
     private void EnsureAdmin()

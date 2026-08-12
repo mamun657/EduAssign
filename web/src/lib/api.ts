@@ -1,19 +1,5 @@
-// Centralized API client. Single source of truth for backend URL + auth header.
-// Uses fetch + JSON so we don't add any runtime deps beyond what's already in package.json.
-
 import { getToken, clearAuth } from "./auth";
 import type { ApiError } from "./types";
-
-// Backend controllers already declare [Route("api/[controller]")] (or
-// "api/<name>"). The frontend paths below are relative to /api/<...> so the
-// base URL only needs to be the origin, e.g. http://localhost:5220.
-//
-// IMPORTANT: Next.js inlines `NEXT_PUBLIC_*` values at BUILD time. The
-// env var must be present in the build process's environment, otherwise
-// the fallback below gets baked into the production bundle and the
-// frontend will keep pointing at `http://localhost:5220` even after the
-// value is set on the runtime side. Render README:
-//   https://render.com/docs/environment-variables#build-environment
 const FALLBACK_DEV_URL = "http://localhost:5220";
 const FALLBACK_PROD_URL = "https://eduassign-api.onrender.com";
 
@@ -272,6 +258,10 @@ export const Admin = {
     apiRequest<unknown, UpdateUserStatusRequest>(`/admin/users/${id}/active`, {
       method: "PATCH",
       body: req,
+    }),
+  deleteUser: (id: string) =>
+    apiRequest<unknown, unknown>(`/admin/users/${id}`, {
+      method: "DELETE",
     }),
 };
 

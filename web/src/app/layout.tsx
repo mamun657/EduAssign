@@ -30,7 +30,19 @@ import { AuthProvider } from "@/components/auth/AuthProvider";
  * element. The `next/script` indirection avoids that and is the official
  * Next.js pattern for pre-hydration scripts.
  */
-const HYDRATION_SCRUBBER_SCRIPT = `(function(){var P=["bis_skin_","bis_register","__processed_","data-extension-","data-bis-","data-avast-","data-grammarly-","data-avira-","data-norton-","data-malwarebytes-","data-mcafee-"];var E=["cz-shortcut-listen"];function isBad(n){n=String(n).toLowerCase();if(E.indexOf(n)!==-1)return true;for(var i=0;i<E.length;i++){if(n.indexOf(E[i])===0)return true;}for(var j=0;j<P.length;j++){if(n.indexOf(P[j])===0)return true;}return false;}function scrub(root){if(!root||!root.querySelectorAll)return;var nodes=root.querySelectorAll("*");for(var i=0;i<nodes.length;i++){var el=nodes[i];var attrs=el.attributes;var rm=[];for(var k=0;k<attrs.length;k++){if(isBad(attrs[k].name))rm.push(attrs[k].name);}for(var m=0;m<rm.length;m++)el.removeAttribute(rm[m]);}}scrub(document);document.addEventListener("DOMContentLoaded",function(){scrub(document);});try{var obs=new MutationObserver(function(muts){for(var i=0;i<muts.length;i++){var mu=muts[i];if(mu.type==="attributes"&&mu.target&&isBad(mu.attributeName)){mu.target.removeAttribute(mu.attributeName);}}});obs.observe(document.documentElement,{attributes:true,subtree:true,childList:false});}catch(e){}})();`;
+const HYDRATION_SCRUBBER_SCRIPT = `(function(){var P=["bis_skin_","bis_register","__processed_","data-extension-","data-bis-","data-avast-","data-grammarly-","data-avira-","data-norton-","data-malwarebytes-","data-mcafee-"];var E=["cz-shortcut-listen"];function isBad(n){n=String(n).toLowerCase();if(E.indexOf(n)!==-1)return true;for(var i=0;i<E.length;i++){if(n.indexOf(E[i])===0)return true;}for(var j=0;j<P.length;j++){if(n.indexOf(P[j])===0)return true;}return false;}function scrub(root){if(!root||!root.querySelectorAll)return;var nodes=root.querySelectorAll("*");for(var i=0;i<nodes.length;i++){var el=nodes[i];var attrs=el.attributes;var rm=[];for(var k=0;k<attrs.length;k++){if(isBad(attrs[k].name))rm.push(attrs[k].name);}for(var m=0;m<rm.length;m++)el.removeAttribute(rm[m]);}}scrub(document);document.addEventListener("DOMContentLoaded",function(){scrub(document);});try{var obs=new MutationObserver(function(muts){for(var i=0;i<muts.length;i++){var mu=muts[i];if(mu.type==="attributes"&&mu.target&&isBad(mu.attributeName)){mu.target.removeAttribute(mu.attributeName);}}});obs.observe(document.documentElement,{attributes:true,subtree:true,childList:false});}catch(e){}
+// Extension-error filter: ignore runtime exceptions thrown by chrome-extension://
+// content scripts (e.g. the "M_ID" unhandledRejection from
+// eppiocemhmnlbhjplcgkofciiegomcon). These are not bugs in this app — they are
+// third-party executor code that walks the React/Next.js DOM and crashes on
+// minified props. We still let app errors through, but we prevent them from
+// being surfaced by Next.js's dev overlay (which logs every browser
+// unhandledRejection to the dev server).
+function fromExt(src){return typeof src==="string"&&src.indexOf("chrome-extension://")===0;}
+function stackFromExt(s){return typeof s==="string"&&s.indexOf("chrome-extension://")!==-1;}
+try{window.addEventListener("error",function(ev){if(ev&&(fromExt(ev.filename)||stackFromExt(ev.error&&ev.error.stack))){ev.preventDefault();ev.stopImmediatePropagation();return true;}},true);}catch(_){}
+try{window.addEventListener("unhandledrejection",function(ev){var r=ev&&ev.reason;var stack=r&&r.stack?String(r.stack):"";var msg=r&&r.message?String(r.message):String(r);if(stackFromExt(stack)||fromExt(r&&r.source)||fromExt(r&&r.fileName)||/chrome-extension:/.test(msg)){ev.preventDefault();ev.stopImmediatePropagation();}},true);}catch(_){}
+try{var origCE=window.console&&window.console.error;if(origCE){window.console.error=function(){var s="";for(var i=0;i<arguments.length;i++){try{s+=String(arguments[i]);}catch(_){s+="[unstringable]";}}if(/chrome-extension:\\/\\//.test(s))return;return origCE.apply(this,arguments);};}}catch(_){}})();`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

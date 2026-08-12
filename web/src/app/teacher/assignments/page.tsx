@@ -22,6 +22,7 @@ import Button from "@/components/ui/Button";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
 import Select from "@/components/ui/Select";
+import StatCard from "@/components/ui/StatCard";
 import { Assignments } from "@/lib/api";
 import type { Assignment, AssignmentStatus } from "@/lib/types";
 
@@ -33,16 +34,16 @@ function formatDate(iso: string): string {
   });
 }
 
-function statusTone(status: AssignmentStatus) {
+function statusTone(status: AssignmentStatus): "success" | "info" | "warning" | "neutral" {
   switch (status) {
     case "Reviewed":
-      return "emerald" as const;
+      return "success";
     case "Submitted":
-      return "sky" as const;
+      return "info";
     case "Published":
-      return "amber" as const;
+      return "warning";
     default:
-      return "slate" as const;
+      return "neutral";
   }
 }
 
@@ -97,6 +98,15 @@ function TeacherAssignmentsList() {
     return assignments.filter((a) => a.status === filter);
   }, [assignments, filter]);
 
+  const counts = useMemo(() => {
+    const c = { Draft: 0, Published: 0, Submitted: 0, Reviewed: 0 } as Record<
+      "Draft" | "Published" | "Submitted" | "Reviewed",
+      number
+    >;
+    for (const a of assignments) c[a.status] += 1;
+    return c;
+  }, [assignments]);
+
   async function handlePublish(id: string) {
     setActionError(null);
     setBusyId(id);
@@ -127,11 +137,12 @@ function TeacherAssignmentsList() {
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="Authoring"
         title="Assignments"
         description="Drafts, published briefs, and submissions."
         actions={
           <Link href="/teacher/assignments/new">
-            <Button>
+            <Button variant="success">
               <Plus className="h-4 w-4" aria-hidden="true" />
               New assignment
             </Button>
@@ -139,8 +150,46 @@ function TeacherAssignmentsList() {
         }
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
-      {actionError ? <Alert tone="error">{actionError}</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
+      {actionError ? <Alert tone="danger">{actionError}</Alert> : null}
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        <StatCard
+          label="Total"
+          value={assignments.length}
+          icon={<ClipboardList className="h-5 w-5" aria-hidden="true" />}
+          tone="slate"
+          hint="All time"
+        />
+        <StatCard
+          label="Drafts"
+          value={counts.Draft}
+          icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+          tone="neutral"
+          hint="Unpublished"
+        />
+        <StatCard
+          label="Published"
+          value={counts.Published}
+          icon={<Send className="h-5 w-5" aria-hidden="true" />}
+          tone="warning"
+          hint="Awaiting student"
+        />
+        <StatCard
+          label="Submitted"
+          value={counts.Submitted}
+          icon={<Inbox className="h-5 w-5" aria-hidden="true" />}
+          tone="info"
+          hint="To review"
+        />
+        <StatCard
+          label="Reviewed"
+          value={counts.Reviewed}
+          icon={<ClipboardList className="h-5 w-5" aria-hidden="true" />}
+          tone="success"
+          hint="Closed with marks"
+        />
+      </div>
 
       <Card>
         <CardHeader>
@@ -166,73 +215,77 @@ function TeacherAssignmentsList() {
             </div>
           </div>
         </CardHeader>
-        <CardBody>
+        <CardBody className="p-0">
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
+            <p className="px-5 py-6 text-[13px] text-slate-500">Loading…</p>
           ) : filtered.length === 0 ? (
-            assignments.length === 0 ? (
-              <EmptyState
-                title="No assignments yet"
-                description="Create your first assignment and attach a brief."
-                icon={<ClipboardList className="h-6 w-6" aria-hidden="true" />}
-                action={
-                  <Link href="/teacher/assignments/new">
-                    <Button>
-                      <Plus className="h-4 w-4" aria-hidden="true" />
-                      New assignment
-                    </Button>
-                  </Link>
-                }
-              />
-            ) : (
-              <EmptyState
-                title="No matches"
-                description={`No assignments with status "${filter}".`}
-                icon={<Filter className="h-6 w-6" aria-hidden="true" />}
-              />
-            )
+            <div className="p-5">
+              {assignments.length === 0 ? (
+                <EmptyState
+                  title="No assignments yet"
+                  description="Create your first assignment and attach a brief."
+                  icon={<ClipboardList className="h-6 w-6" aria-hidden="true" />}
+                  action={
+                    <Link href="/teacher/assignments/new">
+                      <Button variant="success">
+                        <Plus className="h-4 w-4" aria-hidden="true" />
+                        New assignment
+                      </Button>
+                    </Link>
+                  }
+                />
+              ) : (
+                <EmptyState
+                  title="No matches"
+                  description={`No assignments with status "${filter}".`}
+                  icon={<Filter className="h-6 w-6" aria-hidden="true" />}
+                />
+              )}
+            </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="border-b border-[#E5E7EB] text-xs uppercase tracking-wide text-[#6B7280]">
+              <table className="w-full text-left text-[13px]">
+                <thead className="border-b border-slate-200 bg-slate-50 text-[11.5px] uppercase tracking-[0.06em] text-slate-500">
                   <tr>
-                    <th scope="col" className="py-2 pr-3 font-medium">Title</th>
-                    <th scope="col" className="py-2 pr-3 font-medium">Student</th>
-                    <th scope="col" className="py-2 pr-3 font-medium">Subject</th>
-                    <th scope="col" className="py-2 pr-3 font-medium">Due</th>
-                    <th scope="col" className="py-2 pr-3 font-medium">Status</th>
-                    <th scope="col" className="py-2 pr-3 font-medium text-right">Actions</th>
+                    <th scope="col" className="px-5 py-2.5 font-semibold">Title</th>
+                    <th scope="col" className="px-5 py-2.5 font-semibold">Student</th>
+                    <th scope="col" className="px-5 py-2.5 font-semibold">Subject</th>
+                    <th scope="col" className="px-5 py-2.5 font-semibold">Due</th>
+                    <th scope="col" className="px-5 py-2.5 font-semibold">Status</th>
+                    <th scope="col" className="px-5 py-2.5 text-right font-semibold">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-slate-200">
                   {filtered.map((a) => (
-                    <tr key={a.id}>
-                      <td className="py-3 pr-3 align-top">
+                    <tr key={a.id} className="hover:bg-slate-50">
+                      <td className="h-[56px] px-5 align-middle">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-[#111827]">{a.title}</span>
+                          <span className="font-medium text-slate-900">{a.title}</span>
                           {a.attachmentFileName ? (
                             <span
                               title={`Attachment: ${a.attachmentFileName}`}
-                              className="inline-flex items-center text-[#6B7280]"
+                              className="inline-flex items-center text-slate-400"
                             >
                               <FileText className="h-3.5 w-3.5" aria-hidden="true" />
                             </span>
                           ) : null}
                         </div>
                       </td>
-                      <td className="py-3 pr-3 align-top text-[#111827]">{a.studentName}</td>
-                      <td className="py-3 pr-3 align-top text-[#111827]">{a.subjectName}</td>
-                      <td className="py-3 pr-3 align-top text-[#6B7280]">
+                      <td className="h-[56px] px-5 align-middle text-slate-700">{a.studentName}</td>
+                      <td className="h-[56px] px-5 align-middle text-slate-700">{a.subjectName}</td>
+                      <td className="h-[56px] px-5 align-middle text-slate-500">
                         {formatDate(a.dueDate)}
                       </td>
-                      <td className="py-3 pr-3 align-top">
-                        <Badge tone={statusTone(a.status)}>{a.status}</Badge>
+                      <td className="h-[56px] px-5 align-middle">
+                        <Badge tone={statusTone(a.status)} withDot>
+                          {a.status}
+                        </Badge>
                       </td>
-                      <td className="py-3 pr-3 align-top">
+                      <td className="h-[56px] px-5 align-middle">
                         <div className="flex flex-wrap items-center justify-end gap-2">
                           <Link
                             href={`/teacher/assignments/${a.id}`}
-                            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E7EB] text-[#111827] hover:bg-[#F9FAFB]"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-[9px] border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
                             aria-label={`View ${a.title}`}
                           >
                             <Eye className="h-4 w-4" aria-hidden="true" />
@@ -240,30 +293,30 @@ function TeacherAssignmentsList() {
                           {a.status === "Submitted" ? (
                             <Link
                               href={`/teacher/submissions/${a.id}`}
-                              className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E7EB] px-2.5 py-1.5 text-xs font-medium text-[#111827] hover:bg-[#F9FAFB]"
+                              className="inline-flex items-center gap-1.5 rounded-[9px] border border-slate-300 bg-white px-2.5 py-1.5 text-[12.5px] font-medium text-slate-800 hover:bg-slate-50"
                             >
                               <Inbox className="h-3.5 w-3.5" aria-hidden="true" />
                               Review
                             </Link>
                           ) : null}
                           {a.status === "Draft" ? (
-                            <button
-                              type="button"
+                            <Button
+                              size="sm"
+                              variant="success"
+                              loading={busyId === a.id}
                               onClick={() => handlePublish(a.id)}
-                              disabled={busyId === a.id}
-                              className="inline-flex items-center gap-1.5 rounded-lg bg-[#16A34A] px-2.5 py-1.5 text-xs font-medium text-white hover:bg-[#15803D] disabled:cursor-not-allowed disabled:opacity-60"
                             >
                               <Send className="h-3.5 w-3.5" aria-hidden="true" />
-                              {busyId === a.id ? "Publishing…" : "Publish"}
-                            </button>
+                              Publish
+                            </Button>
                           ) : null}
                           {a.status === "Draft" ? (
                             <button
                               type="button"
                               onClick={() => handleDelete(a.id)}
                               disabled={busyId === a.id}
-                              className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[#FECACA] text-[#B91C1C] hover:bg-[#FEF2F2] disabled:cursor-not-allowed disabled:opacity-60"
                               aria-label={`Delete ${a.title}`}
+                              className="inline-flex h-9 w-9 items-center justify-center rounded-[9px] border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-60"
                             >
                               <Trash2 className="h-4 w-4" aria-hidden="true" />
                             </button>

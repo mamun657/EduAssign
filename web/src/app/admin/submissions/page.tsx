@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Eye } from "lucide-react";
+import { Eye, Inbox, ClipboardCheck } from "lucide-react";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
+import StatCard from "@/components/ui/StatCard";
 import {
   Card,
   CardBody,
@@ -40,11 +41,14 @@ function SubmissionsAdmin() {
     try {
       setAll(await Assignments.list());
     } catch (err) {
-      setError((err as { message?: string })?.message ?? "Failed to load submissions.");
+      setError(
+        (err as { message?: string })?.message ?? "Failed to load submissions."
+      );
     } finally {
       setLoading(false);
     }
   }
+
   useEffect(() => {
     load();
   }, []);
@@ -57,28 +61,51 @@ function SubmissionsAdmin() {
     return submittedOrReviewed.filter((a) => a.status === stage);
   }, [all, stage]);
 
-  const counts = useMemo(() => {
-    const submitted = all.filter((a) => a.status === "Submitted").length;
-    const reviewed = all.filter((a) => a.status === "Reviewed").length;
-    return { submitted, reviewed };
-  }, [all]);
+  const counts = useMemo(
+    () => ({
+      submitted: all.filter((a) => a.status === "Submitted").length,
+      reviewed: all.filter((a) => a.status === "Reviewed").length,
+    }),
+    [all]
+  );
 
   return (
     <DashboardShell role="Admin">
       <PageHeader
+        eyebrow="Administration / Submissions"
         title="Submissions"
         description="Assignments students have submitted and teachers have reviewed."
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? (
+        <div className="mb-4">
+          <Alert tone="error">{error}</Alert>
+        </div>
+      ) : null}
 
-      <Card className="mt-6">
+      <div className="mb-6 grid gap-3 sm:grid-cols-2">
+        <StatCard
+          tone="warning"
+          icon={<Inbox className="h-4 w-4" aria-hidden="true" />}
+          label="Pending review"
+          value={counts.submitted}
+        />
+        <StatCard
+          tone="success"
+          icon={<ClipboardCheck className="h-4 w-4" aria-hidden="true" />}
+          label="Reviewed"
+          value={counts.reviewed}
+        />
+      </div>
+
+      <Card>
         <CardHeader>
           <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-            <div>
+            <div className="flex flex-col gap-1">
               <CardTitle>All submissions</CardTitle>
               <CardDescription>
-                {filtered.length} shown · {counts.submitted} pending review · {counts.reviewed} reviewed
+                {filtered.length} shown · {counts.submitted} pending review ·{" "}
+                {counts.reviewed} reviewed
               </CardDescription>
             </div>
             <Select
@@ -94,47 +121,58 @@ function SubmissionsAdmin() {
         </CardHeader>
         <CardBody>
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
+            <p className="text-[13px] text-slate-500">Loading…</p>
           ) : filtered.length === 0 ? (
             <EmptyState
               title="No submissions yet"
               description="Students must publish and submit an assignment before it appears here."
             />
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto rounded-lg border border-slate-200">
               <table className="min-w-full text-sm">
-                <thead className="text-left text-xs uppercase tracking-wide text-[#6B7280]">
+                <thead className="bg-slate-50 text-left text-[11.5px] uppercase tracking-wide text-slate-500">
                   <tr>
-                    <th className="py-2 pr-4">Title</th>
-                    <th className="py-2 pr-4">Student</th>
-                    <th className="py-2 pr-4">Teacher</th>
-                    <th className="py-2 pr-4">Subject</th>
-                    <th className="py-2 pr-4">Marks</th>
-                    <th className="py-2 pr-4">Submitted</th>
-                    <th className="py-2 pr-4">Feedback</th>
-                    <th className="py-2 pr-4">Stage</th>
+                    <th className="px-4 py-2 font-semibold">Title</th>
+                    <th className="px-4 py-2 font-semibold">Student</th>
+                    <th className="px-4 py-2 font-semibold">Teacher</th>
+                    <th className="px-4 py-2 font-semibold">Subject</th>
+                    <th className="px-4 py-2 font-semibold">Marks</th>
+                    <th className="px-4 py-2 font-semibold">Submitted</th>
+                    <th className="px-4 py-2 font-semibold">Feedback</th>
+                    <th className="px-4 py-2 font-semibold">Stage</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-slate-200">
                   {filtered.map((a) => (
-                    <tr key={a.id} className="text-[#374151]">
-                      <td className="py-3 pr-4 font-medium text-[#111827]">{a.title}</td>
-                      <td className="py-3 pr-4">{a.studentName}</td>
-                      <td className="py-3 pr-4">{a.teacherName}</td>
-                      <td className="py-3 pr-4">{a.subjectName}</td>
-                      <td className="py-3 pr-4">{a.marks ?? "—"}</td>
-                      <td className="py-3 pr-4">
+                    <tr
+                      key={a.id}
+                      className="h-[56px] text-slate-700 hover:bg-slate-50"
+                    >
+                      <td className="px-4 py-2 font-medium text-slate-900">
+                        {a.title}
+                      </td>
+                      <td className="px-4 py-2">{a.studentName}</td>
+                      <td className="px-4 py-2">{a.teacherName}</td>
+                      <td className="px-4 py-2">{a.subjectName}</td>
+                      <td className="px-4 py-2">{a.marks ?? "—"}</td>
+                      <td className="px-4 py-2">
                         {a.submittedAt
                           ? new Date(a.submittedAt).toLocaleString()
                           : "—"}
                       </td>
-                      <td className="py-3 pr-4 max-w-[280px]">
-                        <p className="truncate text-[#374151]" title={a.feedback ?? ""}>
+                      <td className="max-w-[280px] px-4 py-2">
+                        <p
+                          className="truncate text-slate-700"
+                          title={a.feedback ?? ""}
+                        >
                           {a.feedback ?? "—"}
                         </p>
                       </td>
-                      <td className="py-3 pr-4">
-                        <Badge tone={a.status === "Reviewed" ? "emerald" : "amber"}>
+                      <td className="px-4 py-2">
+                        <Badge
+                          tone={a.status === "Reviewed" ? "success" : "warning"}
+                          withDot
+                        >
                           {a.status}
                         </Badge>
                       </td>
@@ -151,17 +189,21 @@ function SubmissionsAdmin() {
         <CardHeader>
           <CardTitle>How to read this list</CardTitle>
           <CardDescription>
-            Submitted = awaiting teacher review. Reviewed = teacher has set marks and feedback.
+            Submitted = awaiting teacher review. Reviewed = teacher has set marks
+            and feedback.
           </CardDescription>
         </CardHeader>
-        <CardBody className="space-y-2 text-sm text-[#374151]">
+        <CardBody className="space-y-3 text-[13.5px] text-slate-700">
           <p>
-            Use the stage filter to focus on items awaiting teacher action. The marks column is empty until
-            a teacher reviews and saves marks on the assignment.
+            Use the stage filter to focus on items awaiting teacher action. The
+            marks column stays empty until a teacher reviews and saves marks on
+            the assignment.
           </p>
-          <Button variant="secondary" onClick={load}>
-            <Eye className="h-3.5 w-3.5" aria-hidden="true" /> Refresh
-          </Button>
+          <div>
+            <Button variant="secondary" onClick={load}>
+              <Eye className="h-4 w-4" aria-hidden="true" /> Refresh
+            </Button>
+          </div>
         </CardBody>
       </Card>
     </DashboardShell>

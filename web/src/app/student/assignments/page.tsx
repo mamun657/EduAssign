@@ -2,16 +2,30 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ClipboardList, Filter, FileText } from "lucide-react";
+import {
+  ClipboardList,
+  Filter,
+  FileText,
+  Send,
+  CheckCircle2,
+  Timer,
+} from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
-import { Card, CardBody, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
 import Select from "@/components/ui/Select";
+import StatCard from "@/components/ui/StatCard";
 import { Assignments } from "@/lib/api";
 import type { Assignment, AssignmentStatus } from "@/lib/types";
 
@@ -23,16 +37,18 @@ function formatDate(iso: string): string {
   });
 }
 
-function statusTone(status: AssignmentStatus) {
+function statusTone(
+  status: AssignmentStatus,
+): "success" | "info" | "warning" | "neutral" {
   switch (status) {
     case "Reviewed":
-      return "emerald" as const;
+      return "success";
     case "Submitted":
-      return "sky" as const;
+      return "info";
     case "Published":
-      return "amber" as const;
+      return "warning";
     default:
-      return "slate" as const;
+      return "neutral";
   }
 }
 
@@ -104,31 +120,35 @@ function StudentAssignments() {
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="Your work"
         title="Assignments"
         description="View briefs, submit work, and check feedback."
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">To do</p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{counts.Published}</p>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">Submitted</p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{counts.Submitted}</p>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">Reviewed</p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{counts.Reviewed}</p>
-          </CardBody>
-        </Card>
+        <StatCard
+          label="To do"
+          value={counts.Published}
+          icon={<Timer className="h-5 w-5" aria-hidden="true" />}
+          tone="warning"
+          hint="Awaiting submission"
+        />
+        <StatCard
+          label="Submitted"
+          value={counts.Submitted}
+          icon={<Send className="h-5 w-5" aria-hidden="true" />}
+          tone="info"
+          hint="Awaiting teacher review"
+        />
+        <StatCard
+          label="Reviewed"
+          value={counts.Reviewed}
+          icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
+          tone="success"
+          hint="With marks"
+        />
       </div>
 
       <Card>
@@ -155,50 +175,54 @@ function StudentAssignments() {
             </div>
           </div>
         </CardHeader>
-        <CardBody>
+        <CardBody className="p-0">
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
+            <p className="px-5 py-6 text-[13px] text-slate-500">Loading…</p>
           ) : filtered.length === 0 ? (
-            assignments.length === 0 ? (
-              <EmptyState
-                title="No assignments yet"
-                description="Your teacher will publish assignments here."
-                icon={<ClipboardList className="h-6 w-6" aria-hidden="true" />}
-              />
-            ) : (
-              <EmptyState
-                title="No matches"
-                description={`No assignments with status "${filter}".`}
-                icon={<Filter className="h-6 w-6" aria-hidden="true" />}
-              />
-            )
+            <div className="p-5">
+              {assignments.length === 0 ? (
+                <EmptyState
+                  title="No assignments yet"
+                  description="Your teacher will publish assignments here."
+                  icon={<ClipboardList className="h-6 w-6" aria-hidden="true" />}
+                />
+              ) : (
+                <EmptyState
+                  title="No matches"
+                  description={`No assignments with status "${filter}".`}
+                  icon={<Filter className="h-6 w-6" aria-hidden="true" />}
+                />
+              )}
+            </div>
           ) : (
-            <ul className="divide-y divide-[#E5E7EB]">
+            <ul className="divide-y divide-slate-200">
               {filtered.map((a) => (
                 <li key={a.id}>
                   <Link
                     href={`/student/assignments/${a.id}`}
-                    className="flex flex-wrap items-center gap-3 py-3 hover:bg-[#F9FAFB]"
+                    className="flex flex-wrap items-center gap-3 px-5 py-3 hover:bg-slate-50"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-[#111827]">
+                      <p className="truncate text-[13.5px] font-medium text-slate-900">
                         {a.title}
                       </p>
-                      <p className="text-xs text-[#6B7280]">
+                      <p className="text-[12px] text-slate-500">
                         {a.subjectName} · due {formatDate(a.dueDate)}
                       </p>
                     </div>
                     {a.attachmentFileName ? (
                       <span
                         title={`Has attachment: ${a.attachmentFileName}`}
-                        className="inline-flex items-center text-[#6B7280]"
+                        className="inline-flex items-center text-slate-400"
                       >
                         <FileText className="h-4 w-4" aria-hidden="true" />
                       </span>
                     ) : null}
-                    <Badge tone={statusTone(a.status)}>{a.status}</Badge>
+                    <Badge tone={statusTone(a.status)} withDot>
+                      {a.status}
+                    </Badge>
                     {a.status === "Reviewed" && a.marks != null ? (
-                      <span className="text-xs font-medium text-[#111827]">
+                      <span className="inline-flex items-center gap-1 rounded-[9px] border border-slate-200 bg-white px-2 py-1 text-[12px] font-medium text-slate-800">
                         Marks: {a.marks}
                       </span>
                     ) : null}

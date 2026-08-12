@@ -198,23 +198,7 @@ function Hero() {
               academic workflows — built for Admins, Teachers, and Students.
             </p>
 
-            <div className="hero-fade-in hero-fade-in-delay-1 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
-                href="/register"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-black transition-[transform,filter,background-color] duration-200 hover:-translate-y-0.5 hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                Get Started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/login"
-                className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium text-white/75 transition-colors hover:text-white"
-              >
-                Sign In
-              </Link>
-            </div>
-
-            <ul className="hero-fade-in hero-fade-in-delay-2 mt-7 flex flex-wrap gap-x-7 gap-y-2 text-[13px] text-white/55">
+            <ul className="hero-fade-in hero-fade-in-delay-1 mt-10 flex flex-wrap gap-x-7 gap-y-2 text-[13px] text-white/55 sm:mt-12">
               <li className="inline-flex items-center gap-2">
                 <Check className="h-3.5 w-3.5 text-white/70" aria-hidden="true" />
                 Role-based access

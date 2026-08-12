@@ -2,7 +2,13 @@
 
 import type { ReactNode } from "react";
 
-type AlertTone = "info" | "success" | "error" | "warning";
+type AlertTone =
+  | "info"
+  | "success"
+  | "error"
+  | "danger"
+  | "warning"
+  | "neutral";
 
 interface AlertProps {
   tone?: AlertTone;
@@ -11,18 +17,25 @@ interface AlertProps {
 }
 
 const tones: Record<AlertTone, string> = {
-  info: "bg-[#EFF6FF] text-[#1E40AF] border-[#BFDBFE]",
-  success: "bg-[#ECFDF5] text-[#15803D] border-[#A7F3D0]",
-  error: "bg-[#FEF2F2] text-[#991B1B] border-[#FECACA]",
-  warning: "bg-[#FFFBEB] text-[#92400E] border-[#FDE68A]",
+  info: "bg-blue-50 text-blue-700 border-blue-200",
+  success: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  error: "bg-rose-50 text-rose-700 border-rose-200",
+  danger: "bg-rose-50 text-rose-700 border-rose-200",
+  warning: "bg-amber-50 text-amber-700 border-amber-200",
+  neutral: "bg-slate-50 text-slate-700 border-slate-200",
 };
 
-export default function Alert({ tone = "info", children, className = "" }: AlertProps) {
+export default function Alert({
+  tone = "info",
+  children,
+  className = "",
+}: AlertProps) {
+  const role = tone === "error" || tone === "danger" ? "alert" : "status";
   return (
     <div
-      role={tone === "error" ? "alert" : "status"}
+      role={role}
       className={[
-        "rounded-lg border px-4 py-3 text-sm",
+        "rounded-[10px] border px-4 py-3 text-[13px] font-medium",
         tones[tone],
         className,
       ].join(" ")}

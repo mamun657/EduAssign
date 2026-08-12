@@ -54,7 +54,7 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
   // flashes between logged-in / logged-out.
   if (!mounted) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F9FAFB] text-sm text-[#6B7280]">
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 text-sm text-slate-500">
         Loading…
       </div>
     );
@@ -62,14 +62,14 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
 
   if (!user) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F9FAFB] text-sm text-[#6B7280]">
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 text-sm text-slate-500">
         Redirecting…
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen bg-[#F9FAFB]">
+    <div className="flex min-h-screen bg-slate-50">
       {/* Desktop sidebar — fixed at lg, hidden below. */}
       <aside
         className="hidden w-[260px] shrink-0 lg:sticky lg:top-0 lg:block lg:h-screen"
@@ -107,29 +107,29 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
           tabIndex={drawerOpen ? 0 : -1}
           onClick={() => setDrawerOpen(false)}
           className={[
-            "absolute inset-0 bg-[#111827] transition-opacity",
+            "absolute inset-0 bg-slate-900 transition-opacity",
             drawerOpen ? "opacity-50" : "opacity-0",
           ].join(" ")}
         />
         {/* Panel */}
         <div
           className={[
-            "absolute left-0 top-0 h-full w-[280px] max-w-[85%] bg-[#FFFFFF] shadow-xl transition-transform",
+            "absolute left-0 top-0 h-full w-[280px] max-w-[85%] bg-white shadow-xl transition-transform",
             drawerOpen ? "translate-x-0" : "-translate-x-full",
           ].join(" ")}
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
         >
-          <div className="flex h-16 items-center justify-between border-b border-[#E5E7EB] px-4">
+          <div className="flex h-16 items-center justify-between border-b border-slate-200 px-4">
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#111827] text-[#FFFFFF]"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-emerald-600 text-white shadow-cta-green"
               >
-                <span className="text-xs font-bold">EA</span>
+                <span className="text-[12px] font-semibold tracking-tight">EA</span>
               </span>
-              <span className="text-sm font-semibold text-[#111827]">
+              <span className="text-sm font-semibold text-slate-900">
                 EduAssign Pro
               </span>
             </div>
@@ -137,7 +137,7 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
               type="button"
               onClick={() => setDrawerOpen(false)}
               aria-label="Close"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#111827]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900"
             >
               <X className="h-5 w-5" aria-hidden="true" />
             </button>

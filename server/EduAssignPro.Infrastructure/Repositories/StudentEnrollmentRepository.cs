@@ -36,4 +36,11 @@ public class StudentEnrollmentRepository : IStudentEnrollmentRepository
             e => e.StudentId == studentId && e.SubjectId == subjectId, ct);
         return result.IsAcknowledged && result.DeletedCount > 0;
     }
+
+    public async Task<long> DeleteByStudentAsync(string studentId, CancellationToken ct = default)
+    {
+        var result = await _ctx.StudentSubjectEnrollments.DeleteManyAsync(
+            e => e.StudentId == studentId, ct);
+        return result.IsAcknowledged ? result.DeletedCount : 0L;
+    }
 }

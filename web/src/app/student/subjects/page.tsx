@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { BookOpen } from "lucide-react";
+import { useEffect, useState } from "react";
+import { BookOpen, GraduationCap, Sparkles } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
-import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/Card";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
+import StatCard from "@/components/ui/StatCard";
 import { Students } from "@/lib/api";
 import type { EnrolledSubject } from "@/lib/types";
 
@@ -58,84 +65,88 @@ function StudentSubjects() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Subjects"
+        eyebrow="Catalog"
+        title="My subjects"
         description="Subjects you are currently enrolled in."
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card>
-          <CardBody className="flex items-center justify-between">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
-                Total subjects
-              </p>
-              <p className="mt-1 text-2xl font-semibold text-[#111827]">
-                {subjects.length}
-              </p>
-            </div>
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#ECFDF5] text-[#065F46]">
-              <BookOpen className="h-5 w-5" aria-hidden="true" />
-            </span>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
-              Compulsory
-            </p>
-            <p className="mt-1 text-2xl font-semibold text-[#111827]">
-              {compulsoryCount}
-            </p>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
-              Electives
-            </p>
-            <p className="mt-1 text-2xl font-semibold text-[#111827]">
-              {electiveCount}
-            </p>
-          </CardBody>
-        </Card>
+        <StatCard
+          label="Total subjects"
+          value={subjects.length}
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
+          tone="emerald"
+          hint="Currently enrolled"
+        />
+        <StatCard
+          label="Compulsory"
+          value={compulsoryCount}
+          icon={<GraduationCap className="h-5 w-5" aria-hidden="true" />}
+          tone="blue"
+          hint="Required by your level"
+        />
+        <StatCard
+          label="Electives"
+          value={electiveCount}
+          icon={<Sparkles className="h-5 w-5" aria-hidden="true" />}
+          tone="violet"
+          hint="Of your own choosing"
+        />
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Enrolled subjects</CardTitle>
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <CardTitle>Enrolled subjects</CardTitle>
+              <CardDescription>
+                {subjects.length} total · {compulsoryCount} required · {electiveCount} elective
+              </CardDescription>
+            </div>
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-emerald-50 text-emerald-700">
+              <BookOpen className="h-5 w-5" aria-hidden="true" />
+            </span>
+          </div>
         </CardHeader>
-        <CardBody>
+        <CardBody className="p-0">
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
+            <p className="px-5 py-6 text-[13px] text-slate-500">Loading…</p>
           ) : subjects.length === 0 ? (
-            <EmptyState
-              title="No subjects yet"
-              description="An administrator needs to enrol you in subjects before they appear here."
-              icon={<BookOpen className="h-6 w-6" aria-hidden="true" />}
-            />
+            <div className="p-5">
+              <EmptyState
+                title="No subjects yet"
+                description="An administrator needs to enrol you in subjects before they appear here."
+                icon={<BookOpen className="h-6 w-6" aria-hidden="true" />}
+              />
+            </div>
           ) : (
-            <ul className="divide-y divide-[#E5E7EB]">
+            <ul className="divide-y divide-slate-200">
               {subjects.map((s) => (
-                <li key={s.subjectId} className="flex items-center gap-4 py-3">
+                <li
+                  key={s.subjectId}
+                  className="flex items-center gap-4 px-5 py-3 hover:bg-slate-50"
+                >
                   <span
-                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F0F9FF] text-[#075985]"
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-blue-50 text-blue-700"
                     aria-hidden="true"
                   >
                     <BookOpen className="h-5 w-5" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-[#111827]">
+                    <p className="truncate text-[13.5px] font-medium text-slate-900">
                       {s.subjectName}
                     </p>
-                    <p className="text-xs text-[#6B7280]">
+                    <p className="text-[12px] text-slate-500">
                       {s.isCompulsory
                         ? "Compulsory"
-                        : `Elective — ${s.electiveGroup ?? "Group"}${s.electiveOption ? ` · ${s.electiveOption}` : ""}`}
+                        : `Elective — ${s.electiveGroup ?? "Group"}${
+                            s.electiveOption ? ` · ${s.electiveOption}` : ""
+                          }`}
                     </p>
                   </div>
-                  <Badge tone={s.isCompulsory ? "emerald" : "sky"}>
+                  <Badge tone={s.isCompulsory ? "success" : "violet"} withDot>
                     {s.isCompulsory ? "Required" : "Elective"}
                   </Badge>
                 </li>

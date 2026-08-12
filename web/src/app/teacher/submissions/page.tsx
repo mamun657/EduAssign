@@ -2,16 +2,32 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Inbox, Filter, CheckCircle2, Eye, Sparkles } from "lucide-react";
+import {
+  Inbox,
+  Filter,
+  CheckCircle2,
+  Eye,
+  Sparkles,
+  ClipboardList,
+  Timer,
+  Star,
+} from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
-import { Card, CardBody, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
 import Select from "@/components/ui/Select";
+import StatCard from "@/components/ui/StatCard";
 import { Assignments, Similarity } from "@/lib/api";
 import type {
   Assignment,
@@ -30,31 +46,33 @@ function formatDateTime(iso: string): string {
   });
 }
 
-function statusTone(status: AssignmentStatus) {
+function statusTone(
+  status: AssignmentStatus,
+): "success" | "info" | "warning" | "neutral" {
   switch (status) {
     case "Reviewed":
-      return "emerald" as const;
+      return "success";
     case "Submitted":
-      return "sky" as const;
+      return "info";
     case "Published":
-      return "amber" as const;
+      return "warning";
     default:
-      return "slate" as const;
+      return "neutral";
   }
 }
 
 function similarityLevelTone(
   level: SimilarityLevel | string | undefined,
-): "emerald" | "amber" | "rose" | "slate" {
+): "success" | "warning" | "danger" | "neutral" {
   switch (level) {
     case "Low":
-      return "emerald";
+      return "success";
     case "Moderate":
-      return "amber";
+      return "warning";
     case "High":
-      return "rose";
+      return "danger";
     default:
-      return "slate";
+      return "neutral";
   }
 }
 
@@ -85,7 +103,6 @@ function TeacherSubmissions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<AssignmentStatus | "All">("Submitted");
-  // Per-submission similarity summary cache. A missing key means "NotAnalyzed".
   const [similarityBySub, setSimilarityBySub] = useState<
     Record<string, SimilaritySummary>
   >({});
@@ -100,7 +117,9 @@ function TeacherSubmissions() {
       try {
         const list = await Assignments.list();
         if (!ok) return;
-        setAssignments(list.filter((a) => a.status === "Submitted" || a.status === "Reviewed"));
+        setAssignments(
+          list.filter((a) => a.status === "Submitted" || a.status === "Reviewed"),
+        );
       } catch (err) {
         if (!ok) return;
         setError((err as { message?: string })?.message ?? "Failed to load");
@@ -114,8 +133,6 @@ function TeacherSubmissions() {
     };
   }, [user?.id]);
 
-  // Fetch similarity summaries in parallel for the Submitted/Reviewed rows.
-  // 404 = "NotAnalyzed yet", which we treat as "no result" rather than an error.
   useEffect(() => {
     if (assignments.length === 0) return;
     let ok = true;
@@ -127,9 +144,7 @@ function TeacherSubmissions() {
           try {
             const s = await Similarity.submissionSummary(a.id);
             return { id: a.id, summary: s };
-          } catch (err) {
-            const status = (err as { status?: number })?.status;
-            if (status === 404) return { id: a.id, summary: null };
+          } catch {
             return { id: a.id, summary: null };
           }
         }),
@@ -160,34 +175,35 @@ function TeacherSubmissions() {
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="Review queue"
         title="Submissions"
-        description="Review student work, give marks and feedback."
+        description="Review student work, run similarity analysis, and award marks."
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">Pending</p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{submittedCount}</p>
-            <p className="mt-1 text-xs text-[#6B7280]">Awaiting your review</p>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">Reviewed</p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{reviewedCount}</p>
-            <p className="mt-1 text-xs text-[#6B7280]">Closed with marks</p>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <p className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">Total</p>
-            <p className="mt-2 text-2xl font-semibold text-[#111827]">{assignments.length}</p>
-            <p className="mt-1 text-xs text-[#6B7280]">Submitted or reviewed</p>
-          </CardBody>
-        </Card>
+        <StatCard
+          label="Pending"
+          value={submittedCount}
+          icon={<Timer className="h-5 w-5" aria-hidden="true" />}
+          tone="info"
+          hint="Awaiting your review"
+        />
+        <StatCard
+          label="Reviewed"
+          value={reviewedCount}
+          icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
+          tone="success"
+          hint="Closed with marks"
+        />
+        <StatCard
+          label="Total"
+          value={assignments.length}
+          icon={<ClipboardList className="h-5 w-5" aria-hidden="true" />}
+          tone="slate"
+          hint="Submitted or reviewed"
+        />
       </div>
 
       <Card>
@@ -214,58 +230,58 @@ function TeacherSubmissions() {
             </div>
           </div>
         </CardHeader>
-        <CardBody>
+        <CardBody className="p-0">
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
+            <p className="px-5 py-6 text-[13px] text-slate-500">Loading…</p>
           ) : filtered.length === 0 ? (
-            assignments.length === 0 ? (
-              <EmptyState
-                title="No submissions yet"
-                description="Submissions appear here once students turn in work."
-                icon={<Inbox className="h-6 w-6" aria-hidden="true" />}
-              />
-            ) : (
-              <EmptyState
-                title="No matches"
-                description={`No submissions with status "${filter}".`}
-                icon={<Filter className="h-6 w-6" aria-hidden="true" />}
-              />
-            )
+            <div className="p-5">
+              {assignments.length === 0 ? (
+                <EmptyState
+                  title="No submissions yet"
+                  description="Submissions appear here once students turn in work."
+                  icon={<Inbox className="h-6 w-6" aria-hidden="true" />}
+                />
+              ) : (
+                <EmptyState
+                  title="No matches"
+                  description={`No submissions with status "${filter}".`}
+                  icon={<Filter className="h-6 w-6" aria-hidden="true" />}
+                />
+              )}
+            </div>
           ) : (
-            <ul className="divide-y divide-[#E5E7EB]">
+            <ul className="divide-y divide-slate-200">
               {filtered.map((a) => (
-                <li key={a.id} className="flex flex-wrap items-center gap-3 py-3">
+                <li
+                  key={a.id}
+                  className="flex flex-wrap items-center gap-3 px-5 py-3 hover:bg-slate-50"
+                >
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-[#111827]">{a.title}</p>
-                    <p className="text-xs text-[#6B7280]">
+                    <p className="truncate text-[13.5px] font-medium text-slate-900">
+                      {a.title}
+                    </p>
+                    <p className="text-[12px] text-slate-500">
                       {a.studentName} · {a.subjectName} · submitted{" "}
                       {a.submittedAt ? formatDateTime(a.submittedAt) : "—"}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Badge tone={statusTone(a.status)}>
-                      {a.status === "Reviewed" ? (
-                        <span className="inline-flex items-center gap-1">
-                          <CheckCircle2 className="h-3 w-3" aria-hidden="true" />
-                          Reviewed
-                        </span>
-                      ) : (
-                        a.status
-                      )}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge tone={statusTone(a.status)} withDot>
+                      {a.status === "Reviewed" ? "Reviewed" : a.status}
                     </Badge>
                     {(() => {
                       const sim = similarityBySub[a.id];
                       if (!sim) {
                         return (
-                          <Badge tone="slate" className="gap-1">
+                          <Badge tone="neutral" className="gap-1">
                             <Sparkles className="h-3 w-3" aria-hidden="true" />
-                            Not analyzed
+                            {similarityLoading ? "Loading…" : "Not analyzed"}
                           </Badge>
                         );
                       }
                       if (sim.status === "Analyzing") {
                         return (
-                          <Badge tone="slate" className="gap-1">
+                          <Badge tone="neutral" className="gap-1">
                             <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
                             Analyzing…
                           </Badge>
@@ -278,10 +294,10 @@ function TeacherSubmissions() {
                             data-level={sim.level}
                             className="inline-flex items-center gap-2"
                           >
-                            <Badge tone={similarityLevelTone(sim.level)}>
+                            <Badge tone={similarityLevelTone(sim.level)} withDot>
                               {similarityPercent(sim.highestSimilarityScore)}
                             </Badge>
-                            <span className="text-xs text-[#6B7280]">
+                            <span className="text-[12px] text-slate-500">
                               {sim.level === "High"
                                 ? "High Similarity Detected"
                                 : sim.level}
@@ -290,29 +306,27 @@ function TeacherSubmissions() {
                         );
                       }
                       if (sim.status === "Failed") {
-                        return (
-                          <Badge tone="rose">Analysis failed</Badge>
-                        );
+                        return <Badge tone="danger">Analysis failed</Badge>;
                       }
-                      return (
-                        <Badge tone="slate">Not analyzed</Badge>
-                      );
+                      return <Badge tone="neutral">Not analyzed</Badge>;
                     })()}
                     {a.status === "Reviewed" && a.marks != null ? (
-                      <span className="text-xs font-medium text-[#111827]">
+                      <span className="inline-flex items-center gap-1 rounded-[9px] border border-slate-200 bg-white px-2 py-1 text-[12px] font-medium text-slate-800">
+                        <Star className="h-3 w-3 text-amber-600" aria-hidden="true" />
                         Marks: {a.marks}
                       </span>
                     ) : null}
                     <Link
                       href={`/teacher/submissions/${a.id}`}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E7EB] text-[#111827] hover:bg-[#F9FAFB]"
+                      className="inline-flex h-9 items-center gap-1.5 rounded-[9px] border border-slate-300 bg-white px-2.5 text-[12.5px] font-medium text-slate-800 hover:bg-slate-50"
                       aria-label={`Review ${a.title}`}
                     >
                       <Eye className="h-4 w-4" aria-hidden="true" />
+                      Review
                     </Link>
                     <Link
                       href={`/teacher/assignments/${a.id}`}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E7EB] text-[#111827] hover:bg-[#F9FAFB]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-[9px] border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
                       aria-label={`Similarity analysis for ${a.title}`}
                       title="Similarity analysis"
                     >

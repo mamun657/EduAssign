@@ -34,4 +34,16 @@ public class AssignmentRepository : IAssignmentRepository
         var result = await _ctx.Assignments.DeleteOneAsync(a => a.Id == id, ct);
         return result.IsAcknowledged && result.DeletedCount > 0;
     }
+
+    public async Task<long> DeleteByTeacherAsync(string teacherId, CancellationToken ct = default)
+    {
+        var result = await _ctx.Assignments.DeleteManyAsync(a => a.TeacherId == teacherId, ct);
+        return result.IsAcknowledged ? result.DeletedCount : 0L;
+    }
+
+    public async Task<long> DeleteByStudentAsync(string studentId, CancellationToken ct = default)
+    {
+        var result = await _ctx.Assignments.DeleteManyAsync(a => a.StudentId == studentId, ct);
+        return result.IsAcknowledged ? result.DeletedCount : 0L;
+    }
 }

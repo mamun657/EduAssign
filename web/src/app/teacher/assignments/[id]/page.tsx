@@ -12,16 +12,24 @@ import {
   CheckCircle2,
   RefreshCw,
   ListChecks,
+  ArrowRight,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
-import { Card, CardBody, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
+import StatCard from "@/components/ui/StatCard";
 import { Assignments, Similarity } from "@/lib/api";
 import type {
   Assignment,
@@ -41,29 +49,33 @@ function formatDate(iso?: string | null): string {
   });
 }
 
-function statusTone(status: AssignmentStatus) {
+function statusTone(
+  status: AssignmentStatus,
+): "success" | "info" | "warning" | "neutral" {
   switch (status) {
     case "Reviewed":
-      return "emerald" as const;
+      return "success";
     case "Submitted":
-      return "sky" as const;
+      return "info";
     case "Published":
-      return "amber" as const;
+      return "warning";
     default:
-      return "slate" as const;
+      return "neutral";
   }
 }
 
-function levelTone(level: SimilarityLevel | string | undefined) {
+function levelTone(
+  level: SimilarityLevel | string | undefined,
+): "success" | "warning" | "danger" | "neutral" {
   switch (level) {
     case "Low":
-      return "emerald" as const;
+      return "success";
     case "Moderate":
-      return "amber" as const;
+      return "warning";
     case "High":
-      return "rose" as const;
+      return "danger";
     default:
-      return "slate" as const;
+      return "neutral";
   }
 }
 
@@ -109,7 +121,6 @@ function TeacherAssignmentDetail() {
 
   const [triggering, setTriggering] = useState(false);
   const [triggerError, setTriggerError] = useState<string | null>(null);
-  // 404 from submissionSummary means "NotAnalyzed yet" — don't surface as error.
   const notAnalyzed = useRef(false);
   const pollHandle = useRef<number | null>(null);
 
@@ -132,7 +143,6 @@ function TeacherAssignmentDetail() {
     }
   }, []);
 
-  // Initial load: assignment + (optional) existing similarity summary.
   useEffect(() => {
     if (!user || !submissionId) return;
     let ok = true;
@@ -146,7 +156,9 @@ function TeacherAssignmentDetail() {
         await fetchSummary(submissionId);
       } catch (err) {
         if (!ok) return;
-        setError((err as { message?: string })?.message ?? "Failed to load assignment");
+        setError(
+          (err as { message?: string })?.message ?? "Failed to load assignment",
+        );
       } finally {
         if (ok) setLoading(false);
       }
@@ -157,7 +169,6 @@ function TeacherAssignmentDetail() {
     };
   }, [user?.id, submissionId, fetchSummary]);
 
-  // Stop any pending polling on unmount.
   useEffect(() => {
     return () => {
       if (pollHandle.current !== null) {
@@ -167,15 +178,11 @@ function TeacherAssignmentDetail() {
     };
   }, []);
 
-  function stopPolling() {
-    if (pollHandle.current !== null) {
-      window.clearTimeout(pollHandle.current);
-      pollHandle.current = null;
-    }
-  }
+  const currentStatusRef = useRef<string | null>(null);
+  useEffect(() => {
+    currentStatusRef.current = summary?.status ?? null;
+  }, [summary?.status]);
 
-  // Poll every 2s while status is "Analyzing", up to ~60s of effort.
-  // Cap total wall-clock time to avoid runaway polling on stuck jobs.
   function startPolling(id: string) {
     stopPolling();
     const startedAt = Date.now();
@@ -186,8 +193,6 @@ function TeacherAssignmentDetail() {
         return;
       }
       await fetchSummary(id);
-      // Read summary via the closure's `summary` state? React gives us last
-      // snapshot; safest is to read via the next scheduled tick from ref of last status.
       const last = currentStatusRef.current;
       if (last === "Completed" || last === "Failed" || notAnalyzed.current) {
         stopPolling();
@@ -198,11 +203,12 @@ function TeacherAssignmentDetail() {
     pollHandle.current = window.setTimeout(tick, 0);
   }
 
-  // Keep a ref of latest summary.status so the poll loop can stop itself.
-  const currentStatusRef = useRef<string | null>(null);
-  useEffect(() => {
-    currentStatusRef.current = summary?.status ?? null;
-  }, [summary?.status]);
+  function stopPolling() {
+    if (pollHandle.current !== null) {
+      window.clearTimeout(pollHandle.current);
+      pollHandle.current = null;
+    }
+  }
 
   async function handleAnalyze() {
     if (!submissionId) return;
@@ -210,8 +216,6 @@ function TeacherAssignmentDetail() {
     setTriggerError(null);
     try {
       await Similarity.analyze(submissionId);
-      // Optimistically flip to "Analyzing" so the user sees immediate feedback,
-      // then poll for the real Completed/Failed transition.
       setSummary((prev) =>
         prev
           ? { ...prev, status: "Analyzing" }
@@ -245,11 +249,20 @@ function TeacherAssignmentDetail() {
     await fetchSummary(submissionId);
   }
 
+  const backButton = (
+    <Link href="/teacher/assignments">
+      <Button variant="secondary">
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        All assignments
+      </Button>
+    </Link>
+  );
+
   if (loading) {
     return (
       <div className="space-y-6">
-        <PageHeader title="Assignment" />
-        <p className="text-sm text-[#6B7280]">Loading…</p>
+        <PageHeader title="Assignment" actions={backButton} />
+        <p className="text-[13px] text-slate-500">Loading…</p>
       </div>
     );
   }
@@ -257,17 +270,8 @@ function TeacherAssignmentDetail() {
   if (error) {
     return (
       <div className="space-y-6">
-        <PageHeader
-          title="Assignment"
-          actions={
-            <Link href="/teacher/assignments">
-              <Button variant="secondary">
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back
-              </Button>
-            </Link>
-          }
-        />
-        <Alert tone="error">{error}</Alert>
+        <PageHeader title="Assignment" actions={backButton} />
+        <Alert tone="danger">{error}</Alert>
       </div>
     );
   }
@@ -275,7 +279,7 @@ function TeacherAssignmentDetail() {
   if (!assignment) {
     return (
       <div className="space-y-6">
-        <PageHeader title="Assignment" />
+        <PageHeader title="Assignment" actions={backButton} />
         <EmptyState
           title="Not found"
           description="The requested assignment does not exist or is not accessible."
@@ -298,91 +302,95 @@ function TeacherAssignmentDetail() {
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="Assignment"
         title={assignment.title || "Assignment"}
         description={`Student: ${assignment.studentName} · Subject: ${assignment.subjectName}`}
-        actions={
-          <Link href="/teacher/assignments">
-            <Button variant="secondary">
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" /> All assignments
-            </Button>
-          </Link>
-        }
+        actions={backButton}
       />
 
-      {/* --- Assignment brief --- */}
       <Card>
         <CardHeader>
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <CardTitle>Brief</CardTitle>
               <CardDescription>
-                Due {formatDate(assignment.dueDate)} · created {formatDate(assignment.createdAt)}
+                Due {formatDate(assignment.dueDate)} · created{" "}
+                {formatDate(assignment.createdAt)}
               </CardDescription>
             </div>
-            <Badge tone={statusTone(assignment.status)}>{assignment.status}</Badge>
+            <Badge tone={statusTone(assignment.status)} withDot>
+              {assignment.status}
+            </Badge>
           </div>
         </CardHeader>
         <CardBody>
           {assignment.description ? (
-            <p className="whitespace-pre-wrap text-sm text-[#111827]">{assignment.description}</p>
+            <p className="whitespace-pre-wrap text-[13.5px] text-slate-800">
+              {assignment.description}
+            </p>
           ) : (
-            <p className="text-sm italic text-[#6B7280]">No description provided.</p>
+            <p className="text-[13.5px] italic text-slate-500">
+              No description provided.
+            </p>
           )}
           <dl className="mt-4 grid gap-3 sm:grid-cols-2">
             <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+              <dt className="text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                 Submitted
               </dt>
-              <dd className="text-sm text-[#111827]">{formatDate(assignment.submittedAt)}</dd>
+              <dd className="text-[13.5px] text-slate-800">
+                {formatDate(assignment.submittedAt)}
+              </dd>
             </div>
             <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+              <dt className="text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                 Submission File
               </dt>
-              <dd className="text-sm text-[#111827]">
+              <dd className="text-[13.5px] text-slate-800">
                 {assignment.submissionFileName ? (
                   <span className="inline-flex items-center gap-1">
                     <FileText className="h-3.5 w-3.5" aria-hidden="true" />
                     {assignment.submissionFileName}
                   </span>
                 ) : (
-                  <span className="italic text-[#6B7280]">No file uploaded</span>
+                  <span className="italic text-slate-500">No file uploaded</span>
                 )}
               </dd>
             </div>
             {assignment.marks != null ? (
               <div>
-                <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                <dt className="text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                   Marks
                 </dt>
-                <dd className="text-sm text-[#111827]">{assignment.marks}</dd>
+                <dd className="text-[13.5px] text-slate-800">{assignment.marks}</dd>
               </div>
             ) : null}
             {assignment.feedback ? (
               <div className="sm:col-span-2">
-                <dt className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                <dt className="text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                   Feedback
                 </dt>
-                <dd className="whitespace-pre-wrap text-sm text-[#111827]">{assignment.feedback}</dd>
+                <dd className="whitespace-pre-wrap text-[13.5px] text-slate-800">
+                  {assignment.feedback}
+                </dd>
               </div>
             ) : null}
           </dl>
         </CardBody>
       </Card>
 
-      {/* --- Similarity panel --- */}
       <Card data-testid="similarity-panel">
         <CardHeader>
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <CardTitle>Similarity Analysis</CardTitle>
               <CardDescription>
-                Cosine + lexical comparison against peer submissions in this assignment.
-                Scores come from the analysis pipeline — re-running reuses prior embeddings.
+                Cosine + lexical comparison against peer submissions in this
+                assignment. Re-running reuses prior embeddings.
               </CardDescription>
             </div>
             {hasResult ? (
-              <Badge tone={levelTone(summary.level)} data-level={summary.level}>
+              <Badge tone={levelTone(summary.level)} withDot data-level={summary.level}>
                 {levelLabel(summary.level)} · {percent(summary.highestSimilarityScore)}
               </Badge>
             ) : null}
@@ -417,13 +425,14 @@ function TeacherAssignmentDetail() {
                     onClick={handleRefreshResult}
                     disabled={analyzing}
                   >
-                    <RefreshCw className="h-4 w-4" aria-hidden="true" /> Refresh result
+                    <RefreshCw className="h-4 w-4" aria-hidden="true" />
+                    Refresh result
                   </Button>
                 ) : null}
               </div>
 
-              {triggerError ? <Alert tone="error">{triggerError}</Alert> : null}
-              {summaryError ? <Alert tone="error">{summaryError}</Alert> : null}
+              {triggerError ? <Alert tone="danger">{triggerError}</Alert> : null}
+              {summaryError ? <Alert tone="danger">{summaryError}</Alert> : null}
 
               {analyzing ? (
                 <Alert tone="info">
@@ -434,7 +443,6 @@ function TeacherAssignmentDetail() {
                 </Alert>
               ) : null}
 
-              {/* --- Not analyzed yet --- */}
               {summary === null || summary === undefined ? (
                 <EmptyState
                   title="Similarity analysis has not been performed yet"
@@ -443,9 +451,8 @@ function TeacherAssignmentDetail() {
                 />
               ) : null}
 
-              {/* --- Failed --- */}
               {hasFailed ? (
-                <Alert tone="error">
+                <Alert tone="danger">
                   <span className="inline-flex items-start gap-2">
                     <AlertTriangle className="mt-0.5 h-4 w-4" aria-hidden="true" />
                     <span>
@@ -456,78 +463,77 @@ function TeacherAssignmentDetail() {
                 </Alert>
               ) : null}
 
-              {/* --- Completed --- */}
               {hasResult ? (
                 <div className="space-y-4" data-testid="similarity-result">
-                  {/* Top-line numbers */}
                   <div className="grid gap-3 sm:grid-cols-3">
                     <div
-                      className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4"
+                      className="rounded-[10px] border border-slate-200 bg-slate-50 p-4"
                       data-testid="similarity-score-tile"
                     >
-                      <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                      <div className="flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                         <Activity className="h-3.5 w-3.5" aria-hidden="true" />
                         Highest Similarity
                       </div>
-                      <div className="mt-1 text-2xl font-semibold text-[#111827]" data-testid="similarity-score">
+                      <div className="mt-1 text-2xl font-semibold text-slate-900" data-testid="similarity-score">
                         {percent(summary.highestSimilarityScore)}
                       </div>
-                      <div className="text-xs text-[#6B7280]">vs {summary.comparedStudentName ?? "peer"}</div>
+                      <div className="text-[12px] text-slate-500">
+                        vs {summary.comparedStudentName ?? "peer"}
+                      </div>
                     </div>
-                    <div className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4">
-                      <div className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                    <div className="rounded-[10px] border border-slate-200 bg-slate-50 p-4">
+                      <div className="text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                         Lexical (TF‑IDF)
                       </div>
-                      <div className="mt-1 text-2xl font-semibold text-[#111827]">
+                      <div className="mt-1 text-2xl font-semibold text-slate-900">
                         {percent(summary.lexicalScore)}
                       </div>
-                      <div className="text-xs text-[#6B7280]">Token overlap</div>
+                      <div className="text-[12px] text-slate-500">Token overlap</div>
                     </div>
-                    <div className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4">
-                      <div className="text-xs font-medium uppercase tracking-wide text-[#6B7280]">
+                    <div className="rounded-[10px] border border-slate-200 bg-slate-50 p-4">
+                      <div className="text-[11.5px] font-medium uppercase tracking-[0.06em] text-slate-500">
                         Semantic (MiniLM cosine)
                       </div>
-                      <div className="mt-1 text-2xl font-semibold text-[#111827]">
+                      <div className="mt-1 text-2xl font-semibold text-slate-900">
                         {percent(summary.semanticScore)}
                       </div>
-                      <div className="text-xs text-[#6B7280]">384‑dim embedding</div>
+                      <div className="text-[12px] text-slate-500">384‑dim embedding</div>
                     </div>
                   </div>
 
-                  {/* Metadata */}
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-[#6B7280]">
+                  <div className="flex flex-wrap items-center gap-3 text-[12px] text-slate-500">
                     <span className="inline-flex items-center gap-1">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-[#16A34A]" aria-hidden="true" />
+                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
                       Status: {summary.status}
                     </span>
                     <span>Analyzed: {formatDate(summary.analyzedAt)}</span>
                   </div>
 
-                  {/* Peer matches */}
                   {summary.matches && summary.matches.length > 0 ? (
                     <div>
-                      <div className="mb-2 flex items-center gap-2 text-sm font-medium text-[#111827]">
+                      <div className="mb-2 flex items-center gap-2 text-[13.5px] font-medium text-slate-900">
                         <ListChecks className="h-4 w-4" aria-hidden="true" />
                         Closest peer submissions
                       </div>
-                      <ul className="divide-y divide-[#E5E7EB] rounded-xl border border-[#E5E7EB]">
+                      <ul className="divide-y divide-slate-200 rounded-[10px] border border-slate-200">
                         {summary.matches.map((m, idx) => (
                           <li
                             key={`${m.submissionId}-${idx}`}
-                            className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm"
+                            className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 text-[13.5px] hover:bg-slate-50"
                             data-testid="similarity-peer-row"
                           >
                             <div className="min-w-0 flex-1">
-                              <p className="truncate font-medium text-[#111827]">{m.studentName}</p>
-                              <p className="text-xs text-[#6B7280]">
+                              <p className="truncate font-medium text-slate-900">
+                                {m.studentName}
+                              </p>
+                              <p className="text-[12px] text-slate-500">
                                 Submission {m.submissionId.slice(0, 12)}…
                               </p>
                             </div>
-                            <div className="flex items-center gap-3 text-xs text-[#6B7280]">
+                            <div className="flex items-center gap-3 text-[12px] text-slate-500">
                               <span>Lexical {m.lexicalScore.toFixed(2)}%</span>
                               <span>Semantic {m.semanticScore.toFixed(2)}%</span>
-                              {/* Score only — no separate classification here. */}
-                              <Badge tone="slate">{m.finalScore.toFixed(2)}%</Badge>
+                              <Badge tone="neutral">{m.finalScore.toFixed(2)}%</Badge>
                             </div>
                           </li>
                         ))}
@@ -535,10 +541,21 @@ function TeacherAssignmentDetail() {
                     </div>
                   ) : (
                     <Alert tone="info">
-                      No peer submissions to compare against in this assignment yet. The
-                      analysis completed with no matches (0% similarity).
+                      No peer submissions to compare against in this assignment
+                      yet. The analysis completed with no matches (0%
+                      similarity).
                     </Alert>
                   )}
+
+                  <div className="flex items-center justify-end pt-2">
+                    <Link
+                      href={`/teacher/submissions/${assignment.id}`}
+                      className="inline-flex items-center gap-1 text-[12.5px] font-medium text-slate-700 hover:text-slate-900"
+                    >
+                      Open review form
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </Link>
+                  </div>
                 </div>
               ) : null}
             </>

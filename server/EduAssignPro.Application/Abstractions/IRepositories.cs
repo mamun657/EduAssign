@@ -11,6 +11,8 @@ public interface IUserRepository
     Task InsertAsync(User user, CancellationToken ct = default);
     Task<bool> EmailExistsAsync(string email, CancellationToken ct = default);
     Task<UpdateResult> UpdateAsync(string id, UpdateDefinition<User> update, CancellationToken ct = default);
+    /// <summary>Permanently removes a user from the collection. Returns true if a document was deleted.</summary>
+    Task<bool> DeleteAsync(string id, CancellationToken ct = default);
 }
 
 public interface IAcademicLevelRepository
@@ -44,6 +46,8 @@ public interface IStudentEnrollmentRepository
     Task<List<StudentSubjectEnrollment>> ListByStudentsAsync(IEnumerable<string> studentIds, CancellationToken ct = default);
     Task InsertAsync(StudentSubjectEnrollment enrollment, CancellationToken ct = default);
     Task<bool> DeleteAsync(string studentId, string subjectId, CancellationToken ct = default);
+    /// <summary>Deletes every enrollment for the given student.</summary>
+    Task<long> DeleteByStudentAsync(string studentId, CancellationToken ct = default);
 }
 
 public interface ITeacherStudentSubjectRepository
@@ -53,6 +57,10 @@ public interface ITeacherStudentSubjectRepository
     Task<bool> ExistsAsync(string teacherId, string studentId, string subjectId, CancellationToken ct = default);
     Task InsertAsync(TeacherStudentSubject tss, CancellationToken ct = default);
     Task<bool> DeleteAsync(string id, CancellationToken ct = default);
+    /// <summary>Deletes all TSS rows where the given teacher appears.</summary>
+    Task<long> DeleteByTeacherAsync(string teacherId, CancellationToken ct = default);
+    /// <summary>Deletes all TSS rows where the given student appears.</summary>
+    Task<long> DeleteByStudentAsync(string studentId, CancellationToken ct = default);
 }
 
 public interface IAssignmentRepository
@@ -62,6 +70,10 @@ public interface IAssignmentRepository
     Task InsertAsync(Assignment assignment, CancellationToken ct = default);
     Task<UpdateResult> UpdateAsync(string id, UpdateDefinition<Assignment> update, CancellationToken ct = default);
     Task<bool> DeleteAsync(string id, CancellationToken ct = default);
+    /// <summary>Deletes all assignments owned by (created by) the given teacher.</summary>
+    Task<long> DeleteByTeacherAsync(string teacherId, CancellationToken ct = default);
+    /// <summary>Deletes all assignments belonging to (assigned to) the given student.</summary>
+    Task<long> DeleteByStudentAsync(string studentId, CancellationToken ct = default);
 }
 
 public class StoredFile

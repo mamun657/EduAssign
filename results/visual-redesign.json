@@ -1,0 +1,248 @@
+{
+  "startedAt": "2026-08-11T21:03:42.271Z",
+  "roles": {
+    "admin": {
+      "pages": {
+        "/admin": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\admin-admin.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/admin/students": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\admin-admin_students.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/admin/teachers": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\admin-admin_teachers.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/admin/subjects": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\admin-admin_subjects.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/admin/curriculum": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\admin-admin_curriculum.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/admin/assignments": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\admin-admin_assignments.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        }
+      }
+    },
+    "teacher": {
+      "pages": {
+        "/teacher": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\teacher-teacher.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/teacher/assignments": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\teacher-teacher_assignments.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/teacher/submissions": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\teacher-teacher_submissions.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/teacher/students": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\teacher-teacher_students.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/teacher/subjects": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\teacher-teacher_subjects.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        }
+      }
+    },
+    "student": {
+      "pages": {
+        "/student": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\student-student.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/student/subjects": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\student-student_subjects.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        },
+        "/student/assignments": {
+          "file": "C:\\EduAssign\\screenshots\\visual-redesign\\student-student_assignments.png",
+          "metrics": {
+            "bodyBg": "rgb(248, 250, 252)",
+            "bodyColor": "rgb(15, 23, 42)",
+            "cardBg": "rgb(255, 255, 255)",
+            "cardBorder": "lab(91.7353 -0.998765 -4.76968)",
+            "sidebarBg": "rgba(0, 0, 0, 0)",
+            "sidebarColor": "rgb(15, 23, 42)",
+            "activeNavBg": "lab(97.8462 -6.94963 1.85487)",
+            "activeNavColor": "lab(44.4871 -41.0396 11.0361)",
+            "firstButtonBg": "rgb(255, 255, 255)",
+            "firstButtonColor": "lab(26.9569 -1.47018 -15.6993)"
+          }
+        }
+      }
+    }
+  },
+  "globalConsoleErrors": [],
+  "globalPageErrors": [],
+  "globalNetworkErrors": [],
+  "loginAttempts": [
+    {
+      "role": "admin@eduassign.local",
+      "status": 200,
+      "body": "{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTc4OTllZGE1MTBhNDM4NzZmZWJlZTIiLCJlbWFpbCI6ImFkbWluQGVkdWFzc2lnbi5sb2NhbCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0e"
+    },
+    {
+      "role": "tariq.aziz+1786297226770@test.local",
+      "status": 200,
+      "body": "{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTc4YmI5MDFkN2Y4Y2M0NTNhMmJmZTIiLCJlbWFpbCI6InRhcmlxLmF6aXorMTc4NjI5NzIyNjc3MEB0ZXN0LmxvY2FsIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yM"
+    },
+    {
+      "role": "sara.khan+1786299239080@test.local",
+      "status": 200,
+      "body": "{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTc4YzM2OTFkN2Y4Y2M0NTNhMmUxZjciLCJlbWFpbCI6InNhcmEua2hhbisxNzg2Mjk5MjM5MDgwQHRlc3QubG9jYWwiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwM"
+    }
+  ],
+  "finishedAt": "2026-08-11T21:04:20.943Z"
+}

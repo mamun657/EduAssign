@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { Plus, X, Pencil, Trash2, Power } from "lucide-react";
+import { Plus, X, Pencil, Trash2, Power, BookOpen, Search, Tag } from "lucide-react";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
 import PageHeader from "@/components/ui/PageHeader";
@@ -16,8 +16,10 @@ import {
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Select from "@/components/ui/Select";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
+import StatCard from "@/components/ui/StatCard";
 import { Subjects } from "@/lib/api";
 import type {
   CreateSubjectRequest,
@@ -44,6 +46,8 @@ function SubjectsAdmin() {
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<Modal>({ kind: "none" });
   const [busy, setBusy] = useState(false);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
   const [createForm, setCreateForm] = useState<CreateSubjectRequest>({
     code: "",
     name: "",
@@ -68,6 +72,22 @@ function SubjectsAdmin() {
   useEffect(() => {
     load();
   }, []);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return subjects.filter((s) => {
+      if (statusFilter === "active" && !s.isActive) return false;
+      if (statusFilter === "inactive" && s.isActive) return false;
+      if (!q) return true;
+      return (
+        s.code.toLowerCase().includes(q) ||
+        s.name.toLowerCase().includes(q)
+      );
+    });
+  }, [subjects, search, statusFilter]);
+
+  const activeCount = subjects.filter((s) => s.isActive).length;
+  const inactiveCount = subjects.length - activeCount;
 
   async function onCreate(e: FormEvent) {
     e.preventDefault();
@@ -145,59 +165,123 @@ function SubjectsAdmin() {
   return (
     <DashboardShell role="Admin">
       <PageHeader
+        eyebrow="Administration / Subjects"
         title="Subjects"
         description="Define the subjects available across the system."
+        actions={
+          <Button
+            onClick={() => {
+              setCreateForm({ code: "", name: "" });
+              setModal({ kind: "create" });
+            }}
+          >
+            <Plus className="h-4 w-4" aria-hidden="true" /> Add subject
+          </Button>
+        }
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? (
+        <div className="mb-4">
+          <Alert tone="error">{error}</Alert>
+        </div>
+      ) : null}
 
-      <Card className="mt-6">
+      <div className="mb-5 grid gap-3 sm:grid-cols-3">
+        <StatCard
+          tone="violet"
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
+          label="Total subjects"
+          value={loading ? "—" : subjects.length}
+        />
+        <StatCard
+          tone="emerald"
+          icon={<Tag className="h-5 w-5" aria-hidden="true" />}
+          label="Active"
+          value={loading ? "—" : activeCount}
+        />
+        <StatCard
+          tone="rose"
+          icon={<Tag className="h-5 w-5" aria-hidden="true" />}
+          label="Inactive"
+          value={loading ? "—" : inactiveCount}
+        />
+      </div>
+
+      <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle>All subjects</CardTitle>
-              <CardDescription>{subjects.length} total</CardDescription>
-            </div>
-            <Button
-              onClick={() => {
-                setCreateForm({ code: "", name: "" });
-                setModal({ kind: "create" });
-              }}
-            >
-              <Plus className="h-4 w-4" aria-hidden="true" /> Add subject
-            </Button>
+          <div className="flex flex-col gap-1">
+            <CardTitle>All subjects</CardTitle>
+            <CardDescription>
+              {loading ? "Loading…" : `${filtered.length} of ${subjects.length} shown`}
+            </CardDescription>
           </div>
         </CardHeader>
-        <CardBody>
+        <CardBody className="space-y-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+            <div className="flex-1">
+              <Input
+                aria-label="Search subjects"
+                placeholder="Search code or name"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                leftIcon={<Search className="h-4 w-4" aria-hidden="true" />}
+              />
+            </div>
+            <Select
+              label="Status"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="min-w-[150px]"
+            >
+              <option value="">All statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </Select>
+          </div>
+
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
-          ) : subjects.length === 0 ? (
+            <p className="text-[13px] text-slate-500">Loading…</p>
+          ) : filtered.length === 0 ? (
             <EmptyState
               title="No subjects yet"
-              description="Click “Add subject” above to create one."
+              description={
+                subjects.length === 0
+                  ? "Click “Add subject” above to create one."
+                  : "Try adjusting your filters."
+              }
             />
           ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-sm">
-                <thead className="text-left text-xs uppercase tracking-wide text-[#6B7280]">
-                  <tr>
-                    <th className="py-2 pr-4">Code</th>
-                    <th className="py-2 pr-4">Name</th>
-                    <th className="py-2 pr-4">Status</th>
-                    <th className="py-2 pr-4 text-right">Actions</th>
+            <div className="overflow-x-auto rounded-lg border border-slate-200">
+              <table className="min-w-full text-[13.5px]">
+                <thead>
+                  <tr className="bg-slate-50 text-left text-[11.5px] font-semibold uppercase tracking-[0.06em] text-slate-500">
+                    <th className="px-5 py-3">Code</th>
+                    <th className="px-5 py-3">Name</th>
+                    <th className="px-5 py-3">Status</th>
+                    <th className="px-5 py-3 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
-                  {subjects.map((s) => (
-                    <tr key={s.id} className="text-[#374151]">
-                      <td className="py-3 pr-4 font-medium text-[#111827]">{s.code}</td>
-                      <td className="py-3 pr-4">{s.name}</td>
-                      <td className="py-3 pr-4">
-                        <Badge tone={s.isActive ? "emerald" : "rose"}>
+                <tbody className="divide-y divide-slate-200">
+                  {filtered.map((s) => (
+                    <tr
+                      key={s.id}
+                      className="h-[56px] text-slate-700 hover:bg-slate-50"
+                    >
+                      <td className="px-5">
+                        <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[12px] font-semibold tracking-wide text-slate-700">
+                          {s.code}
+                        </span>
+                      </td>
+                      <td className="px-5 font-medium text-slate-900">{s.name}</td>
+                      <td className="px-5">
+                        <Badge
+                          tone={s.isActive ? "success" : "danger"}
+                          withDot
+                        >
                           {s.isActive ? "Active" : "Inactive"}
                         </Badge>
                       </td>
-                      <td className="py-3 pr-4">
+                      <td className="px-5">
                         <div className="flex justify-end gap-2">
                           <Button
                             size="sm"
@@ -217,7 +301,7 @@ function SubjectsAdmin() {
                           ) : null}
                           <Button
                             size="sm"
-                            variant="danger"
+                            variant="danger-soft"
                             onClick={() => remove(s)}
                           >
                             <Trash2 className="h-3.5 w-3.5" aria-hidden="true" /> Delete
@@ -284,12 +368,12 @@ function SubjectsAdmin() {
               onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
               required
             />
-            <label className="flex items-center gap-2 text-sm text-[#374151] sm:col-span-2">
+            <label className="flex items-center gap-2 text-[13px] text-slate-700 sm:col-span-2">
               <input
                 type="checkbox"
                 checked={!!editForm.isActive}
                 onChange={(e) => setEditForm({ ...editForm, isActive: e.target.checked })}
-                className="h-4 w-4 rounded border-[#E5E7EB]"
+                className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
               />
               Active
             </label>
@@ -323,7 +407,7 @@ function ModalShell({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#111827]/50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4"
       role="dialog"
       aria-modal="true"
       aria-label={title}
@@ -336,7 +420,7 @@ function ModalShell({
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#111827]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900"
             >
               <X className="h-5 w-5" aria-hidden="true" />
             </button>

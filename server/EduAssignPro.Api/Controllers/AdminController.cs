@@ -39,4 +39,16 @@ public class AdminController : ControllerBase
         await _service.SetUserActiveAsync(id, request.IsActive, ct);
         return NoContent();
     }
+
+    /// <summary>
+    /// Permanently deletes a user (student or teacher) and cascades into all
+    /// related domain data (assignments, TSS links, enrollments, similarity
+    /// analyses). Admin accounts and self-delete are rejected with 409.
+    /// </summary>
+    [HttpDelete("users/{id}")]
+    public async Task<IActionResult> DeleteUser(string id, CancellationToken ct)
+    {
+        await _service.DeleteUserAsync(id, ct);
+        return NoContent();
+    }
 }

@@ -37,4 +37,10 @@ public class UserRepository : IUserRepository
 
     public Task<UpdateResult> UpdateAsync(string id, UpdateDefinition<User> update, CancellationToken ct = default)
         => _ctx.Users.UpdateOneAsync(u => u.Id == id, update, cancellationToken: ct);
+
+    public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
+    {
+        var result = await _ctx.Users.DeleteOneAsync(u => u.Id == id, ct);
+        return result.IsAcknowledged && result.DeletedCount > 0;
+    }
 }

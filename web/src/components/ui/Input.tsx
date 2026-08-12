@@ -29,13 +29,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const hasAdornment = !!leftIcon || !!rightAdornment;
 
   const baseInputClasses = [
-    "h-10 rounded-lg border bg-[#FFFFFF] text-sm text-[#111827]",
-    "placeholder:text-[#9CA3AF]",
+    "h-[42px] rounded-[9px] border bg-white text-[13.5px] text-slate-900",
+    "placeholder:text-slate-400",
     "focus:outline-none focus:ring-2 focus:ring-offset-1",
     error
-      ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-[#FECACA]"
-      : "border-[#E5E7EB] focus:border-[#111827] focus:ring-[#E5E7EB]",
-    "disabled:bg-[#F9FAFB] disabled:text-[#6B7280]",
+      ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200"
+      : "border-slate-300 focus:border-slate-500 focus:ring-slate-200",
+    "disabled:bg-slate-50 disabled:text-slate-500",
   ].join(" ");
 
   const inputElement = (
@@ -45,9 +45,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       type={type}
       className={[
         baseInputClasses,
-        leftIcon ? "pl-10" : "px-3",
+        leftIcon ? "pl-10" : "px-3.5",
         rightAdornment ? "pr-10" : "",
-        hasAdornment ? "bg-transparent" : "",
+        hasAdornment ? "w-full bg-transparent" : "",
         className,
       ]
         .filter(Boolean)
@@ -59,29 +59,29 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   return (
     <div className="flex flex-col gap-1.5">
       {label ? (
-        <label htmlFor={inputId} className="text-sm font-medium text-[#111827]">
+        <label htmlFor={inputId} className="text-[12.5px] font-medium text-slate-700">
           {label}
         </label>
       ) : null}
       {hasAdornment ? (
         <div
           className={[
-            "relative flex items-center rounded-lg border bg-[#FFFFFF]",
+            "relative flex items-center rounded-[9px] border bg-white",
             "focus-within:ring-2 focus-within:ring-offset-1",
             error
-              ? "border-[#DC2626] focus-within:border-[#DC2626] focus-within:ring-[#FECACA]"
-              : "border-[#E5E7EB] focus-within:border-[#111827] focus-within:ring-[#E5E7EB]",
-            "disabled:bg-[#F9FAFB]",
+              ? "border-rose-500 focus-within:border-rose-500 focus-within:ring-rose-200"
+              : "border-slate-300 focus-within:border-slate-500 focus-within:ring-slate-200",
+            "disabled:bg-slate-50",
           ].join(" ")}
         >
           {leftIcon ? (
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#6B7280]">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
               {leftIcon}
             </span>
           ) : null}
           {inputElement}
           {rightAdornment ? (
-            <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-[#6B7280]">
+            <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400">
               {rightAdornment}
             </span>
           ) : null}
@@ -90,9 +90,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         inputElement
       )}
       {error ? (
-        <p className="text-xs text-[#DC2626]">{error}</p>
+        <p className="text-[11.5px] font-medium text-rose-600">{error}</p>
       ) : hint ? (
-        <p className="text-xs text-[#6B7280]">{hint}</p>
+        <p className="text-[11.5px] text-slate-500">{hint}</p>
       ) : null}
     </div>
   );

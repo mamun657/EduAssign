@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Users } from "lucide-react";
+import { Users, BookOpen } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import RouteGuard from "@/components/auth/RouteGuard";
 import DashboardShell from "@/components/layout/DashboardShell";
@@ -10,6 +10,7 @@ import { Card, CardBody, CardHeader, CardTitle, CardDescription } from "@/compon
 import Badge from "@/components/ui/Badge";
 import Alert from "@/components/ui/Alert";
 import EmptyState from "@/components/ui/EmptyState";
+import StatCard from "@/components/ui/StatCard";
 import { TeacherAssignments } from "@/lib/api";
 import type { TeacherAssignmentResponse } from "@/lib/types";
 
@@ -85,11 +86,40 @@ function TeacherStudents() {
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="Roster"
         title="Students"
         description="Students currently assigned to you."
       />
 
-      {error ? <Alert tone="error">{error}</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <StatCard
+          label="Total students"
+          value={rows.length}
+          icon={<Users className="h-5 w-5" aria-hidden="true" />}
+          tone="emerald"
+          hint="Currently assigned"
+        />
+        <StatCard
+          label="Active links"
+          value={links.length}
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
+          tone="blue"
+          hint="Across all subjects"
+        />
+        <StatCard
+          label="Avg subjects / student"
+          value={
+            rows.length === 0
+              ? "—"
+              : (links.length / rows.length).toFixed(1)
+          }
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
+          tone="violet"
+          hint="Workload indicator"
+        />
+      </div>
 
       <Card>
         <CardHeader>
@@ -101,39 +131,41 @@ function TeacherStudents() {
                 {links.length === 1 ? "" : "s"}
               </CardDescription>
             </div>
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#F9FAFB] text-[#374151]">
+            <span className="grid h-10 w-10 place-items-center rounded-[10px] bg-emerald-50 text-emerald-700">
               <Users className="h-5 w-5" aria-hidden="true" />
             </span>
           </div>
         </CardHeader>
-        <CardBody>
+        <CardBody className="p-0">
           {loading ? (
-            <p className="text-sm text-[#6B7280]">Loading…</p>
+            <p className="px-5 py-6 text-[13px] text-slate-500">Loading…</p>
           ) : rows.length === 0 ? (
-            <EmptyState
-              title="No students assigned yet"
-              description="An administrator needs to assign students and subjects to you before they appear here."
-              icon={<Users className="h-6 w-6" aria-hidden="true" />}
-            />
+            <div className="p-5">
+              <EmptyState
+                title="No students assigned yet"
+                description="An administrator needs to assign students and subjects to you before they appear here."
+                icon={<Users className="h-6 w-6" aria-hidden="true" />}
+              />
+            </div>
           ) : (
-            <ul className="divide-y divide-[#E5E7EB]">
+            <ul className="divide-y divide-slate-200">
               {rows.map((s) => (
-                <li key={s.id} className="flex items-center gap-4 py-3">
+                <li key={s.id} className="flex h-[60px] items-center gap-4 px-5">
                   <span
-                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ECFDF5] text-xs font-semibold text-[#065F46]"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-[12.5px] font-semibold text-emerald-700"
                     aria-hidden="true"
                   >
                     {initials(s.name) || "?"}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-[#111827]">{s.name}</p>
-                    <p className="text-xs text-[#6B7280]">
+                    <p className="truncate text-[13.5px] font-medium text-slate-900">{s.name}</p>
+                    <p className="text-[12px] text-slate-500">
                       {s.subjects.size} subject{s.subjects.size === 1 ? "" : "s"}
                     </p>
                   </div>
                   <div className="hidden flex-wrap items-center gap-1.5 sm:flex">
                     {Array.from(s.subjects).map((subj) => (
-                      <Badge key={subj} tone="slate">
+                      <Badge key={subj} tone="violet">
                         {subj}
                       </Badge>
                     ))}
