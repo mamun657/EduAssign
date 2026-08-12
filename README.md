@@ -1,32 +1,59 @@
-# 📚 EduAssign Pro
+<!-- Project Header -->
 
-## Assignment & Academic Workflow Management Platform
+<h1 align="center">📚 EduAssign Pro</h1>
 
-EduAssign Pro is a full-stack academic workflow management platform designed for schools, colleges, and educational institutions. It provides a centralized workspace where administrators, teachers, and students can manage users, subjects, curriculum, assignments, submissions, grading, feedback, and academic review.
+<h2 align="center">Assignment & Academic Workflow Management Platform</h2>
 
-The platform is built around three primary roles:
-
-- 👨‍💼 **Admin**
-- 👨‍🏫 **Teacher**
-- 👨‍🎓 **Student**
-
-Each role has a dedicated workspace with role-based permissions and functionality designed around its responsibilities.
+---
 
 <p align="center">
-  <a href="https://eduassign-6w15.onrender.com">🌐 Live Application</a>
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=00FFCC&center=true&vCenter=true&width=900&lines=👨‍💼+Admin+Management;👨‍🏫+Teacher+Workspace;👨‍🎓+Student+Portal;📝+Assignment+Management;📤+Assignment+Submission;🔍+Similarity+Analysis" alt="Typing SVG" />
+</p>
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/ACADEMIC-PLATFORM-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/NEXT.JS-16-black?style=for-the-badge&logo=next.js"/>
+  <img src="https://img.shields.io/badge/ASP.NET%20CORE-WEB%20API-purple?style=for-the-badge&logo=.net"/>
+  <img src="https://img.shields.io/badge/MONGODB-DATABASE-green?style=for-the-badge&logo=mongodb"/>
+  <img src="https://img.shields.io/badge/JWT-AUTHENTICATION-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/DOCKER-SUPPORTED-success?style=for-the-badge"/>
+</p>
+
+---
+
+<p align="center">
+  <a href="https://eduassign-6w15.onrender.com">
+    🌐 Live Application
+  </a>
   &nbsp;&nbsp;•&nbsp;&nbsp;
-  <a href="https://github.com/mamun657/EduAssign">💻 GitHub Repository</a>
+  <a href="https://github.com/mamun657/EduAssign">
+    💻 GitHub Repository
+  </a>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js"/>
-  <img src="https://img.shields.io/badge/React-TypeScript-blue?style=for-the-badge&logo=react" alt="React TypeScript"/>
-  <img src="https://img.shields.io/badge/ASP.NET%20Core-Web%20API-purple?style=for-the-badge&logo=.net" alt="ASP.NET Core"/>
-  <img src="https://img.shields.io/badge/C%23-Backend-512BD4?style=for-the-badge&logo=csharp" alt="C#"/>
-  <img src="https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb" alt="MongoDB"/>
-  <img src="https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge" alt="JWT"/>
-  <img src="https://img.shields.io/badge/Docker-Deployment-2496ED?style=for-the-badge&logo=docker" alt="Docker"/>
-</p>
+---
+
+# 🎥 Demo Video
+
+▶️ https://www.youtube.com/watch?v=YOUR_VIDEO_ID
+
+---
+
+# 📚 What is EduAssign Pro?
+
+EduAssign Pro is a full-stack platform built to make everyday academic work easier to manage.
+
+It brings administrators, teachers, and students into the same system, so things like subjects, assignments, submissions, grading, feedback, and academic management can all be handled from one place.
+
+The platform is mainly built around three roles:
+
+* 👨‍💼 **Admin** — manages users and the academic structure
+* 👨‍🏫 **Teacher** — creates assignments, reviews submissions, and evaluates students
+* 👨‍🎓 **Student** — views assignments, submits work, and checks results
+
+The idea is simple: **keep the complete assignment workflow in one organized place instead of managing it across different tools.**
 
 ---
 
