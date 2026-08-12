@@ -87,6 +87,9 @@ Administrators can:
 - Monitor academic data
 - Maintain institutional structure
 
+  <img width="1907" height="832" alt="image" src="https://github.com/user-attachments/assets/3a189f3c-ca89-432f-bc4a-20f84b621dbd" />
+
+
 The admin panel provides dedicated management pages for the different areas of the academic system.
 
 ---
@@ -107,6 +110,9 @@ Teachers can:
 - Assign marks
 - Provide feedback
 - Access individual submission details
+
+  <img width="1899" height="925" alt="image" src="https://github.com/user-attachments/assets/6e7c4983-afed-4e67-baa3-0e560a1d9dae" />
+
 
 The teacher workflow is:
 
@@ -146,6 +152,9 @@ Students can:
 - Track submission status
 - View marks
 - View teacher feedback
+
+<img width="1919" height="939" alt="image" src="https://github.com/user-attachments/assets/af64b3ce-f88a-498c-a282-8166381f9e6a" />
+
 
 The student workflow is:
 
