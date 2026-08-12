@@ -95,7 +95,6 @@ public partial class AuthService
 
         await _users.InsertAsync(user, ct);
 
-        // Auto-enroll compulsory subjects if Student
         if (role == Role.Student && academicLevelId is not null)
         {
             var curriculum = await _curriculumSubjects.ListByAcademicLevelAsync(academicLevelId, ct);

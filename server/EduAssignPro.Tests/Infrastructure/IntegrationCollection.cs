@@ -17,9 +17,6 @@ public class IntegrationFixture : IAsyncLifetime
 
     public Task InitializeAsync()
     {
-        // MongoDB database names are limited to 38 bytes. We use "Test_" (5 chars)
-        // + the first 16 hex chars of a fresh GUID = 21 chars total, well under
-        // the limit and still unique per test run.
         var dbName = $"Test_{Guid.NewGuid():N}".Substring(0, 21);
         Factory = new TestAppFactory(dbName);
         _ = Factory.CreateClient();
@@ -32,7 +29,7 @@ public class IntegrationFixture : IAsyncLifetime
         {
             await Factory.DropDatabaseAsync();
         }
-        catch { /* best-effort cleanup */ }
+        catch {  }
         Factory.Dispose();
     }
 }

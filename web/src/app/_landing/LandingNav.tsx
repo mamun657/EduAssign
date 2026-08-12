@@ -11,31 +11,31 @@ const NAV_LINKS = [
   { href: "#faq", label: "FAQ" },
 ];
 
-//   • "light" = navbar over a BLACK section (translucent dark bg + white text + white CTA)
-//   • "dark"  = navbar over a WHITE section (translucent light bg + dark text + black CTA)
-// intersecting the top of the viewport (handled in the effect below).
+
+
+
 type NavTone = "light" | "dark";
 
 export default function LandingNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
-  // Default to "light" so the navbar looks intentional over the BLACK hero
-  // before the scroll observer has a chance to attach.
+  
+  
   const [tone, setTone] = useState<NavTone>("light");
 
   useEffect(() => setMounted(true), []);
 
-  // has scrolled past the hero, AND determine which section's tone the
+  
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 8);
       determineTone();
     }
     function determineTone() {
-      // whose top is closest to (but ≤) the scroll position + a small
-      // offset. That section is "under" the navbar right now.
-      const probeY = window.scrollY + 80; // mid-navbar
+      
+      
+      const probeY = window.scrollY + 80; 
       const sections = Array.from(
         document.querySelectorAll<HTMLElement>("[data-nav-tone]")
       );
@@ -70,7 +70,7 @@ export default function LandingNav() {
     };
   }, [open, mounted]);
 
-  // Close on Escape.
+  
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
@@ -84,15 +84,15 @@ export default function LandingNav() {
     setOpen(false);
   }
 
-  // ---- Navbar tokens -----------------------------------------------------
-  // text. The previous tone-aware surface flipped to `bg-white/40` over the
+  
+  
 
-  // it gains a hairline white border + a subtle bottom shadow for elevation.
+  
   const surface = scrolled
     ? "border-b border-white/10 bg-black shadow-[0_1px_0_rgba(255,255,255,0.04),0_8px_24px_rgba(0,0,0,0.35)]"
     : "border-b border-transparent bg-black";
 
-  // readable on every section.
+  
   const fgText = "text-white";
   const fgTextHover = "hover:text-white/70";
   const fgBrand = "text-white";

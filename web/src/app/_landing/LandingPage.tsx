@@ -25,12 +25,10 @@ import {
 } from "lucide-react";
 import LandingNav from "./LandingNav";
 
-/* ────────────────────────────────────────────────────────────────────────────
-   Small primitives
-   ──────────────────────────────────────────────────────────────────────────── */
 
-// the previous 7xl so the layout doesn't feel wider than the hero — but
-// horizontal padding is more generous so the type can breathe.
+
+
+
 function Container({
   children,
   className = "",
@@ -45,10 +43,10 @@ function Container({
   );
 }
 
-// Section label / eyebrow. Two intents:
-//   • on a WHITE section  → muted dark gray
-//   • on a BLACK section  → muted white
-// uppercase tracking on a small horizontal divider.
+
+
+
+
 function SectionLabel({
   index,
   children,
@@ -74,7 +72,7 @@ function SectionLabel({
   );
 }
 
-// between dark text on white sections and white text on black sections.
+
 function SectionHeading({
   children,
   tone = "dark",
@@ -104,7 +102,7 @@ function SectionHeading({
   );
 }
 
-// than the previous design so the type can carry the editorial weight.
+
 function SectionLede({
   children,
   tone = "dark",
@@ -125,32 +123,29 @@ function SectionLede({
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────────────
-   Hero
-   ──────────────────────────────────────────────────────────────────────────── */
+
 
 function Hero() {
-  // ---------------------------------------------------------------------
-  // and the subtle bottom marquee — fits inside the first viewport.
-  //
-  // Composition intent: TEXT + IMAGE = ONE VISUAL, not two columns.
-  //   • Left column widened (≈50% on desktop) so the headline reads as two
-  //     lines and creates a stronger horizontal relationship with the image.
-  //   • Image sized to roughly 48–58% of hero width on desktop and allowed
-  //     to overlap toward the center.
-  //   • Image dissolves on all four edges so the source's dark background
-  //     becomes indistinguishable from the hero background.
-  //   • No colored gradient halos behind the image; the image's own
-  //     warm tones are the only color in the hero.
-  // ---------------------------------------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   return (
     <section
       data-nav-tone="light"
       className="relative isolate overflow-hidden bg-black text-white"
       aria-label="Introduction"
     >
-      {/* Subtle top vignette only — for navbar contrast. No warm halos, no
-          colored gradients, no glow. The hero is intentionally black. */}
+
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
@@ -211,18 +206,18 @@ function Hero() {
 }
 
 function HeroVisual() {
-  // Phase 10 — fullscreen monochrome hero.
-  //
-  // The image is 1740×904 (aspect ≈ 1.92). We render it at NATURAL aspect
-  // ratio (no object-cover, no fixed container) so the image's own dark
-  // continuous cinematic scene — NO perceptible rectangle, NO border, NO
-  //
-  // image is vertically centered and extends naturally toward the right
-  //
-  // own dark pixels become indistinguishable from the hero background.
-  // No warm halo behind the image — the hero is intentionally monochrome.
-  //
-  // always with `z-0` / `pointer-events: none`, so it never intercepts clicks.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   return (
     <picture
       aria-hidden="true"
@@ -234,17 +229,17 @@ function HeroVisual() {
         draggable={false}
         className={[
           "hero-fade-in hero-fade-in-delay-1",
-          // desktop: large, right-aligned, slightly extends past the right
+          
           "absolute top-1/2 right-[-2%] -translate-y-1/2",
           "h-auto w-[min(880px,58vw)] max-w-none",
-          // tablet/mobile: stack below text, smaller, centered
+          
           "max-[1023px]:!static max-[1023px]:!translate-y-0",
           "max-[1023px]:mt-10 max-[1023px]:h-auto max-[1023px]:w-[min(560px,86vw)] max-[1023px]:mx-auto",
         ].join(" ")}
         style={{
           pointerEvents: "none",
           userSelect: "none",
-          //            asset, so the right side dissolves into the page)
+          
           WebkitMaskImage:
             "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%)",
           maskImage:
@@ -258,12 +253,12 @@ function HeroVisual() {
 }
 
 function HeroMarquee() {
-  // is duplicated (A B C D E F G A B C D E F G) and translated by exactly
-  // -50%, so when the first copy scrolls off the left the second copy is in
-  // the identical position the first copy started at — no visible jump,
-  // infinite loop.
-  //
-  // proof points, not feature chips.
+  
+  
+  
+  
+  
+  
   const items: Array<{ icon: React.ReactNode; label: string }> = [
     { icon: <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />, label: "Smart Assignments" },
     { icon: <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />, label: "Easy Grading" },
@@ -830,7 +825,7 @@ function AISimilarity() {
               <SectionLede tone="dark">
                 EduAssign Pro compares submitted documents using lexical and
                 semantic similarity analysis to help teachers identify
-                potentially similar work — supporting academic review, not
+                potentially similar work supporting academic review, not
                 replacing it.
               </SectionLede>
             </div>
@@ -1010,7 +1005,7 @@ function Security() {
           <div className="lg:col-span-5">
             <SectionLede tone="light">
               Authorization, authentication and access control are first-class
-              concerns — not afterthoughts. Every protected action is checked
+              concerns, not afterthoughts. Every protected action is checked
               server-side, every role is partitioned, every submission is
               scoped.
             </SectionLede>
@@ -1190,7 +1185,7 @@ function Footer() {
               </span>
             </div>
             <p className="mt-5 max-w-md text-[14.5px] leading-[1.65] text-white/50">
-              Assignment &amp; Submission Management Platform — built for
+              Assignment &amp; Submission Management Platform, built for
               schools and colleges.
             </p>
           </div>

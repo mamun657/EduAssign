@@ -30,15 +30,11 @@ public class TestAppFactory : WebApplicationFactory<Program>
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        // We want the production .env loader to STILL run so JWT values can come
-        // from the same source (test JWT secret must match what the API uses).
-        // But we will override the Mongo DatabaseName to point at an isolated DB.
         builder.ConfigureAppConfiguration((ctx, config) =>
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
             {
                 ["Mongo:DatabaseName"] = _databaseName,
-                // Ensure Serilog is quiet during tests.
                 ["Logging:LogLevel:Default"] = "Warning",
                 ["Serilog:MinimumLevel:Default"] = "Warning"
             });

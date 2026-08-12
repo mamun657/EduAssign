@@ -14,7 +14,6 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ---- Serilog ----
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
@@ -22,14 +21,6 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 builder.Host.UseSerilog();
 
-// ---- Configuration: load .env (best-effort) ----
-// .env uses the ASP.NET Core env-var convention with double underscores
-// as the section separator, e.g. MONGO__CONNECTIONSTRING -> Mongo:ConnectionString.
-// configuration system (Section:Key paths).
-//
-// Search strategy: start from the API's content root and walk upward through
-// parent directories until a `.env` file is found. This makes the loader
-// robust to the repo being moved to a different machine path.
 static string? FindEnvFile(string startDir)
 {
     var dir = new DirectoryInfo(startDir);
@@ -57,10 +48,8 @@ try
             var rawKey = line[..idx].Trim();
             var value = line[(idx + 1)..].Trim();
             if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable(rawKey))) continue;
-            // Translate MONGO__CONNECTIONSTRING -> Mongo:ConnectionString
             var configKey = rawKey.Replace("__", ":");
             envDict[configKey] = value;
-            // Also export to process env for any future code path that reads env vars directly.
             Environment.SetEnvironmentVariable(rawKey, value);
         }
         builder.Configuration.AddInMemoryCollection(envDict);
@@ -77,7 +66,6 @@ catch (Exception ex)
     Log.Warning(ex, "Failed to load .env file");
 }
 
-// ---- Diagnostic: confirm critical config presence (no values) ----
 var mongoConnSet = !string.IsNullOrWhiteSpace(builder.Configuration["Mongo:ConnectionString"]);
 var mongoDbSet   = !string.IsNullOrWhiteSpace(builder.Configuration["Mongo:DatabaseName"]);
 var jwtSecretSet = !string.IsNullOrWhiteSpace(builder.Configuration["Jwt:Secret"]);
@@ -89,18 +77,15 @@ Log.Information("JWT secret loaded: {Jwt}", jwtSecretSet ? "YES" : "NO");
 Log.Information("Admin seed email loaded: {SeedEmail}", seedEmailSet ? "YES" : "NO");
 Log.Information("Admin seed password loaded: {SeedPwd}", seedPwdSet ? "YES" : "NO");
 
-// ---- App services ----
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
-// Phase 6: Similarity detection wiring
 builder.Services.Configure<SimilarityOptions>(builder.Configuration.GetSection(SimilarityOptions.SectionName));
 builder.Services.AddHttpClient<IMlClient, SimilarityMlClient>();
 builder.Services.AddSingleton<SimilarityAnalysisBackgroundQueue>();
 builder.Services.AddHostedService(sp => sp.GetRequiredService<SimilarityAnalysisBackgroundQueue>());
 
-// ---- JWT ----
 var jwtSecret = builder.Configuration["Jwt:Secret"]
     ?? throw new InvalidOperationException("Jwt:Secret not configured");
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "EduAssignPro";
@@ -126,7 +111,6 @@ builder.Services
     });
 builder.Services.AddAuthorization();
 
-// ---- MVC + Swagger ----
 builder.Services.AddControllers().AddJsonOptions(o =>
 {
     o.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
@@ -167,7 +151,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// ---- Fail-fast configuration checks ----
 void FailStartup(string problem)
 {
     Log.Fatal(problem);
@@ -188,7 +171,6 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["Jwt:Secret"]))
     FailStartup("Jwt:Secret is not configured (.env not found or missing key).");
 }
 
-// ---- Seed (idempotent) ----
 using (var scope = app.Services.CreateScope())
 {
     try
@@ -199,7 +181,6 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        // Fail fast: do NOT keep the API listening if the database is unusable.
         FailStartup($"Database initialization/seed failed: {ex.Message}");
     }
 }
@@ -214,10 +195,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 
-// ---- CORS ----
-// preflight requests succeed. `AllowAnyOrigin` + credentials is unsafe, and
-// the frontend never sends cookies (Bearer JWT in Authorization header),
-// so we do not enable credentials here.
 var corsOrigins = builder.Configuration["Cors:AllowedOrigins"]?.Split(
     ',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 if (builder.Environment.IsDevelopment())
@@ -243,11 +220,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// ---- Port binding (Render / Fly / Railway / Heroku compatibility) ----
-// PaaS platforms assign a port at runtime via the `PORT` env var and expect
-// the process to listen on `0.0.0.0:${PORT}`. Locally (and in tests) we fall
-// back to Kestrel's defaults — Development uses the launchSettings.json URL
-// (http://localhost:5220) and production defaults to 8080 inside the image.
 var port = Environment.GetEnvironmentVariable("PORT");
 if (!string.IsNullOrWhiteSpace(port))
 {
@@ -258,5 +230,4 @@ if (!string.IsNullOrWhiteSpace(port))
 
 app.Run();
 
-// WebApplicationFactory<Program> can reference it.
 public partial class Program { }

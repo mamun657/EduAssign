@@ -194,9 +194,6 @@ public class StudentService
             if (existingCs.IsCompulsory) continue;
             if (existingCs.ElectiveGroup != groupName) continue;
 
-            // we reject cross-option mixing here. The single-option (legacy) case
-            // (ElectiveOption == null) keeps the original "only one from this
-            // group" behavior.
             if (!string.IsNullOrWhiteSpace(cs.ElectiveOption) ||
                 !string.IsNullOrWhiteSpace(existingCs.ElectiveOption))
             {
@@ -235,7 +232,6 @@ public class StudentService
         await _enrollments.InsertAsync(enrollment, ct);
         _logger.LogInformation("Student {StudentId} enrolled in subject {SubjectId}", student.Id, subject.Id);
 
-        // Auto-enroll all sibling papers sharing the same (ElectiveGroup, ElectiveOption).
         if (!string.IsNullOrWhiteSpace(cs.ElectiveOption))
         {
             var allInGroup = (await _curriculumSubjects.ListByAcademicLevelAsync(student.AcademicLevelId, ct))

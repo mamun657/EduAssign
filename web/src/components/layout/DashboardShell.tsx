@@ -28,7 +28,7 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Lock body scroll while the drawer is open (mounted prevents SSR mismatch).
+  
   useEffect(() => {
     if (!mounted) return;
     if (typeof document === "undefined") return;
@@ -40,7 +40,7 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
     };
   }, [drawerOpen, mounted]);
 
-  // Close on Escape.
+  
   useEffect(() => {
     if (!drawerOpen) return;
     function onKey(e: KeyboardEvent) {
@@ -50,8 +50,8 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
     return () => window.removeEventListener("keydown", onKey);
   }, [drawerOpen]);
 
-  // Don't render the shell until we know the user state to avoid hydration
-  // flashes between logged-in / logged-out.
+  
+  
   if (!mounted) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50 text-sm text-slate-500">
@@ -77,7 +77,7 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
         <Sidebar role={role} />
       </aside>
 
-      {/* Main column (header + content). */}
+
       <div className="flex min-w-0 flex-1 flex-col">
         <DashboardHeader
           role={role}

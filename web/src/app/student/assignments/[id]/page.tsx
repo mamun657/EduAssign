@@ -42,7 +42,7 @@ const ALLOWED_CONTENT_TYPES = [
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
-const MAX_BYTES = 10 * 1024 * 1024; // 10MB
+const MAX_BYTES = 10 * 1024 * 1024; 
 
 function formatDateTime(iso?: string | null): string {
   if (!iso) return "—";

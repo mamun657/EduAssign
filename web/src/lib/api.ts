@@ -6,7 +6,7 @@ const FALLBACK_PROD_URL = "https://eduassign-api.onrender.com";
 function resolveApiBaseUrl(): string {
   const raw = process.env.NEXT_PUBLIC_API_BASE_URL?.trim();
   if (raw && raw.length > 0) return raw.replace(/\/+$/, "");
-  // Empty / unset env var: fall back by build environment.
+  
   return process.env.NODE_ENV === "production" ? FALLBACK_PROD_URL : FALLBACK_DEV_URL;
 }
 
@@ -19,14 +19,14 @@ interface RequestOptions<TBody> {
   body?: TBody;
   params?: Record<string, string | number | boolean | undefined | null>;
   signal?: AbortSignal;
-  // If true, no Authorization header is attached (used for login/register).
+  
   public?: boolean;
 }
 
 function buildUrl(path: string, params?: RequestOptions<unknown>["params"]): string {
   const base = API_BASE_URL.replace(/\/$/, "");
-  // Always hit the /api/* prefix because every ASP.NET controller
-  // is decorated with [Route("api/[controller]")] or "api/<name>".
+  
+  
   const normalized = path.startsWith("/") ? path : `/${path}`;
   const withPrefix = normalized.startsWith("/api/")
     ? normalized

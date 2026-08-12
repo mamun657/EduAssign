@@ -185,7 +185,6 @@ public class AdminService
             ?? throw new NotFoundException("User not found.");
         user.IsActive = isActive;
         user.UpdatedAt = DateTime.UtcNow;
-        // Update via repository (MongoDB driver: cannot chain .Set on UpdateDefinition<T>, use Combine)
         var update = MongoDB.Driver.Builders<User>.Update.Combine(
             MongoDB.Driver.Builders<User>.Update.Set(u => u.IsActive, isActive),
             MongoDB.Driver.Builders<User>.Update.Set(u => u.UpdatedAt, user.UpdatedAt));
@@ -215,12 +214,9 @@ public class AdminService
         var user = await _users.GetByIdAsync(userId, ct)
             ?? throw new NotFoundException("User not found.");
 
-        // Refuse to delete admin accounts. There must always be at least one
-        // admin in the system, and we don't want a typo to lock everyone out.
         if (user.Role == Role.Admin)
             throw new ConflictException("Admin accounts cannot be deleted.");
 
-        // themselves out of the panel.
         if (!string.IsNullOrEmpty(_currentUser.UserId) && _currentUser.UserId == user.Id)
             throw new ConflictException("You cannot delete your own account.");
 
@@ -241,8 +237,6 @@ public class AdminService
             else if (user.Role == Role.Teacher)
             {
                 tssDeleted = await _teacherStudentSubjects.DeleteByTeacherAsync(user.Id, ct);
-                // Similarity analyses live on assignments — cascade via the
-                // teacher's assignments first.
                 similarityDeleted = await _similarityAnalyses.DeleteByTeacherAsync(user.Id, ct);
                 assignmentsDeleted = await _assignments.DeleteByTeacherAsync(user.Id, ct);
             }

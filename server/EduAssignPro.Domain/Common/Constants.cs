@@ -15,7 +15,6 @@ public static class Constants
     public const string RoleTeacher = "Teacher";
     public const string RoleStudent = "Student";
 
-    // Similarity thresholds (defaults; runtime values come from configuration)
     public const double DefaultLexicalWeight = 0.40;
     public const double DefaultSemanticWeight = 0.60;
     public const double DefaultLowThreshold = 30.0;

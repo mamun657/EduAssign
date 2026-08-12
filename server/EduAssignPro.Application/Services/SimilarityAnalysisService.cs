@@ -50,7 +50,6 @@ public class SimilarityAnalysisService
         _logger = logger;
     }
 
-    // ---- Public API ----
 
     /// <summary>Queue an analysis for a single submission. Returns the (possibly existing) analysis doc.</summary>
     public async Task<SimilarityAnalysis> StartAnalysisAsync(string assignmentId, string submissionId, string studentId, CancellationToken ct = default)
@@ -88,7 +87,6 @@ public class SimilarityAnalysisService
 
         try
         {
-            // 1. Extract text from this submission (text field OR attachment file).
             var ownText = await ExtractSubmissionTextAsync(assignment, ct);
             if (string.IsNullOrWhiteSpace(ownText))
             {
@@ -100,12 +98,10 @@ public class SimilarityAnalysisService
                 return analysis;
             }
 
-            // 2. Find other submissions in the same assignment (different student).
             var peers = await LoadPeerSubmissionsAsync(analysis.AssignmentId, analysis.StudentId, ct);
             var matches = new List<SimilarityMatch>();
             int comparedCount = 0;
 
-            // 3. Always compute own embedding (for self-similarity tests / future hybrid caching).
             var ownEmbedding = _options.DisableSemantic
                 ? null
                 : await _ml.EmbedAsync(TruncateForEmbedding(ownText), ct);
@@ -140,7 +136,6 @@ public class SimilarityAnalysisService
                 });
             }
 
-            // 4. Rank matches and keep top-N above cutoff.
             var ranked = matches
                 .Where(m => m.FinalScore >= _options.MinCompareScore)
                 .OrderByDescending(m => m.FinalScore)
@@ -322,7 +317,6 @@ public class SimilarityAnalysisService
         };
     }
 
-    // ---- Helpers ----
 
     private async Task<List<Assignment>> LoadPeerSubmissionsAsync(string assignmentId, string studentId, CancellationToken ct)
     {
@@ -333,9 +327,6 @@ public class SimilarityAnalysisService
     private async Task<List<Assignment>> GetSubmissionsForAssignmentAsync(string assignmentId, CancellationToken ct)
     {
         var all = await _assignments.ListAsync(null, ct);
-        // that have submissions. Without a dedicated Submission collection, the safest pattern is:
-        // pull from repo filtered by `TeacherId == assignment.TeacherId` and `SubjectId == assignment.SubjectId`
-        // and exclude our own id.
         var own = await _assignments.GetByIdAsync(assignmentId, ct);
         if (own is null) return new List<Assignment>();
         var siblings = (await _assignments.ListAsync(null, ct))
@@ -458,7 +449,6 @@ public class SimilarityAnalysisService
 
     private static string TruncateForEmbedding(string text)
     {
-        // sentence-transformers MiniLM supports ~256 tokens; truncate ~4000 chars.
         const int MaxChars = 4000;
         if (text.Length <= MaxChars) return text;
         return text.Substring(0, MaxChars);

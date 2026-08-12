@@ -12,8 +12,7 @@ public class AssignmentsController : ControllerBase
 {
     private readonly AssignmentService _service;
 
-    // Phase 4: file size cap mirrored on the controller (defence-in-depth).
-    private const long MaxFileBytes = 10 * 1024 * 1024; // 10 MB
+    private const long MaxFileBytes = 10 * 1024 * 1024; 
 
     public AssignmentsController(AssignmentService service)
     {
@@ -65,7 +64,6 @@ public class AssignmentsController : ControllerBase
         string id, [FromBody] ReviewSubmissionRequest request, CancellationToken ct)
         => Ok(await _service.ReviewAsync(id, request, ct));
 
-    // ---- Phase 4: file attachment endpoints ----
 
     [Authorize(Roles = "Teacher")]
     [HttpPost("{id}/attachment")]

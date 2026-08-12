@@ -1,4 +1,3 @@
-// Source: server/EduAssignPro.Application/Dtos/**/*Response.cs
 
 export type Role = "Admin" | "Teacher" | "Student";
 export type AcademicLevelCode = "SCHOOL" | "COLLEGE";
@@ -232,7 +231,7 @@ export interface CreateAssignmentRequest {
   subjectId: string;
   title: string;
   description?: string;
-  dueDate: string; // ISO
+  dueDate: string; 
 }
 
 export interface UpdateAssignmentRequest {
@@ -257,7 +256,7 @@ export interface ApiError {
   network?: boolean;
 }
 
-// --- Phase 6: Similarity / plagiarism detection ---
+
 
 /**
  * Backend lifecycle for one submission's analysis. Values from

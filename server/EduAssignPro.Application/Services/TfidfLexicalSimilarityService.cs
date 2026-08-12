@@ -21,7 +21,7 @@ public class TfidfLexicalSimilarityService
         foreach (Match m in matches)
         {
             var t = m.Value;
-            if (t.Length < 2) continue;     // skip single letters / 1-digit numbers
+            if (t.Length < 2) continue;     
             tokens.Add(t);
         }
         return tokens;
@@ -47,7 +47,7 @@ public class TfidfLexicalSimilarityService
             int df = 0;
             if (tfA.ContainsKey(term)) df++;
             if (tfB.ContainsKey(term)) df++;
-            idf[term] = Math.Log((2d + 1d) / (df + 1d)) + 1d;   // smoothed IDF
+            idf[term] = Math.Log((2d + 1d) / (df + 1d)) + 1d;   
         }
 
         double dot = 0d, na = 0d, nb = 0d;

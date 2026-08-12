@@ -66,7 +66,6 @@ public class Assignment
     [BsonElement("updatedAt")]
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-    // --- Phase 4: file attachments (teacher's brief + student's submission) ---
     [BsonElement("attachmentFileId")]
     [BsonIgnoreIfNull]
     public string? AttachmentFileId { get; set; }

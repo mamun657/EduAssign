@@ -52,7 +52,6 @@ public class MongoIndexInitializer : IUnitOfWork
                 .Ascending(t => t.SubjectId),
             new CreateIndexOptions { Unique = true, Name = "UX_TeacherStudentSubjects_Teacher_Student_Subject" }), cancellationToken: ct);
 
-        // Common query-side indexes (non-unique)
         await _ctx.Assignments.Indexes.CreateManyAsync(new[]
         {
             new CreateIndexModel<Assignment>(
@@ -66,7 +65,6 @@ public class MongoIndexInitializer : IUnitOfWork
                 new CreateIndexOptions { Name = "IX_Assignments_SubjectId" })
         }, ct);
 
-        // Phase 6: Similarity analysis indexes
         var sim = _ctx.SimilarityAnalyses.Indexes;
         await sim.CreateManyAsync(new[]
         {

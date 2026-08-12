@@ -114,17 +114,17 @@ interface SidebarProps {
 }
 
 function isActive(pathname: string, href: string): boolean {
-  // For hash links (legacy anchors), only the base path matters. The page
-  // itself handles in-page scrolling.
+  
+  
   const [path, hash] = href.split("#");
   if (hash) {
     return pathname === path;
   }
-  // don't want /teacher/students to also highlight the Overview item.
+  
   if (href === "/admin" || href === "/teacher" || href === "/student") {
     return pathname === href;
   }
-  // Sub-routes use exact + prefix match (e.g. /admin/students/123 keeps the
+  
   return pathname === href || pathname.startsWith(href + "/");
 }
 

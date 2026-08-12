@@ -12,7 +12,7 @@ public class JwtSettings
     public string Secret { get; set; } = string.Empty;
     public string Issuer { get; set; } = "EduAssignPro";
     public string Audience { get; set; } = "EduAssignPro.Client";
-    public int ExpirationMinutes { get; set; } = 720; // 12 hours
+    public int ExpirationMinutes { get; set; } = 720; 
 }
 
 public class JwtTokenService : ITokenService

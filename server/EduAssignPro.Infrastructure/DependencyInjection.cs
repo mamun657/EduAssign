@@ -14,12 +14,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        // Bind settings
         services.Configure<MongoSettings>(configuration.GetSection("Mongo"));
         services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
         services.Configure<SeedSettings>(configuration.GetSection("Seed"));
 
-        // Mongo
         services.AddSingleton<MongoContext>();
 
         services.AddScoped<IUserRepository, UserRepository>();

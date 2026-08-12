@@ -1,5 +1,4 @@
-// Client-side auth state. JWT + user live in localStorage.
-// and call the helpers here directly for non-React code paths.
+
 
 "use client";
 

@@ -18,7 +18,6 @@ public class AssignmentService
     private readonly ICurrentUser _currentUser;
     private readonly ILogger<AssignmentService> _logger;
 
-    // Phase 4: file-type allowlist + size cap for assignment + submission uploads.
     private static readonly HashSet<string> AllowedContentTypes = new(StringComparer.OrdinalIgnoreCase)
     {
         "application/pdf",
@@ -31,7 +30,7 @@ public class AssignmentService
         "application/msword",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     };
-    private const long MaxAttachmentBytes = 10 * 1024 * 1024; // 10 MB
+    private const long MaxAttachmentBytes = 10 * 1024 * 1024; 
 
     public AssignmentService(
         IAssignmentRepository assignments,
@@ -206,7 +205,6 @@ public class AssignmentService
         await _assignments.UpdateAsync(id, update, ct);
         var updated = await _assignments.GetByIdAsync(id, ct);
 
-        // Phase 6: enqueue similarity analysis (best-effort, never blocks submit).
         if (_similarityQueue != null && _similarityService != null)
         {
             try
@@ -243,7 +241,6 @@ public class AssignmentService
         return await BuildAsync(updated!, ct);
     }
 
-    // ---- Phase 4: file attachment upload/download ----
 
     public async Task<StoredFileResponse> UploadAttachmentAsync(
         string id, Stream stream, string fileName, string contentType, CancellationToken ct = default)
@@ -258,7 +255,7 @@ public class AssignmentService
 
         if (!string.IsNullOrEmpty(assignment.AttachmentFileId))
         {
-            try { await _files.DeleteAsync(assignment.AttachmentFileId!, ct); } catch { /* best-effort */ }
+            try { await _files.DeleteAsync(assignment.AttachmentFileId!, ct); } catch {  }
         }
 
         var stored = await _files.UploadAsync(stream, fileName, contentType, ct);
@@ -302,7 +299,7 @@ public class AssignmentService
 
         if (!string.IsNullOrEmpty(assignment.SubmissionFileId))
         {
-            try { await _files.DeleteAsync(assignment.SubmissionFileId!, ct); } catch { /* best-effort */ }
+            try { await _files.DeleteAsync(assignment.SubmissionFileId!, ct); } catch {  }
         }
 
         var stored = await _files.UploadAsync(stream, fileName, contentType, ct);

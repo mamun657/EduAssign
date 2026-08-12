@@ -69,7 +69,6 @@ public class Phase6Tests
 
     private async Task<HttpClient> AsTeacherAsync(string firstName, string lastName)
     {
-        // Teachers are created via Admin endpoint.
         var admin = await AsAdminAsync();
         var email = UniqueEmail(firstName.ToLowerInvariant());
         var createResp = await admin.PostAsJsonAsync("/api/admin/teachers", new
@@ -83,7 +82,6 @@ public class Phase6Tests
         createResp.StatusCode.Should().Be(HttpStatusCode.OK);
         var teacher = (await createResp.Content.ReadFromJsonAsync<TeacherResponseDto>())!;
 
-        // Login as the new teacher to get a JWT with role=Teacher.
         var loginClient = Anonymous();
         var loginResp = await loginClient.PostAsJsonAsync("/api/Auth/login",
             new { email, password = StrongPassword });
@@ -118,7 +116,6 @@ public class Phase6Tests
         return (authed, body.User.Id);
     }
 
-    // -- DTOs ------------------------------------------------------------
 
     private record LoginResponseDto(string Token, UserDto User);
     private record RegisterResponseDto(string Token, UserDto User);
@@ -149,7 +146,6 @@ public class Phase6Tests
     private record HealthDto(bool ok, bool ready, int dim, string model, string? error);
     private record EmbedDto(float[] embedding, string? model, int dim);
 
-    // -- Fixtures --------------------------------------------------------
 
     private static readonly string PdfDir =
         Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "ml-service", "real_pdfs");
@@ -162,8 +158,6 @@ public class Phase6Tests
         return File.ReadAllBytes(path);
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T01_Sidecar_Reachable_And_Model_Loaded")]
     public async Task Sidecar_Must_Be_Reachable()
@@ -179,9 +173,6 @@ public class Phase6Tests
         h.dim.Should().Be(384);
     }
 
-    // ====================================================================
-    // TEST 2: /embed returns real numeric vector
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T02_Embed_Returns_Real_Vector")]
     public async Task Embed_Endpoint_Returns_Real_Numeric_Vector()
@@ -205,9 +196,6 @@ public class Phase6Tests
         dist.Should().BeLessThan(0.001, "same input must produce (nearly) identical embeddings");
     }
 
-    // ====================================================================
-    // TEST 3: Full pipeline — similar PDFs score HIGHER than unrelated
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T03_FullPipeline_SimilarPDFs_Higher_Than_Unrelated")]
     public async Task Full_Pipeline_Scores_Reflect_Real_PDF_Content()
@@ -228,9 +216,6 @@ public class Phase6Tests
         await AssignTeacherAsync(admin, teacherId, aliceId, subject);
         await AssignTeacherAsync(admin, teacherId, bobId, subject);
 
-        // Teacher creates ONE assignment PER STUDENT (API model: assignment
-        // is tied to a single student). Two assignments, same teacher, same
-        // subject, different students, different PDFs.
         var aliceAssignment = await CreateAssignmentForStudentAsync(
             teacherClient, aliceId, subject, "P6 Photosynthesis essay (Alice)");
         var bobAssignment = await CreateAssignmentForStudentAsync(
@@ -238,7 +223,6 @@ public class Phase6Tests
 
         aliceAssignment.TeacherId.Should().Be(teacherId);
 
-        // Publish both.
         await PublishAsync(teacherClient, aliceAssignment.Id);
         await PublishAsync(teacherClient, bobAssignment.Id);
 
@@ -269,13 +253,9 @@ public class Phase6Tests
         aliceSummary.Status.Should().Be("Completed",
             "sidecar should process the submission and finish within the timeout");
 
-        // The submission summary must report an OverallScore in [0, 100] —
-        // any out-of-range value would mean the score is hardcoded/garbage.
         aliceSummary.OverallScore.Should().NotBeNull();
         aliceSummary.OverallScore!.Value.Should().BeInRange(0, 100);
 
-        // Since the API model uses ONE assignment per student, the pairwise
-        // comparison is a direct call to /compare with both submission ids.
         var compare = await teacherClient.GetFromJsonAsync<SimilarityComparisonDto>(
             $"/api/similarity/compare?a={aliceAssignment.Id}&b={bobAssignment.Id}");
         compare.Should().NotBeNull();
@@ -284,8 +264,6 @@ public class Phase6Tests
         compare.LexicalScore.Should().BeInRange(0, 100);
         compare.SemanticScore.Should().BeInRange(0, 100);
 
-        // MUST be on the LOW side. We don't assert exact numbers — only that
-        // a real model does NOT confuse these two distinct topics.
         compare.FinalScore.Should().BeLessThan(70,
             "photosynthesis essay vs french-revolution essay must NOT have a high similarity score");
 
@@ -297,8 +275,6 @@ public class Phase6Tests
             "same PDFs must produce same similarity score (deterministic)");
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T04_Student_Cannot_Trigger_Similarity")]
     public async Task Student_Cannot_Trigger_Analysis()
@@ -324,19 +300,14 @@ public class Phase6Tests
         var resp1 = await studentClient.PostAsync($"/api/similarity/submissions/{assignment.Id}/analyze", null);
         resp1.StatusCode.Should().Be(HttpStatusCode.Forbidden);
 
-        // Student tries to fetch assignment summary.
         var resp2 = await studentClient.GetAsync($"/api/similarity/assignments/{assignment.Id}/summary");
         resp2.StatusCode.Should().Be(HttpStatusCode.Forbidden);
 
-        // Anonymous user hits analyze — must be 401, not 200.
         var anon = Anonymous();
         var resp3 = await anon.GetAsync($"/api/similarity/assignments/{assignment.Id}/summary");
         resp3.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
     }
 
-    // ====================================================================
-    // TEST 5: Compare endpoint rejects anonymous access
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T05_Compare_Rejects_Anonymous")]
     public async Task Compare_Rejects_Anonymous_Access()
@@ -346,9 +317,7 @@ public class Phase6Tests
         resp.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
     }
 
-    // ====================================================================
     // TEST 6: Phase 4 (publish → submit → review) still works
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T06_Phase4_Workflow_Regression")]
     public async Task Phase4_TeacherPublish_StudentSubmit_TeacherReview_Still_Works()
@@ -393,9 +362,6 @@ public class Phase6Tests
         reviewed.Feedback.Should().Be("Solid work.");
     }
 
-    // ====================================================================
-    //         (sanity check — proves cosine ordering works on real text)
-    // ====================================================================
 
     [Fact(DisplayName = "P6_T07_Sidecar_Semantic_Ordering_On_Real_Text")]
     public async Task Sidecar_Orders_Real_Paragraphs_Semantically()
@@ -406,7 +372,6 @@ public class Phase6Tests
             Timeout = TimeSpan.FromSeconds(30)
         };
 
-        // be more similar to each other than to an unrelated paragraph.
         var photosynthesis1 = "Plants convert sunlight, water, and carbon dioxide into glucose and oxygen through photosynthesis.";
         var photosynthesis2 = "Through photosynthesis, green plants transform CO2 and H2O into sugars using solar energy.";
         var frenchRevolution = "In 1789 the French Revolution erupted, leading to the overthrow of the Bourbon monarchy.";
@@ -424,7 +389,6 @@ public class Phase6Tests
             "a real multilingual sentence-transformer should give same-topic pairs > 0.5 cosine");
     }
 
-    // -- Helpers --------------------------------------------------------
 
     private static async Task AssignTeacherAsync(HttpClient admin, string teacherId, string studentId, string subjectId)
     {

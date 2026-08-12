@@ -18,7 +18,7 @@ public class GridFsFileRepository : IFileRepository
         _bucket = new GridFSBucket(database, new GridFSBucketOptions
         {
             BucketName = "attachments",
-            ChunkSizeBytes = 255 * 1024, // 255 KB
+            ChunkSizeBytes = 255 * 1024, 
         });
     }
 
@@ -28,8 +28,6 @@ public class GridFsFileRepository : IFileRepository
         string contentType,
         CancellationToken ct = default)
     {
-        // is the first argument to UploadFromStreamAsync. Store contentType + uploadedAt
-        // inside metadata so we can return them later from GetAsync.
         var options = new GridFSUploadOptions
         {
             Metadata = new BsonDocument
@@ -41,9 +39,6 @@ public class GridFsFileRepository : IFileRepository
 
         var id = await _bucket.UploadFromStreamAsync(fileName, stream, options, ct);
 
-        // MongoDB.Driver 2.x: GridFSFileInfo.Id is ObjectId but the strongly-typed
-        // expression builder cannot translate `f => f.Id` against this class. Use the
-        // string-typed field name "_id" instead, which works for both upload + download.
         var filter = Builders<GridFSFileInfo>.Filter.Eq("_id", id);
         var info = await _bucket.FindAsync(filter, cancellationToken: ct);
         var doc = await info.FirstOrDefaultAsync(ct);
@@ -51,7 +46,6 @@ public class GridFsFileRepository : IFileRepository
 
         return new StoredFile
         {
-            // info.Id is already an ObjectId in MongoDB.Driver 2.x — no AsObjectId() needed.
             Id = doc.Id.ToString(),
             FileName = doc.Filename ?? fileName,
             ContentType = contentType,
@@ -62,7 +56,6 @@ public class GridFsFileRepository : IFileRepository
     public async Task<StoredFile?> GetAsync(string id, CancellationToken ct = default)
     {
         if (!ObjectId.TryParse(id, out var oid)) return null;
-        // Strongly-typed expression builder cannot translate `f => f.Id` for GridFSFileInfo;
         var filter = Builders<GridFSFileInfo>.Filter.Eq("_id", oid);
         var cursor = await _bucket.FindAsync(filter, cancellationToken: ct);
         var info = await cursor.FirstOrDefaultAsync(ct);
@@ -75,7 +68,6 @@ public class GridFsFileRepository : IFileRepository
 
         var stored = new StoredFile
         {
-            // info.Id is already an ObjectId in MongoDB.Driver 2.x — no AsObjectId() needed.
             Id = info.Id.ToString(),
             FileName = info.Filename ?? "download",
             ContentType = contentType,

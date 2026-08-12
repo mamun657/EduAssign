@@ -33,11 +33,9 @@ public class EduAssignPro37Tests
         _adminPassword = GetEnv("SEED__ADMINPASSWORD");
     }
 
-    // -- Helpers ---------------------------------------------------------
 
     private static string GetEnv(string key)
     {
-        // The .env loader sets process env vars. Tests read them too.
         var v = Environment.GetEnvironmentVariable(key);
         if (string.IsNullOrWhiteSpace(v))
             throw new InvalidOperationException($"Missing env var {key}. Did the loader run?");
@@ -82,7 +80,6 @@ public class EduAssignPro37Tests
         });
         resp.EnsureSuccessStatusCode();
         var body = await resp.Content.ReadFromJsonAsync<RegisterResponseDto>();
-        // Read the body once, then build the authed client from the same data.
         var authed = Anonymous();
         authed.DefaultRequestHeaders.Authorization =
             new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", body!.Token);
@@ -96,8 +93,6 @@ public class EduAssignPro37Tests
         string? PhoneNumber, string Role, string? AcademicLevelId,
         bool IsActive, DateTime CreatedAt);
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "01_Register_OK_SchoolStudent")]
     public async Task T01_Register_OK_SchoolStudent()
@@ -241,8 +236,6 @@ public class EduAssignPro37Tests
         resp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "11_GetAcademicLevels")]
     public async Task T11_GetAcademicLevels()
@@ -290,8 +283,6 @@ public class EduAssignPro37Tests
         resp.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "16_SchoolStudent_AutoEnrolls_4_Compulsory")]
     public async Task T16_SchoolStudent_AutoEnrolls_4_Compulsory()
@@ -363,8 +354,6 @@ public class EduAssignPro37Tests
         resp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "21_CollegeStudent_Selects_BiologyGroup")]
     public async Task T21_CollegeStudent_Selects_BiologyGroup()
@@ -375,12 +364,10 @@ public class EduAssignPro37Tests
         var subjects = await GetSubjectIdsByCodeAsync(student);
         var b1 = await student.PostAsJsonAsync("/api/Students/enroll", new { subjectId = subjects["COL_BIO_1"] });
         b1.StatusCode.Should().Be(HttpStatusCode.OK);
-        // already enrolled. A direct POST is rejected as a duplicate.
         var b2 = await student.PostAsJsonAsync("/api/Students/enroll", new { subjectId = subjects["COL_BIO_2"] });
         b2.StatusCode.Should().Be(HttpStatusCode.Conflict);
         var enrolled = await student.GetFromJsonAsync<List<EnrolledSubjectDto>>(
             "/api/Students/enrolled-subjects");
-        // 8 compulsory + 2 Bio papers (auto-enrolled) = 10.
         enrolled!.Count.Should().Be(10);
         enrolled.Any(e => e.SubjectCode == "COL_BIO_1").Should().BeTrue();
         enrolled.Any(e => e.SubjectCode == "COL_BIO_2").Should().BeTrue();
@@ -418,7 +405,6 @@ public class EduAssignPro37Tests
         var schoolId = await GetSchoolIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Poly", "Cross", "Student", schoolId);
         var subjects = await GetSubjectIdsByCodeAsync(student);
-        // COL_BIO_1 belongs to the college curriculum, not school.
         var resp = await student.PostAsJsonAsync("/api/Students/enroll",
             new { subjectId = subjects["COL_BIO_1"] });
         resp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -444,9 +430,6 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "26_MaxChoicesInGroup_Enforced_College")]
     public async Task T26_MaxChoicesInGroup_Enforced_College()
     {
-        // each with 2 papers. Enrolling any Bio paper auto-enrolls both Bio
-        // papers, and Higher Mathematics papers belong to a DIFFERENT option
-        // so they must be rejected. T22 covers the same scenario already.
         var anon = Anonymous();
         var collegeId = await GetCollegeIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Rina", "MaxGrp", "Student", collegeId);
@@ -468,7 +451,6 @@ public class EduAssignPro37Tests
             "/api/Students/available-subjects");
         avail!.CompulsorySubjects.Count.Should().Be(8);
         var scienceOpt = avail.ElectiveGroups.First(g => g.Name == "ScienceOptional");
-        // 2 options (Biology, HigherMathematics) × 2 papers each = 4.
         scienceOpt.Subjects.Count.Should().Be(4);
         scienceOpt.Options.Count.Should().Be(2);
         scienceOpt.Options.Select(o => o.Key)
@@ -478,10 +460,6 @@ public class EduAssignPro37Tests
         scienceOpt.MaxChoicesInGroup.Should().Be(2);
     }
 
-    // ====================================================================
-    // each containing 2 papers. Selecting any paper from an option enrolls
-    // both papers of that option. Cross-option mixing is rejected.
-    // ====================================================================
 
     [Fact(DisplayName = "38_Biology1_AutoEnrolls_Biology2")]
     public async Task T38_Biology1_AutoEnrolls_Biology2()
@@ -504,20 +482,16 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "39_Biology_Rejects_HigherMathematics")]
     public async Task T39_Biology_Rejects_HigherMathematics()
     {
-        // After picking Biology, any HMATH paper (1st or 2nd) must be rejected.
         var anon = Anonymous();
         var collegeId = await GetCollegeIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Zara", "BioVsHmath", "Student", collegeId);
         var subjects = await GetSubjectIdsByCodeAsync(student);
         (await student.PostAsJsonAsync("/api/Students/enroll",
             new { subjectId = subjects["COL_BIO_1"] })).StatusCode.Should().Be(HttpStatusCode.OK);
-        // 1st paper rejected.
         (await student.PostAsJsonAsync("/api/Students/enroll",
             new { subjectId = subjects["COL_HMATH_1"] })).StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        // 2nd paper also rejected.
         (await student.PostAsJsonAsync("/api/Students/enroll",
             new { subjectId = subjects["COL_HMATH_2"] })).StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        // Higher Mathematics papers must NOT be enrolled.
         var enrolled = await student.GetFromJsonAsync<List<EnrolledSubjectDto>>(
             "/api/Students/enrolled-subjects");
         enrolled!.Any(e => e.SubjectCode == "COL_HMATH_1").Should().BeFalse();
@@ -545,7 +519,6 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "41_HigherMathematics_Rejects_Biology")]
     public async Task T41_HigherMathematics_Rejects_Biology()
     {
-        // After picking Higher Mathematics, any Bio paper must be rejected.
         var anon = Anonymous();
         var collegeId = await GetCollegeIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Bithi", "HmathVsBio", "Student", collegeId);
@@ -565,9 +538,6 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "42_DirectAPI_CrossOption_Rejected")]
     public async Task T42_DirectAPI_CrossOption_Rejected()
     {
-        // Direct API attempt: pick Bio1 first, then try Bio2 (already auto-
-        // enrolled — duplicate), then HMATH1 (cross-option). Each must be
-        // rejected by the BACKEND, regardless of any UI state.
         var anon = Anonymous();
         var collegeId = await GetCollegeIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Chitra", "DirectApi", "Student", collegeId);
@@ -581,12 +551,10 @@ public class EduAssignPro37Tests
             new { subjectId = subjects["COL_BIO_2"] });
         bio2.StatusCode.Should().Be(HttpStatusCode.Conflict);
 
-        // Step 3: directly POST HMath1 — cross-option, must be rejected.
         var hm1 = await student.PostAsJsonAsync("/api/Students/enroll",
             new { subjectId = subjects["COL_HMATH_1"] });
         hm1.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
-        // Step 4: directly POST HMath2 — cross-option, must be rejected.
         var hm2 = await student.PostAsJsonAsync("/api/Students/enroll",
             new { subjectId = subjects["COL_HMATH_2"] });
         hm2.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -601,8 +569,6 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "43_School_Elective_Unchanged")]
     public async Task T43_School_Elective_Unchanged()
     {
-        // electives — picking Bio must reject HMath (legacy MaxChoicesInGroup=1
-        // behavior). This guards against any regression in school rules.
         var anon = Anonymous();
         var schoolId = await GetSchoolIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Dip", "SchoolElec", "Student", schoolId);
@@ -621,8 +587,6 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "44_Compulsory_Subjects_Unchanged")]
     public async Task T44_Compulsory_Subjects_Unchanged()
     {
-        // automatically see 8 compulsory subjects in available-subjects, and
-        // they remain available regardless of elective state.
         var anon = Anonymous();
         var collegeId = await GetCollegeIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Elif", "Comp", "Student", collegeId);
@@ -631,7 +595,6 @@ public class EduAssignPro37Tests
         var avail = await student.GetFromJsonAsync<AvailableCurriculumWithOptionsDto>(
             "/api/Students/available-subjects");
         avail!.CompulsorySubjects.Should().HaveCount(8);
-        // Compulsory subjects must not be cross-enrolled with anything.
         avail.CompulsorySubjects.Should().OnlyContain(c => c.IsCompulsory);
 
         (await student.PostAsJsonAsync("/api/Students/enroll",
@@ -645,9 +608,6 @@ public class EduAssignPro37Tests
     [Fact(DisplayName = "45_MaxChoicesInGroup_Unchanged_For_OtherGroups")]
     public async Task T45_MaxChoicesInGroup_Unchanged_For_OtherGroups()
     {
-        // School SCH_BIO group must still have MaxChoicesInGroup = 1 (it is a
-        // single-option elective). This guards against accidental changes to
-        // the legacy MaxChoicesInGroup semantics for groups WITHOUT an
         var anon = Anonymous();
         var schoolId = await GetSchoolIdAsync(await AsAdminAsync());
         var (student, _) = await AsRegisteredStudentAsync("Fariha", "MaxGrpOther", "Student", schoolId);
@@ -662,8 +622,6 @@ public class EduAssignPro37Tests
         bioGroup.Options.Should().BeEmpty();
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "28_Admin_Sees_Only_SelectedSubjects_In_SelectedSubjects")]
     public async Task T28_Admin_Sees_Only_SelectedSubjects_In_SelectedSubjects()
@@ -682,9 +640,7 @@ public class EduAssignPro37Tests
         detail!.SelectedSubjects.Should().HaveCount(5);
         detail.SelectedSubjects.Select(s => s.SubjectCode)
             .Should().BeEquivalentTo(new[] { "SCH_BIO", "SCH_CHEM", "SCH_BANG", "SCH_ENG", "SCH_PHY" });
-        // Critical: HMath must NOT appear in selected.
         detail.SelectedSubjects.Any(s => s.SubjectCode == "SCH_HMATH").Should().BeFalse();
-        // HMath must appear in the not-selected bucket.
         detail.AvailableNotSelectedSubjects.Any(s => s.SubjectCode == "SCH_HMATH").Should().BeTrue();
         detail.AvailableNotSelectedSubjects.Any(s => s.SubjectCode == "SCH_BIO").Should().BeFalse();
     }
@@ -728,7 +684,6 @@ public class EduAssignPro37Tests
         var schoolId = await GetSchoolIdAsync(await AsAdminAsync());
         var (student, studentId) = await AsRegisteredStudentAsync("Vela", "Abir3", "Student", schoolId);
         var subjects = await GetSubjectIdsByCodeAsync(student);
-        // Admin attempts to assign HMath → must fail.
         var admin = await AsAdminAsync();
         var teacherEmail = UniqueEmail("rakib");
         var ct = await admin.PostAsJsonAsync("/api/admin/teachers", new
@@ -787,8 +742,6 @@ public class EduAssignPro37Tests
             .Should().BeEquivalentTo(new[] { "SCH_HMATH" });
     }
 
-    // ====================================================================
-    // ====================================================================
 
     [Fact(DisplayName = "33_Teacher_Mine_Returns_Only_Own_Assignments")]
     public async Task T33_Teacher_Mine_Returns_Only_Own_Assignments()
@@ -850,7 +803,6 @@ public class EduAssignPro37Tests
             new { email = teacherEmail, password = StrongPassword });
         teacherClient = await AttachTokenAsync(login);
 
-        // Try to create assignment for Chemistry — must be forbidden.
         var resp = await teacherClient.PostAsJsonAsync("/api/assignments", new
         {
             studentId,
@@ -1000,14 +952,11 @@ public class EduAssignPro37Tests
         (await teacherClient.PostAsJsonAsync($"/api/assignments/{created.Id}/publish", new { }))
             .StatusCode.Should().Be(HttpStatusCode.OK);
 
-        // student2 tries to submit student1's assignment.
         var resp = await student2.PostAsJsonAsync($"/api/assignments/{created.Id}/submit",
             new { submissionText = "trying" });
         resp.StatusCode.Should().Be(HttpStatusCode.Forbidden);
     }
 
-    // ====================================================================
-    // ====================================================================
 
     private record AcademicLevelFullDto(string Id, string Code, string Name, bool IsActive);
     private record CurriculumSubjectDto(string CurriculumSubjectId, string SubjectId,

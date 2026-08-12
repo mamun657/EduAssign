@@ -52,10 +52,8 @@ public class SeedRunner : ISeedRunner
     {
         _logger.LogInformation("Running idempotent seed...");
 
-        // 1) Indexes (idempotent: MongoDB no-ops if identical index exists)
         await _unitOfWork.EnsureIndexesAsync(ct);
 
-        // 2) Academic levels (Upsert by Code)
         var school = new AcademicLevel
         {
             Code = Constants.SchoolCode,
@@ -81,7 +79,6 @@ public class SeedRunner : ISeedRunner
             return;
         }
 
-        // 3) Subjects (Upsert by Code) - matches the official EduAssign Pro curriculum
         var allSubjects = new (string Code, string Name)[]
         {
             ("SCH_PHY",      "Physics"),
@@ -112,7 +109,6 @@ public class SeedRunner : ISeedRunner
         var subjectList = await _subjects.ListAsync(ct);
         var subjByCode = subjectList.ToDictionary(s => s.Code);
 
-        // 4) CurriculumSubjects (Upsert by AcademicLevelId + SubjectId)
         var schoolCurriculum = new[]
         {
             new { Code = "SCH_PHY",   IsComp = true,  Group = (string?)null,                    Max = (int?)null },
@@ -168,7 +164,6 @@ public class SeedRunner : ISeedRunner
             }, ct);
         }
 
-        // 5) Optional Admin user (idempotent)
         if (!string.IsNullOrWhiteSpace(_settings.AdminEmail) && !string.IsNullOrWhiteSpace(_settings.AdminPassword))
         {
             var email = _settings.AdminEmail.Trim().ToLowerInvariant();
