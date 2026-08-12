@@ -402,7 +402,6 @@ export default function RegisterPage() {
               </Select>
             </div>
 
-            {/* Password strength meter + checklist */}
             <div className="mt-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-medium text-slate-600">Password strength</span>

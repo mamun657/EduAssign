@@ -120,13 +120,11 @@ function isActive(pathname: string, href: string): boolean {
   if (hash) {
     return pathname === path;
   }
-  // Overview pages (/admin, /teacher, /student) are EXACT matches only — we
   // don't want /teacher/students to also highlight the Overview item.
   if (href === "/admin" || href === "/teacher" || href === "/student") {
     return pathname === href;
   }
   // Sub-routes use exact + prefix match (e.g. /admin/students/123 keeps the
-  // Students item active).
   return pathname === href || pathname.startsWith(href + "/");
 }
 
@@ -147,7 +145,6 @@ export default function Sidebar({
         isDrawer ? "p-4" : "border-r border-slate-200 bg-white p-4",
       ].join(" ")}
     >
-      {/* Logo / brand block */}
       <Link
         href={`/${role.toLowerCase()}`}
         className="flex items-center gap-2 rounded-lg px-2 py-2 hover:bg-slate-50"
@@ -168,7 +165,6 @@ export default function Sidebar({
         </span>
       </Link>
 
-      {/* Sectioned nav */}
       <div className="flex flex-col gap-5">
         {groups.map((group) => (
           <div key={group.label} className="flex flex-col gap-1.5">
@@ -192,7 +188,6 @@ export default function Sidebar({
                           : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
                       ].join(" ")}
                     >
-                      {/* Left rail indicator (active only) */}
                       <span
                         aria-hidden="true"
                         className={[
@@ -234,7 +229,6 @@ export default function Sidebar({
         ))}
       </div>
 
-      {/* Footer hint */}
       <div className="mt-auto rounded-md border border-slate-200 bg-slate-50 p-3">
         <p className="text-[11px] font-medium text-slate-700">
           Need a hand?

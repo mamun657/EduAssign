@@ -22,7 +22,6 @@ public static class DependencyInjection
         // Mongo
         services.AddSingleton<MongoContext>();
 
-        // Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAcademicLevelRepository, AcademicLevelRepository>();
         services.AddScoped<ISubjectRepository, SubjectRepository>();
@@ -44,7 +43,6 @@ public static class DependencyInjection
         services.AddSingleton<ITokenService, JwtTokenService>();
         services.AddScoped<ICurrentUser, HttpContextCurrentUser>();
 
-        // Seed
         services.AddScoped<ISeedRunner, SeedRunner>();
 
         return services;

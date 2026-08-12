@@ -15,7 +15,7 @@ public class SimilaritySummaryDto
     public string? ComparedSubmissionId { get; set; }
     public string? ComparedStudentId { get; set; }
     public string? ComparedStudentName { get; set; }
-    public string Level { get; set; } = "Unknown";   // Low / Moderate / High / Unknown
+    public string Level { get; set; } = "Unknown";   
     public DateTime? AnalyzedAt { get; set; }
     public string? ErrorMessage { get; set; }
     public List<SimilarityMatchDto> Matches { get; set; } = new();

@@ -261,7 +261,6 @@ function Teachers() {
             </form>
           ) : null}
 
-          {/* Filter row */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
             <div className="flex-1">
               <Input

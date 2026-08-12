@@ -30,12 +30,10 @@ public class PdfTextExtractor : ITextExtractor
             if (ct1.StartsWith("image/") || fn.EndsWith(".png") || fn.EndsWith(".jpg") || fn.EndsWith(".jpeg")
                 || fn.EndsWith(".webp") || fn.EndsWith(".gif"))
             {
-                // No OCR in scope.
                 return string.Empty;
             }
             if (fn.EndsWith(".doc") || fn.EndsWith(".docx"))
             {
-                // Binary office formats — extract best-effort as plain UTF-8 text (will be garbage for compressed docs).
                 return Encoding.UTF8.GetString(data);
             }
         }

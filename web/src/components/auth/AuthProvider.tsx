@@ -40,7 +40,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const router = useRouter();
 
-  // Bootstrap from localStorage on first mount
   useEffect(() => {
     const t = getToken();
     const u = getUser();
@@ -96,7 +95,6 @@ export function useAuth(): AuthContextValue {
   return ctx;
 }
 
-// Convenience: where should this user go after login?
 export function defaultPathFor(role: Role): string {
   return dashboardPathFor(role);
 }

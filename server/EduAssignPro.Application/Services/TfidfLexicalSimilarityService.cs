@@ -61,7 +61,6 @@ public class TfidfLexicalSimilarityService
         }
         if (na == 0d || nb == 0d) return 0d;
         var sim = dot / (Math.Sqrt(na) * Math.Sqrt(nb));
-        // Clamp to [0,1].
         if (sim < 0d) sim = 0d;
         if (sim > 1d) sim = 1d;
         return sim;

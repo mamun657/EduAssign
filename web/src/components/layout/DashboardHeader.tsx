@@ -31,7 +31,6 @@ export default function DashboardHeader({ role, onMenuToggle }: DashboardHeaderP
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-6">
       <div className="flex min-w-0 items-center gap-3">
-        {/* Hamburger — visible only below lg. Desktop uses the fixed sidebar. */}
         <button
           type="button"
           onClick={onMenuToggle}

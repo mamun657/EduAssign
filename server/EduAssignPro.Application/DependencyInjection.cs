@@ -15,7 +15,6 @@ public static class DependencyInjection
 
         foreach (var impl in serviceTypes)
         {
-            // Find an interface in the same namespace or matching by name (I{ServiceName})
             var iface = impl.GetInterfaces().FirstOrDefault()
                 ?? impl.GetInterfaces().FirstOrDefault();
             if (iface != null)

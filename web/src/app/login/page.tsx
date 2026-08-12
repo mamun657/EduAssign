@@ -111,9 +111,7 @@ export default function LoginPage() {
         </p>
       </header>
 
-      {/* Main two-column content */}
       <div className="grid min-h-[calc(100vh-73px)] items-center justify-items-center px-6 pb-4 sm:px-10 lg:px-14 xl:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)] xl:gap-10">
-        {/* Left: form */}
         <div className="mx-auto w-full max-w-md xl:mx-0 xl:max-w-md xl:translate-x-2 xl:translate-y-4 xl:self-center xl:pl-8">
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
             Welcome back
@@ -197,7 +195,6 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          {/* Quick demo login */}
           <div className="mt-5">
             <div className="flex items-center gap-3">
               <div className="h-px flex-1 bg-slate-200" />
@@ -250,7 +247,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Right: illustration */}
         <div className="mt-6 hidden w-full items-center justify-center self-center xl:mt-0 xl:flex xl:translate-x-4 xl:translate-y-4">
           <div className="relative aspect-square w-full max-w-[520px] overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/60">
             <Image

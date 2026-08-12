@@ -29,7 +29,6 @@ import LandingNav from "./LandingNav";
    Small primitives
    ──────────────────────────────────────────────────────────────────────────── */
 
-// Generous editorial container used by every section. Width stays around
 // the previous 7xl so the layout doesn't feel wider than the hero — but
 // horizontal padding is more generous so the type can breathe.
 function Container({
@@ -49,7 +48,6 @@ function Container({
 // Section label / eyebrow. Two intents:
 //   • on a WHITE section  → muted dark gray
 //   • on a BLACK section  → muted white
-// No blue pills, no rounded containers, no ring borders. Just quiet
 // uppercase tracking on a small horizontal divider.
 function SectionLabel({
   index,
@@ -76,7 +74,6 @@ function SectionLabel({
   );
 }
 
-// Major section heading. Editorial sizing — desktop 56–68px. Tone flips
 // between dark text on white sections and white text on black sections.
 function SectionHeading({
   children,
@@ -107,7 +104,6 @@ function SectionHeading({
   );
 }
 
-// Quiet supporting paragraph. Uses a slightly larger size on white sections
 // than the previous design so the type can carry the editorial weight.
 function SectionLede({
   children,
@@ -135,10 +131,6 @@ function SectionLede({
 
 function Hero() {
   // ---------------------------------------------------------------------
-  // Fullscreen premium monochrome hero. Black canvas, white typography,
-  // large integrated cinematic image that dissolves into the background.
-  // The hero is exactly 100svh tall (minus the 65px navbar) so the entire
-  // composition — eyebrow, headline, description, CTA, benefits, image,
   // and the subtle bottom marquee — fits inside the first viewport.
   //
   // Composition intent: TEXT + IMAGE = ONE VISUAL, not two columns.
@@ -172,15 +164,8 @@ function Hero() {
         />
       </div>
 
-      {/* Fullscreen layout: left text column + right cinematic image, with a
-          subtle bottom marquee pinned to the section's bottom edge so it
-          sits inside the first viewport. */}
       <div className="relative mx-auto flex min-h-[calc(100svh-65px)] max-w-[1480px] flex-col px-6 pt-[64px] sm:px-10 sm:pt-[68px] lg:px-14 lg:pt-[72px]">
-        {/* Main row — left content + right image, vertically centered. */}
         <div className="relative flex flex-1 items-center">
-          {/* Left content — eyebrow + headline + description + CTAs + benefits.
-              On desktop this column takes ~50% of the width so the headline
-              reads as two lines and the composition has room to breathe. */}
           <div className="hero-fade-in relative z-10 w-full max-w-[640px] lg:w-[50%]">
             <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
               Assignment &amp; Submission Platform
@@ -214,14 +199,9 @@ function Hero() {
             </ul>
           </div>
 
-          {/* Right cinematic image — large, vertically centered, dissolving on
-              all four edges into the black hero background. No card, no
-              border, no rounded container. */}
           <HeroVisual />
         </div>
 
-        {/* Bottom marquee — subtle, premium, floats directly on the black
-            canvas. No outer container, no border, no card. */}
         <div className="pb-4 sm:pb-5">
           <HeroMarquee />
         </div>
@@ -235,20 +215,13 @@ function HeroVisual() {
   //
   // The image is 1740×904 (aspect ≈ 1.92). We render it at NATURAL aspect
   // ratio (no object-cover, no fixed container) so the image's own dark
-  // background merges with the page's #000000 background into a single
   // continuous cinematic scene — NO perceptible rectangle, NO border, NO
-  // shadow, NO card.
   //
-  // On desktop the image is sized so it occupies roughly 52–58 % of the
-  // hero's right half and slightly overlaps behind the typography. The
   // image is vertically centered and extends naturally toward the right
-  // edge of the viewport.
   //
-  // On all four edges the image dissolves into pure black so the source's
   // own dark pixels become indistinguishable from the hero background.
   // No warm halo behind the image — the hero is intentionally monochrome.
   //
-  // The image is layered behind the left text column on large screens but
   // always with `z-0` / `pointer-events: none`, so it never intercepts clicks.
   return (
     <picture
@@ -262,7 +235,6 @@ function HeroVisual() {
         className={[
           "hero-fade-in hero-fade-in-delay-1",
           // desktop: large, right-aligned, slightly extends past the right
-          // edge so it bleeds off the page naturally (no visible right edge).
           "absolute top-1/2 right-[-2%] -translate-y-1/2",
           "h-auto w-[min(880px,58vw)] max-w-none",
           // tablet/mobile: stack below text, smaller, centered
@@ -272,12 +244,7 @@ function HeroVisual() {
         style={{
           pointerEvents: "none",
           userSelect: "none",
-          // Aggressive four-edge dissolve into pure black:
-          //   left   → first 28% (the empty left side of the frame)
-          //   right  → last 18% (subjects sit left/center of the frame on this
           //            asset, so the right side dissolves into the page)
-          //   top    → first 12% (the asset's dark top merges cleanly)
-          //   bottom → last 18% (table / laptop edge dissolves into black)
           WebkitMaskImage:
             "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%)",
           maskImage:
@@ -291,14 +258,11 @@ function HeroVisual() {
 }
 
 function HeroMarquee() {
-  // A TRUE seamless right-to-left marquee that floats directly on the hero
-  // background — no outer card, no border, no rounded container. The track
   // is duplicated (A B C D E F G A B C D E F G) and translated by exactly
   // -50%, so when the first copy scrolls off the left the second copy is in
   // the identical position the first copy started at — no visible jump,
   // infinite loop.
   //
-  // Icons are white/muted white, never gold. Items are quiet typography
   // proof points, not feature chips.
   const items: Array<{ icon: React.ReactNode; label: string }> = [
     { icon: <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />, label: "Smart Assignments" },
@@ -309,8 +273,6 @@ function HeroMarquee() {
     { icon: <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />, label: "Secure & Reliable" },
     { icon: <Building2 className="h-3.5 w-3.5" aria-hidden="true" />, label: "For Every Institution" },
   ];
-  // Duplicate the items so the track is [A B C D E F G] [A B C D E F G].
-  // A -50% translate creates a perfectly seamless infinite loop.
   const track = items.concat(items);
   return (
     <div
@@ -318,8 +280,6 @@ function HeroMarquee() {
       role="region"
       aria-label="Platform capabilities"
     >
-      {/* Edge fades anchored to pure black so the marquee disappears into the
-          hero background at the left/right viewport edges. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 sm:w-28"
@@ -354,13 +314,10 @@ function HeroMarquee() {
 }
 
 function Features() {
-  // Editorial feature grid on a WHITE section. The first item is treated as
   // a "hero feature" — a larger two-column row. The remaining features are
   // listed below as an asymmetric editorial grid (1 + 2 + 2) with thin gray
   // separators instead of rounded cards.
   //
-  // No rounded card containers, no blue icon tiles, no hover-lift shadows.
-  // Icons are flat black/dark gray and live inline with the heading.
   //
   // Phase 12c: Compact content (one short sentence per feature), tighter
   // typography, and a landscape (3:2) fig3.png illustration placed
@@ -452,12 +409,7 @@ function Features() {
           </div>
         </div>
 
-        {/* Feature grid. The first feature occupies a wide row with a thin
-            top separator. The remaining features form a 2-column grid with
-            thin vertical + horizontal separators — editorial, not card-y. */}
         <div className="mt-8 border-t border-black/10 sm:mt-10">
-          {/* Hero feature — two-column composition. Left column carries the
-              number + monochrome line icon. Right column holds title + body. */}
           <article className="grid gap-6 border-b border-black/10 py-7 sm:py-9 lg:grid-cols-12 lg:items-start lg:gap-12">
             <div className="lg:col-span-5">
               <div className="text-[#111111]">
@@ -474,18 +426,14 @@ function Features() {
             </div>
           </article>
 
-          {/* Rest of the grid — 2 columns on tablet/desktop, single column on
-              mobile. Thin vertical separator between columns. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 lg:divide-x lg:divide-black/10">
             {features.map((f, i) => (
               <article
                 key={f.title}
                 className={[
                   "border-b border-black/10 py-6 sm:py-8 lg:px-10",
-                  // Add left padding back on lg only for items past the first
                   "lg:first:pl-0",
                   i % 2 === 0 ? "lg:pr-10" : "lg:pl-10",
-                  // Mobile: stack with padding
                   "px-0 sm:px-0",
                 ].join(" ")}
               >
@@ -544,11 +492,7 @@ function HowItWorks() {
       aria-label="How it works"
     >
       <Container className="py-14 sm:py-16 lg:py-20">
-        {/* Top band: text on the LEFT, illustration on the RIGHT. Stacks on
-            tablet/mobile so the heading reads first, then the supporting
-            paragraph, then the illustration. */}
         <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
-          {/* LEFT — eyebrow + heading + supporting paragraph */}
           <div className="lg:col-span-7">
             <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
               Workflow
@@ -565,8 +509,6 @@ function HowItWorks() {
             </p>
           </div>
 
-          {/* RIGHT — illustration. Smaller, right-aligned, no card, no
-              border, no background. Transparent background preserved. */}
           <div className="lg:col-span-5">
             <div className="mx-auto w-full max-w-[420px] lg:ml-auto lg:mr-0">
               <img
@@ -583,9 +525,6 @@ function HowItWorks() {
           </div>
         </div>
 
-        {/* Compact 4-step flow. Minimal: step name + one short description per
-            item. Thin dividers between steps on desktop; horizontal lines on
-            smaller viewports. */}
         <ol className="mt-10 grid grid-cols-1 divide-y divide-white/10 border-t border-white/10 sm:mt-12 sm:grid-cols-2 sm:divide-white/10 lg:mt-14 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:divide-white/10">
           {steps.map((s) => (
             <li
@@ -611,9 +550,6 @@ function HowItWorks() {
    ──────────────────────────────────────────────────────────────────────────── */
 
 function Roles() {
-  // WHITE editorial 3-column comparison: Admin | Teacher | Student.
-  // No colorful gradient banners, no rounded cards with hover-lift shadows,
-  // no green checkmarks. Just clean typography separated by thin gray
   // vertical lines.
   const roles = [
     {
@@ -656,15 +592,7 @@ function Roles() {
       aria-label="Roles"
     >
       <Container className="py-20 sm:py-24 lg:py-32">
-        {/* Editorial two-column intro: copy on the left, illustration on
-            the right. The left column carries the section label, the
-            dominant heading, and a single short supporting sentence.
-            The right column carries the transparent-background admin
-            illustration, vertically centered against the copy and
-            capped at a deliberate ~560px so it reads as a section
-            visual rather than a banner. */}
         <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* LEFT — copy (~45% of the section width on desktop). */}
           <div className="lg:col-span-5">
             <SectionLabel tone="dark" dash={false}>
               Solutions
@@ -679,10 +607,6 @@ function Roles() {
             </p>
           </div>
 
-          {/* RIGHT — illustration (~55% on desktop). Vertically centered
-              against the left column. Square aspect-ratio frame so a
-              1:1 asset fits naturally; object-contain preserves the
-              transparent background with no cropping. */}
           <div className="lg:col-span-7">
             <div className="mx-auto w-full max-w-[440px] lg:mx-0 lg:ml-auto lg:max-w-[560px]">
               <div
@@ -704,8 +628,6 @@ function Roles() {
           </div>
         </div>
 
-        {/* 3-column role comparison. Thin gray top + bottom rules, thin
-            gray vertical separators. No rounded cards, no hover-lift. */}
         <div className="mt-16 border-y border-black/10 sm:mt-20 lg:mt-24">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:divide-x lg:divide-black/10">
             {roles.map((r, i) => (
@@ -713,9 +635,7 @@ function Roles() {
                 key={r.role}
                 className={[
                   "px-0 py-12 sm:px-8 lg:py-16",
-                  // Mobile/tablet: hairline between rows on the 2nd+ item
                   i > 0 ? "border-t border-black/10 sm:border-t-0" : "",
-                  // Even tablet only: separate into 2 cols with hairline
                   i === 2 ? "sm:col-span-2 sm:border-t sm:border-black/10 lg:col-span-1 lg:border-t-0" : "",
                   "lg:first:pl-0 lg:last:pr-0",
                 ].join(" ")}
@@ -750,9 +670,7 @@ function Roles() {
    ──────────────────────────────────────────────────────────────────────────── */
 
 function ProductShowcase() {
-  // BLACK section — premium product visualization. The product surface
   // itself stays dark (charcoal, not navy) so it feels like a real
-  // product UI inside the marketing page. No blue gradient blobs, no
   // decorative halos.
   return (
     <section
@@ -784,12 +702,8 @@ function ProductShowcase() {
           </div>
         </div>
 
-        {/* Product visualization — a charcoal product frame. Subtle white
-            borders. The visualization itself is the focus; no decorative
-            glow blobs behind it. */}
         <div className="mt-20 sm:mt-24">
           <div className="overflow-hidden rounded-md border border-white/10 bg-[#0A0A0A]">
-            {/* Title bar */}
             <div className="flex items-center gap-2 border-b border-white/10 px-5 py-3.5">
               <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
               <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
@@ -798,14 +712,12 @@ function ProductShowcase() {
                 eduassign / workflow
               </span>
             </div>
-            {/* Stat row */}
             <div className="grid divide-y divide-white/10 border-b border-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
               <DarkStat label="Classes" value="3 levels" sub="School · College" />
               <DarkStat label="Workflows" value="End-to-end" sub="Setup → Review" />
               <DarkStat label="Roles" value="3" sub="Admin · Teacher · Student" />
               <DarkStat label="Access" value="Role-based" sub="Server enforced" />
             </div>
-            {/* Workflow chain */}
             <div className="px-5 py-6 sm:px-7 sm:py-8">
               <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/40">
                 Workflow
@@ -828,10 +740,6 @@ function ProductShowcase() {
             </div>
           </div>
 
-          {/* Editorial checklist under the visualization — quiet
-              typographic proof points. Each item carries a meaningful
-              monochrome icon (20–24px) so the row reads as real feature
-              bullets rather than a hairline divider + text. */}
           <ul className="mt-12 grid grid-cols-1 gap-4 text-[14.5px] text-white/55 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/10">
             {[
               {
@@ -895,7 +803,6 @@ function DarkStat({
    ──────────────────────────────────────────────────────────────────────────── */
 
 function AISimilarity() {
-  // WHITE two-column editorial layout: copy on the left, product
   // visualization on the right. No gradient blurs, no rounded glow
   // halos behind the mockup. The product artifact reads as a real
   // surface, not a decorative card.
@@ -928,10 +835,6 @@ function AISimilarity() {
               </SectionLede>
             </div>
 
-            {/* Editorial benefit list — each row carries a small circular
-                monochrome marker (text / network / pie) so the three points
-                read as real feature bullets rather than plain text with a
-                tiny hairline divider. */}
             <ul className="mt-10 space-y-4 text-[15px] text-[#151515]">
               {[
                 {
@@ -983,22 +886,18 @@ function AISimilarity() {
 }
 
 function SimilarityIllustration() {
-  // Illustration-first layout for the Similarity Analysis section.
   //
   // The new asset (`/assets/plagarism1.png`) is a self-contained editorial
   // illustration of AI-powered plagiarism/similarity analysis — it
   // already conveys the AI/robot, documents, and warning visual
   // concept, so the section no longer needs a separate "Similarity
-  // Report" caption beneath it (the left-column benefit bullets carry
   // the metric concept on their own).
   //
   // The source image is 1536×1536 (square). We render it at its NATURAL
   // aspect ratio with `object-fit: contain` so it is never stretched or
   // cropped. The wrapper is a 1:1 frame whose width responds to the
-  // column and is capped on desktop so the illustration feels like a
   // primary visual without dominating the section.
   //
-  // On mobile, the wrapper expands to 100% of the column width with the
   // same 1:1 aspect ratio so the illustration scales cleanly without
   // horizontal overflow.
   return (
@@ -1059,7 +958,6 @@ function SimilarityBar({
    ──────────────────────────────────────────────────────────────────────────── */
 
 function Security() {
-  // BLACK section — minimal grid with thin white separators. No card
   // containers, no icon tiles. Just typographic rows separated by
   // hairline dividers.
   const items = [
@@ -1096,7 +994,6 @@ function Security() {
       aria-label="Security and reliability"
     >
       <Container className="py-28 sm:py-36 lg:py-44">
-        {/* Editorial two-column intro. */}
         <div className="grid gap-10 sm:gap-14 lg:grid-cols-12 lg:items-end lg:gap-20">
           <div className="lg:col-span-7">
             <SectionLabel index="06" tone="light">
@@ -1120,7 +1017,6 @@ function Security() {
           </div>
         </div>
 
-        {/* Editorial 2-column list with thin white separators. */}
         <div className="mt-20 grid grid-cols-1 border-t border-white/10 sm:mt-24 lg:grid-cols-2 lg:divide-x lg:divide-white/10">
           {items.map((it, i) => (
             <div
@@ -1128,7 +1024,6 @@ function Security() {
               className={[
                 "px-0 py-10 sm:py-12 lg:px-12 lg:py-14",
                 i % 2 === 0 ? "lg:pr-12" : "lg:pl-12",
-                // Mobile/tablet: hairline between rows
                 i > 0 ? "border-t border-white/10 sm:border-t" : "",
                 // On 2-col layout, every 2nd item starts a new column pair
                 i >= 2 ? "lg:border-t lg:border-white/10" : "",
@@ -1154,8 +1049,6 @@ function Security() {
    ──────────────────────────────────────────────────────────────────────────── */
 
 function FAQ() {
-  // WHITE section — two-column editorial FAQ. Heading + supporting copy
-  // on the left. Quiet accordion list on the right with thin horizontal
   // dividers between items. No card containers, no blue, no shadows.
   const items = [
     {
@@ -1193,7 +1086,6 @@ function FAQ() {
     >
       <Container className="py-28 sm:py-36 lg:py-44">
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
-          {/* Left: editorial heading + supporting paragraph */}
           <div className="lg:col-span-5">
             <SectionLabel index="07" tone="dark">
               FAQ
@@ -1223,7 +1115,6 @@ function FAQ() {
             </div>
           </div>
 
-          {/* Right: accordion list with thin dividers */}
           <div className="lg:col-span-7">
             <ul className="border-t border-black/10">
               {items.map((it, i) => (
@@ -1270,9 +1161,7 @@ function FAQ() {
 const COPYRIGHT_YEAR = 2026;
 
 function Footer() {
-  // Footer uses a slightly LIGHTER dark tone (#111111) than the Final CTA
   // (#050505) so the two adjacent dark sections read as distinct areas.
-  // A subtle 1px top divider (rgba(255,255,255,0.10)) reinforces the
   // boundary. Three levels of typographic contrast:
   //   • Logo + brand name       → white
   //   • Column headings + links → soft white (white/85)
@@ -1284,9 +1173,6 @@ function Footer() {
       className="text-white"
       style={{ backgroundColor: "#111111" }}
     >
-      {/* Subtle divider between the Final CTA (#050505) and the Footer
-          (#111111). Anchored to the top so users immediately see the
-          transition point. */}
       <div
         aria-hidden="true"
         className="h-px w-full"
@@ -1366,7 +1252,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Divider + bottom row */}
         <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
           <p className="text-[12.5px] text-white/45">
             © {year} EduAssign Pro
@@ -1386,7 +1271,6 @@ function Footer() {
 
 export default function LandingPage() {
   // Note: we intentionally do NOT set a global page background here.
-  // Each section is responsible for its own background (white or black),
   // so the alternating B/W rhythm of the page is rendered correctly even
   // at the very edges of the viewport.
   return (

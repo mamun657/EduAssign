@@ -146,7 +146,6 @@ function TSS() {
         </div>
       ) : null}
 
-      {/* Stepper */}
       <ol className="mb-6 grid gap-3 sm:grid-cols-3">
         {STEP_META.map((step, i) => {
           const done = i < activeStepIndex;

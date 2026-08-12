@@ -19,7 +19,6 @@ public class AssignmentService
     private readonly ILogger<AssignmentService> _logger;
 
     // Phase 4: file-type allowlist + size cap for assignment + submission uploads.
-    // PDF + common image formats. Reject anything else so the storage bucket stays clean.
     private static readonly HashSet<string> AllowedContentTypes = new(StringComparer.OrdinalIgnoreCase)
     {
         "application/pdf",
@@ -257,7 +256,6 @@ public class AssignmentService
 
         ValidateUpload(fileName, contentType, stream);
 
-        // Replace existing attachment if present.
         if (!string.IsNullOrEmpty(assignment.AttachmentFileId))
         {
             try { await _files.DeleteAsync(assignment.AttachmentFileId!, ct); } catch { /* best-effort */ }
@@ -302,7 +300,6 @@ public class AssignmentService
 
         ValidateUpload(fileName, contentType, stream);
 
-        // Replace existing submission file if any (allows re-uploading before submit).
         if (!string.IsNullOrEmpty(assignment.SubmissionFileId))
         {
             try { await _files.DeleteAsync(assignment.SubmissionFileId!, ct); } catch { /* best-effort */ }

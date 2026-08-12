@@ -257,7 +257,6 @@ public class SimilarityAnalysisService
             }
         }
 
-        // Rank: worst first (highest similarity).
         dto.Submissions = dto.Submissions
             .OrderByDescending(s => s.HighestSimilarityScore ?? -1d)
             .ThenBy(s => s.StudentName)
@@ -333,10 +332,7 @@ public class SimilarityAnalysisService
 
     private async Task<List<Assignment>> GetSubmissionsForAssignmentAsync(string assignmentId, CancellationToken ct)
     {
-        // The assignment id doubles as submission id (1:1 student→assignment submission model).
-        // Pull by assignment subject + actual id filter to collect siblings.
         var all = await _assignments.ListAsync(null, ct);
-        // Match exact id (current submission) + other assignments in the same assignment's teacher+subject
         // that have submissions. Without a dedicated Submission collection, the safest pattern is:
         // pull from repo filtered by `TeacherId == assignment.TeacherId` and `SubjectId == assignment.SubjectId`
         // and exclude our own id.

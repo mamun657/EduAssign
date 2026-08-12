@@ -102,7 +102,6 @@ function NewAssignmentForm() {
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [links, studentId]);
 
-  // Subject option labels: just the subject name.
   const subjectOptionLabels = useMemo(() => {
     const filtered = links.filter((l) => !studentId || l.studentId === studentId);
     const m = new Map<string, string>();
@@ -112,7 +111,6 @@ function NewAssignmentForm() {
     return m;
   }, [links, studentId]);
 
-  // Reset subject when student changes if the previously-selected subject is no longer valid.
   useEffect(() => {
     if (!subjectId) return;
     if (!subjectOptions.some((s) => s.id === subjectId)) {
@@ -158,7 +156,6 @@ function NewAssignmentForm() {
         try {
           await Assignments.uploadAttachment(created.id, file);
         } catch (uploadErr) {
-          // The assignment exists; surface the upload error but keep navigating.
           setSubmitError(
             `Assignment created but attachment upload failed: ${
               (uploadErr as { message?: string })?.message ?? "unknown error"

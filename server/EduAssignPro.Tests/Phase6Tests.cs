@@ -163,7 +163,6 @@ public class Phase6Tests
     }
 
     // ====================================================================
-    // TEST 1: Sidecar reachable + model loaded
     // ====================================================================
 
     [Fact(DisplayName = "P6_T01_Sidecar_Reachable_And_Model_Loaded")]
@@ -200,7 +199,6 @@ public class Phase6Tests
         body.embedding.Length.Should().Be(384);
         body.embedding.Distinct().ToArray().Length.Should().BeGreaterThan(50, "a real embedding has many distinct dims");
 
-        // Determinism: calling twice gives identical vectors.
         var r2 = await sidecar.PostAsJsonAsync("/embed", new { text = "Photosynthesis converts CO2 into glucose." });
         var body2 = await r2.Content.ReadFromJsonAsync<EmbedDto>();
         var dist = CosineDistance(body!.embedding, body2!.embedding);
@@ -218,18 +216,15 @@ public class Phase6Tests
         var schoolId = await GetSchoolIdAsync(admin);
         var subject = (await GetSubjectIdsByCodeAsync(admin)).First().Value;
 
-        // Provision 1 teacher (via Admin) + 2 students (via public register).
         var teacherClient = await AsTeacherAsync("P6Similarity", "Teacher");
         var (aliceClient, aliceId) = await AsStudentAsync("P6Alice", "Khan", schoolId);
         var (bobClient, bobId) = await AsStudentAsync("P6Bob", "Khan", schoolId);
 
-        // Get the teacher id (we only have client, need teacherId).
         var meResp = await teacherClient.GetAsync("/api/Auth/me");
         meResp.StatusCode.Should().Be(HttpStatusCode.OK);
         var me = await meResp.Content.ReadFromJsonAsync<UserDto>();
         var teacherId = me!.Id;
 
-        // Admin assigns teacher to each student for the subject.
         await AssignTeacherAsync(admin, teacherId, aliceId, subject);
         await AssignTeacherAsync(admin, teacherId, bobId, subject);
 
@@ -247,34 +242,29 @@ public class Phase6Tests
         await PublishAsync(teacherClient, aliceAssignment.Id);
         await PublishAsync(teacherClient, bobAssignment.Id);
 
-        // Alice uploads PDF A1 (photosynthesis paragraph).
         var alicePdf = ReadPdf("A1_similar_to_A2.pdf");
         var aliceUpload = await UploadSubmissionFileAsync(aliceClient, aliceAssignment.Id, "alice_p6.pdf", alicePdf);
         aliceUpload.Size.Should().BeGreaterThan(500, "real PDF must be non-trivial size");
         await aliceClient.PostAsJsonAsync($"/api/assignments/{aliceAssignment.Id}/submit",
             new { submissionText = "Photosynthesis converts light energy into chemical energy stored in glucose." });
 
-        // Bob uploads PDF C (french revolution — unrelated topic).
         var bobPdf = ReadPdf("C_different_topic.pdf");
         var bobUpload = await UploadSubmissionFileAsync(bobClient, bobAssignment.Id, "bob_p6.pdf", bobPdf);
         bobUpload.Size.Should().BeGreaterThan(500);
         await bobClient.PostAsJsonAsync($"/api/assignments/{bobAssignment.Id}/submit",
             new { submissionText = "The French Revolution began in 1789." });
 
-        // Verify Alice's submission row has the uploaded file.
         var aliceList = await aliceClient.GetFromJsonAsync<List<AssignmentResponse>>("/api/assignments");
         var aliceRow = aliceList!.FirstOrDefault(a => a.Id == aliceAssignment.Id);
         aliceRow.Should().NotBeNull();
         aliceRow!.SubmissionFileName.Should().NotBeNullOrEmpty();
         aliceRow.SubmittedAt.Should().NotBeNull();
 
-        // Teacher triggers similarity analysis on BOTH submissions.
         var analyzeAlice = await teacherClient.PostAsync($"/api/similarity/submissions/{aliceAssignment.Id}/analyze", null);
         analyzeAlice.StatusCode.Should().Be(HttpStatusCode.Accepted);
         var analyzeBob = await teacherClient.PostAsync($"/api/similarity/submissions/{bobAssignment.Id}/analyze", null);
         analyzeBob.StatusCode.Should().Be(HttpStatusCode.Accepted);
 
-        // Poll Alice's analysis until completed.
         var aliceSummary = await PollForCompletedAsync(teacherClient, aliceAssignment.Id, TimeSpan.FromMinutes(3));
         aliceSummary.Status.Should().Be("Completed",
             "sidecar should process the submission and finish within the timeout");
@@ -284,7 +274,6 @@ public class Phase6Tests
         aliceSummary.OverallScore.Should().NotBeNull();
         aliceSummary.OverallScore!.Value.Should().BeInRange(0, 100);
 
-        // Pairwise compare Alice (photosynthesis PDF) vs Bob (french rev PDF).
         // Since the API model uses ONE assignment per student, the pairwise
         // comparison is a direct call to /compare with both submission ids.
         var compare = await teacherClient.GetFromJsonAsync<SimilarityComparisonDto>(
@@ -295,13 +284,11 @@ public class Phase6Tests
         compare.LexicalScore.Should().BeInRange(0, 100);
         compare.SemanticScore.Should().BeInRange(0, 100);
 
-        // The critical semantic check: photosynthesis vs french-revolution
         // MUST be on the LOW side. We don't assert exact numbers — only that
         // a real model does NOT confuse these two distinct topics.
         compare.FinalScore.Should().BeLessThan(70,
             "photosynthesis essay vs french-revolution essay must NOT have a high similarity score");
 
-        // Determinism: re-running analysis on the same content yields the same score.
         var analyzeAgain = await teacherClient.PostAsync($"/api/similarity/submissions/{aliceAssignment.Id}/analyze", null);
         analyzeAgain.StatusCode.Should().Be(HttpStatusCode.Accepted);
         var rerun = await PollForCompletedAsync(teacherClient, aliceAssignment.Id, TimeSpan.FromMinutes(3));
@@ -311,7 +298,6 @@ public class Phase6Tests
     }
 
     // ====================================================================
-    // TEST 4: Student cannot trigger similarity analysis
     // ====================================================================
 
     [Fact(DisplayName = "P6_T04_Student_Cannot_Trigger_Similarity")]
@@ -335,7 +321,6 @@ public class Phase6Tests
         createResp.StatusCode.Should().Be(HttpStatusCode.OK);
         var assignment = (await createResp.Content.ReadFromJsonAsync<AssignmentResponse>())!;
 
-        // Student tries to trigger analysis on teacher's assignment.
         var resp1 = await studentClient.PostAsync($"/api/similarity/submissions/{assignment.Id}/analyze", null);
         resp1.StatusCode.Should().Be(HttpStatusCode.Forbidden);
 
@@ -391,7 +376,6 @@ public class Phase6Tests
         var pubBody = (await published.Content.ReadFromJsonAsync<AssignmentResponse>())!;
         pubBody.IsPublished.Should().BeTrue();
 
-        // Upload submission file (real PDF) then submit text.
         var pdfBytes = ReadPdf("E_one_line.pdf");
         await UploadSubmissionFileAsync(studentClient, assignment.Id, "reg_p6.pdf", pdfBytes);
         var submitResp = await studentClient.PostAsJsonAsync($"/api/assignments/{assignment.Id}/submit",
@@ -401,7 +385,6 @@ public class Phase6Tests
         submitted.SubmittedAt.Should().NotBeNull();
         submitted.SubmissionText.Should().Be("phase 6 regression text");
 
-        // Teacher reviews.
         var reviewResp = await teacherClient.PostAsJsonAsync($"/api/assignments/{assignment.Id}/review",
             new { marks = 88.5, feedback = "Solid work." });
         reviewResp.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -411,7 +394,6 @@ public class Phase6Tests
     }
 
     // ====================================================================
-    // TEST 7: Direct semantic similarity ordering on raw PDF text
     //         (sanity check — proves cosine ordering works on real text)
     // ====================================================================
 
@@ -424,7 +406,6 @@ public class Phase6Tests
             Timeout = TimeSpan.FromSeconds(30)
         };
 
-        // Two paragraphs on the SAME topic but different wording — should
         // be more similar to each other than to an unrelated paragraph.
         var photosynthesis1 = "Plants convert sunlight, water, and carbon dioxide into glucose and oxygen through photosynthesis.";
         var photosynthesis2 = "Through photosynthesis, green plants transform CO2 and H2O into sugars using solar energy.";

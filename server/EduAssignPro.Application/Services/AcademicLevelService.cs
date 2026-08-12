@@ -18,7 +18,6 @@ public class AcademicLevelService
     public async Task<List<AcademicLevelResponse>> ListAsync(CancellationToken ct = default)
     {
         // Academic levels are public configuration metadata (School / College).
-        // The registration page needs to enumerate them without a token, so
         // authentication is intentionally not required here. Authorization is
         // enforced at the controller boundary (see AcademicLevelsController).
         var levels = await _academicLevels.ListAsync(ct);

@@ -134,7 +134,6 @@ function Overview() {
         description="Operational snapshot of students, teachers, subjects and assignments."
       />
 
-      {/* KPI grid — 6 cards on lg+ */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <Link href="/admin/students" className="block focus:outline-none">
           <StatCard
@@ -250,7 +249,6 @@ function Overview() {
         </Card>
       </div>
 
-      {/* Recent activity */}
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>

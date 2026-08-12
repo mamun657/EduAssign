@@ -15,8 +15,6 @@ public class GridFsFileRepository : IFileRepository
 
     public GridFsFileRepository(MongoDB.Driver.IMongoDatabase database)
     {
-        // Single shared bucket for both assignment attachments and student submissions.
-        // Distinguish by metadata.tag (set on upload).
         _bucket = new GridFSBucket(database, new GridFSBucketOptions
         {
             BucketName = "attachments",
@@ -30,7 +28,6 @@ public class GridFsFileRepository : IFileRepository
         string contentType,
         CancellationToken ct = default)
     {
-        // GridFSUploadOptions in 2.28.0 has NO FileName property — the file name
         // is the first argument to UploadFromStreamAsync. Store contentType + uploadedAt
         // inside metadata so we can return them later from GetAsync.
         var options = new GridFSUploadOptions
@@ -44,7 +41,6 @@ public class GridFsFileRepository : IFileRepository
 
         var id = await _bucket.UploadFromStreamAsync(fileName, stream, options, ct);
 
-        // Read back to know the size (GridFS doesn't return it directly from upload).
         // MongoDB.Driver 2.x: GridFSFileInfo.Id is ObjectId but the strongly-typed
         // expression builder cannot translate `f => f.Id` against this class. Use the
         // string-typed field name "_id" instead, which works for both upload + download.
@@ -67,7 +63,6 @@ public class GridFsFileRepository : IFileRepository
     {
         if (!ObjectId.TryParse(id, out var oid)) return null;
         // Strongly-typed expression builder cannot translate `f => f.Id` for GridFSFileInfo;
-        // use the string-typed "_id" field name (works in 2.28.0 with ObjectId values).
         var filter = Builders<GridFSFileInfo>.Filter.Eq("_id", oid);
         var cursor = await _bucket.FindAsync(filter, cancellationToken: ct);
         var info = await cursor.FirstOrDefaultAsync(ct);

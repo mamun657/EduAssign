@@ -134,7 +134,6 @@ export async function apiRequest<TResponse, TBody = unknown>(
   const payload = text ? safeParse(text) : null;
 
   if (!res.ok) {
-    // Auto-logout on 401 so a stale token doesn't break the app
     if (res.status === 401 && !isPublic) clearAuth();
     throw extractError(res.status, payload);
   }
@@ -189,7 +188,6 @@ import type {
 export const Subjects = {
   list: () => apiRequest<Subject[]>("/Subjects"),
   // Returns the curriculum subjects (compulsory + elective groups + options)
-  // for a specific academic level. Used by the admin Curriculum page.
   byAcademicLevel: (academicLevelId: string) =>
     apiRequest<CurriculumSubject[]>(
       `/Subjects/by-academic-level/${academicLevelId}`,

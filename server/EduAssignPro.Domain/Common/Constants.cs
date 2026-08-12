@@ -2,7 +2,6 @@ namespace EduAssignPro.Domain.Common;
 
 public static class Constants
 {
-    // Collections
     public const string UsersCollection = "Users";
     public const string AcademicLevelsCollection = "AcademicLevels";
     public const string SubjectsCollection = "Subjects";
@@ -12,7 +11,6 @@ public static class Constants
     public const string AssignmentsCollection = "Assignments";
     public const string SimilarityAnalysesCollection = "SimilarityAnalyses";
 
-    // Roles
     public const string RoleAdmin = "Admin";
     public const string RoleTeacher = "Teacher";
     public const string RoleStudent = "Student";
@@ -25,10 +23,8 @@ public static class Constants
     public const int DefaultTopMatches = 5;
     public const double DefaultMinCompareScore = 1.0;
 
-    // Academic levels
     public const string SchoolCode = "SCHOOL";
     public const string CollegeCode = "COLLEGE";
 
-    // Elective groups
     public const string ScienceOptionalGroup = "ScienceOptional";
 }

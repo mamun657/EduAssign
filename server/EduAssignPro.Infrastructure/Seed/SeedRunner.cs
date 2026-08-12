@@ -82,20 +82,14 @@ public class SeedRunner : ISeedRunner
         }
 
         // 3) Subjects (Upsert by Code) - matches the official EduAssign Pro curriculum
-        // School: Physics, Chemistry, Bangla, English (compulsory)
-        //         Biology OR Higher Mathematics (ScienceOptional, choose exactly 1)
-        // College: 1st/2nd Papers of Physics, Chemistry, Bangla, English (compulsory)
-        //          Biology 1st/2nd OR Higher Mathematics 1st/2nd (ScienceOptional, choose exactly 1 group)
         var allSubjects = new (string Code, string Name)[]
         {
-            // School subjects
             ("SCH_PHY",      "Physics"),
             ("SCH_CHEM",     "Chemistry"),
             ("SCH_BANG",     "Bangla"),
             ("SCH_ENG",      "English"),
             ("SCH_BIO",      "Biology"),
             ("SCH_HMATH",    "Higher Mathematics"),
-            // College subjects (1st/2nd Papers)
             ("COL_PHY_1",    "Physics 1st Paper"),
             ("COL_PHY_2",    "Physics 2nd Paper"),
             ("COL_CHEM_1",   "Chemistry 1st Paper"),
@@ -115,13 +109,10 @@ public class SeedRunner : ISeedRunner
             await _subjects.UpsertByCodeAsync(new Subject { Code = code, Name = name, IsActive = true }, ct);
         }
 
-        // Reload subjects to get IDs
         var subjectList = await _subjects.ListAsync(ct);
         var subjByCode = subjectList.ToDictionary(s => s.Code);
 
         // 4) CurriculumSubjects (Upsert by AcademicLevelId + SubjectId)
-        // School: Physics, Chemistry, Bangla, English compulsory;
-        //         Biology OR Higher Mathematics (ScienceOptional, MaxChoices=1)
         var schoolCurriculum = new[]
         {
             new { Code = "SCH_PHY",   IsComp = true,  Group = (string?)null,                    Max = (int?)null },
@@ -146,9 +137,6 @@ public class SeedRunner : ISeedRunner
             }, ct);
         }
 
-        // College: Physics 1st/2nd, Chemistry 1st/2nd, Bangla 1st/2nd, English 1st/2nd compulsory;
-        //          Biology 1st/2nd group OR Higher Mathematics 1st/2nd group (ScienceOptional, choose ONE option).
-        //          Each option has 2 papers that auto-enroll together.
         var collegeCurriculum = new[]
         {
             new { Code = "COL_PHY_1",   IsComp = true,  Group = (string?)null,                         Max = (int?)null, Option = (string?)null },

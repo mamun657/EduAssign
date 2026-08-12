@@ -58,7 +58,6 @@ public class SimilarityAnalysisRepository : ISimilarityAnalysisRepository
     /// </summary>
     public async Task<long> DeleteByTeacherAsync(string teacherId, CancellationToken ct = default)
     {
-        // Find all assignment ids owned by this teacher.
         var assignmentIds = await _ctx.Assignments
             .Find(Builders<Assignment>.Filter.Eq(a => a.TeacherId, teacherId))
             .Project(a => a.Id)

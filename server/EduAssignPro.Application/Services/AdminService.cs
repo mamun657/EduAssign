@@ -220,7 +220,6 @@ public class AdminService
         if (user.Role == Role.Admin)
             throw new ConflictException("Admin accounts cannot be deleted.");
 
-        // Refuse self-delete so the current admin can't accidentally lock
         // themselves out of the panel.
         if (!string.IsNullOrEmpty(_currentUser.UserId) && _currentUser.UserId == user.Id)
             throw new ConflictException("You cannot delete your own account.");

@@ -11,10 +11,8 @@ const NAV_LINKS = [
   { href: "#faq", label: "FAQ" },
 ];
 
-// Tone of the navbar surface.
 //   • "light" = navbar over a BLACK section (translucent dark bg + white text + white CTA)
 //   • "dark"  = navbar over a WHITE section (translucent light bg + dark text + black CTA)
-// We pick the tone by inspecting `data-nav-tone` on the section currently
 // intersecting the top of the viewport (handled in the effect below).
 type NavTone = "light" | "dark";
 
@@ -28,16 +26,13 @@ export default function LandingNav() {
 
   useEffect(() => setMounted(true), []);
 
-  // Track scroll position so we can apply elevation/blur once the user
   // has scrolled past the hero, AND determine which section's tone the
-  // navbar should adapt to.
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 8);
       determineTone();
     }
     function determineTone() {
-      // Walk through every section with `data-nav-tone` and find the one
       // whose top is closest to (but ≤) the scroll position + a small
       // offset. That section is "under" the navbar right now.
       const probeY = window.scrollY + 80; // mid-navbar
@@ -64,7 +59,6 @@ export default function LandingNav() {
     };
   }, []);
 
-  // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
     if (!mounted) return;
     if (typeof document === "undefined") return;
@@ -91,25 +85,18 @@ export default function LandingNav() {
   }
 
   // ---- Navbar tokens -----------------------------------------------------
-  // Solid black navbar with high-contrast white type regardless of which
-  // section the user is on. No translucency, no opacity, no inherited gray
   // text. The previous tone-aware surface flipped to `bg-white/40` over the
-  // white Features section, which made the navbar look washed out — that is
-  // now removed entirely.
 
-  // At the very top the navbar is solid black with no border. Once scrolled
   // it gains a hairline white border + a subtle bottom shadow for elevation.
   const surface = scrolled
     ? "border-b border-white/10 bg-black shadow-[0_1px_0_rgba(255,255,255,0.04),0_8px_24px_rgba(0,0,0,0.35)]"
     : "border-b border-transparent bg-black";
 
-  // Foreground palette — locked to bright white so the navbar is crisp and
   // readable on every section.
   const fgText = "text-white";
   const fgTextHover = "hover:text-white/70";
   const fgBrand = "text-white";
 
-  // Primary CTA — bright white pill with black text on every tone.
   const ctaPrimary =
     "bg-white text-black hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
@@ -135,7 +122,6 @@ export default function LandingNav() {
           scrolled ? "h-14" : "h-16",
         ].join(" ")}
       >
-        {/* Brand */}
         <Link
           href="/"
           className="flex items-center gap-2"
@@ -155,7 +141,6 @@ export default function LandingNav() {
           </span>
         </Link>
 
-        {/* Center nav (desktop) */}
         <nav
           className="hidden items-center gap-9 lg:flex"
           aria-label="Primary"
@@ -175,7 +160,6 @@ export default function LandingNav() {
           ))}
         </nav>
 
-        {/* Right CTAs (desktop) */}
         <div className="hidden items-center gap-2 lg:flex">
           <Link
             href="/login"
@@ -196,7 +180,6 @@ export default function LandingNav() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -215,7 +198,6 @@ export default function LandingNav() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className={[
           "fixed inset-x-0 z-40 lg:hidden",
@@ -224,7 +206,6 @@ export default function LandingNav() {
         style={{ top: scrolled ? 56 : 64 }}
         aria-hidden={!open}
       >
-        {/* Backdrop */}
         <button
           type="button"
           aria-label="Close navigation"
@@ -236,7 +217,6 @@ export default function LandingNav() {
           ].join(" ")}
           style={{ top: scrolled ? 56 : 64 }}
         />
-        {/* Panel */}
         <div
           className={[
             "relative mx-3 mt-2 overflow-hidden rounded-xl border transition-all",

@@ -22,7 +22,6 @@ public class IntegrationFixture : IAsyncLifetime
         // the limit and still unique per test run.
         var dbName = $"Test_{Guid.NewGuid():N}".Substring(0, 21);
         Factory = new TestAppFactory(dbName);
-        // Force the host to start so the seed runs.
         _ = Factory.CreateClient();
         return Task.CompletedTask;
     }

@@ -25,7 +25,6 @@ builder.Host.UseSerilog();
 // ---- Configuration: load .env (best-effort) ----
 // .env uses the ASP.NET Core env-var convention with double underscores
 // as the section separator, e.g. MONGO__CONNECTIONSTRING -> Mongo:ConnectionString.
-// We translate `__` -> `:` here so the entries are bindable via the standard
 // configuration system (Section:Key paths).
 //
 // Search strategy: start from the API's content root and walk upward through
@@ -57,7 +56,6 @@ try
             if (idx <= 0) continue;
             var rawKey = line[..idx].Trim();
             var value = line[(idx + 1)..].Trim();
-            // Preserve any value already provided by the real environment.
             if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable(rawKey))) continue;
             // Translate MONGO__CONNECTIONSTRING -> Mongo:ConnectionString
             var configKey = rawKey.Replace("__", ":");
@@ -170,8 +168,6 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // ---- Fail-fast configuration checks ----
-// In Development we refuse to start if the database cannot be reached.
-// In Production we still log and exit, so the process supervisor can restart.
 void FailStartup(string problem)
 {
     Log.Fatal(problem);
@@ -179,7 +175,6 @@ void FailStartup(string problem)
     Log.Fatal("Application is NOT starting the HTTP server. Fix the .env and retry.");
     Log.CloseAndFlush();
     Environment.ExitCode = 2;
-    // Hard stop — no listening socket.
     throw new InvalidOperationException(problem);
 }
 
@@ -220,7 +215,6 @@ if (app.Environment.IsDevelopment())
 app.UseSerilogRequestLogging();
 
 // ---- CORS ----
-// In Development we explicitly allow the Next.js dev origin so that
 // preflight requests succeed. `AllowAnyOrigin` + credentials is unsafe, and
 // the frontend never sends cookies (Bearer JWT in Authorization header),
 // so we do not enable credentials here.
@@ -242,7 +236,6 @@ else if (corsOrigins is { Length: > 0 })
 }
 else
 {
-    // Conservative default for production: deny cross-origin browser access.
     app.UseCors(p => p.WithOrigins(Array.Empty<string>()));
 }
 
@@ -265,6 +258,5 @@ if (!string.IsNullOrWhiteSpace(port))
 
 app.Run();
 
-// Make the implicit Program class visible to the test project so
 // WebApplicationFactory<Program> can reference it.
 public partial class Program { }

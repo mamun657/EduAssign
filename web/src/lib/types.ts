@@ -1,4 +1,3 @@
-// Shared TypeScript types mirroring the .NET backend DTOs.
 // Source: server/EduAssignPro.Application/Dtos/**/*Response.cs
 
 export type Role = "Admin" | "Teacher" | "Student";
@@ -220,11 +219,9 @@ export interface Assignment {
   status: AssignmentStatus;
   createdAt: string;
   updatedAt: string;
-  // File attachment metadata (teacher's brief). Null if no attachment yet.
   attachmentFileName?: string | null;
   attachmentContentType?: string | null;
   attachmentSize?: number | null;
-  // Student submission file metadata. Null if no submission file yet.
   submissionFileName?: string | null;
   submissionContentType?: string | null;
   submissionSize?: number | null;
@@ -261,7 +258,6 @@ export interface ApiError {
 }
 
 // --- Phase 6: Similarity / plagiarism detection ---
-// Mirrors server/EduAssignPro.Application/Dtos/Similarity/SimilarityDtos.cs
 
 /**
  * Backend lifecycle for one submission's analysis. Values from

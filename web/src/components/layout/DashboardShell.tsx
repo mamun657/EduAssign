@@ -70,7 +70,6 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
 
   return (
     <div className="flex min-h-screen bg-slate-50">
-      {/* Desktop sidebar — fixed at lg, hidden below. */}
       <aside
         className="hidden w-[260px] shrink-0 lg:sticky lg:top-0 lg:block lg:h-screen"
         aria-label="Primary navigation"
@@ -92,7 +91,6 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
         </main>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className={[
           "fixed inset-0 z-40 lg:hidden",
@@ -100,7 +98,6 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
         ].join(" ")}
         aria-hidden={!drawerOpen}
       >
-        {/* Backdrop */}
         <button
           type="button"
           aria-label="Close navigation"
@@ -111,7 +108,6 @@ export default function DashboardShell({ role, children }: DashboardShellProps) 
             drawerOpen ? "opacity-50" : "opacity-0",
           ].join(" ")}
         />
-        {/* Panel */}
         <div
           className={[
             "absolute left-0 top-0 h-full w-[280px] max-w-[85%] bg-white shadow-xl transition-transform",

@@ -1,5 +1,4 @@
 // Client-side auth state. JWT + user live in localStorage.
-// Components import { useAuth } from a React Context (see components/auth/AuthProvider.tsx)
 // and call the helpers here directly for non-React code paths.
 
 "use client";

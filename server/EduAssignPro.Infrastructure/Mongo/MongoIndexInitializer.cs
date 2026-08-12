@@ -15,25 +15,21 @@ public class MongoIndexInitializer : IUnitOfWork
 
     public async Task EnsureIndexesAsync(CancellationToken ct = default)
     {
-        // Users.Email UNIQUE
         var users = _ctx.Users.Indexes;
         await users.CreateOneAsync(new CreateIndexModel<User>(
             Builders<User>.IndexKeys.Ascending(u => u.Email),
             new CreateIndexOptions { Unique = true, Name = "UX_Users_Email" }), cancellationToken: ct);
 
-        // AcademicLevels.Code UNIQUE
         var levels = _ctx.AcademicLevels.Indexes;
         await levels.CreateOneAsync(new CreateIndexModel<AcademicLevel>(
             Builders<AcademicLevel>.IndexKeys.Ascending(a => a.Code),
             new CreateIndexOptions { Unique = true, Name = "UX_AcademicLevels_Code" }), cancellationToken: ct);
 
-        // Subjects.Code UNIQUE
         var subjects = _ctx.Subjects.Indexes;
         await subjects.CreateOneAsync(new CreateIndexModel<Subject>(
             Builders<Subject>.IndexKeys.Ascending(s => s.Code),
             new CreateIndexOptions { Unique = true, Name = "UX_Subjects_Code" }), cancellationToken: ct);
 
-        // CurriculumSubjects.(AcademicLevelId + SubjectId) UNIQUE
         var cs = _ctx.CurriculumSubjects.Indexes;
         await cs.CreateOneAsync(new CreateIndexModel<CurriculumSubject>(
             Builders<CurriculumSubject>.IndexKeys
@@ -41,7 +37,6 @@ public class MongoIndexInitializer : IUnitOfWork
                 .Ascending(c => c.SubjectId),
             new CreateIndexOptions { Unique = true, Name = "UX_CurriculumSubjects_AcademicLevel_Subject" }), cancellationToken: ct);
 
-        // StudentSubjectEnrollments.(StudentId + SubjectId) UNIQUE
         var enrollments = _ctx.StudentSubjectEnrollments.Indexes;
         await enrollments.CreateOneAsync(new CreateIndexModel<StudentSubjectEnrollment>(
             Builders<StudentSubjectEnrollment>.IndexKeys
@@ -49,7 +44,6 @@ public class MongoIndexInitializer : IUnitOfWork
                 .Ascending(e => e.SubjectId),
             new CreateIndexOptions { Unique = true, Name = "UX_StudentSubjectEnrollments_Student_Subject" }), cancellationToken: ct);
 
-        // TeacherStudentSubjects.(TeacherId + StudentId + SubjectId) UNIQUE
         var tss = _ctx.TeacherStudentSubjects.Indexes;
         await tss.CreateOneAsync(new CreateIndexModel<TeacherStudentSubject>(
             Builders<TeacherStudentSubject>.IndexKeys

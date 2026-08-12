@@ -151,7 +151,6 @@ function Students() {
         </div>
       ) : null}
 
-      {/* Quick stats */}
       <div className="mb-5 grid gap-3 sm:grid-cols-3">
         <StatCard
           tone="emerald"
@@ -183,7 +182,6 @@ function Students() {
           </div>
         </CardHeader>
         <CardBody className="space-y-4">
-          {/* Filter row */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
             <div className="flex-1">
               <Input
@@ -223,7 +221,6 @@ function Students() {
             </div>
           </div>
 
-          {/* Active filter chips */}
           {(search || levelFilter || statusFilter) && (
             <div className="flex flex-wrap items-center gap-2 text-[12px] text-slate-500">
               <Filter className="h-3.5 w-3.5" aria-hidden="true" />

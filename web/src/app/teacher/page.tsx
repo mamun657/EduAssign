@@ -82,7 +82,6 @@ function TeacherOverview() {
           Assignments.list(),
         ]);
         if (!ok) return;
-        // Hide inactive TSS links — students/subjects only count if assigned AND active.
         const activeLinks = myLinks.filter((l) => l.isActive);
         setLinks(activeLinks);
         setAssignments(list);
@@ -108,12 +107,10 @@ function TeacherOverview() {
   const submitted = assignments.filter((a) => a.status === "Submitted").length;
   const reviewed = assignments.filter((a) => a.status === "Reviewed").length;
 
-  // Recent activity: 5 most recent assignments by updatedAt.
   const recent = [...assignments]
     .sort((a, b) => +new Date(b.updatedAt) - +new Date(a.updatedAt))
     .slice(0, 5);
 
-  // Pending submissions = assignments in Submitted state, sorted by submittedAt ascending.
   const pendingReview = assignments
     .filter((a) => a.status === "Submitted")
     .sort((a, b) => +new Date(a.submittedAt ?? a.updatedAt) - +new Date(b.submittedAt ?? b.updatedAt))

@@ -86,7 +86,6 @@ public class StudentService
                 }
                 group.Subjects.Add(item);
 
-                // Group papers into options when an ElectiveOption is set.
                 if (!string.IsNullOrWhiteSpace(cs.ElectiveOption))
                 {
                     var optionKey = cs.ElectiveOption!;
@@ -107,7 +106,6 @@ public class StudentService
                 alreadyEnrolled.Add(item);
         }
 
-        // Stable option ordering inside each group.
         foreach (var g in electiveGroups.Values)
         {
             g.Options = g.Options
@@ -185,12 +183,10 @@ public class StudentService
         if (existing is not null)
             throw new ConflictException("You are already enrolled in this subject.");
 
-        // Enforce elective group rules
         var groupName = cs.ElectiveGroup;
 
         var enrollments = await _enrollments.ListByStudentAsync(student.Id, ct);
 
-        // Find any existing elective enrollment that conflicts with the chosen subject.
         foreach (var e in enrollments)
         {
             var existingCs = await _curriculumSubjects.GetByIdAsync(e.CurriculumSubjectId, ct);
@@ -198,14 +194,12 @@ public class StudentService
             if (existingCs.IsCompulsory) continue;
             if (existingCs.ElectiveGroup != groupName) continue;
 
-            // Same elective group — but the new subject uses ElectiveOption, so
             // we reject cross-option mixing here. The single-option (legacy) case
             // (ElectiveOption == null) keeps the original "only one from this
             // group" behavior.
             if (!string.IsNullOrWhiteSpace(cs.ElectiveOption) ||
                 !string.IsNullOrWhiteSpace(existingCs.ElectiveOption))
             {
-                // At least one of the two has an explicit option key.
                 var newOpt = cs.ElectiveOption ?? "";
                 var existingOpt = existingCs.ElectiveOption ?? "";
                 if (!string.Equals(newOpt, existingOpt, StringComparison.OrdinalIgnoreCase))
@@ -221,18 +215,15 @@ public class StudentService
                         $"You have already selected '{otherOptionLabel}' from this elective group. " +
                         $"You cannot combine '{requestedOptionLabel}' with it. Choose only one option.");
                 }
-                // Same option — fall through to auto-enrollment of sibling papers.
             }
             else
             {
-                // Legacy single-option group (e.g. School SCH_BIO / SCH_HMATH).
                 var other = await _subjects.GetByIdAsync(e.SubjectId, ct);
                 throw new ValidationException(
                     $"You have already selected '{other?.Name ?? "another subject"}' from this elective group. You can only choose one.");
             }
         }
 
-        // Insert the chosen enrollment.
         var enrollment = new StudentSubjectEnrollment
         {
             StudentId = student.Id,
@@ -245,7 +236,6 @@ public class StudentService
         _logger.LogInformation("Student {StudentId} enrolled in subject {SubjectId}", student.Id, subject.Id);
 
         // Auto-enroll all sibling papers sharing the same (ElectiveGroup, ElectiveOption).
-        // This makes the rule "Biology 1st Paper + Biology 2nd Paper go together" hold.
         if (!string.IsNullOrWhiteSpace(cs.ElectiveOption))
         {
             var allInGroup = (await _curriculumSubjects.ListByAcademicLevelAsync(student.AcademicLevelId, ct))
