@@ -253,6 +253,8 @@ Overall Similarity Score
         ↓
 Teacher Review
 ```
+<img width="1626" height="921" alt="image" src="https://github.com/user-attachments/assets/8be4a9f9-a54e-4b1f-9665-1dcd3234bbb1" />
+
 
 The similarity system is designed to support academic review. It does not automatically determine whether plagiarism has occurred. The final interpretation and academic decision remain with the teacher or institution.
 
