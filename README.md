@@ -1,261 +1,87 @@
-# EduAssign Pro
+<h1 align="center">📚 EduAssign Pro</h1>
+
+<h2 align="center">Assignment & Academic Workflow Management Platform</h2>
 
 <p align="center">
-  <strong>Assignment & Submission Management Platform</strong>
+  A full-stack academic management platform that connects administrators, teachers, and students through one structured workspace for assignments, submissions, evaluation, curriculum management, and academic review.
 </p>
 
 <p align="center">
-  A full-stack academic management system for schools and colleges.
+  <a href="https://eduassign-6w15.onrender.com">🌐 Live Application</a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="https://github.com/mamun657/EduAssign">💻 GitHub Repository</a>
 </p>
 
 <p align="center">
-  <a href="https://eduassign-6w15.onrender.com">Live Demo</a>
-  •
-  <a href="https://github.com/mamun657/EduAssign">Repository</a>
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js"/>
+  <img src="https://img.shields.io/badge/React-TypeScript-blue?style=for-the-badge&logo=react"/>
+  <img src="https://img.shields.io/badge/ASP.NET%20Core-Web%20API-purple?style=for-the-badge&logo=.net"/>
+  <img src="https://img.shields.io/badge/C%23-Backend-512BD4?style=for-the-badge&logo=csharp"/>
+  <img src="https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb"/>
+  <img src="https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Docker-Deployment-2496ED?style=for-the-badge&logo=docker"/>
 </p>
 
 ---
 
-## Overview
+# 📚 About EduAssign Pro
 
-EduAssign Pro is a full-stack web application built to simplify the way educational institutions manage assignments, submissions, teachers, students, subjects, curriculum, grading, and academic workflows.
+EduAssign Pro is a full-stack assignment and academic workflow management platform designed for schools, colleges, and educational institutions.
 
-The platform provides separate workspaces for three types of users:
+The platform brings administrators, teachers, and students into one centralized environment where academic activities can be organized and managed through a structured workflow.
 
-- Admin
-- Teacher
-- Student
+Instead of using separate systems for managing users, subjects, assignments, submissions, grading, feedback, and academic relationships, EduAssign Pro connects these activities through one platform.
 
-Each role has its own permissions and workflow, while the backend enforces authorization for protected operations.
+The system is built around three primary roles:
 
-The main goal of EduAssign Pro is simple: bring the everyday assignment workflow of an institution into one organized platform instead of relying on multiple disconnected tools.
+- 👨‍💼 Admin
+- 👨‍🏫 Teacher
+- 👨‍🎓 Student
 
-The platform covers the complete assignment lifecycle:
-
-**Manage → Assign → Submit → Review → Grade → Feedback**
+Each role receives a dedicated workspace with permissions and functionality based on its responsibilities.
 
 ---
 
-## What EduAssign Pro Provides
+# 🎯 The Problem
 
-EduAssign Pro currently includes the core functionality required to manage an academic assignment workflow.
+Academic institutions handle a large amount of information every day.
 
-### Administration
+Teachers need to create and distribute assignments, students need to submit their work, teachers need to review and grade those submissions, and administrators need to manage the academic structure behind the entire process.
 
-Administrators can manage the academic environment and user accounts from a centralized dashboard.
+When these activities are handled through disconnected tools, several problems can appear:
 
-- Manage teachers
-- Manage students
-- Manage subjects
-- Manage curriculum
-- Manage academic levels
-- Manage teacher-student-subject relationships
-- Manage assignments
-- Activate users
-- Deactivate users
-- Permanently delete users
-- View administrative statistics and information
+- Assignment information becomes scattered
+- Submission tracking becomes difficult
+- Teacher-student relationships are harder to manage
+- Grading and feedback become less organized
+- Academic structures are difficult to maintain
+- Administrators have limited visibility into academic activities
 
-### Teacher Workspace
-
-Teachers have a dedicated workspace for managing their teaching activities.
-
-- View assigned students
-- View assigned subjects
-- Create assignments
-- Edit assignments
-- Delete assignments
-- Publish assignments
-- Set assignment deadlines
-- Set maximum marks
-- View submissions
-- Review student work
-- Assign marks
-- Provide feedback
-- Analyze submission similarity
-
-### Student Workspace
-
-Students can manage their academic tasks from their own dashboard.
-
-- View assigned subjects
-- View available assignments
-- View assignment details
-- Check deadlines
-- Submit assignments
-- Track submission status
-- View marks
-- View teacher feedback
+EduAssign Pro addresses these challenges by bringing the major assignment and academic management workflows into one centralized system.
 
 ---
 
-## Core Features
+# 💡 The Solution
 
-### Assignment Management
-
-Teachers can create and manage assignments associated with their academic subjects.
-
-Each assignment can contain relevant information such as its title, description, deadline, subject, and maximum marks.
-
-The assignment workflow allows teachers to create work for students and later review the submitted results.
-
-### Submission Management
-
-Students can submit their work through the platform.
-
-Teachers can then access submitted assignments from their submission workspace and review individual submissions.
-
-This keeps the assignment and submission process connected instead of requiring separate communication or file-sharing tools.
-
-### Grading & Feedback
-
-Teachers can evaluate student submissions by assigning marks and providing feedback.
-
-Students can then access their results from their own workspace.
-
-This creates a simple feedback loop between teachers and students:
-
-**Submit → Review → Grade → Feedback → Result**
-
-### Subject Management
-
-Subjects are managed centrally by administrators.
-
-Subjects can be connected with the appropriate academic levels, teachers, and students so that assignments and academic activities are organized around the correct subject structure.
-
-### Curriculum Management
-
-The administration workspace provides curriculum-related management functionality.
-
-Academic levels and subjects can be organized to reflect the institution's academic structure.
-
-### Teacher & Student Management
-
-Administrators can manage user accounts from dedicated management pages.
-
-The system supports:
-
-- User listing
-- User status management
-- Activation
-- Deactivation
-- Permanent deletion
-- Role-based access
-
-Permanent deletion is protected with confirmation and backend validation to reduce the risk of accidental data removal.
-
----
-
-## Similarity Analysis
-
-EduAssign Pro includes a similarity analysis feature to help teachers review student submissions.
-
-The system provides similarity information using both textual and semantic comparison techniques.
-
-The available analysis includes:
-
-- Lexical similarity
-- Semantic similarity
-- Overall similarity score
-
-The purpose of this feature is to assist teachers during academic review by highlighting submissions that may contain significant similarities.
-
-Similarity analysis is a supporting tool. It does not automatically determine whether a student has committed plagiarism. The final academic decision remains with the teacher or institution.
-
----
-
-## User Roles
-
-EduAssign Pro is built around three primary roles.
-
-### Admin
-
-The Admin is responsible for managing the institution's academic environment.
-
-Admin capabilities include:
-
-- Teacher management
-- Student management
-- Subject management
-- Curriculum management
-- Academic level management
-- Teacher-student-subject management
-- Assignment management
-- User activation/deactivation
-- User deletion
-
-### Teacher
-
-Teachers are responsible for creating academic work and evaluating student submissions.
-
-Teacher capabilities include:
-
-- Student access
-- Subject access
-- Assignment management
-- Submission review
-- Similarity analysis
-- Grading
-- Feedback
-
-### Student
-
-Students use the platform to access and complete their academic work.
-
-Student capabilities include:
-
-- Subject access
-- Assignment access
-- Assignment submission
-- Submission tracking
-- Result viewing
-- Feedback viewing
-
----
-
-## Assignment Workflow
-
-The platform follows a straightforward academic workflow.
+EduAssign Pro provides a complete academic workflow from initial setup to assignment evaluation.
 
 ```text
-                    ADMIN
-                      │
-                      ▼
-              Academic Setup
-                      │
-          ┌───────────┴───────────┐
-          ▼                       ▼
-       Teachers                Students
-          │                       │
-          └───────────┬───────────┘
-                      ▼
-                   Subjects
-                      │
-                      ▼
-                   Teacher
-                      │
-                      ▼
-             Create Assignment
-                      │
-                      ▼
-                   Student
-                      │
-                      ▼
-              Submit Assignment
-                      │
-                      ▼
-                   Teacher
-                      │
-              ┌───────┴────────┐
-              ▼                ▼
-           Review         Similarity
-              │             Analysis
-              └───────┬────────┘
-                      ▼
-                    Grade
-                      │
-                      ▼
-                  Feedback
-                      │
-                      ▼
-                   Student
+Institution Setup
+        ↓
+User Management
+        ↓
+Subject & Curriculum Management
+        ↓
+Teacher-Student Assignment
+        ↓
+Assignment Creation
+        ↓
+Student Submission
+        ↓
+Teacher Review
+        ↓
+Similarity Analysis
+        ↓
+Marks & Feedback
+        ↓
+Student Result
