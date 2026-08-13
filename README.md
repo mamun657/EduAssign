@@ -2,177 +2,191 @@
 
 <h1 align="center">📚 EduAssign Pro</h1>
 
-<h2 align="center">Assignment & Academic Workflow Management Platform</h2>
+<h2 align="center">
+Assignment & Academic Workflow Management Platform
+</h2>
 
 ---
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=00FFCC&center=true&vCenter=true&width=900&lines=👨‍💼+Admin+Management;👨‍🏫+Teacher+Workspace;👨‍🎓+Student+Portal;📝+Assignment+Management;📤+Assignment+Submission;🔍+Similarity+Analysis" alt="Typing SVG" />
+  <img
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=00FFCC&center=true&vCenter=true&width=900&lines=👨‍💼+Admin+Management;👨‍🏫+Teacher+Workspace;👨‍🎓+Student+Portal;📝+Assignment+Management;📤+Assignment+Submission;🔍+AI+Similarity+Index"
+    alt="Typing SVG"
+  />
 </p>
 
 ---
 
 <p align="center">
+
   <img src="https://img.shields.io/badge/ACADEMIC-PLATFORM-blue?style=for-the-badge"/>
+
   <img src="https://img.shields.io/badge/NEXT.JS-16-black?style=for-the-badge&logo=next.js"/>
+
   <img src="https://img.shields.io/badge/ASP.NET%20CORE-WEB%20API-purple?style=for-the-badge&logo=.net"/>
+
   <img src="https://img.shields.io/badge/MONGODB-DATABASE-green?style=for-the-badge&logo=mongodb"/>
+
   <img src="https://img.shields.io/badge/JWT-AUTHENTICATION-orange?style=for-the-badge"/>
+
+  <img src="https://img.shields.io/badge/AI-SIMILARITY%20INDEX-00C853?style=for-the-badge"/>
+
   <img src="https://img.shields.io/badge/DOCKER-SUPPORTED-success?style=for-the-badge"/>
-</p>
 
----
-
-<p align="center">
-  <a href="https://eduassign-6w15.onrender.com">
-    🌐 Live Application
-  </a>
-  &nbsp;&nbsp;•&nbsp;&nbsp;
-  <a href="https://github.com/mamun657/EduAssign">
-    💻 GitHub Repository
-  </a>
 </p>
 
 ---
 
 # 🎥 Demo Video
 
-▶️ https://www.youtube.com/watch?v=YOUR_VIDEO_ID
+▶️ https://www.youtube.com/watch?v=SCVGjJPfT-M
+
+---
+
+# 🌐 Live Application
+
+🌐 https://eduassign-6w15.onrender.com
 
 ---
 
 # 📚 What is EduAssign Pro?
 
-EduAssign Pro is a full-stack platform built to make everyday academic work easier to manage.
+EduAssign Pro is a full-stack academic workflow management platform built to make everyday academic activities easier to manage.
 
-It brings administrators, teachers, and students into the same system, so things like subjects, assignments, submissions, grading, feedback, and academic management can all be handled from one place.
+It brings administrators, teachers, and students into one centralized system where subjects, assignments, submissions, grading, feedback, and academic management can be handled together.
 
 The platform is mainly built around three roles:
 
-* 👨‍💼 **Admin** — manages users and the academic structure
-* 👨‍🏫 **Teacher** — creates assignments, reviews submissions, and evaluates students
-* 👨‍🎓 **Student** — views assignments, submits work, and checks results
+- 👨‍💼 **Admin** — manages users and the academic structure
+- 👨‍🏫 **Teacher** — creates assignments, reviews submissions, and evaluates students
+- 👨‍🎓 **Student** — views assignments, submits work, and checks results
 
-The idea is simple: **keep the complete assignment workflow in one organized place instead of managing it across different tools.**
+The main goal is simple: **keep the complete academic assignment workflow organized in one place.**
 
 ---
 
-## 🎯 Overview
+## 📌 Project Overview
 
-Academic institutions manage a large amount of information every day. Teachers need to create and distribute assignments, students need to submit their work, teachers need to review and grade submissions, and administrators need to maintain the academic structure behind the entire process.
+EduAssign Pro is a full-stack Assignment & Submission Management System designed for schools and colleges.
 
-When these activities are handled through disconnected tools, assignment information can become scattered, submission tracking becomes difficult, grading and feedback become less organized, and administrators may have limited visibility into academic activities.
+The platform brings administrators, teachers, and students into one centralized academic workspace. It provides a structured workflow for managing users, academic levels, subjects, curriculum, assignments, submissions, grading, feedback, and similarity-assisted submission review.
 
-EduAssign Pro brings these major workflows together into one structured platform.
+The system is built around three primary roles:
 
-The overall academic workflow is:
+- **Admin** — manages users and the academic structure.
+- **Teacher** — creates assignments, reviews submissions, evaluates students, and provides feedback.
+- **Student** — views assigned academic work, submits assignments, and checks submission status, marks, and feedback.
+
+The main objective of EduAssign Pro is to keep the complete assignment lifecycle organized in one dependable system.
+
+---
+
+## 🎯 Core Workflow
 
 ```text
 Institution Setup
-        ↓
+       ↓
 User Management
-        ↓
-Subject & Curriculum Management
-        ↓
-Teacher-Student-Subject Relationships
-        ↓
+       ↓
+Academic Level / Curriculum
+       ↓
+Subject Management
+       ↓
+Teacher & Student Relationships
+       ↓
 Assignment Creation
-        ↓
-Student Submission
-        ↓
+       ↓
+Assignment Submission
+       ↓
 Teacher Review
-        ↓
+       ↓
 Similarity Analysis
-        ↓
+       ↓
 Marks & Feedback
-        ↓
+       ↓
 Student Result
 ```
 
-The goal is to make academic assignment management more organized, connected, and easier to operate.
-
 ---
 
-## ✨ Features
+## ✨ Main Features
 
 ### 👨‍💼 Admin Management
 
-The Admin workspace provides centralized control over the academic environment.
+Administrators have centralized control over the academic environment.
 
-Administrators can:
+Admin capabilities include:
 
 - Manage teachers
 - Manage students
 - Activate users
 - Deactivate users
-- Permanently delete users
-- Manage subjects
+- Delete eligible users
 - Manage academic levels
+- Manage subjects
 - Manage curriculum
 - Manage teacher-student-subject relationships
 - Manage assignments
-- Monitor academic data
-- Maintain institutional structure
+- View academic information
+- Maintain the institutional structure
 
-  <img width="1907" height="832" alt="image" src="https://github.com/user-attachments/assets/3a189f3c-ca89-432f-bc4a-20f84b621dbd" />
-
-
-The admin panel provides dedicated management pages for the different areas of the academic system.
+<img width="1907" height="832" alt="Admin Dashboard" src="https://github.com/user-attachments/assets/3a189f3c-ca89-432f-bc4a-20f84b621dbd" />
 
 ---
 
-### 👨‍🏫 Teacher Management
+### 👨‍🏫 Teacher Workspace
 
-Teachers have a dedicated workspace focused on teaching, assignment management, submission review, and evaluation.
+Teachers have a dedicated workspace focused on assignment management, submission review, evaluation, and feedback.
 
 Teachers can:
 
 - View assigned students
 - View assigned subjects
 - Create assignments
-- Manage assignments
-- View submissions
-- Review student work
+- Update assignments
+- Delete assignments where permitted
+- Define assignment information
+- Manage assignment availability
+- View student submissions
+- Open individual submission details
+- Review submitted work
 - Analyze submission similarity
 - Assign marks
 - Provide feedback
-- Access individual submission details
+- Review submission status
 
-  <img width="1899" height="925" alt="image" src="https://github.com/user-attachments/assets/6e7c4983-afed-4e67-baa3-0e560a1d9dae" />
+<img width="1899" height="925" alt="Teacher Dashboard" src="https://github.com/user-attachments/assets/6e7c4983-afed-4e67-baa3-0e560a1d9dae" />
 
-
-The teacher workflow is:
+Teacher workflow:
 
 ```text
 Teacher
    ↓
-View Subjects
-   ↓
-View Students
+View Academic Context
    ↓
 Create Assignment
    ↓
+Assign Work
+   ↓
 Receive Submissions
    ↓
-Review Work
+Review Submission
    ↓
 Similarity Analysis
    ↓
-Assign Marks
-   ↓
-Provide Feedback
+Marks & Feedback
 ```
 
 ---
 
-### 👨‍🎓 Student Management
+### 👨‍🎓 Student Workspace
 
-Students receive a dedicated workspace for managing their academic activities.
+Students have a dedicated workspace for accessing and submitting academic work.
 
 Students can:
 
 - View assigned subjects
-- View assignments
+- View available assignments
 - View assignment details
 - Check deadlines
 - Submit assignments
@@ -180,10 +194,9 @@ Students can:
 - View marks
 - View teacher feedback
 
-<img width="1919" height="939" alt="image" src="https://github.com/user-attachments/assets/af64b3ce-f88a-498c-a282-8166381f9e6a" />
+<img width="1919" height="939" alt="Student Dashboard" src="https://github.com/user-attachments/assets/af64b3ce-f88a-498c-a282-8166381f9e6a" />
 
-
-The student workflow is:
+Student workflow:
 
 ```text
 Student
@@ -196,7 +209,7 @@ Open Assignment
    ↓
 Submit Work
    ↓
-Wait for Review
+Teacher Review
    ↓
 View Marks
    ↓
@@ -205,25 +218,25 @@ View Feedback
 
 ---
 
-### 📝 Assignment Management
+## 📝 Assignment Management
 
 Assignment management is one of the core workflows of EduAssign Pro.
 
-Teachers can create assignments and define the information students need to complete their work.
-
-Assignments can contain:
+Assignments can contain information such as:
 
 - Title
 - Description
 - Subject
 - Deadline
 - Maximum marks
-- Assigned students
+- Assigned academic context
 
 The assignment lifecycle is:
 
 ```text
 Create
+  ↓
+Configure
   ↓
 Assign
   ↓
@@ -238,43 +251,60 @@ Grade
 Feedback
 ```
 
-Once an assignment is created, the relevant students can access it through their student workspace.
+Teachers are responsible for creating and managing assignments within their permitted academic context.
 
 ---
 
-### 📤 Submission Management
+## 📤 Submission Management
 
-Students can submit their assignments directly through the platform.
+Students can submit their assignment work through the platform.
 
-Teachers can access submitted work from their submission management interface and review the submitted material.
+Teachers can access submitted work from the submission management interface.
+
+The submission workflow is:
+
+```text
+Assignment
+     ↓
+Student Submission
+     ↓
+Submission Record
+     ↓
+Teacher Review
+     ↓
+Similarity Analysis
+     ↓
+Evaluation
+     ↓
+Marks & Feedback
+```
 
 Teachers can:
 
-- View submitted assignments
+- View submissions
 - Open submission details
-- Review student work
+- Review submitted work
 - Check submission information
 - Analyze similarity
 - Assign marks
 - Provide feedback
+- Manage applicable submission status
 
-After evaluation, students can access their results and feedback through their own dashboard.
+Students can view their resulting status, marks, and feedback from their own workspace.
 
 ---
 
-### 🔍 AI-Assisted Similarity Analysis
+## 🔍 Similarity-Assisted Submission Analysis
 
-EduAssign Pro includes a similarity analysis feature designed to assist teachers during academic submission review.
+EduAssign Pro includes a similarity analysis feature to assist teachers during academic submission review.
 
-The system compares submitted documents using lexical and semantic similarity techniques and provides similarity information that can help teachers identify potentially similar submissions.
+The system compares submitted content using lexical and semantic similarity techniques and provides similarity information that can help identify potentially similar submissions.
 
-Similarity analysis includes:
+The analysis includes:
 
 - Lexical similarity
 - Semantic similarity
 - Overall similarity score
-
-The workflow is:
 
 ```text
 Student Submission
@@ -289,18 +319,18 @@ Overall Similarity Score
         ↓
 Teacher Review
 ```
-<img width="1626" height="921" alt="image" src="https://github.com/user-attachments/assets/8be4a9f9-a54e-4b1f-9665-1dcd3234bbb1" />
 
+<img width="1626" height="921" alt="Similarity Analysis" src="https://github.com/user-attachments/assets/8be4a9f9-a54e-4b1f-9665-1dcd3234bbb1" />
 
-The similarity system is designed to support academic review. It does not automatically determine whether plagiarism has occurred. The final interpretation and academic decision remain with the teacher or institution.
+Similarity analysis is intended as a review aid. It does not automatically determine whether plagiarism has occurred. The final academic interpretation remains with the teacher or institution.
 
 ---
 
-### 📚 Subject & Curriculum Management
+## 📚 Academic Structure
 
-EduAssign Pro provides tools for maintaining the academic structure of an institution.
+EduAssign Pro provides a structured way to manage the academic information used throughout the platform.
 
-Administrators can organize:
+The academic structure includes:
 
 - Academic levels
 - Curriculum
@@ -308,8 +338,8 @@ Administrators can organize:
 - Teachers
 - Students
 - Teacher-student-subject relationships
-
-This keeps assignments and academic activities connected to the appropriate academic context.
+- Assignments
+- Submissions
 
 ```text
 Academic Level
@@ -323,44 +353,45 @@ Teachers
 Students
       ↓
 Assignments
+      ↓
+Submissions
 ```
 
 ---
 
-### 🔗 Teacher-Student-Subject Relationships
+## 🔗 Teacher, Student & Subject Relationships
 
-The platform provides dedicated management for relationships between teachers, students, and subjects.
-
-These relationships determine the academic context in which teachers and students interact.
+The application maintains relationships between teachers, students, and subjects so academic activities can be associated with the appropriate context.
 
 ```text
-              Subject
-                 │
-        ┌────────┴────────┐
-        ↓                 ↓
-     Teacher           Students
-        │                 │
-        └────────┬────────┘
-                 ↓
-            Assignments
-                 ↓
-            Submissions
-                 ↓
-          Review & Grading
+                 Subject
+                    │
+          ┌─────────┴─────────┐
+          ↓                   ↓
+       Teacher             Students
+          │                   │
+          └─────────┬─────────┘
+                    ↓
+               Assignments
+                    ↓
+               Submissions
+                    ↓
+             Review & Grading
 ```
 
-This relationship-based structure helps maintain controlled academic access throughout the system.
+This structure also supports controlled access to academic resources through the backend authorization layer.
 
 ---
 
 ## 🔐 Authentication & Authorization
 
-Security and access control are important parts of the application architecture.
+Authentication and authorization are core parts of the application architecture.
 
-EduAssign Pro uses authentication and role-based authorization to ensure users can access functionality appropriate to their role.
+EduAssign Pro uses JWT-based authentication together with role-based authorization.
 
-### Security features
+Security-related capabilities include:
 
+- User login
 - JWT-based authentication
 - Role-based authorization
 - Protected API endpoints
@@ -370,36 +401,45 @@ EduAssign Pro uses authentication and role-based authorization to ensure users c
 - Role-specific dashboards
 - Controlled access to academic resources
 
-The application separates the responsibilities of the three primary roles:
+The primary role boundaries are:
 
 ```text
-Admin
+ADMIN
  ├── User Management
  ├── Academic Management
- └── Institution Configuration
+ └── Institutional Management
 
-Teacher
+TEACHER
  ├── Assignment Management
  ├── Submission Review
  ├── Grading
+ ├── Feedback
  └── Similarity Analysis
 
-Student
+STUDENT
  ├── Subject Access
  ├── Assignment Access
  ├── Submission
- └── Results
+ └── Results & Feedback
 ```
+
+Frontend visibility is not treated as the only security mechanism. Protected operations are also validated by the backend API.
 
 ---
 
 ## 🛡️ User Account Management
 
-Administrators can activate, deactivate, and permanently delete teacher and student accounts.
+Administrators can manage teacher and student accounts through the administrative workspace.
 
-Permanent deletion includes a confirmation workflow to reduce accidental deletion.
+Available account operations include:
 
-The backend also performs safety checks before processing deletion requests.
+- Activate users
+- Deactivate users
+- Delete eligible users
+
+Sensitive administrative operations are protected by backend authorization and validation.
+
+Account deletion follows a controlled flow:
 
 ```text
 Delete Request
@@ -417,56 +457,56 @@ User Removal
 Success Response
 ```
 
-Administrative accounts are protected from normal deletion operations, including self-deletion, to prevent accidental removal of critical administrative access.
+Administrative accounts are protected from normal deletion operations to reduce the risk of accidentally removing critical administrative access.
 
 ---
 
-## 🔄 Complete Academic Workflow
-
-EduAssign Pro follows a clear end-to-end academic workflow.
+## 🔄 End-to-End Academic Workflow
 
 ### 01 — Setup
 
-Administrators establish the academic environment.
+The administrator establishes the academic environment.
 
 ```text
 Admin
  ↓
-Teachers
- ↓
-Students
+Users
  ↓
 Academic Levels
  ↓
 Subjects
  ↓
 Curriculum
+ ↓
+Teacher-Student Relationships
 ```
 
 ### 02 — Assign
 
-Teachers create assignments for the appropriate academic context.
+The teacher creates and assigns academic work.
 
 ```text
 Teacher
    ↓
 Create Assignment
    ↓
-Select Subject
+Configure Details
    ↓
-Assign Students
+Select Academic Context
    ↓
-Publish Assignment
+Assign Work
 ```
 
 ### 03 — Submit
 
-Students access their assignments and submit their completed work.
+Students access and submit their assignments.
 
 ```text
 Student
    ↓
 View Assignment
+   ↓
+Review Deadline
    ↓
 Complete Work
    ↓
@@ -475,7 +515,7 @@ Submit
 
 ### 04 — Review
 
-Teachers review submitted assignments.
+Teachers review submitted work.
 
 ```text
 Submission
@@ -489,7 +529,7 @@ Academic Evaluation
 
 ### 05 — Grade
 
-Teachers provide marks and feedback.
+Teachers provide the final evaluation.
 
 ```text
 Teacher
@@ -498,6 +538,8 @@ Marks
    ↓
 Feedback
    ↓
+Submission Status
+   ↓
 Student Result
 ```
 
@@ -505,7 +547,7 @@ Student Result
 
 ## 🏗️ System Architecture
 
-EduAssign Pro follows a layered full-stack architecture that separates the frontend, backend, application logic, and database.
+EduAssign Pro follows a layered full-stack architecture.
 
 ```text
 ┌──────────────────────────────────────────────┐
@@ -523,7 +565,7 @@ EduAssign Pro follows a layered full-stack architecture that separates the front
 │                                              │
 │             ASP.NET Core Web API             │
 │                                              │
-│ Controllers → Services → Repositories        │
+│ Controllers → Application → Infrastructure   │
 └──────────────────────┬───────────────────────┘
                        │
                        ▼
@@ -534,18 +576,32 @@ EduAssign Pro follows a layered full-stack architecture that separates the front
 └──────────────────────────────────────────────┘
 ```
 
-The frontend handles the user experience and role-specific interfaces.
+### Frontend Responsibilities
 
-The backend handles:
+- User interface
+- Role-specific dashboards
+- Forms
+- Client-side validation
+- API integration
+- Navigation
+- User interaction
+- Displaying academic data
+
+### Backend Responsibilities
 
 - Authentication
 - Authorization
 - Business logic
-- Validation
-- API operations
+- Request validation
+- REST API operations
 - Database communication
+- Protected resource access
+- Error handling
+- Logging
 
-MongoDB provides persistent storage for the application's academic data.
+### Database Responsibilities
+
+MongoDB provides persistent storage for the application's academic and user data.
 
 ---
 
@@ -567,13 +623,16 @@ MongoDB provides persistent storage for the application's academic data.
 
 - C#
 - ASP.NET Core Web API
-- REST API
+- RESTful API
 - JWT Authentication
 - Role-Based Authorization
-- Repository Pattern
-- Service Layer
-- Swagger / OpenAPI
-- Serilog
+- Swagger
+
+### AI / ML
+
+- Text Similarity Analysis
+- Lexical & Semantic Similarity
+- Similarity Index Calculation
 
 ### Database
 
@@ -588,10 +647,11 @@ MongoDB provides persistent storage for the application's academic data.
 - API Testing
 - Browser Testing
 
-### Deployment
+### Deployment & Development
 
 - Docker
 - Render
+- Git
 - GitHub
 
 ---
@@ -636,8 +696,13 @@ EduAssign/
 │   ├── EduAssignPro.Infrastructure/
 │   └── ...
 │
+├── ml-service/
+├── qa-scripts/
+├── results/
+├── screenshots/
 ├── Dockerfile.server
 ├── render.yaml
+├── .env.example
 └── README.md
 ```
 
@@ -647,22 +712,22 @@ EduAssign/
 
 The frontend communicates with the ASP.NET Core backend through RESTful APIs.
 
-The application follows standard HTTP methods:
+The API follows standard HTTP methods:
 
 ```text
-GET       → Retrieve data
-POST      → Create data
-PUT/PATCH → Update data
-DELETE    → Remove data
+GET        → Retrieve resources
+POST       → Create resources
+PUT/PATCH  → Update resources
+DELETE     → Remove resources
 ```
 
-Common HTTP responses include:
+Typical response codes include:
 
-| Status | Meaning |
-|--------|---------|
-| 200 | Request successful |
-| 201 | Resource created |
-| 204 | Operation completed successfully |
+| Status Code | Meaning |
+|-------------|---------|
+| 200 | Request completed successfully |
+| 201 | Resource created successfully |
+| 204 | Operation completed without response content |
 | 400 | Invalid request |
 | 401 | Authentication required |
 | 403 | Access denied |
@@ -674,13 +739,25 @@ The backend is responsible for validating requests and enforcing protected opera
 
 ---
 
-## 📊 Role-Based Dashboards
+## 📖 API Documentation
 
-Each role receives a workspace designed around its responsibilities.
+The backend provides Swagger/OpenAPI support for exploring and testing available API endpoints.
+
+When running the backend locally:
+
+```text
+http://localhost:<BACKEND_PORT>/swagger
+```
+
+The exact backend port is determined by the project's ASP.NET Core launch configuration.
+
+---
+
+## 📊 Role-Based Dashboards
 
 ### Admin Dashboard
 
-The Admin dashboard provides access to:
+The Admin workspace provides access to:
 
 - Teachers
 - Students
@@ -692,7 +769,7 @@ The Admin dashboard provides access to:
 
 ### Teacher Dashboard
 
-The Teacher dashboard provides access to:
+The Teacher workspace provides access to:
 
 - Students
 - Subjects
@@ -704,7 +781,7 @@ The Teacher dashboard provides access to:
 
 ### Student Dashboard
 
-The Student dashboard provides access to:
+The Student workspace provides access to:
 
 - Subjects
 - Assignments
@@ -712,41 +789,42 @@ The Student dashboard provides access to:
 - Marks
 - Feedback
 
-This role-based structure keeps the interface focused and prevents users from being exposed to functionality outside their responsibilities.
+Each dashboard is designed around the responsibilities of its role.
 
 ---
 
 ## 🎨 User Interface
 
-EduAssign Pro follows a clean, modern SaaS-style interface focused on usability and consistency.
+EduAssign Pro follows a clean and responsive interface designed for practical academic workflows.
 
 The application includes:
 
-- Structured dashboards
 - Responsive layouts
+- Structured dashboards
 - Clear navigation
-- Consistent typography
-- Status indicators
-- Action buttons
-- Confirmation dialogs
+- Role-specific interfaces
 - Form validation
+- Status indicators
+- Confirmation dialogs
 - Feedback notifications
-- Organized data tables
-- Role-specific workflows
+- Organized tables
+- Assignment workflows
+- Submission workflows
+- Grading interfaces
 
-The Admin, Teacher, and Student interfaces share a consistent visual language while maintaining separate responsibilities.
+The three role-based workspaces share a consistent visual language while keeping their responsibilities separated.
 
 ---
 
-## 🚀 Deployment
+## 🚀 Live Deployment
 
-EduAssign Pro is designed to run as separate frontend and backend services.
+The project is configured for deployment as a full-stack application.
 
 ```text
                        GitHub
                           │
                           ▼
-                    Render Platform
+                       Render
                           │
              ┌────────────┴────────────┐
              ▼                         ▼
@@ -756,36 +834,30 @@ EduAssign Pro is designed to run as separate frontend and backend services.
              └────────────┬────────────┘
                           ▼
                        MongoDB
-```
 
-The backend is containerized using Docker, while the deployment configuration is maintained through the project's Render configuration.
-
-### 🌐 Live Application
-
-https://eduassign-6w15.onrender.com
 
 ---
 
 ## ⚙️ Local Development
 
-### Requirements
+### Prerequisites
 
-Before running EduAssign Pro locally, make sure the following are installed:
+Make sure the following are installed:
 
 - Node.js
 - npm
 - .NET SDK
-- MongoDB
+- MongoDB or access to MongoDB Atlas
 - Git
 
-### Clone the repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/mamun657/EduAssign.git
 cd EduAssign
 ```
 
-### Run the frontend
+### Frontend Setup
 
 ```bash
 cd web
@@ -793,13 +865,13 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at:
+The frontend will normally be available at:
 
 ```text
 http://localhost:3000
 ```
 
-### Run the backend
+### Backend Setup
 
 Open another terminal:
 
@@ -810,36 +882,103 @@ dotnet build
 dotnet run
 ```
 
-The backend URL is determined by the configured ASP.NET Core launch settings and environment.
+The backend URL and port are determined by the configured ASP.NET Core launch settings.
+
+---
+
+## 🗄️ Database Setup
+
+EduAssign Pro uses MongoDB for persistent data storage.
+
+MongoDB can be used through either a local installation or MongoDB Atlas.
+
+### Local MongoDB
+
+1. Install MongoDB.
+2. Start the MongoDB service.
+3. Configure the MongoDB connection string.
+4. Configure the database name.
+5. Start the backend.
+6. Allow the application to initialize and access the required collections.
+
+### MongoDB Atlas
+
+1. Create a MongoDB Atlas cluster.
+2. Create a database user.
+3. Configure the required network access.
+4. Copy the MongoDB connection string.
+5. Add the connection string to the backend environment configuration.
+6. Start the backend.
+
+The application uses MongoDB rather than a relational SQL database, so relationships are represented through MongoDB documents, identifiers, and application-level relationships.
+
+No manual SQL table creation is required.
+
+---
+
+## 🌱 Seed / Sample Data
+
+For local evaluation, the project can be configured with the required initial application data through its environment and backend initialization configuration.
+
+If seed data is enabled in the current configuration, start the backend after setting the required environment variables so the application can initialize the required records.
+
+For evaluation, use the provided demo accounts together with the required environment configuration.
 
 ---
 
 ## 🔧 Environment Configuration
 
-EduAssign Pro uses environment variables for application configuration and sensitive credentials.
+The project uses environment variables for database connections, authentication configuration, API communication, and other environment-specific settings.
 
-Depending on the environment, configuration can include:
+A `.env.example` file is included as a template.
 
-```text
-MongoDB connection string
-MongoDB database name
-JWT secret
-JWT issuer
-JWT audience
-Seed administrator credentials
-CORS configuration
-Frontend API base URL
+Typical configuration includes:
+
+```env
+MONGODB_CONNECTION_STRING=
+MONGODB_DATABASE_NAME=
+JWT_SECRET=
+JWT_ISSUER=
+JWT_AUDIENCE=
+NEXT_PUBLIC_API_URL=
 ```
 
-Sensitive credentials should never be committed to the repository.
+Use the exact variable names provided by the project's `.env.example` file when configuring the application.
 
-For production deployments, these values should be configured through the deployment environment.
+### Important
+
+Never commit:
+
+- Real passwords
+- JWT secrets
+- API keys
+- Database credentials
+- Private tokens
+- Other sensitive configuration values
+
+The repository should contain only example configuration values.
+
+---
+
+## 🔑 Demo Credentials
+
+The following accounts should be used for evaluation.
+
+> Replace the placeholders below with the actual working demo credentials before final submission.
+
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | `<ADMIN_EMAIL>` | `<ADMIN_PASSWORD>` |
+| Teacher | `<TEACHER_EMAIL>` | `<TEACHER_PASSWORD>` |
+| Student | `<STUDENT_EMAIL>` | `<STUDENT_PASSWORD>` |
+
+These accounts are intended to demonstrate the role-specific workflows of the application.
 
 ---
 
 ## 🧪 Testing & Verification
 
-The project can be validated through automated checks, API testing, and browser-based verification.
+The project includes development and verification workflows for checking the frontend, backend, API, and browser behavior.
 
 ### Frontend TypeScript Check
 
@@ -851,6 +990,7 @@ npx tsc --noEmit
 ### Frontend Production Build
 
 ```bash
+cd web
 npm run build
 ```
 
@@ -864,12 +1004,35 @@ dotnet build
 ### Backend Tests
 
 ```bash
+cd server
 dotnet test
 ```
 
 ### Browser Verification
 
-Important application workflows can be verified through a real browser environment, including:
+Important workflows can be verified in a real browser environment:
+
+```text
+Login
+  ↓
+Role-Based Dashboard
+  ↓
+Admin / Teacher / Student Workflow
+  ↓
+Assignment Management
+  ↓
+Submission
+  ↓
+Review
+  ↓
+Similarity Analysis
+  ↓
+Grading
+  ↓
+Feedback
+```
+
+The main workflows to verify include:
 
 - Login
 - Registration
@@ -881,15 +1044,38 @@ Important application workflows can be verified through a real browser environme
 - Subject management
 - Curriculum management
 - Assignment creation
-- Assignment editing
+- Assignment update
+- Assignment deletion
 - Assignment submission
 - Submission review
+- Similarity analysis
 - Grading
 - Feedback
-- Similarity analysis
 - User activation
 - User deactivation
 - User deletion
+
+---
+
+## 🧪 Testing Scope
+
+Testing is focused on important application behavior and business workflows, including:
+
+- Authentication behavior
+- Role-based authorization
+- Protected API access
+- Assignment workflows
+- Submission workflows
+- Validation rules
+- Academic access control
+
+The backend test suite can be executed with:
+
+```bash
+dotnet test
+```
+
+Additional frontend and browser checks can be performed using the project's configured testing and QA tooling.
 
 ---
 
@@ -940,52 +1126,114 @@ Important application workflows can be verified through a real browser environme
 
 ---
 
-## 📈 Why EduAssign Pro?
+## 📌 Design Decisions
 
-EduAssign Pro focuses on a practical challenge in academic management: keeping assignment-related activities organized and connected.
+### MongoDB
 
-The platform brings together:
+MongoDB was selected as the application's database because the academic entities and their relationships can be represented naturally using document-based storage.
 
-- User management
-- Academic structure
-- Assignment management
-- Submission management
-- Teacher evaluation
-- Grading
-- Feedback
-- Similarity-assisted review
+### JWT Authentication
 
-This creates a more structured workflow for institutions, teachers, and students.
+JWT-based authentication provides a stateless mechanism for authenticating API requests and supports the application's role-based access model.
 
-```text
-             ADMIN
-               │
-               ▼
-       Academic Management
-               │
-       ┌───────┴───────┐
-       ▼               ▼
-    TEACHER          STUDENT
-       │               │
-       ▼               ▼
-  Assignments      Submissions
-       │               │
-       └───────┬───────┘
-               ▼
-             Review
-               │
-               ▼
-        Marks & Feedback
-               │
-               ▼
-             Results
-```
+### Backend Authorization
+
+Authorization is enforced on the backend rather than relying only on frontend route visibility. This ensures protected API operations are checked at the server level.
+
+### Role-Based Workspaces
+
+Admin, Teacher, and Student users receive different workspaces because their responsibilities within the academic workflow are different.
+
+### Similarity Analysis
+
+Similarity analysis is implemented as an academic review aid rather than an automatic plagiarism decision system. Similarity results provide information for teachers to investigate and interpret.
+
+---
+
+## 📌 Assumptions
+
+The following assumptions were made where the requirements did not explicitly define implementation details:
+
+- The application uses three primary roles: Admin, Teacher, and Student.
+- Each role has access only to functionality appropriate to its responsibilities.
+- MongoDB is used as the project database.
+- JWT is used for authentication.
+- Backend authorization is responsible for enforcing protected operations.
+- Academic information is organized through levels, curriculum, subjects, teachers, and students.
+- Assignments are associated with the appropriate academic context before becoming available to students.
+- Similarity analysis is considered an academic review aid and not an automatic plagiarism verdict.
+- Environment-specific secrets and credentials are supplied through environment configuration rather than committed to source control.
+- Demo accounts are provided separately for evaluation of the three primary roles.
+
+---
+
+## ⚠️ Known Limitations
+
+The current version focuses primarily on the core assignment and submission management workflow.
+
+Known limitations include:
+
+- Similarity analysis provides similarity information but does not independently determine plagiarism.
+- Advanced institutional notification workflows are not part of the core assignment workflow.
+- Email notification and reminder functionality may require additional integration.
+- The current system is primarily designed as a web application.
+- Advanced analytics and reporting can be expanded in future versions.
+- Multi-institution management is not the primary focus of the current implementation.
+
+---
+
+## 🔒 Security Considerations
+
+EduAssign Pro follows several security-oriented practices:
+
+- JWT-based authentication
+- Role-based authorization
+- Backend-protected endpoints
+- Request validation
+- Controlled access to academic resources
+- Confirmation before sensitive administrative actions
+- Environment-based configuration for secrets
+- No real credentials should be committed to source control
+
+Security decisions are applied at both the application and API levels.
+
+---
+
+## 📋 Requirement Coverage
+
+| Requirement | EduAssign Pro |
+|-------------|---------------|
+| Full-stack web application | ✅ |
+| Admin role | ✅ |
+| Teacher role | ✅ |
+| Student role | ✅ |
+| User management | ✅ |
+| Academic structure management | ✅ |
+| Subject management | ✅ |
+| Assignment management | ✅ |
+| Assignment submission | ✅ |
+| Submission review | ✅ |
+| Marks | ✅ |
+| Teacher feedback | ✅ |
+| JWT authentication | ✅ |
+| Role-based authorization | ✅ |
+| RESTful backend API | ✅ |
+| MongoDB database | ✅ |
+| Swagger/OpenAPI | ✅ |
+| Frontend validation | ✅ |
+| Backend validation | ✅ |
+| Testing workflow | ✅ |
+| Similarity-assisted review | ✅ |
+| Responsive frontend | ✅ |
+| Environment configuration | ✅ |
+| Demo credentials | Required for final evaluation setup |
+| Database initialization | Documented above |
+| Assumptions | Documented above |
+| Known limitations | Documented above |
 
 ---
 
 ## 🔮 Future Improvements
-
-EduAssign Pro currently focuses on its core academic assignment and submission workflows.
 
 Potential future improvements include:
 
@@ -999,40 +1247,102 @@ Potential future improvements include:
 - Mobile application
 - Multi-institution support
 - Additional learning analytics
+- More detailed reporting dashboards
 
-These are future directions and are not presented as currently implemented features.
+These are future directions and are not presented as currently implemented functionality.
 
 ---
 
 ## 🌱 Project Vision
 
-The vision behind EduAssign Pro is to create a dependable academic workspace where institutions can manage everyday assignment workflows through one connected system.
+EduAssign Pro aims to provide a dependable academic workspace where institutions can manage assignment-related activities through one connected system.
 
-The platform aims to make academic operations easier to organize for administrators, teachers, and students while maintaining clear responsibilities and controlled access.
+The platform brings together academic structure, users, assignments, submissions, evaluation, and feedback while maintaining clear role boundaries and controlled access.
 
 ```text
-Institution
-     │
-     ▼
-Academic Structure
-     │
-     ├───────────────┐
-     ▼               ▼
-  Teachers        Students
-     │               │
-     ▼               ▼
-Assignments      Submissions
-     │               │
-     └───────┬───────┘
-             ▼
-          Review
-             │
-             ▼
-      Marks & Feedback
-             │
-             ▼
-          Results
+                     INSTITUTION
+                          │
+                          ▼
+                Academic Structure
+                          │
+             ┌────────────┴────────────┐
+             ▼                         ▼
+          TEACHERS                  STUDENTS
+             │                         │
+             ▼                         ▼
+       ASSIGNMENTS                SUBMISSIONS
+             │                         │
+             └────────────┬────────────┘
+                          ▼
+                       REVIEW
+                          │
+                          ▼
+                Similarity Analysis
+                          │
+                          ▼
+                  Marks & Feedback
+                          │
+                          ▼
+                       RESULTS
 ```
+
+---
+
+## 📁 Repository Contents
+
+The repository contains the main components required to evaluate and run the project:
+
+```text
+Frontend
+Backend / API
+Database Configuration
+Environment Example
+Testing / QA Resources
+Deployment Configuration
+Documentation
+```
+
+The repository is intended to contain the complete source code required for local development and evaluation.
+
+---
+
+## 🚀 Quick Start
+
+For an evaluator who wants to get started quickly:
+
+```bash
+# Clone
+git clone https://github.com/mamun657/EduAssign.git
+
+# Frontend
+cd EduAssign/web
+npm install
+npm run dev
+```
+
+In a second terminal:
+
+```bash
+# Backend
+cd EduAssign/server
+dotnet restore
+dotnet build
+dotnet run
+```
+
+Then open:
+
+```text
+Frontend:
+http://localhost:3000
+
+Swagger:
+http://localhost:<BACKEND_PORT>/swagger
+```
+
+Configure the required environment variables before starting the application.
+
+Use the demo Admin, Teacher, and Student accounts provided in the Demo Credentials section.
 
 ---
 
@@ -1040,50 +1350,43 @@ Assignments      Submissions
 
 ### Mohammed Minul Islam
 
-**Software Developer | Full-Stack Developer | AI/ML Enthusiast**
+**Software Developer**
 
-EduAssign Pro was developed as a full-stack academic software project with a focus on real-world application architecture, role-based access control, REST API development, database integration, authentication, academic workflows, and production deployment.
+EduAssign Pro was developed as a full-stack software engineering project with a focus on:
 
-### Technologies Used
+- Full-stack application development
+- Role-based access control
+- REST API development
+- Authentication and authorization
+- Database integration
+- Assignment workflows
+- Submission management
+- Teacher evaluation
+- Similarity-assisted review
+- Testing and verification
+- Deployment
 
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- ASP.NET Core
-- C#
-- MongoDB
-- REST APIs
-- JWT
-- Docker
-- Render
-- Git & GitHub
+### Core Technologies
 
----
-
-## 🔗 Project Links
-
-🌐 **Live Application**  
-https://eduassign-6w15.onrender.com
-
-💻 **GitHub Repository**  
-https://github.com/mamun657/EduAssign
-
-👨‍💻 **Developer GitHub**  
-https://github.com/mamun657
+```text
+Next.js
+React
+TypeScript
+Tailwind CSS
+ASP.NET Core
+C#
+MongoDB
+REST API
+JWT
+AI/ML
+Docker
+Render
+Git
+GitHub
+```
 
 ---
 
 ## 📄 License
 
 This project was developed as a full-stack academic software engineering project.
-
----
-
-<p align="center">
-  <strong>📚 EduAssign Pro</strong>
-  <br><br>
-  Assignment & Academic Workflow Management Platform
-  <br><br>
-  Built to make academic workflows more organized, connected, and manageable.
-</p>
